@@ -1,7 +1,7 @@
 {
   "url": "git://git.devalot.com/pkgs.git",
-  "rev": "fb0984943afaf6f686fb2d5807f451f8d4888f38",
-  "date": "2019-02-10T19:41:11-07:00",
-  "sha256": "1pxbwp9yjx0775mrg3n3980j0ng434vg6ab81393qhyxpmba7hwn",
+  "rev": "a6f57dd719a8350e9d021fbceb6fbd13d76f12fb",
+  "date": "2019-02-10T20:10:32-07:00",
+  "sha256": "03ibl3m88plrgc0q03ql676ivpdfj2si02v4yrq36xiym2r9pavh",
   "fetchSubmodules": false
 }
