@@ -4,20 +4,13 @@ with lib;
 
 let
   cfg = config.pjones;
-  base = import ../../pkgs { inherit pkgs; };
+  base = import ../../../pkgs { inherit pkgs; };
 
   emacsrc = base.emacsrc;
   encryption-utils = base.encryption-utils;
 
-  # Restart plasmashell after switching display configuration (the
-  # plasma panel goes a bit wonky):
-  autorandr-postswitch = pkgs.writeScript "autorandr-postswitch" ''
-    #!${pkgs.stdenv.shell}
-    kquitapp5 plasmashell; kstart5 plasmashell > /dev/null 2>&1 &
-  '';
-
   # Set XDG environment variables to my liking:
-  xdg-set-up = pkgs.writeScript "xdg-set-up" (readFile ../../support/workstation/xdg.sh);
+  xdg-set-up = pkgs.writeScript "xdg-set-up" (readFile ../../../support/workstation/xdg.sh);
 
   # Reuse the startkde script from NixOS:
   xsessions = config.services.xserver.desktopManager.session.list;
@@ -26,11 +19,23 @@ in
 {
   # Additional files:
   imports = [
+    ./gromit-mpx.nix
+    ./ipfs.nix
+    ./keyboard.nix
     ./mail.nix
+    ./mpd.nix
+    ./syncthing.nix
+    ./yubikey.nix
   ];
 
   #### Implementation:
   config = mkIf cfg.isWorkstation {
+
+    # Make sure X is enabled:
+    services.xserver.enable = mkDefault true;
+    services.xserver.layout = mkDefault "us";
+    services.xserver.displayManager.sddm.enable = mkDefault true;
+    services.xserver.desktopManager.plasma5.enable = mkDefault true;
 
     # Extra groups needed on a workstation:
     users.users.pjones.extraGroups = [
@@ -41,30 +46,31 @@ in
       "scanner"
     ];
 
+    # Some things only work if installed in the system environment:
+    environment.systemPackages = with pkgs; [
+      arc-icon-theme
+      arc-theme
+      gwenview
+      hicolor_icon_theme
+      kdeconnect
+      playbar2
+      qt5.qttools
+    ] ++ filter isDerivation (attrValues pkgs.kdeApplications);
+
     # Extra packages:
     users.users.pjones.packages = with pkgs; [
       # Desktop
-      arc-icon-theme
-      arc-theme
-      autorandr
       bspwm
       calibre
       glabels
-      gwenview
-      hicolor_icon_theme
-      kdeApplications.krdc
-      kdeconnect
       libnotify
       libreoffice
       pamixer
       pavucontrol
-      plasma5.user-manager
-      playbar2
-      qt5.qttools
       rofi
-      rofi-pass
       sxhkd
       x11vnc
+      xclip
       xdo
       xdotool
       xorg.xev
@@ -100,11 +106,11 @@ in
       gimp
       imagemagick
       inkscape
+      kicad
       librecad
       ngspice
       openscad
       pdftk
-      qgis
       qmapshack
       slic3r
       xournal
@@ -124,15 +130,10 @@ in
       emacsrc
     ];
 
-    # NixOS services:
-    services.autorandr.enable = true;
-    services.dbus.enable = true;
-
     # Home Manager:
     home-manager.users.pjones = { ... }: {
       # Files in ~pjones:
       home.file.".emacs".source = "${emacsrc}/dot.emacs.el";
-      xdg.configFile."autorandr/postswitch".source = "${autorandr-postswitch}";
 
       # Services:
       xsession = {
@@ -171,7 +172,8 @@ in
         inactiveOpacity = "0.85";
         opacityRule = [
           "20:class_i *= 'presel_feedback'"
-          "100:class_g = 'rofi'" # Why doesn't this work?
+          "99:class_i *= 'sddm'"
+          "99:class_i  = 'rofi'"
         ];
 
         extraOptions = ''

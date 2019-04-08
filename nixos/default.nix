@@ -16,7 +16,7 @@ in
   imports = [
     ./modules/shells.nix
     ./modules/wheel.nix
-    ./modules/workstation.nix
+    ./modules/workstation
   ];
 
   #### Interface:
@@ -56,9 +56,9 @@ in
         curl
         gitAndTools.gitAnnex
         gitAndTools.git
-        gnumake
         gnupg
         gnutls
+        htop
         inotifyTools
         jq
         lsscsi
