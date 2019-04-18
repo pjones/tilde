@@ -29,10 +29,12 @@ in
   config = mkIf cfg.isWorkstation {
 
     # Make sure X is enabled:
-    services.xserver.enable = mkDefault true;
-    services.xserver.layout = mkDefault "us";
-    services.xserver.displayManager.sddm.enable = mkDefault true;
-    services.xserver.desktopManager.plasma5.enable = mkDefault true;
+    services.xserver = mkIf cfg.startX11 {
+      enable = mkDefault true;
+      layout = mkDefault "us";
+      displayManager.sddm.enable = mkDefault true;
+      desktopManager.plasma5.enable = mkDefault true;
+    };
 
     # Extra groups needed on a workstation:
     users.users.pjones.extraGroups = [
@@ -146,7 +148,7 @@ in
       home.file.".emacs".source = "${base.emacsrc}/dot.emacs.el";
 
       # Services:
-      xsession = {
+      xsession = mkIf cfg.startX11 {
         enable = true;
         windowManager.command = startkde;
 
@@ -158,7 +160,7 @@ in
       };
 
       # Hide the mouse.
-      services.unclutter.enable = true;
+      services.unclutter.enable = cfg.startX11;
 
       # Cache passphrases and keys:
       services.gpg-agent = {
@@ -171,7 +173,7 @@ in
       };
 
       # Make things pretty:
-      services.compton = {
+      services.compton = mkIf cfg.startX11 {
         enable = true;
 
         fade = true;

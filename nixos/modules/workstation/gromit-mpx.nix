@@ -10,7 +10,7 @@ let
 
 in
 {
-  config = mkIf cfg.isWorkstation {
+  config = mkIf (cfg.isWorkstation && cfg.startX11) {
     home-manager.users.pjones = { ... }: {
       services.gromit-mpx = {
         enable = true;

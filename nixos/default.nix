@@ -24,6 +24,12 @@ in
   options.pjones = {
     putInWheel = mkEnableOption "Allow access to the wheel group";
     isWorkstation = mkEnableOption "The current machine is a workstation, not a server.";
+
+    startX11 = mkOption {
+      type = types.bool;
+      default = config.pjones.isWorkstation;
+      description = "Start the X server.";
+    };
   };
 
   #### Implementation:
