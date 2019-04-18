@@ -14,6 +14,7 @@ in
 {
   #### Additional Files:
   imports = [
+    ./modules/cache.nix
     ./modules/shells.nix
     ./modules/wheel.nix
     ./modules/workstation
@@ -54,13 +55,15 @@ in
         (unison.override {enableX11 = false;})
         bc
         curl
-        gitAndTools.gitAnnex
         gitAndTools.git
+        gitAndTools.gitAnnex
+        gnumake
         gnupg
         gnutls
         htop
         inotifyTools
         jq
+        libossp_uuid
         lsscsi
         mkpasswd
         openssl

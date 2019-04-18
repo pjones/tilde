@@ -6,9 +6,6 @@ let
   cfg = config.pjones;
   base = import ../../../pkgs { inherit pkgs; };
 
-  emacsrc = base.emacsrc;
-  encryption-utils = base.encryption-utils;
-
   # Set XDG environment variables to my liking:
   xdg-set-up = pkgs.writeScript "xdg-set-up" (readFile ../../../support/workstation/xdg.sh);
 
@@ -68,6 +65,7 @@ in
       pamixer
       pavucontrol
       rofi
+      ssvnc
       sxhkd
       x11vnc
       xclip
@@ -84,15 +82,26 @@ in
       aspell
       aspellDicts.en
       dict
+      nixops
       pass
 
       # Network
       chromium
       firefox
+      mu
       youtube-dl
 
       # Audio/Video
+      abcde
+      atomicparsley
+      beets
+      bs1770gain
+      cdparanoia
+      cdrkit          # cdrecord, mkisofs, etc.
       ffmpeg
+      handbrake
+      lame
+      makemkv
       moc
       mpc_cli
       mpg123
@@ -124,16 +133,17 @@ in
       nodejs-slim-8_x
       shellcheck
 
-    ] ++ [
+    ] ++ (with base; [
       # My packages
       encryption-utils
       emacsrc
-    ];
+      vimeta
+    ]);
 
     # Home Manager:
     home-manager.users.pjones = { ... }: {
       # Files in ~pjones:
-      home.file.".emacs".source = "${emacsrc}/dot.emacs.el";
+      home.file.".emacs".source = "${base.emacsrc}/dot.emacs.el";
 
       # Services:
       xsession = {
