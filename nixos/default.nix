@@ -61,6 +61,7 @@ in
         (unison.override {enableX11 = false;})
         bc
         curl
+        direnv
         gitAndTools.git
         gitAndTools.gitAnnex
         gnumake

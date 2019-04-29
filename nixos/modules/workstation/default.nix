@@ -52,6 +52,7 @@ in
       gwenview
       hicolor_icon_theme
       kdeconnect
+      plasma-browser-integration
       playbar2
       qt5.qttools
     ] ++ filter isDerivation (attrValues pkgs.kdeApplications);
