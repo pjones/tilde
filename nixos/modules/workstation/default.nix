@@ -60,7 +60,6 @@ in
     # Extra packages:
     users.users.pjones.packages = with pkgs; [
       # Desktop
-      bspwm
       calibre
       glabels
       libnotify
@@ -69,7 +68,6 @@ in
       pavucontrol
       rofi
       ssvnc
-      sxhkd
       x11vnc
       xclip
       xdo
@@ -156,7 +154,7 @@ in
         # Run before the window manager:
         initExtra = ''
           ${xdg-set-up}
-          export KDEWM=${pkgs.bspwm}/bin/bspwm
+          export KDEWM=${base.xmonadrc}/bin/xmonadrc
         '';
       };
 
