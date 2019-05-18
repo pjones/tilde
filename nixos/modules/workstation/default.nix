@@ -132,6 +132,7 @@ in
       mr
       nodePackages.eslint
       nodejs-slim-8_x
+      ripgrep
       shellcheck
 
     ] ++ (with base; [
@@ -174,23 +175,8 @@ in
       # Make things pretty:
       services.compton = mkIf cfg.startX11 {
         enable = true;
-
         fade = true;
-        fadeExclude = [
-          "window_type *= 'menu'"
-        ];
-
-        inactiveOpacity = "0.85";
-        opacityRule = [
-          "20:class_i *= 'presel_feedback'"
-          "99:class_i *= 'sddm'"
-          "99:class_i  = 'rofi'"
-        ];
-
-        extraOptions = ''
-          unredir-if-possible = true;
-          use-ewmh-active-win = true;
-        '';
+        package = pkgs.compton-git;
       };
     };
   };
