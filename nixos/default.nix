@@ -10,6 +10,8 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJKW//sdBipEzLP85H89J1a8ma4J5IRbhEL+3/jEDANk leota"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEuiLy4mwlSXLn18H/8tTqCcfq0obMNkEQfU27AgJDdw slugworth"
   ];
+
+  personal-pkgs = import ../pkgs/default.nix { inherit pkgs; };
 in
 {
   #### Additional Files:
@@ -85,7 +87,10 @@ in
         usbutils
         wget
         zip
-      ];
+      ] ++ (with personal-pkgs; [
+        # My personal scripts:
+        network-scripts
+      ]);
     };
   };
 }

@@ -17,7 +17,6 @@ in
   # Additional files:
   imports = [
     ./gromit-mpx.nix
-    ./ipfs.nix
     ./keyboard.nix
     ./mail.nix
     ./mpd.nix
@@ -141,6 +140,24 @@ in
       emacsrc
       vimeta
     ]);
+
+    # Fonts:
+    fonts = {
+      fontconfig.enable      = true;
+      enableCoreFonts        = true;
+      enableFontDir          = true;
+      enableGhostscriptFonts = true;
+
+      fonts = with pkgs; [
+        dejavu_fonts
+        emacs-all-the-icons-fonts
+        hack-font
+        inconsolata
+        office-code-pro
+        powerline-fonts
+        ubuntu_font_family
+      ];
+    };
 
     # Home Manager:
     home-manager.users.pjones = { ... }: {
