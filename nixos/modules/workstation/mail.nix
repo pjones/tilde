@@ -80,6 +80,8 @@ in
 
     home-manager.users.pjones = { ... }: {
       home.file.".mbsyncrc".source = "${configFile}";
+
+      # emacsclient -e '(mu4e-update-index)'
     };
   };
 }

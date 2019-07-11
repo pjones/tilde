@@ -6,6 +6,8 @@ set -e
 set -u
 
 ################################################################################
+export PATH=@nixpath@:$PATH
+export HOME=/home/pjones
 export DISPLAY=${DISPLAY:=:0.0}
 export XAUTHORITY=$HOME/.Xauthority
 
@@ -17,12 +19,6 @@ list_builtin_keyboard() {
 }
 
 ################################################################################
-external_keyboard_found() {
-  xinput --list --name-only | \
-    grep -Eq 'Crkbd'
-}
-
-################################################################################
 name=$(list_builtin_keyboard)
 
 if [ -z "$name" ]; then
@@ -30,8 +26,10 @@ if [ -z "$name" ]; then
   exit 1
 fi
 
-if external_keyboard_found; then
+if [ $# -eq 1 ] && [ "$1" = "add" ]; then
+  # An external keyboard was added.
   xinput --disable "$name"
 else
+  # An external keyboard was removed.
   xinput --enable "$name"
 fi
