@@ -20,6 +20,7 @@ in
     ./keyboard.nix
     ./mail.nix
     ./mpd.nix
+    ./oled-display.nix
     ./syncthing.nix
     ./yubikey.nix
   ];

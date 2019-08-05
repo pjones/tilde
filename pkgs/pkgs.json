@@ -1,7 +1,7 @@
 {
   "url": "https://code.devalot.com/pjones/pkgs.git",
-  "rev": "da1e736c8498b8e334ff90bc4b2d4ada5cc4b1c0",
-  "date": "2019-07-29T10:26:50-07:00",
-  "sha256": "0lshpbzlamfv96gzsx4f8s3pwnwfiaf7sk63cyqp5p99vd7hkl00",
+  "rev": "80f78e38854c97edbcfa4c31530b580b1ac75bee",
+  "date": "2019-08-04T18:01:43-07:00",
+  "sha256": "0jf4yadbgx8gksnznnkjvx60l6jjbn3yjhj18yqb6pa0g5v5mdw2",
   "fetchSubmodules": false
 }
