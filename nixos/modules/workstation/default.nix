@@ -165,6 +165,9 @@ in
       # Files in ~pjones:
       home.file.".emacs".source = "${base.emacsrc}/dot.emacs.el";
 
+      home.file.".config/kde.org/pjones.css".source =
+        ../../../support/workstation/kde/theme.css;
+
       # Services:
       xsession = mkIf cfg.startX11 {
         enable = true;
@@ -193,8 +196,17 @@ in
       # Make things pretty:
       services.compton = mkIf cfg.startX11 {
         enable = true;
+        blur = true;
         fade = true;
         package = pkgs.compton-git;
+        shadow = true;
+        shadowExclude = [ "focused = 0" ];
+
+        extraOptions = ''
+          shadow-red   = 0;
+          shadow-green = 0.91;
+          shadow-blue  = 0.78;
+        '';
       };
     };
   };
