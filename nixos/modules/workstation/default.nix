@@ -120,6 +120,7 @@ in
       librecad
       ngspice
       openscad
+      pandoc
       pdftk
       qmapshack
       slic3r
