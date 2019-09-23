@@ -207,6 +207,7 @@ in
           shadow-red   = 0;
           shadow-green = 0.91;
           shadow-blue  = 0.78;
+          xinerama-shadow-crop = true;
         '';
       };
     };
