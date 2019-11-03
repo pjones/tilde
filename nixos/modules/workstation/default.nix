@@ -16,6 +16,7 @@ in
 {
   # Additional files:
   imports = [
+    ./firefox.nix
     ./gromit-mpx.nix
     ./keyboard.nix
     ./mail.nix
@@ -67,7 +68,6 @@ in
       pamixer
       pavucontrol
       rofi
-      ssvnc
       x11vnc
       xclip
       xdo
@@ -97,6 +97,7 @@ in
       atomicparsley
       beets
       bs1770gain
+      cantata
       cdparanoia
       cdrkit          # cdrecord, mkisofs, etc.
       ffmpeg
@@ -122,6 +123,7 @@ in
       openscad
       pandoc
       pdftk
+      prusa-slicer
       qmapshack
       slic3r
       xournal
@@ -132,7 +134,7 @@ in
       libxslt
       mr
       nodePackages.eslint
-      nodejs-slim-8_x
+      nodejs-slim
       ripgrep
       shellcheck
 
@@ -159,6 +161,12 @@ in
         powerline-fonts
         ubuntu_font_family
       ];
+    };
+
+    # Printing:
+    services.printing = {
+      enable = true;
+      drivers = with pkgs; [ cups-googlecloudprint canon-cups-ufr2 ];
     };
 
     # Home Manager:
