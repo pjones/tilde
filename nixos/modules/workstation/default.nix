@@ -17,7 +17,6 @@ in
   # Additional files:
   imports = [
     ./firefox.nix
-    ./gromit-mpx.nix
     ./keyboard.nix
     ./mail.nix
     ./mpd.nix
@@ -130,6 +129,7 @@ in
 
       # Development
       haskellPackages.hlint
+      haskellPackages.niv
       libxml2
       libxslt
       mr
@@ -155,9 +155,9 @@ in
       fonts = with pkgs; [
         dejavu_fonts
         emacs-all-the-icons-fonts
+        fira-code
         hack-font
         inconsolata
-        office-code-pro
         powerline-fonts
         ubuntu_font_family
       ];
@@ -191,6 +191,9 @@ in
 
       # Hide the mouse.
       services.unclutter.enable = cfg.startX11;
+
+      # Nix drv caching and background building:
+      services.lorri.enable = true;
 
       # Cache passphrases and keys:
       services.gpg-agent = {

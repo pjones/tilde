@@ -20,10 +20,7 @@ in
     };
 
     home-manager.users.pjones = { config, ... }: {
-      services.syncthing = {
-        enable = true;
-        tray = true;
-      };
+      services.syncthing.enable = true;
     };
   };
 }

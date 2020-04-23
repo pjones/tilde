@@ -14,8 +14,6 @@ in
         musicDirectory = "${config.home.homeDirectory}/documents/music";
         playlistDirectory = "${config.home.homeDirectory}/documents/playlists";
       };
-
-      services.mpdris2.enable = true;
     };
   };
 }
