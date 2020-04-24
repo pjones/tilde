@@ -4,7 +4,6 @@ with lib;
 
 let
   cfg = config.pjones;
-  base = import ../../../pkgs { inherit pkgs; };
 
   # Set XDG environment variables to my liking:
   xdg-set-up = pkgs.writeScript "xdg-set-up" (readFile ../../../support/workstation/xdg.sh);
@@ -138,12 +137,11 @@ in
       ripgrep
       shellcheck
 
-    ] ++ (with base; [
       # My packages
-      encryption-utils
-      emacsrc
-      vimeta
-    ]);
+      pjones.encryption-utils
+      pjones.emacsrc
+      pjones.vimeta
+    ];
 
     # Fonts:
     fonts = {
@@ -172,7 +170,7 @@ in
     # Home Manager:
     home-manager.users.pjones = { ... }: {
       # Files in ~pjones:
-      home.file.".emacs".source = "${base.emacsrc}/dot.emacs.el";
+      home.file.".emacs".source = "${pkgs.pjones.emacsrc}/dot.emacs.el";
 
       home.file.".config/kde.org/pjones.css".source =
         ../../../support/workstation/kde/theme.css;
@@ -185,7 +183,7 @@ in
         # Run before the window manager:
         initExtra = ''
           ${xdg-set-up}
-          export KDEWM=${base.xmonadrc}/bin/xmonadrc
+          export KDEWM=${pkgs.pjones.xmonadrc}/bin/xmonadrc
         '';
       };
 

@@ -4,4 +4,8 @@
   imports = [
     ./nixos
   ];
+
+  nixpkgs.overlays = [
+    (import ./pkgs/overlay.nix {})
+  ];
 }

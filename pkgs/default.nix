@@ -1,11 +1,19 @@
-# Return Peter's Package Collection:
-{ pkgs }:
+{ # Which Haskell compiler to use:
+  ghc ? "default",
 
-with pkgs.lib;
+  # Where all the packages are defined:
+  sources ? import ../nix/sources.nix
+}:
 
 let
-  attrs = removeAttrs (importJSON ./pkgs.json) [ "date"];
-  repo  = pkgs.fetchgit attrs;
-  boot  = import "${repo}/default.nix" { inherit pkgs; };
+  # A nixpkgs overlay:
+  overlay = self: super: {
+    pjones = import ./overlay.nix { inherit sources; };
+  };
 
-in boot.pjones
+  # Load nixpkgs from the sources.nix file:
+  pkgs = import sources.nixpkgs {
+    overlays = [ overlay ];
+  };
+
+in pkgs

@@ -11,7 +11,6 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEuiLy4mwlSXLn18H/8tTqCcfq0obMNkEQfU27AgJDdw slugworth"
   ];
 
-  personal-pkgs = import ../pkgs/default.nix { inherit pkgs; };
 in
 {
   #### Additional Files:
@@ -87,10 +86,8 @@ in
         usbutils
         wget
         zip
-      ] ++ (with personal-pkgs; [
-        # My personal scripts:
-        network-scripts
-      ]);
+        pjones.network-scripts
+      ];
     };
   };
 }

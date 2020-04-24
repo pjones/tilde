@@ -3,11 +3,9 @@
 with lib;
 
 let
-  base = import ../../pkgs { inherit pkgs; };
-
-  bashrc = base.bashrc;
-  zshrc  = base.zshrc;
-  tmuxrc = base.tmuxrc;
+  bashrc = pkgs.pjones.bashrc;
+  zshrc  = pkgs.pjones.zshrc;
+  tmuxrc = pkgs.pjones.tmuxrc;
 
 in
 {

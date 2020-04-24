@@ -1,0 +1,140 @@
+{
+    "home-manager": {
+        "ref": "release-19.09",
+        "repo": "https://code.devalot.com/mirrors/home-manager.git",
+        "rev": "b78b5fa4a073dfcdabdf0deb9a8cfd56050113be",
+        "type": "git"
+    },
+    "nixpkgs": {
+        "branch": "nixos-19.09",
+        "description": "Nix Packages collection",
+        "homepage": null,
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9237a09d8edbae9951a67e9a3434a07ef94035b7",
+        "sha256": "05bizymljzzd665bpsjbhxamcgzq7bkjjzjfapkl2nicy774ak4x",
+        "type": "tarball",
+        "url": "https://github.com/nixos/nixpkgs/archive/9237a09d8edbae9951a67e9a3434a07ef94035b7.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "pjones/backup-scripts": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/backup-scripts.git",
+        "rev": "a546bc79c47b81502f6e53ab382bd213e2654348",
+        "type": "git"
+    },
+    "pjones/bashrc": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/pjones/bashrc.git",
+        "rev": "5a51de2762645bbf0eae16065723ed622a360102",
+        "type": "git"
+    },
+    "pjones/byline": {
+        "ref": "next",
+        "repo": "https://code.devalot.com/open/byline.git",
+        "rev": "486d8177b36288c6c607e5dcc34aae940b9ab031",
+        "type": "git"
+    },
+    "pjones/cassava-streams": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/cassava-streams.git",
+        "rev": "bd4d86d66a4de06bea475bf53bcc83e0efd3bcbc",
+        "type": "git"
+    },
+    "pjones/clockdown": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/incubator/clockdown.git",
+        "rev": "bb7b6fd0a01f1e0ef21b8ca4daab88cb4670d555",
+        "type": "git"
+    },
+    "pjones/devalot-backend": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/devalot-backend.git",
+        "rev": "d2a1e4ffc0b7054a9c6cefa2e6af77d9bce21244",
+        "type": "git"
+    },
+    "pjones/dns-scripts": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/dns-scripts.git",
+        "rev": "e0c70b90c53379a7f04312396143e89c134a2db7",
+        "type": "git"
+    },
+    "pjones/emacsrc": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/pjones/emacsrc.git",
+        "rev": "7ba7f4731ec835a1822e99b6b6798ee0b2aa3f01",
+        "type": "git"
+    },
+    "pjones/encryption-utils": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/encryption-utils.git",
+        "rev": "dd802939b134e2908b4eecd856a66425ef80688b",
+        "type": "git"
+    },
+    "pjones/network-scripts": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/pjones/network-scripts.git",
+        "rev": "edc5bae83110d275166d8925d24c793e812a8a53",
+        "type": "git"
+    },
+    "pjones/oled-display": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/pjones/oled-display.git",
+        "rev": "5e3598e495aa1787d46817f634966890445632d6",
+        "type": "git"
+    },
+    "pjones/personal-webhooks": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/personal-webhooks.git",
+        "rev": "597d2858b4517ba9eb0ddeaf5fd4f42f05eaa05c",
+        "type": "git"
+    },
+    "pjones/playlists": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/playlists.git",
+        "rev": "74e147065bd15a95a3cfe73e26e4fa7f3bb7a344",
+        "type": "git"
+    },
+    "pjones/playlists-http": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/playlists-http.git",
+        "rev": "30cd1944dda87ba147d9e589e6b30a76476679f3",
+        "type": "git"
+    },
+    "pjones/themoviedb": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/themoviedb.git",
+        "rev": "4aeb946d5b25754eab5daaab1ba0f269f03a7c59",
+        "type": "git"
+    },
+    "pjones/tmuxrc": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/pjones/tmuxrc.git",
+        "rev": "26622de8852f6121c99e52a58ff6ce874dd20b9e",
+        "type": "git"
+    },
+    "pjones/vimeta": {
+        "ref": "next",
+        "repo": "https://code.devalot.com/open/vimeta.git",
+        "rev": "2b345a3bc5bbdc47e0301a67a7c9569e96d4092d",
+        "type": "git"
+    },
+    "pjones/wschat": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/wschat.git",
+        "rev": "ac28f0a8a4d6feafc8635ffe4ef1bb82c24ab2a3",
+        "type": "git"
+    },
+    "pjones/xmonadrc": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/pjones/xmonadrc.git",
+        "rev": "42b17b1797f36d045a500775f3fc8500abd33784",
+        "type": "git"
+    },
+    "pjones/zshrc": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/pjones/zshrc.git",
+        "rev": "477d8d16d334a8c828dfcdde849232f4490e3fef",
+        "type": "git"
+    }
+}

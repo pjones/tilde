@@ -1,8 +1,5 @@
 { config, pkgs, lib, ... }: with lib;
 
-let
-  base = import ../../../pkgs { inherit pkgs; };
-in
 {
   config = mkIf config.pjones.startX11 {
     home-manager.users.pjones = { ... }: {
@@ -18,7 +15,7 @@ in
         };
 
         Service = {
-          ExecStart = "${base.oled-display}/bin/display-control";
+          ExecStart = "${pkgs.pjones.oled-display}/bin/display-control";
           Restart = "always";
           RestartSec = 3;
         };
