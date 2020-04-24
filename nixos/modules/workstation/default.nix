@@ -9,7 +9,7 @@ let
   xdg-set-up = pkgs.writeScript "xdg-set-up" (readFile ../../../support/workstation/xdg.sh);
 
   # Reuse the startkde script from NixOS:
-  xsessions = config.services.xserver.desktopManager.session.list;
+  xsessions = config.services.xserver.desktopManager.session;
   startkde = (head (filter (d: d.name == "plasma5") xsessions)).start;
 in
 {
@@ -31,9 +31,22 @@ in
     services.xserver = mkIf cfg.startX11 {
       enable = mkDefault true;
       layout = mkDefault "us";
+
+      # These need to be enabled so we can get the Plasma start script
+      # from nixpkgs:
       displayManager.sddm.enable = mkDefault true;
       desktopManager.plasma5.enable = mkDefault true;
+
+      # Add a custom desktop session:
+      desktopManager.session = singleton {
+        name = "plasma+xmonad";
+        enable = true;
+        start = ''
+          exec /home/pjones/.xsession
+        '';
+      };
     };
+
 
     # Extra groups needed on a workstation:
     users.users.pjones.extraGroups = [
@@ -54,7 +67,9 @@ in
       plasma-browser-integration
       playbar2
       qt5.qttools
-    ] ++ filter isDerivation (attrValues pkgs.kdeApplications);
+    ]
+    ++ filter (p: isDerivation p && !(p.meta.broken or false))
+         (attrValues pkgs.kdeApplications);
 
     # Extra packages:
     users.users.pjones.packages = with pkgs; [
@@ -93,7 +108,7 @@ in
       # Audio/Video
       abcde
       atomicparsley
-      beets
+      # beets (2020-04-24: broken)
       bs1770gain
       cantata
       cdparanoia
@@ -146,11 +161,11 @@ in
     # Fonts:
     fonts = {
       fontconfig.enable      = true;
-      enableCoreFonts        = true;
       enableFontDir          = true;
       enableGhostscriptFonts = true;
 
       fonts = with pkgs; [
+        corefonts
         dejavu_fonts
         emacs-all-the-icons-fonts
         fira-code
@@ -178,12 +193,10 @@ in
       # Services:
       xsession = mkIf cfg.startX11 {
         enable = true;
-        windowManager.command = startkde;
-
-        # Run before the window manager:
-        initExtra = ''
+        windowManager.command = ''
           ${xdg-set-up}
           export KDEWM=${pkgs.pjones.xmonadrc}/bin/xmonadrc
+          ${startkde}
         '';
       };
 
@@ -204,11 +217,10 @@ in
       };
 
       # Make things pretty:
-      services.compton = mkIf cfg.startX11 {
+      services.picom = mkIf cfg.startX11 {
         enable = true;
         blur = true;
         fade = true;
-        package = pkgs.compton-git;
         shadow = true;
         shadowExclude = [ "focused = 0" ];
 

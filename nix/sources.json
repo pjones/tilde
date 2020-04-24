@@ -1,20 +1,20 @@
 {
     "home-manager": {
-        "ref": "release-19.09",
+        "ref": "release-20.03",
         "repo": "https://code.devalot.com/mirrors/home-manager.git",
-        "rev": "b78b5fa4a073dfcdabdf0deb9a8cfd56050113be",
+        "rev": "98fa8f63b8d7508e84275eb47cd7f3003e6b9510",
         "type": "git"
     },
     "nixpkgs": {
-        "branch": "nixos-19.09",
+        "branch": "nixos-20.03",
         "description": "Nix Packages collection",
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9237a09d8edbae9951a67e9a3434a07ef94035b7",
-        "sha256": "05bizymljzzd665bpsjbhxamcgzq7bkjjzjfapkl2nicy774ak4x",
+        "rev": "95b9c99f6d091273572ff1ec62b97b6ad3f68bdf",
+        "sha256": "1qcwr9binkwfayix88aljwssxi5djkwscx0rnwlk1yp9q60rgp3d",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/9237a09d8edbae9951a67e9a3434a07ef94035b7.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/95b9c99f6d091273572ff1ec62b97b6ad3f68bdf.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/backup-scripts": {
@@ -78,9 +78,9 @@
         "type": "git"
     },
     "pjones/oled-display": {
-        "ref": "master",
+        "ref": "next",
         "repo": "https://code.devalot.com/pjones/oled-display.git",
-        "rev": "5e3598e495aa1787d46817f634966890445632d6",
+        "rev": "0e9cc4355742200d77ac21715cf68e884c4e9976",
         "type": "git"
     },
     "pjones/personal-webhooks": {
@@ -116,7 +116,7 @@
     "pjones/vimeta": {
         "ref": "next",
         "repo": "https://code.devalot.com/open/vimeta.git",
-        "rev": "2b345a3bc5bbdc47e0301a67a7c9569e96d4092d",
+        "rev": "e342696986823ac6dd66aea2cf17244a9d4d9679",
         "type": "git"
     },
     "pjones/wschat": {

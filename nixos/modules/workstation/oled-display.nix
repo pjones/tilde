@@ -1,7 +1,13 @@
 { config, pkgs, lib, ... }: with lib;
 
 {
-  config = mkIf config.pjones.startX11 {
+  #### Interface:
+  options.pjones.oled-display = {
+    enable = mkEnableOption "OLED Pomodoro Timer";
+  };
+
+  #### Implementation:
+  config = mkIf config.pjones.oled-display.enable {
     home-manager.users.pjones = { ... }: {
       systemd.user.services.oled-display = {
         Unit = {
