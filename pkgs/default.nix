@@ -7,9 +7,8 @@
 
 let
   # A nixpkgs overlay:
-  overlay = self: super: {
-    pjones = import ./overlay.nix { inherit sources; };
-  };
+  overlay =
+    import ./overlay.nix { inherit sources; };
 
   # Load nixpkgs from the sources.nix file:
   pkgs = import sources.nixpkgs {

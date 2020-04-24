@@ -42,15 +42,15 @@
         "type": "git"
     },
     "pjones/clockdown": {
-        "ref": "master",
+        "ref": "next",
         "repo": "https://code.devalot.com/incubator/clockdown.git",
-        "rev": "bb7b6fd0a01f1e0ef21b8ca4daab88cb4670d555",
+        "rev": "bcd827827d4da761daf10e16ccb25c349701edf6",
         "type": "git"
     },
     "pjones/devalot-backend": {
-        "ref": "master",
+        "ref": "next",
         "repo": "https://code.devalot.com/open/devalot-backend.git",
-        "rev": "d2a1e4ffc0b7054a9c6cefa2e6af77d9bce21244",
+        "rev": "2efa9fe8d0bfdbdfcb1705e5910957b04d05664c",
         "type": "git"
     },
     "pjones/dns-scripts": {
@@ -120,9 +120,9 @@
         "type": "git"
     },
     "pjones/wschat": {
-        "ref": "master",
+        "ref": "next",
         "repo": "https://code.devalot.com/open/wschat.git",
-        "rev": "ac28f0a8a4d6feafc8635ffe4ef1bb82c24ab2a3",
+        "rev": "ae095b4eedff326b78ca4648aa156cf614bb04e1",
         "type": "git"
     },
     "pjones/xmonadrc": {
