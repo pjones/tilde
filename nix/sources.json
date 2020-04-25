@@ -59,6 +59,12 @@
         "rev": "e0c70b90c53379a7f04312396143e89c134a2db7",
         "type": "git"
     },
+    "pjones/edify": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/edify.git",
+        "rev": "003e96b9164aabe3026542962eff4b7e7c4d33ff",
+        "type": "git"
+    },
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://code.devalot.com/pjones/emacsrc.git",
@@ -81,6 +87,12 @@
         "ref": "next",
         "repo": "https://code.devalot.com/pjones/oled-display.git",
         "rev": "0e9cc4355742200d77ac21715cf68e884c4e9976",
+        "type": "git"
+    },
+    "pjones/openid-connect": {
+        "ref": "next",
+        "repo": "https://code.devalot.com/sthenauth/openid-connect.git",
+        "rev": "14ccd111ca64395502d8218b80aafabf1a0e24e7",
         "type": "git"
     },
     "pjones/personal-webhooks": {
@@ -135,6 +147,18 @@
         "ref": "master",
         "repo": "https://code.devalot.com/pjones/zshrc.git",
         "rev": "477d8d16d334a8c828dfcdde849232f4490e3fef",
+        "type": "git"
+    },
+    "pjones/zxcvbn-dvorak": {
+        "ref": "next",
+        "repo": "https://code.devalot.com/sthenauth/zxcvbn-dvorak.git",
+        "rev": "a991a7c7337f2f32d8853e1b9eb6bacb6d54f71a",
+        "type": "git"
+    },
+    "pjones/zxcvbn-hs": {
+        "ref": "next",
+        "repo": "https://code.devalot.com/sthenauth/zxcvbn-hs.git",
+        "rev": "cc319c30ad5b2c08a13a39611690abac1d697183",
         "type": "git"
     }
 }
