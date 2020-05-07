@@ -128,7 +128,7 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://code.devalot.com/pjones/xmonadrc.git",
-        "rev": "42b17b1797f36d045a500775f3fc8500abd33784",
+        "rev": "6f794ca947e3e1fa14c4a66b3e67e654b91417ab",
         "type": "git"
     },
     "pjones/zshrc": {
