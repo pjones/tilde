@@ -17,6 +17,12 @@
         "url": "https://github.com/nixos/nixpkgs/archive/95b9c99f6d091273572ff1ec62b97b6ad3f68bdf.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "pjones/addy": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/open/addy.git",
+        "rev": "43d40dd5d0fc4e4b5f2068fa519c7357b31450e0",
+        "type": "git"
+    },
     "pjones/backup-scripts": {
         "ref": "master",
         "repo": "https://code.devalot.com/open/backup-scripts.git",
@@ -68,7 +74,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://code.devalot.com/pjones/emacsrc.git",
-        "rev": "47a6c516115b40555553f6a751dcf75b61faf3f3",
+        "rev": "7f6dcf9da02c8235fcff8910eab546ffaeccac1f",
         "type": "git"
     },
     "pjones/encryption-utils": {

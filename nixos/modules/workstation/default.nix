@@ -6,13 +6,13 @@ let
   cfg = config.pjones;
 
   # Set XDG environment variables to my liking:
-  xdg-set-up = pkgs.writeScript "xdg-set-up" (readFile ../../../support/workstation/xdg.sh);
+  xdg-set-up = pkgs.writeScript "xdg-set-up"
+    (readFile ../../../support/workstation/xdg.sh);
 
   # Reuse the startkde script from NixOS:
   xsessions = config.services.xserver.desktopManager.session;
   startkde = (head (filter (d: d.name == "plasma5") xsessions)).start;
-in
-{
+in {
   # Additional files:
   imports = [
     ./firefox.nix
@@ -47,29 +47,23 @@ in
       };
     };
 
-
     # Extra groups needed on a workstation:
-    users.users.pjones.extraGroups = [
-      "cdrom"
-      "dialout"
-      "disk"
-      "networkmanager"
-      "scanner"
-    ];
+    users.users.pjones.extraGroups =
+      [ "cdrom" "dialout" "disk" "networkmanager" "scanner" ];
 
     # Some things only work if installed in the system environment:
-    environment.systemPackages = with pkgs; [
-      arc-icon-theme
-      arc-theme
-      gwenview
-      hicolor_icon_theme
-      kdeconnect
-      plasma-browser-integration
-      playbar2
-      qt5.qttools
-    ]
-    ++ filter (p: isDerivation p && !(p.meta.broken or false))
-         (attrValues pkgs.kdeApplications);
+    environment.systemPackages = with pkgs;
+      [
+        arc-icon-theme
+        arc-theme
+        gwenview
+        hicolor_icon_theme
+        kdeconnect
+        plasma-browser-integration
+        playbar2
+        qt5.qttools
+      ] ++ filter (p: isDerivation p && !(p.meta.broken or false))
+      (attrValues pkgs.kdeApplications);
 
     # Extra packages:
     users.users.pjones.packages = with pkgs; [
@@ -113,7 +107,7 @@ in
       bs1770gain
       cantata
       cdparanoia
-      cdrkit          # cdrecord, mkisofs, etc.
+      cdrkit # cdrecord, mkisofs, etc.
       ffmpeg
       handbrake
       lame
@@ -163,18 +157,21 @@ in
 
     # Fonts:
     fonts = {
-      fontconfig.enable      = true;
-      enableFontDir          = true;
+      fontconfig.enable = true;
+      enableFontDir = true;
       enableGhostscriptFonts = true;
 
       fonts = with pkgs; [
+        cascadia-code
         corefonts
         dejavu_fonts
         emacs-all-the-icons-fonts
         fira-code
         hack-font
+        hermit
         inconsolata
         powerline-fonts
+        source-code-pro
         ubuntu_font_family
       ];
     };
