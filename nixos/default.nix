@@ -60,23 +60,33 @@ in
       # Base set of packages I want on all machines:
       packages = with pkgs; [
         (unison.override {enableX11 = false;})
+        apacheHttpd # For htpasswd :(
         bc
+        bind # For dig(1)
+        binutils
+        coreutils
+        cryptsetup
         curl
         direnv
+        file
         gitAndTools.git
         gitAndTools.gitAnnex
         gnumake
         gnupg
         gnutls
         htop
+        inetutils
         inotifyTools
         jq
         libossp_uuid
         lsscsi
         mkpasswd
+        nix-prefetch-scripts
         openssl
         parted
         pciutils
+        pjones.network-scripts
+        psmisc
         pwgen
         rdiff-backup
         rsync
@@ -84,9 +94,10 @@ in
         tree
         unzip
         usbutils
+        vim
         wget
+        which
         zip
-        pjones.network-scripts
       ];
     };
   };

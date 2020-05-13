@@ -81,6 +81,7 @@ in
       pamixer
       pavucontrol
       rofi
+      wmctrl
       x11vnc
       xclip
       xdo
@@ -143,14 +144,16 @@ in
 
       # Development
       haskellPackages.hlint
-      haskellPackages.niv
       libxml2
       libxslt
       mr
+      niv
+      nixfmt
       nodePackages.eslint
       nodejs-slim
       ripgrep
       shellcheck
+      shfmt
 
       # My packages
       pjones.encryption-utils
