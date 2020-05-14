@@ -150,8 +150,9 @@ in {
       shfmt
 
       # My packages
-      pjones.encryption-utils
       pjones.emacsrc
+      pjones.encryption-utils
+      pjones.rofirc
       pjones.vimeta
     ];
 
@@ -186,7 +187,9 @@ in {
     home-manager.users.pjones = { ... }: {
       # Files in ~pjones:
       home.file.".emacs".source = "${pkgs.pjones.emacsrc}/dot.emacs.el";
-
+      home.file.".config/rofi/config.rasi".source =
+        "${pkgs.pjones.rofirc}/etc/config.rasi";
+      home.file.".config/rofi/themes".source = "${pkgs.pjones.rofirc}/themes";
       home.file.".config/kde.org/pjones.css".source =
         ../../../support/workstation/kde/theme.css;
 

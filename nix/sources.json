@@ -119,6 +119,12 @@
         "rev": "30cd1944dda87ba147d9e589e6b30a76476679f3",
         "type": "git"
     },
+    "pjones/rofirc": {
+        "ref": "master",
+        "repo": "https://code.devalot.com/pjones/rofirc.git",
+        "rev": "e2dd3a2a0521eafe7753cf65926a444656e8e568",
+        "type": "git"
+    },
     "pjones/themoviedb": {
         "ref": "master",
         "repo": "https://code.devalot.com/open/themoviedb.git",
