@@ -11,20 +11,15 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEuiLy4mwlSXLn18H/8tTqCcfq0obMNkEQfU27AgJDdw slugworth"
   ];
 
-in
-{
+in {
   #### Additional Files:
-  imports = [
-    ./modules/cache.nix
-    ./modules/shells.nix
-    ./modules/wheel.nix
-    ./modules/workstation
-  ];
+  imports = [ ./modules/shells.nix ./modules/wheel.nix ./modules/workstation ];
 
   #### Interface:
   options.pjones = {
     putInWheel = mkEnableOption "Allow access to the wheel group";
-    isWorkstation = mkEnableOption "The current machine is a workstation, not a server.";
+    isWorkstation =
+      mkEnableOption "The current machine is a workstation, not a server.";
 
     startX11 = mkOption {
       type = types.bool;
@@ -49,17 +44,11 @@ in
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = sshPubKeys;
 
-      extraGroups = [
-        "docker"
-        "libvirtd"
-        "users"
-        "webhooks"
-        "webmaster"
-      ];
+      extraGroups = [ "docker" "libvirtd" "users" "webhooks" "webmaster" ];
 
       # Base set of packages I want on all machines:
       packages = with pkgs; [
-        (unison.override {enableX11 = false;})
+        (unison.override { enableX11 = false; })
         apacheHttpd # For htpasswd :(
         bc
         bind # For dig(1)
