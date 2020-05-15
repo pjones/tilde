@@ -74,7 +74,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://code.devalot.com/pjones/emacsrc.git",
-        "rev": "040467a077e75357b666212f5ff9c9972ec8ce61",
+        "rev": "7a6a0662d3a01324115456c228a25b0f37f8d0ee",
         "type": "git"
     },
     "pjones/encryption-utils": {
@@ -122,7 +122,7 @@
     "pjones/rofirc": {
         "ref": "master",
         "repo": "https://code.devalot.com/pjones/rofirc.git",
-        "rev": "e2dd3a2a0521eafe7753cf65926a444656e8e568",
+        "rev": "499b13aafe4ee57191f8c1b2b3549d1688555467",
         "type": "git"
     },
     "pjones/themoviedb": {
@@ -152,7 +152,7 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://code.devalot.com/pjones/xmonadrc.git",
-        "rev": "b87c2cd59a248be3a3d03ced09c90715ef75ca71",
+        "rev": "827c72ca60200c2c79133cce33aee09b1bc2cf8e",
         "type": "git"
     },
     "pjones/zshrc": {
