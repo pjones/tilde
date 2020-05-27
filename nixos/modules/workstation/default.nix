@@ -187,11 +187,29 @@ in {
     home-manager.users.pjones = { ... }: {
       # Files in ~pjones:
       home.file.".emacs".source = "${pkgs.pjones.emacsrc}/dot.emacs.el";
+      home.file.".local/share/applications/org-protocol.desktop".source =
+        "${pkgs.pjones.emacsrc}/share/applications/org-protocol.desktop";
+      home.file.".local/share/applications/gnus.desktop".source =
+        "${pkgs.pjones.emacsrc}/share/applications/gnus.desktop";
+      home.file.".local/share/applications/emacsclient.desktop".source =
+        "${pkgs.pjones.emacsrc}/share/applications/emacsclient.desktop";
+
       home.file.".config/rofi/config.rasi".source =
         "${pkgs.pjones.rofirc}/etc/config.rasi";
       home.file.".config/rofi/themes".source = "${pkgs.pjones.rofirc}/themes";
+
       home.file.".config/kde.org/pjones.css".source =
         ../../../support/workstation/kde/theme.css;
+
+      # MIME:
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "x-scheme-handler/mailto" = "gnus.desktop";
+          "x-scheme-handler/org-protocol" = "org-protocol.desktop";
+          "application/pdf" = "emacsclient.desktop";
+        };
+      };
 
       # Services:
       xsession = mkIf cfg.startX11 {

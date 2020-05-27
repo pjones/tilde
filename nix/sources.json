@@ -11,10 +11,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "95b9c99f6d091273572ff1ec62b97b6ad3f68bdf",
-        "sha256": "1qcwr9binkwfayix88aljwssxi5djkwscx0rnwlk1yp9q60rgp3d",
+        "rev": "48723f48ab92381f0afd50143f38e45cf3080405",
+        "sha256": "0h3b3l867j3ybdgimfn76lw7w6yjhszd5x02pq5827l659ihcf53",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/95b9c99f6d091273572ff1ec62b97b6ad3f68bdf.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/48723f48ab92381f0afd50143f38e45cf3080405.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/addy": {
@@ -74,7 +74,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://code.devalot.com/pjones/emacsrc.git",
-        "rev": "64f02fc1d4555b66ef56dad0697e8615dff87d4c",
+        "rev": "4a6137adf3f36adc9eea0c3e26e5dfdfc66e3acb",
         "type": "git"
     },
     "pjones/encryption-utils": {
@@ -152,7 +152,7 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://code.devalot.com/pjones/xmonadrc.git",
-        "rev": "8b11f6dd043c29a2a45c965c688dc112f9930c43",
+        "rev": "c6734bdd2360623f563587677d4bf69b85870908",
         "type": "git"
     },
     "pjones/zshrc": {
