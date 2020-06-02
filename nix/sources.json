@@ -5,6 +5,18 @@
         "rev": "98fa8f63b8d7508e84275eb47cd7f3003e6b9510",
         "type": "git"
     },
+    "neuron": {
+        "branch": "0.4.0.0",
+        "description": "Haskell meets Zettelkasten, for your plain-text delight.",
+        "homepage": "https://neuron.zettel.page",
+        "owner": "srid",
+        "repo": "neuron",
+        "rev": "e8c42865a9e770e250c89e91d3b8abe791352e1b",
+        "sha256": "0d044pvm0x183r44y85476hz5z195863lr8y2gz963ydk00asyq0",
+        "type": "tarball",
+        "url": "https://github.com/srid/neuron/archive/e8c42865a9e770e250c89e91d3b8abe791352e1b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixpkgs": {
         "branch": "nixos-20.03",
         "description": "Nix Packages collection",
@@ -74,7 +86,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://code.devalot.com/pjones/emacsrc.git",
-        "rev": "9734acfeda83a43044de631c7a632c72529ca726",
+        "rev": "63d9e7e51a762c37b8727e37ab2ff947c6fff11c",
         "type": "git"
     },
     "pjones/encryption-utils": {

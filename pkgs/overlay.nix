@@ -34,4 +34,12 @@ in {
       pkgs = super;
     };
   };
+
+  # Use the latest version of Neuron:
+  haskellPackages = super.haskellPackages.override (orig: {
+    overrides = super.lib.composeExtensions (orig.overrides or (_: _: { }))
+      (hself: hsuper: {
+        neuron = import sources.neuron { gitRev = sources.neuron.rev; };
+      });
+  });
 }

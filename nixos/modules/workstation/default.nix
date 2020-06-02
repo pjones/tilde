@@ -123,6 +123,7 @@ in {
       darktable
       geda
       gimp
+      haskellPackages.neuron
       imagemagick
       inkscape
       kicad
