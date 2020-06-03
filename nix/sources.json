@@ -86,7 +86,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://code.devalot.com/pjones/emacsrc.git",
-        "rev": "63d9e7e51a762c37b8727e37ab2ff947c6fff11c",
+        "rev": "b24265eefd07be8859e50b0da0e1ad7f0608a1c7",
         "type": "git"
     },
     "pjones/encryption-utils": {
