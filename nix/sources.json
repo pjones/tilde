@@ -6,15 +6,15 @@
         "type": "git"
     },
     "neuron": {
-        "branch": "0.4.0.0",
+        "branch": "master",
         "description": "Haskell meets Zettelkasten, for your plain-text delight.",
         "homepage": "https://neuron.zettel.page",
         "owner": "srid",
         "repo": "neuron",
-        "rev": "e8c42865a9e770e250c89e91d3b8abe791352e1b",
-        "sha256": "0d044pvm0x183r44y85476hz5z195863lr8y2gz963ydk00asyq0",
+        "rev": "ac46252e0d68a1d7176c223515b04a56f9e5cfa9",
+        "sha256": "1zgz4cyf433ha34iwcqnxdi615hdjvhs9sgwk5hrlb0bqkvdrv6v",
         "type": "tarball",
-        "url": "https://github.com/srid/neuron/archive/e8c42865a9e770e250c89e91d3b8abe791352e1b.tar.gz",
+        "url": "https://github.com/srid/neuron/archive/ac46252e0d68a1d7176c223515b04a56f9e5cfa9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
