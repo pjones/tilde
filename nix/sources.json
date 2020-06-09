@@ -86,7 +86,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/emacsrc.git",
-        "rev": "1d21d3eb43bf4551051b1fb9666398ef147c3e87",
+        "rev": "3250807098d843d0b89cfb2aea2683404ab059e5",
         "type": "git"
     },
     "pjones/encryption-utils": {
