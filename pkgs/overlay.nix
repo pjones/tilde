@@ -27,13 +27,7 @@ let
     (filterAttrs (n: _: hasPrefix prefix n) sources);
 
 in {
-  pjones = pjones // {
-    # Edify can only build with GHC 8.8.3 right now:
-    edify = load sources."pjones/edify" {
-      ghc = "883";
-      pkgs = super;
-    };
-  };
+  inherit pjones;
 
   # Use the latest version of Neuron:
   haskellPackages = super.haskellPackages.override (orig: {
