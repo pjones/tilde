@@ -176,7 +176,7 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/xmonadrc.git",
-        "rev": "c6734bdd2360623f563587677d4bf69b85870908",
+        "rev": "7ff12804d2df72ff28d36ed31e862ab084e5768b",
         "type": "git"
     },
     "pjones/zshrc": {
