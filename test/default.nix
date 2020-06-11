@@ -1,10 +1,7 @@
-{ sources ? import ../nix/sources.nix
-, pkgs ? import sources.nixpkgs { }
-}:
+{ sources ? import ../nix/sources.nix, pkgs ? import sources.nixpkgs { } }:
 
 let
-  home-manager-nixos =
-    import "${sources.home-manager}/nixos";
+  home-manager-nixos = import "${sources.home-manager}/nixos";
 
   user = {
     name = "pjones";
@@ -17,15 +14,13 @@ in pkgs.nixosTest {
   name = "${user.name}-account";
 
   nodes = {
-    machine = {...}: {
-      imports = [
-        home-manager-nixos
-        ../.
-      ];
+    machine = { ... }: {
+      imports = [ home-manager-nixos ../. ];
 
       pjones = {
         putInWheel = true;
         isWorkstation = true;
+        neuron.enable = true;
       };
 
       services.xserver.displayManager.defaultSession = "plasma+xmonad";

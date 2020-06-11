@@ -34,4 +34,10 @@ in {
     overrides = super.lib.composeExtensions (orig.overrides or (_: _: { }))
       (_: _: { neuron = import sources.neuron; });
   });
+
+  # Use a more recent version of vimb:
+  vimb = super.wrapFirefox (super.vimb-unwrapped.overrideAttrs (_: {
+    version = sources.vimb.branch;
+    src = sources.vimb;
+  })) { };
 }

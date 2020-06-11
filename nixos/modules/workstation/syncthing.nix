@@ -3,12 +3,14 @@
 
 with lib;
 
-let
-  cfg = config.pjones;
+let cfg = config.pjones;
 
-in
-{
-  config = mkIf cfg.isWorkstation {
+in {
+  #### Interface:
+  options.pjones.syncthing = { enable = mkEnableOption "Syncthing"; };
+
+  #### Implementation:
+  config = mkIf (cfg.isWorkstation || cfg.syncthing.enable) {
     networking.firewall = {
       allowedTCPPorts = [
         22000 # Syncthing

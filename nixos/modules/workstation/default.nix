@@ -19,6 +19,7 @@ in {
     ./keyboard.nix
     ./mail.nix
     ./mpd.nix
+    ./neuron.nix
     ./oled-display.nix
     ./syncthing.nix
     ./yubikey.nix
@@ -75,6 +76,7 @@ in {
       pamixer
       pavucontrol
       rofi
+      tabbed
       wmctrl
       x11vnc
       xclip
@@ -84,6 +86,7 @@ in {
       xorg.xhost
       xorg.xrandr
       xorg.xset
+      xorg.xwininfo
       xtitle
       zathura
 
@@ -98,6 +101,7 @@ in {
       chromium
       firefox
       mu
+      vimb
       youtube-dl
 
       # Audio/Video
@@ -154,6 +158,7 @@ in {
       pjones.emacsrc
       pjones.encryption-utils
       pjones.rofirc
+      pjones.vimbrc
       pjones.vimeta
     ];
 
@@ -198,6 +203,9 @@ in {
       home.file.".config/rofi/config.rasi".source =
         "${pkgs.pjones.rofirc}/etc/config.rasi";
       home.file.".config/rofi/themes".source = "${pkgs.pjones.rofirc}/themes";
+
+      home.file.".config/vimb/config".source =
+        "${pkgs.pjones.vimbrc}/etc/config";
 
       home.file.".config/kde.org/pjones.css".source =
         ../../../support/workstation/kde/theme.css;

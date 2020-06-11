@@ -86,7 +86,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/emacsrc.git",
-        "rev": "8d6f97b8c9e06833eaf2eda31cad3ecb4172d4d8",
+        "rev": "437b40d311eb2966c338716993f65c326aa341d6",
         "type": "git"
     },
     "pjones/encryption-utils": {
@@ -134,7 +134,7 @@
     "pjones/rofirc": {
         "ref": "master",
         "repo": "https://github.com/pjones/rofirc.git",
-        "rev": "499b13aafe4ee57191f8c1b2b3549d1688555467",
+        "rev": "8d03c445c182f21bcdfbe85b6cc14098dca29168",
         "type": "git"
     },
     "pjones/themoviedb": {
@@ -148,6 +148,18 @@
         "repo": "https://github.com/pjones/tmuxrc.git",
         "rev": "26622de8852f6121c99e52a58ff6ce874dd20b9e",
         "type": "git"
+    },
+    "pjones/vimbrc": {
+        "branch": "master",
+        "description": "vimb config",
+        "homepage": null,
+        "owner": "pjones",
+        "repo": "vimbrc",
+        "rev": "f216d57da7ece9a01a0601c59d34b622dbccd58b",
+        "sha256": "0q24w5y4ffi3r3117qaivicjxlqfiivk71rdlccl8k75l4p291j8",
+        "type": "tarball",
+        "url": "https://github.com/pjones/vimbrc/archive/f216d57da7ece9a01a0601c59d34b622dbccd58b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/vimeta": {
         "ref": "next",
@@ -184,5 +196,17 @@
         "repo": "https://github.com/sthenauth/zxcvbn-hs.git",
         "rev": "72dd8b711cd3de9125f4d070396a0c7f0175382a",
         "type": "git"
+    },
+    "vimb": {
+        "branch": "3.6.0",
+        "description": "Vimb - the vim like browser is a webkit based web browser that behaves like the vimperator plugin for the firefox and usage paradigms from the great editor vim. The goal of vimb is to build a completely keyboard-driven, efficient and pleasurable browsing-experience.",
+        "homepage": "https://fanglingsu.github.io/vimb/",
+        "owner": "fanglingsu",
+        "repo": "vimb",
+        "rev": "6b73a6fc16f1a01d246f4bf5732aea01fc7727bb",
+        "sha256": "0228khh3lqbal046k6akqah7s5igq9s0wjfjbdjam75kjj42pbhj",
+        "type": "tarball",
+        "url": "https://github.com/fanglingsu/vimb/archive/6b73a6fc16f1a01d246f4bf5732aea01fc7727bb.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
