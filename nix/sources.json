@@ -155,10 +155,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "vimbrc",
-        "rev": "f216d57da7ece9a01a0601c59d34b622dbccd58b",
-        "sha256": "0q24w5y4ffi3r3117qaivicjxlqfiivk71rdlccl8k75l4p291j8",
+        "rev": "b681c3126e3623f5bc30cbdc42e14953326a2606",
+        "sha256": "0hkh4dv51x00a1n60sf0iz2kg2xjivxgvxpgx98k6zlxqdywfxlk",
         "type": "tarball",
-        "url": "https://github.com/pjones/vimbrc/archive/f216d57da7ece9a01a0601c59d34b622dbccd58b.tar.gz",
+        "url": "https://github.com/pjones/vimbrc/archive/b681c3126e3623f5bc30cbdc42e14953326a2606.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/vimeta": {
