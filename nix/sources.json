@@ -86,7 +86,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/emacsrc.git",
-        "rev": "437b40d311eb2966c338716993f65c326aa341d6",
+        "rev": "8ba1c94ed34d8338927a4bf9648da5e97558f8db",
         "type": "git"
     },
     "pjones/encryption-utils": {
@@ -176,13 +176,13 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/xmonadrc.git",
-        "rev": "7ff12804d2df72ff28d36ed31e862ab084e5768b",
+        "rev": "c2ca5b5252a767285c2ceb73be6e3ae9e10f80a4",
         "type": "git"
     },
     "pjones/zshrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/zshrc.git",
-        "rev": "477d8d16d334a8c828dfcdde849232f4490e3fef",
+        "rev": "473e2a16390cb93a592d689cedc5921f18690291",
         "type": "git"
     },
     "pjones/zxcvbn-dvorak": {
