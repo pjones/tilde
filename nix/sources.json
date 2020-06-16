@@ -23,10 +23,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e2bb73ce5f786b83e984b80199112f86b8a6cc9d",
-        "sha256": "0mpcdwhippvgsj3kj8vw35dgz94dnzgxgsfqqzcfpmvnzjc23vk7",
+        "rev": "db31e48c5c8d99dcaf4e5883a96181f6ac4ad6f6",
+        "sha256": "1j5j7vbnq2i5zyl8498xrf490jca488iw6hylna3lfwji6rlcaqr",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/e2bb73ce5f786b83e984b80199112f86b8a6cc9d.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/db31e48c5c8d99dcaf4e5883a96181f6ac4ad6f6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/addy": {
@@ -86,7 +86,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/emacsrc.git",
-        "rev": "8ba1c94ed34d8338927a4bf9648da5e97558f8db",
+        "rev": "aecedff376ec34d94c6c606fb37f80b282fcbe9a",
         "type": "git"
     },
     "pjones/encryption-utils": {
@@ -155,10 +155,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "vimbrc",
-        "rev": "b681c3126e3623f5bc30cbdc42e14953326a2606",
-        "sha256": "0hkh4dv51x00a1n60sf0iz2kg2xjivxgvxpgx98k6zlxqdywfxlk",
+        "rev": "31d0bcc142743ea38a1bc97160882ddbb4bca4ad",
+        "sha256": "1q8wxga9hpbxbdnf4mr7qbygmbl4ib1pvc3c6zn4q1fqd72dqai6",
         "type": "tarball",
-        "url": "https://github.com/pjones/vimbrc/archive/b681c3126e3623f5bc30cbdc42e14953326a2606.tar.gz",
+        "url": "https://github.com/pjones/vimbrc/archive/31d0bcc142743ea38a1bc97160882ddbb4bca4ad.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/vimeta": {
@@ -176,7 +176,7 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/xmonadrc.git",
-        "rev": "c2ca5b5252a767285c2ceb73be6e3ae9e10f80a4",
+        "rev": "ab596cc10043ede010a72621dc9c63d7bc886f8e",
         "type": "git"
     },
     "pjones/zshrc": {
