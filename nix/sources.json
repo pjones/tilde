@@ -11,10 +11,10 @@
         "homepage": "https://neuron.zettel.page",
         "owner": "srid",
         "repo": "neuron",
-        "rev": "c19269ebe4cb5095926a609a2d086f95fcc247d3",
-        "sha256": "0s99cn3i7bgk4xk2ji7iig8hw5n20448zrakhp11fjrs945mn5k1",
+        "rev": "8b261a37bd2836a24b1d84156a84a6478b9dcffb",
+        "sha256": "0x350hlsgz2pg3f82zx686lpx3ggziy4fg31cj587ihib30i0cjp",
         "type": "tarball",
-        "url": "https://github.com/srid/neuron/archive/c19269ebe4cb5095926a609a2d086f95fcc247d3.tar.gz",
+        "url": "https://github.com/srid/neuron/archive/8b261a37bd2836a24b1d84156a84a6478b9dcffb.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -23,10 +23,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "db31e48c5c8d99dcaf4e5883a96181f6ac4ad6f6",
-        "sha256": "1j5j7vbnq2i5zyl8498xrf490jca488iw6hylna3lfwji6rlcaqr",
+        "rev": "2b417708c282d84316366f4125b00b29c49df10f",
+        "sha256": "0426qaxw09h0kkn5zwh126hfb2j12j5xan6ijvv2c905pqi401zq",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/db31e48c5c8d99dcaf4e5883a96181f6ac4ad6f6.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/2b417708c282d84316366f4125b00b29c49df10f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/addy": {
@@ -86,7 +86,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/emacsrc.git",
-        "rev": "aecedff376ec34d94c6c606fb37f80b282fcbe9a",
+        "rev": "f1744374caa8fdd77d7f20f72401f8afcb13b797",
         "type": "git"
     },
     "pjones/encryption-utils": {
@@ -176,7 +176,7 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/xmonadrc.git",
-        "rev": "ab596cc10043ede010a72621dc9c63d7bc886f8e",
+        "rev": "21a08159b7f2e69fda0c3204d8edd69e5e5b2d35",
         "type": "git"
     },
     "pjones/zshrc": {
@@ -198,15 +198,15 @@
         "type": "git"
     },
     "vimb": {
-        "branch": "3.6.0",
+        "branch": "master",
         "description": "Vimb - the vim like browser is a webkit based web browser that behaves like the vimperator plugin for the firefox and usage paradigms from the great editor vim. The goal of vimb is to build a completely keyboard-driven, efficient and pleasurable browsing-experience.",
         "homepage": "https://fanglingsu.github.io/vimb/",
         "owner": "fanglingsu",
         "repo": "vimb",
-        "rev": "6b73a6fc16f1a01d246f4bf5732aea01fc7727bb",
-        "sha256": "0228khh3lqbal046k6akqah7s5igq9s0wjfjbdjam75kjj42pbhj",
+        "rev": "14e6120d1e5ffe0d6048410caf576c4d85501bb8",
+        "sha256": "1mmrsan7a0c11dzxalpsmq58yvw1is149qi3r4dsya4ka46if8ff",
         "type": "tarball",
-        "url": "https://github.com/fanglingsu/vimb/archive/6b73a6fc16f1a01d246f4bf5732aea01fc7727bb.tar.gz",
+        "url": "https://github.com/fanglingsu/vimb/archive/14e6120d1e5ffe0d6048410caf576c4d85501bb8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

@@ -142,17 +142,13 @@ in {
       xournal
 
       # Development
-      haskellPackages.hlint
       libxml2
       libxslt
       mr
       niv
-      nixfmt
       nodePackages.eslint
       nodejs-slim
       ripgrep
-      shellcheck
-      shfmt
 
       # My packages
       pjones.emacsrc
