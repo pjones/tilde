@@ -11,10 +11,10 @@
         "homepage": "https://neuron.zettel.page",
         "owner": "srid",
         "repo": "neuron",
-        "rev": "8b261a37bd2836a24b1d84156a84a6478b9dcffb",
-        "sha256": "0x350hlsgz2pg3f82zx686lpx3ggziy4fg31cj587ihib30i0cjp",
+        "rev": "15e53733e692e0e7523a2b023f5e16faca544395",
+        "sha256": "09jw7cj37z3bd98b4rcwnydcv6nawwyr2hp3mp8bh72j2vxw3f6n",
         "type": "tarball",
-        "url": "https://github.com/srid/neuron/archive/8b261a37bd2836a24b1d84156a84a6478b9dcffb.tar.gz",
+        "url": "https://github.com/srid/neuron/archive/15e53733e692e0e7523a2b023f5e16faca544395.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -23,10 +23,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2b417708c282d84316366f4125b00b29c49df10f",
-        "sha256": "0426qaxw09h0kkn5zwh126hfb2j12j5xan6ijvv2c905pqi401zq",
+        "rev": "f8248ab6d9e69ea9c07950d73d48807ec595e923",
+        "sha256": "009i9j6mbq6i481088jllblgdnci105b2q4mscprdawg3knlyahk",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/2b417708c282d84316366f4125b00b29c49df10f.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/f8248ab6d9e69ea9c07950d73d48807ec595e923.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/addy": {
@@ -86,7 +86,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/emacsrc.git",
-        "rev": "f1744374caa8fdd77d7f20f72401f8afcb13b797",
+        "rev": "1eb411eadaeeca343f27a1ab9d360546e8f1c7c2",
         "type": "git"
     },
     "pjones/encryption-utils": {
