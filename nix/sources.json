@@ -86,7 +86,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/emacsrc.git",
-        "rev": "f1ac114d15a5c343a2242be6716709feb568dd55",
+        "rev": "ff3200f68e38635b423e4df87f0060945deaf2dc",
         "type": "git"
     },
     "pjones/encryption-utils": {
@@ -176,7 +176,7 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/xmonadrc.git",
-        "rev": "21a08159b7f2e69fda0c3204d8edd69e5e5b2d35",
+        "rev": "438849fbf265ed0a161e0d1bc7d4939cc6bbca0f",
         "type": "git"
     },
     "pjones/zshrc": {
