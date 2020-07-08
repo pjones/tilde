@@ -2,7 +2,6 @@
 
 # Arguments to the overlay function:
 self: super:
-
 let
   # Arguments to pass to derivations:
   args = {
@@ -16,7 +15,8 @@ let
     let
       fn = import package;
       fargs = builtins.functionArgs fn;
-    in fn (super.lib.filterAttrs (n: _: fargs ? ${n}) args);
+    in
+    fn (super.lib.filterAttrs (n: _: fargs ? ${n}) args);
 
   # My packages have this prefix:
   prefix = "pjones/";
@@ -24,9 +24,10 @@ let
   # Filter out any packages that aren't mine and then load them:
   pjones = with super.lib;
     mapAttrs' (n: v: nameValuePair (removePrefix prefix n) (load v args))
-    (filterAttrs (n: _: hasPrefix prefix n) sources);
+      (filterAttrs (n: _: hasPrefix prefix n) sources);
 
-in {
+in
+{
   inherit pjones;
 
   # Use the latest version of Neuron:
@@ -36,8 +37,18 @@ in {
   });
 
   # Use a more recent version of vimb:
-  vimb = super.wrapFirefox (super.vimb-unwrapped.overrideAttrs (_: {
-    version = sources.vimb.branch;
-    src = sources.vimb;
-  })) { };
+  vimb = super.wrapFirefox
+    (super.vimb-unwrapped.overrideAttrs (_: {
+      version = sources.vimb.branch;
+      src = sources.vimb;
+    }))
+    { };
+
+  # NixOps is currently broken:
+  # https://github.com/NixOS/nixops/issues/1216
+  nixops = (super.callPackage "${sources.nixops}/release.nix" {
+    p = _: [
+      (super.callPackage "${sources.nixops-libvirtd}/release.nix" { })
+    ];
+  }).build.${super.system};
 }

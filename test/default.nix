@@ -1,7 +1,8 @@
 { sources ? import ../nix/sources.nix, pkgs ? import sources.nixpkgs { } }:
-
 let
-  home-manager-nixos = import "${sources.home-manager}/nixos";
+  virtual = import ./virtual.nix {
+    inherit sources pkgs;
+  };
 
   user = {
     name = "pjones";
@@ -10,19 +11,12 @@ let
 
   xdo = "${pkgs.xdotool}/bin/xdotool";
 
-in pkgs.nixosTest {
+in
+pkgs.nixosTest {
   name = "${user.name}-account";
 
   nodes = {
-    machine = { ... }: {
-      imports = [ home-manager-nixos ../. ];
-
-      pjones = {
-        putInWheel = true;
-        isWorkstation = true;
-        neuron.enable = true;
-      };
-
+    machine = { ... }@args: virtual.machine args // {
       services.xserver.displayManager.defaultSession = "plasma+xmonad";
       services.xserver.displayManager.sddm.autoLogin = {
         enable = true;

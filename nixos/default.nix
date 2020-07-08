@@ -2,7 +2,6 @@
 { config, pkgs, lib, ... }:
 
 with lib;
-
 let
   sshPubKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOT7Ys7LyugF3A5wsJ1EH1CF9jAdihtSWrJskUtDACCR medusa"
@@ -11,13 +10,19 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEuiLy4mwlSXLn18H/8tTqCcfq0obMNkEQfU27AgJDdw slugworth"
   ];
 
-in {
+in
+{
   #### Additional Files:
-  imports = [ ./modules/shells.nix ./modules/wheel.nix ./modules/workstation ];
+  imports = [
+    ./modules/shells.nix
+    ./modules/wheel.nix
+    ./modules/workstation
+  ];
 
   #### Interface:
   options.pjones = {
     putInWheel = mkEnableOption "Allow access to the wheel group";
+
     isWorkstation =
       mkEnableOption "The current machine is a workstation, not a server.";
 
@@ -30,6 +35,12 @@ in {
 
   #### Implementation:
   config = {
+
+    # Required nixpkgs settings:
+    nixpkgs.config = {
+      allowUnfree = true;
+      android_sdk.accept_license = true;
+    };
 
     # A group just for me:
     users.groups.pjones = { };
