@@ -53,6 +53,18 @@
         "url": "https://github.com/nixos/nixpkgs/archive/c9d124e39dbeefc53c7b3e09fbfc2c26bcbd4845.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "oreo-cursors": {
+        "branch": "master",
+        "description": "oreo-cursors",
+        "homepage": null,
+        "owner": "varlesh",
+        "repo": "oreo-cursors",
+        "rev": "36ffa87b0db634a5327f8e92ba3db9d62dc8fb5e",
+        "sha256": "0jcs4qd5296x1ybs5hb9ksh5s7vcjs8b2bdym5jbbvz302qj6x4m",
+        "type": "tarball",
+        "url": "https://github.com/varlesh/oreo-cursors/archive/36ffa87b0db634a5327f8e92ba3db9d62dc8fb5e.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "pjones/addy": {
         "ref": "master",
         "repo": "https://github.com/pjones/addy.git",
@@ -220,6 +232,18 @@
         "repo": "https://github.com/sthenauth/zxcvbn-hs.git",
         "rev": "72dd8b711cd3de9125f4d070396a0c7f0175382a",
         "type": "git"
+    },
+    "polybar-scripts": {
+        "branch": "master",
+        "description": "This is a community project. We write and collect scripts for polybar!",
+        "homepage": "",
+        "owner": "polybar",
+        "repo": "polybar-scripts",
+        "rev": "68ced291fa42c1505d16a38bb4b3a402bcf8dc80",
+        "sha256": "08j422slazig1lxvpvr6dz9p0hgplr6hv205gc5y4szvgqjcmld2",
+        "type": "tarball",
+        "url": "https://github.com/polybar/polybar-scripts/archive/68ced291fa42c1505d16a38bb4b3a402bcf8dc80.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vimb": {
         "branch": "master",

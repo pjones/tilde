@@ -1,8 +1,11 @@
-{ sources ? import ../nix/sources.nix, ghc ? "default" }:
+# { sources ? import ../nix/sources.nix, ghc ? "default" }:
 
 # Arguments to the overlay function:
 self: super:
 let
+  sources = import ../nix/sources.nix;
+  ghc = "default";
+
   # Arguments to pass to derivations:
   args = {
     inherit ghc;
@@ -29,6 +32,9 @@ let
 in
 {
   inherit pjones;
+
+  # Packages that are not upstream yet:
+  oreo-cursors = super.callPackage ../pkgs/oreo-cursors.nix { };
 
   # Use the latest version of Neuron:
   haskellPackages = super.haskellPackages.override (orig: {

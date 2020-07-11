@@ -1,8 +1,6 @@
 { sources ? import ../nix/sources.nix, pkgs ? import sources.nixpkgs { } }:
 let
-  virtual = import ./virtual.nix {
-    inherit sources pkgs;
-  };
+  virtual = import ./virtual.nix { inherit sources; };
 
   user = {
     name = "pjones";
@@ -17,13 +15,20 @@ pkgs.nixosTest {
 
   nodes = {
     machine = { ... }@args: virtual.machine args // {
-      services.xserver.displayManager.defaultSession = "plasma+xmonad";
+      services.xserver.displayManager.defaultSession = "xmonad";
       services.xserver.displayManager.sddm.autoLogin = {
         enable = true;
         user = user.name;
       };
 
-      virtualisation.memorySize = 1024;
+      virtualisation.memorySize = 2048;
+
+      home-manager.users.pjones = { ... }: {
+        pjones.programs.mpd.enable = false;
+        pjones.programs.neuron.enable = false;
+        pjones.programs.oled-display.enable = false;
+        services.syncthing.enable = false;
+      };
     };
   };
 
@@ -45,20 +50,18 @@ pkgs.nixosTest {
         machine.wait_for_file("${user.home}/.Xauthority")
         machine.succeed("xauth merge ${user.home}/.Xauthority")
 
-    with subtest("Check plasmashell started"):
-        machine.wait_until_succeeds("pgrep plasmashell")
-        machine.wait_for_window("^Desktop ")
+    with subtest("Check xmonad started"):
         machine.wait_until_succeeds("pgrep xmonadrc")
+        machine.sleep(3)
 
-    with subtest("Run Konsole"):
-        for i in range(0, 3):
-            machine.execute("su - ${user.name} -c 'DISPLAY=:0.0 konsole &'")
-        machine.wait_for_window("Konsole")
+    with subtest("Launch terminal"):
+        # FIXME: Update after fixing eterm not starting bug!
+        # machine.send_key("mod4-ret")
+        # machine.execute("su - ${user.name} -c 'DISPLAY=:0.0 eterm &'")
+        machine.execute("su - ${user.name} -c 'DISPLAY=:0.0 xterm &'")
+        machine.wait_for_window("term")
 
     with subtest("Wait to get a screenshot"):
-        machine.execute(
-            "${xdo} key Alt+F1 sleep 10"
-        )
         machine.sleep(3)
         machine.screenshot("screen")
   '';

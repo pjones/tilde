@@ -1,13 +1,14 @@
 { config, pkgs, lib, ... }:
-
-with lib;
-
 let
-  cfg = config.pjones;
+  cfg = config.pjones.workstation.yubikey;
 
 in
 {
-  config = mkIf cfg.isWorkstation {
+  options.pjones.workstation.yubikey = {
+    enable = lib.mkEnableOption "Support for Yubikeys";
+  };
+
+  config = lib.mkIf cfg.enable {
     # Helpful packages:
     users.users.pjones.packages = with pkgs; [
       yubikey-personalization

@@ -1,45 +1,63 @@
 # User entry for pjones.
 { config, pkgs, lib, ... }:
-
-with lib;
 let
+  cfg = config.pjones;
+
   sshPubKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOT7Ys7LyugF3A5wsJ1EH1CF9jAdihtSWrJskUtDACCR medusa"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG1g7KoenMd6JIWnIuOQOYAaPNk6rF+6vwXBqNic2Juk elphaba"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJKW//sdBipEzLP85H89J1a8ma4J5IRbhEL+3/jEDANk leota"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEuiLy4mwlSXLn18H/8tTqCcfq0obMNkEQfU27AgJDdw slugworth"
   ];
-
 in
 {
   #### Additional Files:
   imports = [
-    ./modules/shells.nix
-    ./modules/wheel.nix
-    ./modules/workstation
+    ./keyboard.nix
+    ./workstation.nix
+    ./xsession.nix
+    ./yubikey.nix
   ];
 
   #### Interface:
   options.pjones = {
-    putInWheel = mkEnableOption "Allow access to the wheel group";
+    enable = lib.mkEnableOption "Create and configure an account for Peter";
+    putInWheel = lib.mkEnableOption "Allow access to the wheel group";
 
-    isWorkstation =
-      mkEnableOption "The current machine is a workstation, not a server.";
-
-    startX11 = mkOption {
-      type = types.bool;
-      default = config.pjones.isWorkstation;
-      description = "Start the X server.";
+    extraGroups = lib.mkOption {
+      type = with lib.types; listOf str;
+      default = [
+        "cdrom"
+        "dialout"
+        "disk"
+        "docker"
+        "libvirtd"
+        "networkmanager"
+        "scanner"
+        "users"
+        "webhooks"
+        "webmaster"
+      ];
+      description = "Extra groups for the pjones user";
     };
   };
 
   #### Implementation:
-  config = {
-
+  config = lib.mkIf cfg.enable {
     # Required nixpkgs settings:
-    nixpkgs.config = {
-      allowUnfree = true;
-      android_sdk.accept_license = true;
+    nixpkgs = {
+      overlays = lib.singleton (import ../overlays);
+
+      config = {
+        allowUnfree = true;
+        android_sdk.accept_license = true;
+      };
+    };
+
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+      syntaxHighlighting.enable = true;
     };
 
     # A group just for me:
@@ -54,51 +72,21 @@ in
       home = "/home/pjones";
       shell = pkgs.zsh;
       openssh.authorizedKeys.keys = sshPubKeys;
+      extraGroups = cfg.extraGroups ++
+        lib.optional cfg.putInWheel "wheel";
+    };
 
-      extraGroups = [ "docker" "libvirtd" "users" "webhooks" "webmaster" ];
+    home-manager = {
+      backupFileExtension = "backup";
+      users.pjones = { ... }: {
+        imports = [ ../home ];
 
-      # Base set of packages I want on all machines:
-      packages = with pkgs; [
-        (unison.override { enableX11 = false; })
-        apacheHttpd # For htpasswd :(
-        bc
-        bind # For dig(1)
-        binutils
-        coreutils
-        cryptsetup
-        curl
-        direnv
-        file
-        gitAndTools.git
-        gitAndTools.gitAnnex
-        gnumake
-        gnupg
-        gnutls
-        htop
-        inetutils
-        inotifyTools
-        jq
-        libossp_uuid
-        lsscsi
-        mkpasswd
-        nix-prefetch-scripts
-        openssl
-        parted
-        pciutils
-        pjones.network-scripts
-        psmisc
-        pwgen
-        rdiff-backup
-        rsync
-        tmux
-        tree
-        unzip
-        usbutils
-        vim
-        wget
-        which
-        zip
-      ];
+        config = {
+          # Propagate some settings into home-manager:
+          pjones.xsession.enable = cfg.xsession.enable;
+          pjones.workstation.enable = cfg.workstation.enable;
+        };
+      };
     };
   };
 }

@@ -1,6 +1,5 @@
 # Create a virtual machine via NixOps:
 { sources ? import ../nix/sources.nix
-, pkgs ? import sources.nixpkgs { }
 }:
 let
   home-manager-nixos = import "${sources.home-manager}/nixos";
@@ -18,13 +17,13 @@ in
   machine = { ... }: {
     imports = [
       home-manager-nixos
-      ../.
+      ../nixos
     ];
 
     pjones = {
+      enable = true;
       putInWheel = true;
-      isWorkstation = true;
-      neuron.enable = true;
+      xsession.enable = true;
     };
 
     users.users.pjones = {
