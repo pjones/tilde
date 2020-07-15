@@ -67,7 +67,7 @@ if [ ! -d "$option_dir" ]; then
 fi
 
 file=$(
-  find \
+  find -L \
     "$option_dir" \
     '(' -name '.*' -prune ')' -or '(' \
     '(' -type f -or -type l ')' -and \

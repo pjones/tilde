@@ -1,0 +1,50 @@
+#!/bin/sh
+
+################################################################################
+set -e
+set -u
+
+################################################################################
+usage() {
+  echo "Usage: $(basename "$0") default-image background-color"
+}
+
+################################################################################
+if [ $# -ne 2 ]; then
+  ussage
+  exit 1
+fi
+
+default_lock_image=$1
+background_color=$2
+
+################################################################################
+disable_dpms() {
+  xset dpms 0 0 0
+}
+
+trap disable_dpms HUP INT TERM
+
+################################################################################
+image=$(random-file \
+  -g '[!.]*.{png,jpg}' \
+  -d ~/documents/pictures/backgrounds/lock-screen \
+  -D "$default_lock_image")
+
+xset +dpms dpms 300 600 900
+
+width=$(xrandr | grep 'connected primary' | cut -d' ' -f4 | cut -dx -f1)
+image_png="${TMPDIR:-/tmp}/${USER}-lock.png"
+
+convert -resize "$width" "$image" "$image_png" ||
+  image_png="$image"
+
+i3lock \
+  --nofork \
+  --tiling \
+  --image="$image_png" \
+  --color="$background_color" \
+  --ignore-empty-password \
+  --show-failed-attempts
+
+disable_dpms

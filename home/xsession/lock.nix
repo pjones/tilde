@@ -9,40 +9,22 @@ let
   images = pkgs.callPackage ./images.nix { };
   scripts = pkgs.callPackage ../../scripts { };
 
-  inputs = with pkgs; [
+  inputs = (with pkgs; [
     coreutils
     findutils
+    gnugrep
     i3lock
+    imagemagick
+    xorg.xrandr
     xorg.xset
-  ];
+  ]) ++ [ scripts ];
 
   lockCmd = pkgs.writeShellScript "screen-lock" ''
-    set -e
-    set -u
+    export PATH=${lib.concatMapStringsSep ":" (p: "${p}/bin") inputs}:$PATH
 
-    PATH=${lib.concatMapStringsSep ":" (p: "${p}/bin") inputs}:$PATH
-
-    disable_dpms() {
-      xset dpms 0 0 0
-    }
-
-    trap disable_dpms HUP INT TERM
-
-    image=$(${scripts}/bin/random-file \
-      -g "[!.]*.png" \
-      -d ~/documents/pictures/backgrounds/lock-screen \
-      -D "${images.lock}")
-
-    xset +dpms dpms 5 5 5
-
-    i3lock \
-      --nofork \
-      --image="$image" \
-      --color="${colors.background}" \
-      --ignore-empty-password \
-      --show-failed-attempts
-
-    disable_dpms
+    # Use a fancy locker, with fallback to simple i3lock:
+    lock-screen "${images.lock}" "${colors.background}" ||
+      i3lock --nofork --color="${colors.fail}"
   '';
 in
 {

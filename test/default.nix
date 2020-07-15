@@ -73,7 +73,7 @@ pkgs.nixosTest {
 
     with subtest("Lock screen"):
         machine.send_key("ctrl-alt-l")
-        machine.sleep(1)
+        machine.sleep(3)
         machine.screenshot("lock")
   '';
 }
