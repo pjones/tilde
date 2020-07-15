@@ -43,50 +43,51 @@ in
   };
 
   #### Implementation:
-  config = lib.mkIf cfg.enable {
-    # Required nixpkgs settings:
-    nixpkgs = {
-      overlays = lib.singleton (import ../overlays);
+  config = lib.mkMerge
+    [
+      (lib.mkIf cfg.enable {
+        # Required nixpkgs settings:
+        # nixpkgs = {
+        #   config = {
+        #     allowUnfree = true;
+        #     android_sdk.accept_license = true;
+        #   };
+        # };
 
-      config = {
-        allowUnfree = true;
-        android_sdk.accept_license = true;
-      };
-    };
-
-    programs.zsh = {
-      enable = true;
-      enableCompletion = true;
-      syntaxHighlighting.enable = true;
-    };
-
-    # A group just for me:
-    users.groups.pjones = { };
-
-    # And my user account:
-    users.users.pjones = {
-      isNormalUser = true;
-      description = "Peter J. Jones";
-      group = "pjones";
-      createHome = true;
-      home = "/home/pjones";
-      shell = pkgs.zsh;
-      openssh.authorizedKeys.keys = sshPubKeys;
-      extraGroups = cfg.extraGroups ++
-        lib.optional cfg.putInWheel "wheel";
-    };
-
-    home-manager = {
-      backupFileExtension = "backup";
-      users.pjones = { ... }: {
-        imports = [ ../home ];
-
-        config = {
-          # Propagate some settings into home-manager:
-          pjones.xsession.enable = cfg.xsession.enable;
-          pjones.workstation.enable = cfg.workstation.enable;
+        programs.zsh = {
+          enable = true;
+          enableCompletion = true;
+          syntaxHighlighting.enable = true;
         };
-      };
-    };
-  };
+
+        # A group just for me:
+        users.groups.pjones = { };
+
+        # And my user account:
+        users.users.pjones = {
+          isNormalUser = true;
+          description = "Peter J. Jones";
+          group = "pjones";
+          createHome = true;
+          home = "/home/pjones";
+          shell = pkgs.zsh;
+          openssh.authorizedKeys.keys = sshPubKeys;
+          extraGroups = cfg.extraGroups ++
+            lib.optional cfg.putInWheel "wheel";
+        };
+      })
+
+      ({
+        home-manager.users.pjones = { ... }: {
+          imports = [ ../home ];
+
+          config = lib.mkIf cfg.enable {
+            # Propagate some settings into home-manager:
+            pjones.enable = cfg.enable;
+            pjones.xsession.enable = cfg.xsession.enable;
+            pjones.workstation.enable = cfg.workstation.enable;
+          };
+        };
+      })
+    ];
 }

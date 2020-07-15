@@ -23,13 +23,13 @@ in
         global = {
           geometry = "300x5-30+30";
           transparency = 10;
-          padding = 5;
-          horizontal_padding = 5;
+          padding = 10;
+          horizontal_padding = 10;
           frame_width = 2;
           frame_color = colors.active;
           font = fonts.primary.name;
           markup = "full";
-          format = "<b>%s</b>\\n%b";
+          format = "<span size=\"large\"><b>%s</b></span>\\n%b";
           word_wrap = true;
           icon_position = "right";
           corner_radius = 5;

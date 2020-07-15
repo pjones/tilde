@@ -26,6 +26,11 @@ in
       xsession.enable = true;
     };
 
+    home-manager = {
+      backupFileExtension = "backup";
+      useUserPackages = true;
+    };
+
     users.users.pjones = {
       password = "password";
     };

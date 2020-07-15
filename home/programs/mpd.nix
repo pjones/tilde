@@ -13,5 +13,8 @@ in
       musicDirectory = "${config.home.homeDirectory}/documents/music";
       playlistDirectory = "${config.home.homeDirectory}/documents/playlists";
     };
+
+    # D-Bus broadcasting:
+    services.mpdris2.enable = config.pjones.xsession.enable;
   };
 }

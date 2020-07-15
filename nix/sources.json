@@ -1,4 +1,17 @@
 {
+    "Font-Awesome": {
+        "branch": "master",
+        "description": "The iconic SVG, font, and CSS toolkit",
+        "homepage": "https://fontawesome.com",
+        "owner": "FortAwesome",
+        "ref": "5.13.1",
+        "repo": "Font-Awesome",
+        "rev": "1147d199a35293b391152ee85e2d30988439157f",
+        "sha256": "1qlh1bfczpg2p5flhdsbff404pig6yn885hdc74gic86ndzh954j",
+        "type": "tarball",
+        "url": "https://github.com/FortAwesome/Font-Awesome/archive/1147d199a35293b391152ee85e2d30988439157f.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "home-manager": {
         "ref": "release-20.03",
         "repo": "https://github.com/pjones/home-manager.git",
@@ -122,7 +135,7 @@
     "pjones/emacsrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/emacsrc.git",
-        "rev": "9e9f8be6836e1c5058ef6339a38a936e0c471701",
+        "rev": "ce405adbd8febcc4c46aad2ff50817a38ed162ce",
         "type": "git"
     },
     "pjones/encryption-utils": {
@@ -140,7 +153,7 @@
     "pjones/oled-display": {
         "ref": "next",
         "repo": "https://github.com/pjones/oled-display.git",
-        "rev": "0e9cc4355742200d77ac21715cf68e884c4e9976",
+        "rev": "8a97c49442cadb05309c756d39380cf060cba17a",
         "type": "git"
     },
     "pjones/openid-connect": {
@@ -212,7 +225,7 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/xmonadrc.git",
-        "rev": "84b6def3cfcf88de33c9eecd3b86464c92c8ec26",
+        "rev": "38f526d351f572c273089189efb34f44792b985b",
         "type": "git"
     },
     "pjones/zshrc": {
@@ -244,6 +257,12 @@
         "type": "tarball",
         "url": "https://github.com/polybar/polybar-scripts/archive/68ced291fa42c1505d16a38bb4b3a402bcf8dc80.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "tabbed": {
+        "ref": "master",
+        "repo": "git://git.suckless.org/tabbed",
+        "rev": "dabf6a25ab01107fc1e0464ee6a3e369d1626f97",
+        "type": "git"
     },
     "vimb": {
         "branch": "master",

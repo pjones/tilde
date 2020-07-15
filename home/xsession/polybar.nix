@@ -5,16 +5,35 @@
 }:
 let
   cfg = config.pjones.xsession.polybar;
+  oled = config.pjones.programs.oled-display;
 
   colors = import ./colors.nix;
   fonts = import ./fonts.nix { inherit pkgs; };
 
+  player-mpris-tail = pkgs.writeShellScriptBin "player-mpris-tail" ''
+    ${pkgs.polybar-scripts.player-mpris-tail}/bin/player-mpris-tail \
+      --icon-playing "${iconOkay ""}" \
+      --icon-paused "${iconOkay ""}" \
+      --icon-stopped "${iconOkay ""}" \
+      --icon-none "" \
+      --blacklist vlc \
+      "$@"
+  '';
+
+  pomodoro-curl = pkgs.writeShellScript "pomodoro-curl" ''
+    ${pkgs.curl}/bin/curl \
+      --silent \
+      --unix-socket ${oled.socket} \
+      --no-buffer \
+      http://localhost/stream
+  '';
+
   # Make the background transparent.
-  background = "#88" + lib.removePrefix "#" colors.background;
+  background = "#cc" + lib.removePrefix "#" colors.background;
   foreground = colors.foreground;
 
   # Wrap an icon with the given color:
-  icon = color: str: "%{F${color}}${str}%{F-}";
+  icon = color: str: "%{T1}%{F${color}}${str}%{F-}%{T-}";
   iconOkay = icon colors.okay;
   iconWarn = icon colors.warn;
   iconFail = icon colors.fail;
@@ -29,19 +48,35 @@ let
   ];
 
   modulesRight = modList [
-    "date"
     "pulseaudio"
     "temperature"
+    "date"
   ];
 
-  modulesCenter = modList [ ];
+  modulesCenter = modList
+    ([
+      "mpris"
+    ] ++ lib.optional oled.enable "pomodoro");
 in
 {
   options.pjones.xsession.polybar = {
     enable = lib.mkEnableOption "Configure and start Polybar";
+
+    thermalZone = lib.mkOption {
+      type = lib.types.int;
+      default = 1;
+      description = ''
+        Which thermal zone to use for the temperature gauge.  To get a
+        list of termal zones use this shell fragment:
+
+        for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+      '';
+    };
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = [ player-mpris-tail ];
+
     services.polybar = {
       enable = true;
 
@@ -50,7 +85,14 @@ in
       };
 
       script = ''
-        polybar primary &
+        export PATH=${pkgs.coreutils}/bin:${pkgs.procps}/bin:$PATH
+
+        {
+          # Give xmonad a second to start and advertise EWMH support.
+          while ! pgrep xmonadrc; do sleep 1; done
+          sleep 1
+          polybar primary
+        } &
       '';
 
       config = {
@@ -59,20 +101,20 @@ in
           screenchange-reload = true;
         };
 
-        #  https://github.com/polybar/polybar/wiki/Module:-xworkspaces
+        # https://github.com/polybar/polybar/wiki/Module:-xworkspaces
         "module/workspace" = {
           type = "internal/xworkspaces";
           pin-workspaces = false;
-          format = "<label-state>";
-          label-active = "%index%";
+          format = iconOkay "" + " <label-state>";
+          label-active = "%{F${colors.active}}%index%%{F-}";
           label-active-padding = 1;
           label-active-underline = colors.active;
-          label-occupied = "%index%";
+          label-occupied = "%{F${colors.foreground}}%index%%{F-}";
           label-occupied-padding = 1;
-          label-urgent = "%index%";
+          label-urgent = "%{F${colors.alert}}%index%%{F-}";
           label-urgent-padding = 2;
           label-urgent-underline = colors.alert;
-          label-empty = "%index%";
+          label-empty = "%{F${colors.foreground-dim}}%index%%{F-}";
           label-empty-padding = 1;
         };
 
@@ -81,7 +123,7 @@ in
           type = "internal/xwindow";
           format = "<label>";
           label = iconOkay "" + " %title%";
-          label-maxlen = 50;
+          label-maxlen = 100;
           label-empty = "";
         };
 
@@ -105,13 +147,22 @@ in
           ramp-volume-2 = iconOkay "";
         };
 
+        # https://github.com/polybar/polybar-scripts/tree/master/polybar-scripts/player-mpris-tail
+        "module/mpris" = {
+          type = "custom/script";
+          exec = "${player-mpris-tail}/bin/player-mpris-tail";
+          tail = true;
+        };
+
         # https://github.com/polybar/polybar/wiki/Module:-temperature
         "module/temperature" = {
           type = "internal/temperature";
+          thermal-zone = cfg.thermalZone;
+          units = false;
           base-temperature = 40;
           warn-temperature = 80;
-          format = "<ramp> <label>";
-          format-warn = "<ramp> <label-warn>";
+          format = "<ramp> <label>°";
+          format-warn = "<ramp> <label-warn>°";
           label = "%temperature-c%";
           label-warn = "%temperature-c%";
           label-warn-underline = colors.warn;
@@ -120,28 +171,65 @@ in
           ramp-2 = iconFail "";
         };
 
-        "bar/primary" = {
+        # https://github.com/pjones/oled-display
+        "module/pomodoro" = {
+          type = "custom/script";
+          exec = toString pomodoro-curl;
+          exec-if = "test -S ${oled.socket}";
+          tail = true;
+          label = iconOkay "" + " %output%";
+        };
+
+        "module/menu" = {
+          type = "custom/menu";
+          label-open = "";
+          label-close = iconWarn "" + " ";
+          label-separator = "|";
+
+          menu-0-0 = "Polybar Tray";
+          menu-0-0-exec = "polybar tray &";
+        };
+
+        "module/quit" = {
+          type = "custom/ipc";
+          format = iconOkay "";
+          hook-0 = "echo"; # Because you have to define *something*.
+          click-left = "polybar-msg -p %pid% cmd quit";
+        };
+
+        "base" = {
           inherit background foreground;
-          width = "90%";
-          height = 20;
-          offset-x = "5%";
-          radius-bottom = "10.0";
-          module-margin = 1;
+
+          module-margin = 3;
           line-size = 2;
           padding = 2;
 
-          font-0 = with fonts.primary; "${ftname};${toString offset}";
-          font-1 = with fonts.mono; "${ftname};${toString offset}";
-          font-2 = with fonts.font-awesome; "${ftname};${toString offset}";
-          font-3 = with fonts.twemoji; "${ftname};${toString offset}";
-          font-4 = with fonts.weather; "${ftname};${toString offset}";
+          font-0 = with fonts.polybar; "${ftname};${toString offset}";
+          font-1 = with fonts.font-awesome; "${ftname};${toString offset}";
+          font-2 = with fonts.twemoji; "${ftname};${toString offset}";
+          font-3 = with fonts.weather; "${ftname};${toString offset}";
+          font-4 = with fonts.mono; "${ftname};${toString offset}";
 
           enable-ipc = true;
-          tray-position = "left";
-          tray-padding = 2;
+        };
+
+        "bar/primary" = {
+          "inherit" = "base";
+          width = "90%";
+          height = 20;
+          offset-x = "5%";
+          radius-bottom = "8.0";
           modules-left = modulesLeft;
           modules-right = modulesRight;
           modules-center = modulesCenter;
+        };
+
+        "bar/tray" = {
+          "inherit" = "base";
+          width = 100;
+          height = 20;
+          tray-position = "right";
+          modules-left = "quit";
         };
       };
     };

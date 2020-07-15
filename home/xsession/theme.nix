@@ -75,7 +75,7 @@ in
       "*color6" = colors.cyan;
       # "*color14" = ??;
       "*color7" = colors.white;
-      # "*color15" = ??;
+      "*color15" = colors.gray;
     };
 
     # XCursor:

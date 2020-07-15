@@ -1,11 +1,40 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.pjones.programs.oled-display;
+
+  flags = lib.concatStringsSep " " (
+    [
+      "-a ${cfg.arduino.path}"
+      "-s ${cfg.socket}"
+    ] ++
+    lib.optional (! cfg.arduino.enable) "-A"
+  );
+
+  start = pkgs.writeShellScript "oled-display-start" ''
+    ${pkgs.coreutils}/bin/rm -f ${cfg.socket}
+    ${pkgs.pjones.oled-display}/bin/display-control ${flags}
+  '';
 in
 {
   #### Interface:
   options.pjones.programs.oled-display = {
     enable = lib.mkEnableOption "OLED Pomodoro Timer";
+
+    socket = lib.mkOption {
+      type = lib.types.str;
+      default = "~/.display-control.sock";
+      description = "Path to the HTTP socket file";
+    };
+
+    arduino = {
+      enable = lib.mkEnableOption "Display results via an Arduino";
+
+      path = lib.mkOption {
+        type = lib.types.path;
+        default = "/dev/ttyACM0";
+        description = "Path to the Arduino serial port";
+      };
+    };
   };
 
   #### Implementation:
@@ -22,7 +51,7 @@ in
       };
 
       Service = {
-        ExecStart = "${pkgs.pjones.oled-display}/bin/display-control";
+        ExecStart = toString start;
         Restart = "always";
         RestartSec = 3;
       };

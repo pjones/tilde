@@ -2,6 +2,7 @@ rec {
   # Color names:
   black = "#161925";
   white = "#c3c7d1";
+  gray = "#9397a0";
   green = "#71f79f";
   red = "#ed254e";
   orange = "#ff6a00";
@@ -14,6 +15,7 @@ rec {
   # Symbolic names:
   background = black;
   foreground = white;
+  foreground-dim = gray;
   okay = green;
   warn = orange;
   fail = red;

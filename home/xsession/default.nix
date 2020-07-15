@@ -16,10 +16,13 @@ in
 {
   imports = [
     ./dunst.nix
+    ./grobi.nix
+    ./lock.nix
     ./polybar.nix
     ./rofi.nix
     ./theme.nix
     ./vimb.nix
+    ./wallpaper.nix
   ];
 
   options.pjones.xsession = {
@@ -28,11 +31,14 @@ in
 
   config = lib.mkIf cfg.enable {
     # Enable other xsession modules:
+    pjones.programs.oled-display.enable = lib.mkDefault true;
     pjones.xsession.dunst.enable = lib.mkDefault true;
+    pjones.xsession.grobi.enable = lib.mkDefault true;
     pjones.xsession.polybar.enable = lib.mkDefault true;
     pjones.xsession.rofi.enable = lib.mkDefault true;
     pjones.xsession.theme.enable = lib.mkDefault true;
     pjones.xsession.vimb.enable = lib.mkDefault true;
+    pjones.xsession.wallpaper.enable = lib.mkDefault true;
 
     # Enabling an xsession also enables workstation settings:
     pjones.workstation.enable = true;
@@ -51,9 +57,8 @@ in
     };
 
     # Services to start when running X11:
+    services.udiskie.enable = true;
     services.unclutter.enable = true;
-    services.network-manager-applet.enable = true;
-    services.blueman-applet.enable = true;
 
     # Nix drv caching and background building:
     services.lorri.enable = true;

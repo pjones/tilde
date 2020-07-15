@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 let
   bashrc = pkgs.pjones.bashrc;
   zshrc = pkgs.pjones.zshrc;
@@ -6,7 +6,7 @@ let
 
 in
 {
-  config = {
+  config = lib.mkIf config.pjones.enable {
     programs.zsh = {
       enable = true;
       enableCompletion = true;

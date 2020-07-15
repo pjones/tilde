@@ -1,17 +1,7 @@
-{
-  # Which Haskell compiler to use:
-  ghc ? "default"
-
-, # Where all the packages are defined:
-  sources ? import ../nix/sources.nix
-}:
+{}@args:
 let
-  # A nixpkgs overlay:
+  sources = import ../nix/sources.nix;
   overlay = import ../overlays;
-
-  # Load nixpkgs from the sources.nix file:
-  pkgs = import sources.nixpkgs {
-    overlays = [ overlay ];
-  };
+  pkgs = import sources.nixpkgs;
 in
-pkgs
+(pkgs args).appendOverlays [ overlay ]

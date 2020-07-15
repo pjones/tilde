@@ -23,12 +23,18 @@ pkgs.nixosTest {
 
       virtualisation.memorySize = 2048;
 
-      home-manager.users.pjones = { ... }: {
+      # Disable some services that don't work in the test VM.
+      home-manager.users.pjones = { lib, ... }: {
         pjones.programs.mpd.enable = false;
         pjones.programs.neuron.enable = false;
-        pjones.programs.oled-display.enable = false;
+        pjones.xsession.grobi.enable = false;
         services.syncthing.enable = false;
+        services.udiskie.enable = lib.mkForce false;
       };
+
+      environment.systemPackages = with pkgs; [
+        neofetch
+      ];
     };
   };
 
@@ -55,14 +61,19 @@ pkgs.nixosTest {
         machine.sleep(3)
 
     with subtest("Launch terminal"):
-        # FIXME: Update after fixing eterm not starting bug!
-        # machine.send_key("mod4-ret")
-        # machine.execute("su - ${user.name} -c 'DISPLAY=:0.0 eterm &'")
-        machine.execute("su - ${user.name} -c 'DISPLAY=:0.0 xterm &'")
-        machine.wait_for_window("term")
+        machine.execute("su - ${user.name} -c 'DISPLAY=:0.0 eterm -n &'")
+        machine.wait_for_window("vterm")
+        # Redraw the screen to remove "delete frame" message:
+        machine.sleep(1)
+        machine.send_key("ctrl-l")
 
     with subtest("Wait to get a screenshot"):
         machine.sleep(3)
         machine.screenshot("screen")
+
+    with subtest("Lock screen"):
+        machine.send_key("ctrl-alt-l")
+        machine.sleep(1)
+        machine.screenshot("lock")
   '';
 }

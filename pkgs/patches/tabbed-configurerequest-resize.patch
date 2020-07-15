@@ -1,0 +1,23 @@
+diff --git a/config.mk b/config.mk
+index 29caa84..e684bae 100644
+--- a/config.mk
++++ b/config.mk
+@@ -1,5 +1,5 @@
+ # tabbed version
+-VERSION = 0.6
++VERSION = 0.6-git
+ 
+ # Customize below to fit your system
+ 
+diff --git a/tabbed.c b/tabbed.c
+index eafe28a..3b00a77 100644
+--- a/tabbed.c
++++ b/tabbed.c
+@@ -287,6 +287,7 @@ configurerequest(const XEvent *e)
+ 		wc.sibling = ev->above;
+ 		wc.stack_mode = ev->detail;
+ 		XConfigureWindow(dpy, clients[c]->win, ev->value_mask, &wc);
++		resize(c, ww, wh - bh);
+ 	}
+ }
+ 

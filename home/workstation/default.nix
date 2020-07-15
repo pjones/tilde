@@ -8,12 +8,6 @@ let
 in
 {
 
-  imports = [
-    ../programs/mpd.nix
-    ../programs/neuron.nix
-    ../programs/oled-display.nix
-  ];
-
   options.pjones.workstation = {
     enable = lib.mkEnableOption ''
       Install and configure workstation applications.
@@ -29,13 +23,15 @@ in
     # Active some services/plugins:
     pjones.programs.mpd.enable = lib.mkDefault true;
     pjones.programs.neuron.enable = lib.mkDefault true;
-    pjones.programs.oled-display.enable = lib.mkDefault true;
     services.syncthing.enable = lib.mkDefault true;
 
     home.packages = with pkgs; [
       # System and Security
-      aspell
-      aspellDicts.en
+      (aspellWithDicts (d: [
+        d.en
+        d.en-computers
+        d.en-science
+      ]))
       dict
       nixops
       pass

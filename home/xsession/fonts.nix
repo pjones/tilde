@@ -3,10 +3,17 @@
 
 {
   primary = {
-    package = pkgs.roboto;
-    name = "Roboto Condensed 10";
-    ftname = "Roboto Condensed:size=10";
+    package = pkgs.overpass;
+    name = "Overpass 12";
+    ftname = "Overpass:style=Regular:size=12";
     offset = 2; # Offset for Polybar.
+  };
+
+  polybar = {
+    package = pkgs.overpass;
+    name = "Overpass Semibold 10";
+    ftname = "Overpass:style=Semibold:size=10";
+    offset = 2;
   };
 
   mono = {
@@ -19,7 +26,7 @@
   font-awesome = {
     package = pkgs.font-awesome;
     name = "Font Awesome 5 Free 9";
-    ftname = "Font Awesome 5 Free:style=Regular:pixelsize=9";
+    ftname = "Font Awesome 5 Free:style=Solid:pixelsize=9";
     offset = 2;
   };
 

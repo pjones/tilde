@@ -1,4 +1,6 @@
 { pkgs
+, config
+, lib
 , ...
 }:
 
@@ -9,7 +11,16 @@
     ./workstation
   ];
 
-  config = {
+  options.pjones = {
+    enable = lib.mkEnableOption "Enable setings for pjones";
+  };
+
+  config = lib.mkIf config.pjones.enable {
+    nixpkgs = {
+      config.allowUnfree = true;
+      overlays = [ (import ../overlays) ];
+    };
+
     # Packages to install on all devices:
     home.packages = with pkgs;
       [

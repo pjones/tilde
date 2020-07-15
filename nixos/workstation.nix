@@ -30,7 +30,6 @@ in
       enable = true;
       drivers = with pkgs; [
         cups-googlecloudprint
-        canon-cups-ufr2
       ];
     };
   };
