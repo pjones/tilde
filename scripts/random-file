@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ################################################################################
 # Print the name of a random file.
@@ -14,6 +14,7 @@ set -u
 option_dir=$(pwd)
 option_glob="[!.]*"
 option_default=
+option_images=0
 
 ################################################################################
 usage() {
@@ -23,13 +24,14 @@ Usage: $(basename "$0") [options]
   -d DIR  Pick a file from DIR [default: pwd]
   -D FILE Default file if no files are in DIR
   -g GLOB Name glob passed to find(1)
+  -i      Find image files (disables -g)
   -h      This message
 
 EOF
 }
 
 ################################################################################
-while getopts "D:d:g:h" o; do
+while getopts "D:d:g:hi" o; do
   case "${o}" in
   d)
     option_dir=$OPTARG
@@ -46,6 +48,10 @@ while getopts "D:d:g:h" o; do
   h)
     usage
     exit
+    ;;
+
+  i)
+    option_images=1
     ;;
 
   *)
@@ -66,12 +72,20 @@ if [ ! -d "$option_dir" ]; then
   fi
 fi
 
+glob=()
+
+if [ "$option_images" -eq 1 ]; then
+  glob+=('-iregex' '.*\(png\|jpg\)$')
+else
+  glob+=("-iname" "$option_glob")
+fi
+
 file=$(
   find -L \
     "$option_dir" \
     '(' -name '.*' -prune ')' -or '(' \
     '(' -type f -or -type l ')' -and \
-    -name "$option_glob" -print ')' |
+    "${glob[@]}" -print ')' |
     shuf -n 1
 )
 
