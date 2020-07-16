@@ -35,6 +35,7 @@ in
         "networkmanager"
         "scanner"
         "users"
+        "video"
         "webhooks"
         "webmaster"
       ];
@@ -46,13 +47,8 @@ in
   config = lib.mkMerge
     [
       (lib.mkIf cfg.enable {
-        # Required nixpkgs settings:
-        # nixpkgs = {
-        #   config = {
-        #     allowUnfree = true;
-        #     android_sdk.accept_license = true;
-        #   };
-        # };
+        # I want firmware updates:
+        hardware.enableRedistributableFirmware = true;
 
         programs.zsh = {
           enable = true;
@@ -86,6 +82,7 @@ in
             pjones.enable = cfg.enable;
             pjones.xsession.enable = cfg.xsession.enable;
             pjones.workstation.enable = cfg.workstation.enable;
+            pjones.programs.clight.enable = config.services.clight.enable;
           };
         };
       })

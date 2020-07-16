@@ -18,6 +18,7 @@
   config = lib.mkIf config.pjones.enable {
     nixpkgs = {
       config.allowUnfree = true;
+      config.android_sdk.accept_license = true;
       overlays = [ (import ../overlays) ];
     };
 

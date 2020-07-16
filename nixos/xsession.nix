@@ -39,6 +39,10 @@ in
       };
     };
 
+    # Let me remote in:
+    services.openssh.forwardX11 = lib.mkForce true;
+    programs.ssh.startAgent = false; # I use GnuPG Agent.
+
     # Fonts:
     fonts =
       let

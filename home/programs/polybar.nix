@@ -47,11 +47,14 @@ let
     "window"
   ];
 
-  modulesRight = modList [
-    "pulseaudio"
-    "temperature"
-    "date"
-  ];
+  modulesRight = modList
+    ([
+      "pulseaudio"
+      "temperature"
+    ]
+    ++ lib.optional cfg.backlight.enable "backlight"
+    ++ lib.optional cfg.power.enable "battery"
+    ++ [ "date" ]);
 
   modulesCenter = modList
     ([
@@ -71,6 +74,46 @@ in
 
         for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
       '';
+    };
+
+    power = {
+      enable = lib.mkEnableOption "Battery Display";
+
+      battery = lib.mkOption {
+        type = lib.types.str;
+        default = "BAT0";
+        description = ''
+          Which battery to monitor.  The following command can be used
+          to find a list of batteries:
+
+          ls -1 /sys/class/power_supply/
+        '';
+      };
+
+      adapter = lib.mkOption {
+        type = lib.types.str;
+        default = "AC";
+        description = ''
+          Which power adapter to monitor.  The following command can be
+          used to find a list of power adapters:
+
+          ls -1 /sys/class/power_supply/
+        '';
+      };
+    };
+
+    backlight = {
+      enable = lib.mkEnableOption "Backlight Display";
+      device = lib.mkOption {
+        type = lib.types.str;
+        default = "intel_backlight";
+        description = ''
+          The device/card to connect to and monitor.  The following
+          command can be used to find a list of backlight devices:
+
+          ls -1 /sys/class/backlight/
+        '';
+      };
     };
   };
 
@@ -145,6 +188,41 @@ in
           ramp-volume-0 = iconOkay "";
           ramp-volume-1 = iconOkay "";
           ramp-volume-2 = iconOkay "";
+        };
+
+        # https://github.com/polybar/polybar/wiki/Module:-battery
+        "module/battery" = {
+          type = "internal/battery";
+          battery = cfg.power.battery;
+          adapter = cfg.power.adapter;
+          format-charging = "<animation-charging> <label-charging>";
+          format-discharging = "<ramp-capacity> <label-discharging>";
+          label-charging = "%percentage%%";
+          ramp-capacity-0 = iconFail "";
+          ramp-capacity-1 = iconWarn "";
+          ramp-capacity-2 = iconOkay "";
+          ramp-capacity-3 = iconOkay "";
+          ramp-capacity-4 = iconOkay "";
+
+          animation-charging-0 = iconOkay "";
+          animation-charging-1 = iconOkay "";
+          animation-charging-2 = iconOkay "";
+          animation-charging-3 = iconOkay "";
+          animation-charging-4 = iconOkay "";
+          animation-charging-framerate = 750;
+        };
+
+        # https://github.com/polybar/polybar/wiki/Module:-backlight
+        "module/backlight" = {
+          type = "internal/backlight";
+          card = cfg.backlight.device;
+          format = "<ramp> <label>";
+          label = "%percentage%%";
+          ramp-0 = iconOkay "";
+          ramp-1 = iconOkay "";
+          ramp-2 = iconOkay "";
+          ramp-3 = iconOkay "";
+          ramp-4 = iconOkay "";
         };
 
         # https://github.com/polybar/polybar-scripts/tree/master/polybar-scripts/player-mpris-tail

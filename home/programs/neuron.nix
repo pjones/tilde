@@ -29,6 +29,8 @@ in
 
   #### Implementation:
   config = lib.mkIf cfg.enable {
+    home.packages = [ neuron ];
+
     systemd.user.services.neuron = {
       Unit = {
         Description = "Neuron Zettelkasten";

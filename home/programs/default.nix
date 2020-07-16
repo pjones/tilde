@@ -2,6 +2,7 @@
 }:
 {
   imports = [
+    ./clight.nix
     ./dunst.nix
     ./emacs.nix
     ./grobi.nix
