@@ -4,13 +4,13 @@
 , ...
 }:
 let
-  cfg = config.pjones.xsession.dunst;
+  cfg = config.pjones.programs.dunst;
 
-  fonts = import ./fonts.nix { inherit pkgs; };
-  colors = import ./colors.nix;
+  fonts = import ../misc/fonts.nix { inherit pkgs; };
+  colors = import ../misc/colors.nix;
 in
 {
-  options.pjones.xsession.dunst = {
+  options.pjones.programs.dunst = {
     enable = lib.mkEnableOption ''
       Install and configure the dunst notification daemon.
     '';

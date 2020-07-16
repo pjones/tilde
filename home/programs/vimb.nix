@@ -4,10 +4,10 @@
 , ...
 }:
 let
-  cfg = config.pjones.xsession.vimb;
+  cfg = config.pjones.programs.vimb;
 in
 {
-  options.pjones.xsession.vimb = {
+  options.pjones.programs.vimb = {
     enable = lib.mkEnableOption ''
       Install and configure the vimb web browser.
     '';

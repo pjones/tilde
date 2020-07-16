@@ -27,7 +27,6 @@ pkgs.nixosTest {
       home-manager.users.pjones = { lib, ... }: {
         pjones.programs.mpd.enable = false;
         pjones.programs.neuron.enable = false;
-        pjones.xsession.grobi.enable = false;
         services.syncthing.enable = false;
         services.udiskie.enable = lib.mkForce false;
       };

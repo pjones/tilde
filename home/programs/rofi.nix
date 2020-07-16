@@ -4,10 +4,10 @@
 , ...
 }:
 let
-  cfg = config.pjones.xsession.rofi;
+  cfg = config.pjones.programs.rofi;
 in
 {
-  options.pjones.xsession.rofi = {
+  options.pjones.programs.rofi = {
     enable = lib.mkEnableOption "Install and configure rofi";
   };
 

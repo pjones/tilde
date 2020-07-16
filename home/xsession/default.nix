@@ -11,17 +11,12 @@ let
     (lib.readFile ../../support/workstation/xdg.sh);
 
   # Background images:
-  images = pkgs.callPackage ./images.nix { };
+  images = pkgs.callPackage ../misc/images.nix { };
 in
 {
   imports = [
-    ./dunst.nix
-    ./grobi.nix
     ./lock.nix
-    ./polybar.nix
-    ./rofi.nix
     ./theme.nix
-    ./vimb.nix
     ./wallpaper.nix
   ];
 
@@ -31,13 +26,13 @@ in
 
   config = lib.mkIf cfg.enable {
     # Enable other xsession modules:
+    pjones.programs.dunst.enable = lib.mkDefault true;
+    pjones.programs.grobi.enable = lib.mkDefault true;
     pjones.programs.oled-display.enable = lib.mkDefault true;
-    pjones.xsession.dunst.enable = lib.mkDefault true;
-    pjones.xsession.grobi.enable = lib.mkDefault true;
-    pjones.xsession.polybar.enable = lib.mkDefault true;
-    pjones.xsession.rofi.enable = lib.mkDefault true;
+    pjones.programs.polybar.enable = lib.mkDefault true;
+    pjones.programs.rofi.enable = lib.mkDefault true;
+    pjones.programs.vimb.enable = lib.mkDefault true;
     pjones.xsession.theme.enable = lib.mkDefault true;
-    pjones.xsession.vimb.enable = lib.mkDefault true;
     pjones.xsession.wallpaper.enable = lib.mkDefault true;
 
     # Enabling an xsession also enables workstation settings:

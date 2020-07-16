@@ -42,7 +42,7 @@ in
     # Fonts:
     fonts =
       let
-        specs = import ../home/xsession/fonts.nix { inherit pkgs; };
+        specs = import ../home/misc/fonts.nix { inherit pkgs; };
         others = map (f: f.package) (lib.attrValues specs);
       in
       {

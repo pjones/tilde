@@ -5,8 +5,8 @@
 , ...
 }:
 let
-  fonts = import ./fonts.nix { inherit pkgs; };
-  colors = import ./colors.nix;
+  fonts = import ../misc/fonts.nix { inherit pkgs; };
+  colors = import ../misc/colors.nix;
 
   theme = {
     package = pkgs.sweet;

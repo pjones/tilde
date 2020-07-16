@@ -5,8 +5,8 @@
 }:
 let
   cfg = config.pjones.xsession;
-  colors = import ./colors.nix;
-  images = pkgs.callPackage ./images.nix { };
+  colors = import ../misc/colors.nix;
+  images = pkgs.callPackage ../misc/images.nix { };
   scripts = pkgs.callPackage ../../scripts { };
 
   inputs = (with pkgs; [

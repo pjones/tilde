@@ -4,11 +4,11 @@
 , ...
 }:
 let
-  cfg = config.pjones.xsession.polybar;
+  cfg = config.pjones.programs.polybar;
   oled = config.pjones.programs.oled-display;
 
-  colors = import ./colors.nix;
-  fonts = import ./fonts.nix { inherit pkgs; };
+  colors = import ../misc/colors.nix;
+  fonts = import ../misc/fonts.nix { inherit pkgs; };
 
   player-mpris-tail = pkgs.writeShellScriptBin "player-mpris-tail" ''
     ${pkgs.polybar-scripts.player-mpris-tail}/bin/player-mpris-tail \
@@ -59,7 +59,7 @@ let
     ] ++ lib.optional oled.enable "pomodoro");
 in
 {
-  options.pjones.xsession.polybar = {
+  options.pjones.programs.polybar = {
     enable = lib.mkEnableOption "Configure and start Polybar";
 
     thermalZone = lib.mkOption {
