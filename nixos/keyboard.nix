@@ -1,7 +1,7 @@
 # Support for custom keyboards:
 { config, pkgs, lib, ... }:
 let
-  cfg = config.pjones.workstation.keyboard;
+  cfg = config.tilde.workstation.keyboard;
 
   package = pkgs.stdenvNoCC.mkDerivation {
     name = "keyboard-script";
@@ -18,12 +18,12 @@ let
 
   script = pkgs.writeShellScript "keyboard-setup" ''
     export PATH=/run/wrappers/bin:$PATH
-    sudo -u pjones ${package}/bin/keyboard.sh "$@"
+    sudo -u ${config.tilde.username} ${package}/bin/keyboard.sh "$@"
   '';
 
 in
 {
-  options.pjones.workstation.keyboard = {
+  options.tilde.workstation.keyboard = {
     enable = lib.mkEnableOption "Custom keyboard scripts";
   };
 

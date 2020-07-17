@@ -4,10 +4,10 @@
 , ...
 }:
 let
-  cfg = config.pjones.xsession;
+  cfg = config.tilde.xsession;
 in
 {
-  options.pjones.xsession = {
+  options.tilde.xsession = {
     enable = lib.mkEnableOption ''
       Enable the X server and configure Peter's xsession.
 
@@ -17,7 +17,7 @@ in
 
   config = {
     # Enable workstation settings:
-    pjones.workstation.enable = true;
+    tilde.workstation.enable = true;
 
     # For setting GTK themes:
     services.dbus.packages = [ pkgs.gnome3.dconf ];
@@ -33,9 +33,7 @@ in
       desktopManager.session = lib.singleton {
         name = "xmonad";
         enable = true;
-        start = ''
-          exec /home/pjones/.xsession
-        '';
+        start = "exec $HOME/.xsession";
       };
     };
 

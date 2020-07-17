@@ -4,10 +4,10 @@
 , ...
 }:
 let
-  cfg = config.pjones.xsession.wallpaper;
+  cfg = config.tilde.xsession.wallpaper;
 in
 {
-  options.pjones.xsession.wallpaper = {
+  options.tilde.xsession.wallpaper = {
     enable = lib.mkEnableOption "Automatic wallpaper changing";
   };
 

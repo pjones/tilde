@@ -4,10 +4,10 @@
 , ...
 }:
 let
-  cfg = config.pjones.programs.rofi;
+  cfg = config.tilde.programs.rofi;
 in
 {
-  options.pjones.programs.rofi = {
+  options.tilde.programs.rofi = {
     enable = lib.mkEnableOption "Install and configure rofi";
   };
 

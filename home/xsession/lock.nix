@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  cfg = config.pjones.xsession;
+  cfg = config.tilde.xsession;
   colors = import ../misc/colors.nix;
   images = pkgs.callPackage ../misc/images.nix { };
   scripts = pkgs.callPackage ../../scripts { };

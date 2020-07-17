@@ -5,7 +5,7 @@
   imports = [ ./home ];
 
   # Make this machine an X server:
-  pjones = {
+  tilde = {
     enable = true;
     xsession.enable = true;
   };

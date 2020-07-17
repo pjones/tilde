@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.pjones.programs.mpd;
+  cfg = config.tilde.programs.mpd;
 in
 {
-  options.pjones.programs.mpd = {
+  options.tilde.programs.mpd = {
     enable = lib.mkEnableOption "Enable and configure MPD";
   };
 
@@ -15,6 +15,6 @@ in
     };
 
     # D-Bus broadcasting:
-    services.mpdris2.enable = config.pjones.xsession.enable;
+    services.mpdris2.enable = config.tilde.xsession.enable;
   };
 }

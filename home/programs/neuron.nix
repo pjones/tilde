@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.pjones.programs.neuron;
+  cfg = config.tilde.programs.neuron;
 
   neuron = with pkgs.haskell.lib;
     justStaticExecutables pkgs.haskellPackages.neuron;
@@ -11,7 +11,7 @@ let
 in
 {
   #### Interface:
-  options.pjones.programs.neuron = {
+  options.tilde.programs.neuron = {
     enable = lib.mkEnableOption "Neuron Zettelkasten";
 
     port = lib.mkOption {

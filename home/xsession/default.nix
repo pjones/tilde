@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  cfg = config.pjones.xsession;
+  cfg = config.tilde.xsession;
 
   # Set XDG environment variables to my liking:
   xdg-set-up = pkgs.writeScript "xdg-set-up"
@@ -20,23 +20,23 @@ in
     ./wallpaper.nix
   ];
 
-  options.pjones.xsession = {
+  options.tilde.xsession = {
     enable = lib.mkEnableOption "Enable an X11 session";
   };
 
   config = lib.mkIf cfg.enable {
     # Enable other xsession modules:
-    pjones.programs.dunst.enable = lib.mkDefault true;
-    pjones.programs.grobi.enable = lib.mkDefault true;
-    pjones.programs.oled-display.enable = lib.mkDefault true;
-    pjones.programs.polybar.enable = lib.mkDefault true;
-    pjones.programs.rofi.enable = lib.mkDefault true;
-    pjones.programs.vimb.enable = lib.mkDefault true;
-    pjones.xsession.theme.enable = lib.mkDefault true;
-    pjones.xsession.wallpaper.enable = lib.mkDefault true;
+    tilde.programs.dunst.enable = lib.mkDefault true;
+    tilde.programs.grobi.enable = lib.mkDefault true;
+    tilde.programs.oled-display.enable = lib.mkDefault true;
+    tilde.programs.polybar.enable = lib.mkDefault true;
+    tilde.programs.rofi.enable = lib.mkDefault true;
+    tilde.programs.vimb.enable = lib.mkDefault true;
+    tilde.xsession.theme.enable = lib.mkDefault true;
+    tilde.xsession.wallpaper.enable = lib.mkDefault true;
 
     # Enabling an xsession also enables workstation settings:
-    pjones.workstation.enable = true;
+    tilde.workstation.enable = true;
 
     xsession = {
       enable = true;

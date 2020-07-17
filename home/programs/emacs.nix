@@ -5,7 +5,7 @@
 }:
 
 {
-  config = lib.mkIf config.pjones.enable {
+  config = lib.mkIf config.tilde.enable {
     home.packages = with pkgs; [
       pjones.emacsrc
     ];

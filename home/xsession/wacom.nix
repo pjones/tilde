@@ -2,27 +2,27 @@
 #
 # FIXME: This doesn't work yet because it depends on external scripts
 # that I have not yet put in public repos.
-{ config, lib, pkgs, ...}: with lib;
+{ config, lib, pkgs, ... }: with lib;
+let
+  cfg = config.tilde.wacom;
 
-let cfg = config.pjones.wacom;
+  user = "tilde";
 
-    user = "pjones";
+  script = pkgs.writeScript "wacom-init" ''
+    #!${pkgs.bash}/bin/bash -eu
+    export PATH="/home/${user}/.nix-profile/bin:/run/current-system/sw/bin"
+    export XAUTHORITY=/home/${user}/.Xauthority
+    export DISPLAY=":0"
 
-    script = pkgs.writeScript "wacom-init" ''
-      #!${pkgs.bash}/bin/bash -eu
-      export PATH="/home/${user}/.nix-profile/bin:/run/current-system/sw/bin"
-      export XAUTHORITY=/home/${user}/.Xauthority
-      export DISPLAY=":0"
+    sleep 1
 
-      sleep 1
-
-      xinput --map-to-output "Wacom Bamboo One M Pad" "$display" || :
-      xinput --map-to-output "Wacom Bamboo One M Pen" "$display" || :
-      notify-send "Wacom Bamboo" "Device configured and ready for use on $display."
-    '';
+    xinput --map-to-output "Wacom Bamboo One M Pad" "$display" || :
+    xinput --map-to-output "Wacom Bamboo One M Pen" "$display" || :
+    notify-send "Wacom Bamboo" "Device configured and ready for use on $display."
+  '';
 in
 {
-  options.pjones.wacom = {
+  options.tilde.wacom = {
     enable = mkOption {
       type = types.bool;
       default = false;

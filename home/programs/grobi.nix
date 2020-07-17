@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  cfg = config.pjones.programs.grobi;
+  cfg = config.tilde.programs.grobi;
 
   useAll = name: outputs: {
     inherit name;
@@ -30,7 +30,7 @@ let
   };
 in
 {
-  options.pjones.programs.grobi = {
+  options.tilde.programs.grobi = {
     enable = lib.mkEnableOption "Configure monitor layout with Grobi";
 
     name = lib.mkOption {

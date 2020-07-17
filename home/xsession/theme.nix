@@ -46,11 +46,11 @@ let
     icon-categories;
 in
 {
-  options.pjones.xsession.theme = {
+  options.tilde.xsession.theme = {
     enable = lib.mkEnableOption "Set a GUI theme";
   };
 
-  config = lib.mkIf config.pjones.xsession.theme.enable {
+  config = lib.mkIf config.tilde.xsession.theme.enable {
     gtk = {
       inherit theme;
       enable = true;

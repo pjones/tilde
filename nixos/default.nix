@@ -1,7 +1,6 @@
-# User entry for pjones.
 { config, pkgs, lib, ... }:
 let
-  cfg = config.pjones;
+  cfg = config.tilde;
 
   sshPubKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOT7Ys7LyugF3A5wsJ1EH1CF9jAdihtSWrJskUtDACCR medusa"
@@ -20,9 +19,15 @@ in
   ];
 
   #### Interface:
-  options.pjones = {
-    enable = lib.mkEnableOption "Create and configure an account for Peter";
+  options.tilde = {
+    enable = lib.mkEnableOption "Create and configure a user account";
     putInWheel = lib.mkEnableOption "Allow access to the wheel group";
+
+    username = lib.mkOption {
+      type = lib.types.str;
+      default = "pjones";
+      description = "The username to use.";
+    };
 
     extraGroups = lib.mkOption {
       type = with lib.types; listOf str;
@@ -39,7 +44,7 @@ in
         "webhooks"
         "webmaster"
       ];
-      description = "Extra groups for the pjones user";
+      description = "Extra groups for the user account";
     };
   };
 
@@ -72,15 +77,15 @@ in
         };
 
         # A group just for me:
-        users.groups.pjones = { };
+        users.groups.${cfg.username} = { };
 
         # And my user account:
-        users.users.pjones = {
+        users.users.${cfg.username} = {
           isNormalUser = true;
           description = "Peter J. Jones";
-          group = "pjones";
+          group = cfg.username;
           createHome = true;
-          home = "/home/pjones";
+          home = "/home/${cfg.username}";
           shell = pkgs.zsh;
           openssh.authorizedKeys.keys = sshPubKeys;
           extraGroups = cfg.extraGroups ++
@@ -89,15 +94,17 @@ in
       })
 
       ({
-        home-manager.users.pjones = { ... }: {
+        home-manager.users.${cfg.username} = { ... }: {
           imports = [ ../home ];
 
           config = lib.mkIf cfg.enable {
             # Propagate some settings into home-manager:
-            pjones.enable = cfg.enable;
-            pjones.xsession.enable = cfg.xsession.enable;
-            pjones.workstation.enable = cfg.workstation.enable;
-            pjones.programs.clight.enable = config.services.clight.enable;
+            home.username = cfg.username;
+            home.homeDirectory = config.users.users.${cfg.username}.home;
+            tilde.enable = cfg.enable;
+            tilde.xsession.enable = cfg.xsession.enable;
+            tilde.workstation.enable = cfg.workstation.enable;
+            tilde.programs.clight.enable = config.services.clight.enable;
           };
         };
       })

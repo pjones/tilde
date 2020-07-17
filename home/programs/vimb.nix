@@ -4,10 +4,10 @@
 , ...
 }:
 let
-  cfg = config.pjones.programs.vimb;
+  cfg = config.tilde.programs.vimb;
 in
 {
-  options.pjones.programs.vimb = {
+  options.tilde.programs.vimb = {
     enable = lib.mkEnableOption ''
       Install and configure the vimb web browser.
     '';

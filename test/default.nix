@@ -25,9 +25,9 @@ pkgs.nixosTest {
       virtualisation.memorySize = 1024;
 
       # Disable some services that don't work in the test VM.
-      home-manager.users.pjones = { lib, ... }: {
-        pjones.programs.mpd.enable = false;
-        pjones.programs.neuron.enable = false;
+      home-manager.users.${user.name} = { lib, ... }: {
+        tilde.programs.mpd.enable = false;
+        tilde.programs.neuron.enable = false;
         services.syncthing.enable = false;
         services.udiskie.enable = lib.mkForce false;
       };

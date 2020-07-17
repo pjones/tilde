@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.pjones.programs.oled-display;
+  cfg = config.tilde.programs.oled-display;
 
   flags = lib.concatStringsSep " " (
     [
@@ -17,7 +17,7 @@ let
 in
 {
   #### Interface:
-  options.pjones.programs.oled-display = {
+  options.tilde.programs.oled-display = {
     enable = lib.mkEnableOption "OLED Pomodoro Timer";
 
     socket = lib.mkOption {

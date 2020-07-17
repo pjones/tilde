@@ -4,13 +4,13 @@
 , ...
 }:
 let
-  cfg = config.pjones.programs.dunst;
+  cfg = config.tilde.programs.dunst;
 
   fonts = import ../misc/fonts.nix { inherit pkgs; };
   colors = import ../misc/colors.nix;
 in
 {
-  options.pjones.programs.dunst = {
+  options.tilde.programs.dunst = {
     enable = lib.mkEnableOption ''
       Install and configure the dunst notification daemon.
     '';

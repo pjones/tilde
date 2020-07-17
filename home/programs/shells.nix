@@ -6,7 +6,7 @@ let
 
 in
 {
-  config = lib.mkIf config.pjones.enable {
+  config = lib.mkIf config.tilde.enable {
     programs.zsh = {
       enable = true;
       enableCompletion = true;

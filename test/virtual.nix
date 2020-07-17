@@ -14,13 +14,13 @@ in
     security.sudo.wheelNeedsPassword = false;
   };
 
-  machine = { ... }: {
+  machine = { config, ... }: {
     imports = [
       home-manager-nixos
       ../nixos
     ];
 
-    pjones = {
+    tilde = {
       enable = true;
       putInWheel = true;
       xsession.enable = true;
@@ -31,7 +31,7 @@ in
       useUserPackages = true;
     };
 
-    users.users.pjones = {
+    users.users.${config.tilde.username} = {
       password = "password";
     };
   };

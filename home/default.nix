@@ -11,11 +11,11 @@
     ./workstation
   ];
 
-  options.pjones = {
-    enable = lib.mkEnableOption "Enable setings for pjones";
+  options.tilde = {
+    enable = lib.mkEnableOption "Enable setings for tilde";
   };
 
-  config = lib.mkIf config.pjones.enable {
+  config = lib.mkIf config.tilde.enable {
     nixpkgs = {
       config.allowUnfree = true;
       config.android_sdk.accept_license = true;

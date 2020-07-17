@@ -4,8 +4,8 @@
 , ...
 }:
 let
-  cfg = config.pjones.programs.polybar;
-  oled = config.pjones.programs.oled-display;
+  cfg = config.tilde.programs.polybar;
+  oled = config.tilde.programs.oled-display;
 
   colors = import ../misc/colors.nix;
   fonts = import ../misc/fonts.nix { inherit pkgs; };
@@ -62,7 +62,7 @@ let
     ] ++ lib.optional oled.enable "pomodoro");
 in
 {
-  options.pjones.programs.polybar = {
+  options.tilde.programs.polybar = {
     enable = lib.mkEnableOption "Configure and start Polybar";
 
     thermalZone = lib.mkOption {

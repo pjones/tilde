@@ -4,10 +4,10 @@
 , ...
 }:
 let
-  cfg = config.pjones.workstation;
+  cfg = config.tilde.workstation;
 in
 {
-  options.pjones.workstation = {
+  options.tilde.workstation = {
     enable = lib.mkEnableOption ''
       Enable settings for workstations.
 
@@ -29,8 +29,8 @@ in
     [
       (lib.mkIf cfg.enable {
         # Some other modules to enable by default:
-        pjones.workstation.yubikey.enable = lib.mkDefault true;
-        pjones.workstation.keyboard.enable = lib.mkDefault true;
+        tilde.workstation.yubikey.enable = lib.mkDefault true;
+        tilde.workstation.keyboard.enable = lib.mkDefault true;
 
         # Extra system pacakges:
         environment.systemPackages = with pkgs; [

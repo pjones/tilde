@@ -4,11 +4,11 @@
 , ...
 }:
 let
-  cfg = config.pjones.workstation;
+  cfg = config.tilde.workstation;
 in
 {
 
-  options.pjones.workstation = {
+  options.tilde.workstation = {
     enable = lib.mkEnableOption ''
       Install and configure workstation applications.
 
@@ -21,8 +21,8 @@ in
 
   config = lib.mkIf cfg.enable {
     # Active some services/plugins:
-    pjones.programs.mpd.enable = lib.mkDefault true;
-    pjones.programs.neuron.enable = lib.mkDefault true;
+    tilde.programs.mpd.enable = lib.mkDefault true;
+    tilde.programs.neuron.enable = lib.mkDefault true;
     services.syncthing.enable = lib.mkDefault true;
 
     home.packages = with pkgs; [

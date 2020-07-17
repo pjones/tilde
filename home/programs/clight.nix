@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.pjones.programs.clight;
+  cfg = config.tilde.programs.clight;
 in
 {
-  options.pjones.programs.clight = {
+  options.tilde.programs.clight = {
     enable = lib.mkEnableOption "Automatic control of the backlight";
   };
 
