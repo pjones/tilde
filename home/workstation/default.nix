@@ -66,6 +66,7 @@ in
       # My packages
       pjones.encryption-utils
       pjones.vimeta
+      pulse-audio-scripts
     ];
   };
 }

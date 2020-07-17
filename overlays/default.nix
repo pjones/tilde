@@ -35,6 +35,9 @@ in
 {
   inherit pjones;
 
+  # Some local scripts:
+  pulse-audio-scripts = super.callPackage ../pkgs/pulse-audio-scripts.nix { };
+
   # Use the version of home-manager from sources.json:
   home-manager = super.callPackage "${sources.home-manager}/home-manager" {
     path = sources.home-manager;
