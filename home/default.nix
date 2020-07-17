@@ -22,6 +22,12 @@
       overlays = [ (import ../overlays) ];
     };
 
+    # Custom activation scripts:
+    home.activation = {
+      share-bookmarks = lib.hm.dag.entryAfter [ "writeBoundary" ]
+        (builtins.readFile ../scripts/share-bookmarks.sh);
+    };
+
     # Packages to install on all devices:
     home.packages = with pkgs;
       [
