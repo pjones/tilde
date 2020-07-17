@@ -33,6 +33,11 @@ safe_link_file() {
     $DRY_RUN_CMD mkdir -p $VERBOSE_ARG "$(dirname "$shared")"
   fi
 
+  if [ ! -e "$(dirname "$original")" ]; then
+    # Ensure the directory where we're placing the link exists:
+    $DRY_RUN_CMD mkdir -p $VERBOSE_ARG "$(dirname "$original")"
+  fi
+
   if [ -e "$original" ] && [ ! -e "$shared" ]; then
     # No shared file exists, move the original to the shared location:
     $DRY_RUN_CMD mv $VERBOSE_ARG "$original" "$shared"
