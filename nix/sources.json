@@ -231,7 +231,7 @@
     "pjones/zshrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/zshrc.git",
-        "rev": "473e2a16390cb93a592d689cedc5921f18690291",
+        "rev": "adae327c34f5c569a8c84265f5dfebde05d7df1a",
         "type": "git"
     },
     "pjones/zxcvbn-dvorak": {
