@@ -15,6 +15,7 @@ let
     gnugrep
     i3lock
     imagemagick
+    polybar-scripts.player-mpris-tail
     xorg.xrandr
     xorg.xset
   ]) ++ [ scripts ];

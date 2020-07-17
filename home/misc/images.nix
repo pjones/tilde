@@ -8,9 +8,9 @@
     sha256 = "0pb32hzrngl06c1icb2hmdq8ja7v1gc2m4ss32ihp6rk45c59lji";
   };
 
-  # https://hipwallpaper.com/hal-wallpapers/
+  # https://imgur.com/a/pYoXWtZ
   lock = fetchurl {
-    url = "https://cdn.hipwallpaper.com/i/67/96/dZvUD0.png";
-    sha256 = "0qj164qbhk4fwj0n14kyira4kka4sccqdgapcdz573bbs7d0pdxi";
+    url = "https://i.imgur.com/xXQ1B2K.png";
+    sha256 = "1pj7rs5lfchy0m8kf174v3wqw13sv77a632297bjijm8hf2ps8g5";
   };
 }

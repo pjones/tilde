@@ -17,44 +17,83 @@ fi
 
 default_lock_image=$1
 background_color=$2
+image_cache=$HOME/.cache/lock-screen-images
 
 ################################################################################
-disable_dpms() {
-  xset dpms 0 0 0
+# Actions to take before locking the screen.
+preflight() {
+  # Set delay before turning monitor off:
+  xset +dpms dpms 300 600 900
+
+  # Stop the compositor since it breaks i3lock:
+  systemctl --user stop picom.service || :
+
+  # Stop the music player:
+  player-mpris-tail stop || :
 }
-trap disable_dpms HUP INT TERM
 
 ################################################################################
+restore() {
+  xset dpms 0 0 0
+  systemctl --user start picom.service || :
+}
+trap restore EXIT
+
+################################################################################
+# Generate an image name that goes in the cache.
+gen_cache_name() {
+  local image=$1
+  local sum
+
+  sum=$(sha256sum "$image" | cut -d' ' -f1)
+  echo "$image_cache/$sum.png"
+}
+
+################################################################################
+# Try to figure out the width of the primary monitor.
+get_monitor_width() {
+  xrandr |
+    grep 'connected primary' |
+    cut -d' ' -f4 |
+    cut -dx -f1
+}
+
+################################################################################
+# Resize an image to fit the primary monitor and store it in the cache.
 resize() {
   local image=$1
-  local image_png="${TMPDIR:-/tmp}/${USER}-lock.png"
-  local width
+  local cache=$2
 
-  width=$(xrandr | grep 'connected primary' | cut -d' ' -f4 | cut -dx -f1)
-  convert -resize "$width" "$image" "$image_png"
+  mkdir -p "$(dirname "$cache")"
 
-  echo "$image_png"
+  convert \
+    -resize "$(get_monitor_width || echo 1920)" \
+    "$image" "$cache"
 }
 
 ################################################################################
-# Set delay before turning monitor off:
-xset +dpms dpms 300 600 900
+preflight &
 
 # Find an image to use:
 file=$(random-file -i \
   -d ~/documents/pictures/backgrounds/lock-screen \
   -D "$default_lock_image")
 
-# Try to resize the image to match the screen:
-image=$(resize "$file" || echo "$file")
+# See if the file is in the cache:
+cache=$(gen_cache_name "$file")
+
+if [ -e "$cache" ]; then
+  image=$cache
+else
+  # Generate the cached image in the background:
+  image=$default_lock_image
+  resize "$file" "$cache" &
+fi
 
 # Lock it!
 i3lock \
   --nofork \
-  --tiling \
   --image="$image" \
   --color="$background_color" \
   --ignore-empty-password \
   --show-failed-attempts
-
-disable_dpms
