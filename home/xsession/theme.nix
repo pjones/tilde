@@ -23,6 +23,27 @@ let
     name = "oreo_pink_cursors";
   };
 
+  icon-categories = [
+    "actions"
+    "animations"
+    "apps"
+    "categories"
+    "devices"
+    "emblems"
+    "emotes"
+    "filesystem"
+    "intl"
+    "mimetypes"
+    "places"
+    "status"
+    "stock"
+  ];
+
+  icon-path = size: lib.concatMapStringsSep ":"
+    (cat:
+      let base = config.home.profileDirectory;
+      in "${base}/share/icons/${icons.name}/${cat}/${size}")
+    icon-categories;
 in
 {
   options.pjones.xsession.theme = {
@@ -54,7 +75,7 @@ in
     dconf.enable = true;
 
     # Push icons into other applications:
-    services.dunst.iconTheme = icons;
+    services.dunst.settings.global.icon_path = lib.mkForce (icon-path "64");
 
     # X-Resources:
     xresources.properties = {
