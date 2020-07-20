@@ -65,15 +65,10 @@ in
   options.tilde.programs.polybar = {
     enable = lib.mkEnableOption "Configure and start Polybar";
 
-    thermalZone = lib.mkOption {
-      type = lib.types.int;
-      default = 1;
-      description = ''
-        Which thermal zone to use for the temperature gauge.  To get a
-        list of termal zones use this shell fragment:
-
-        for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
-      '';
+    sensorPath = lib.mkOption {
+      type = lib.types.path;
+      default = "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input";
+      description = "Path to the hwmon sensor file.";
     };
 
     power = {
@@ -235,7 +230,7 @@ in
         # https://github.com/polybar/polybar/wiki/Module:-temperature
         "module/temperature" = {
           type = "internal/temperature";
-          thermal-zone = cfg.thermalZone;
+          hwmon-path = cfg.sensorPath;
           units = false;
           base-temperature = 40;
           warn-temperature = 80;
