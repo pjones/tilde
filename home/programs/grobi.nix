@@ -11,13 +11,13 @@ let
     outputs_connected = outputs;
     configure_row = outputs;
     primary = builtins.head outputs;
+    atomic = false;
   };
 
   rules = {
     medusa = [
       (useAll "Medusa Primary" [ "DisplayPort-0" "HDMI-0" ])
       (useAll "Fallback to DisplayPort" [ "DisplayPort-0" ])
-      (useAll "Fallback to HDMI" [ "HDMI-0" ])
     ];
 
     elphaba = [
