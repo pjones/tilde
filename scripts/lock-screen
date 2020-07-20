@@ -17,7 +17,6 @@ fi
 
 default_lock_image=$1
 background_color=$2
-image_cache=$HOME/.cache/lock-screen-images
 
 ################################################################################
 # Actions to take before locking the screen.
@@ -40,38 +39,6 @@ restore() {
 trap restore EXIT
 
 ################################################################################
-# Generate an image name that goes in the cache.
-gen_cache_name() {
-  local image=$1
-  local sum
-
-  sum=$(sha256sum "$image" | cut -d' ' -f1)
-  echo "$image_cache/$sum.png"
-}
-
-################################################################################
-# Try to figure out the width of the primary monitor.
-get_monitor_width() {
-  xrandr |
-    grep 'connected primary' |
-    cut -d' ' -f4 |
-    cut -dx -f1
-}
-
-################################################################################
-# Resize an image to fit the primary monitor and store it in the cache.
-resize() {
-  local image=$1
-  local cache=$2
-
-  mkdir -p "$(dirname "$cache")"
-
-  convert \
-    -resize "$(get_monitor_width || echo 1920)" \
-    "$image" "$cache"
-}
-
-################################################################################
 preflight &
 
 # Find an image to use:
@@ -80,19 +47,18 @@ file=$(random-file -i \
   -D "$default_lock_image")
 
 # See if the file is in the cache:
-cache=$(gen_cache_name "$file")
+cache=$(image-cache -i "$file")
 
 if [ -e "$cache" ]; then
   image=$cache
 else
-  # Generate the cached image in the background:
   image=$default_lock_image
-  resize "$file" "$cache" &
 fi
 
 # Lock it!
 i3lock \
   --nofork \
+  --tiling \
   --image="$image" \
   --color="$background_color" \
   --ignore-empty-password \

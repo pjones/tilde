@@ -15,17 +15,25 @@ let
     gnugrep
     i3lock
     imagemagick
+    inotifyTools
     polybar-scripts.player-mpris-tail
     xorg.xrandr
     xorg.xset
   ]) ++ [ scripts ];
 
+  PATH = lib.concatMapStringsSep ":" (p: "${p}/bin") inputs;
+
   lockCmd = pkgs.writeShellScript "screen-lock" ''
-    export PATH=${lib.concatMapStringsSep ":" (p: "${p}/bin") inputs}:$PATH
+    export PATH=${PATH}:$PATH
 
     # Use a fancy locker, with fallback to simple i3lock:
     lock-screen "${images.lock}" "${colors.background}" ||
       i3lock --nofork --color="${colors.fail}"
+  '';
+
+  cacheCmd = pkgs.writeShellScript "image-cache" ''
+    export PATH=${PATH}:$PATH
+    ${scripts}/bin/image-cache -b ${images.lock}
   '';
 in
 {
@@ -34,6 +42,24 @@ in
       enable = true;
       lockCmd = toString lockCmd;
       inactiveInterval = 10;
+    };
+
+    systemd.user.services.lock-screen-image-cache = {
+      Unit = {
+        Description = "Cache lock screen images";
+        After = [ "graphical-session-pre.target" ];
+        PartOf = [ "graphical-session.target" ];
+      };
+
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+
+      Service = {
+        ExecStart = toString cacheCmd;
+        Restart = "always";
+        RestartSec = 3;
+      };
     };
   };
 }
