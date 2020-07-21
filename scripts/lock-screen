@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 ################################################################################
-set -e
-set -u
+set -eu
+set -o pipefail
 
 ################################################################################
 usage() {
@@ -27,6 +27,9 @@ preflight() {
   # Stop the compositor since it breaks i3lock:
   systemctl --user stop picom.service || :
 
+  # Also need to pause Dunst so notifications don't show up:
+  pkill -SIGUSR1 dunst || :
+
   # Stop the music player:
   player-mpris-tail stop || :
 }
@@ -35,6 +38,7 @@ preflight() {
 restore() {
   xset dpms 0 0 0
   systemctl --user start picom.service || :
+  pkill -SIGUSR2 dunst || :
 }
 trap restore EXIT
 
