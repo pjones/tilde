@@ -71,9 +71,6 @@ pkgs.nixosTest {
     with subtest("Launch terminal"):
         machine.execute("su - ${user.name} -c 'DISPLAY=:0.0 eterm -n &'")
         machine.wait_for_window("vterm")
-        # Redraw the screen to remove "delete frame" message:
-        machine.sleep(1)
-        machine.send_key("ctrl-l")
 
     with subtest("Wait to get a screenshot"):
         machine.sleep(3)
