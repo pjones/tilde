@@ -17,6 +17,8 @@ let
     imagemagick
     inotifyTools
     polybar-scripts.player-mpris-tail
+    procps
+    systemd
     xorg.xrandr
     xorg.xset
   ]) ++ [ scripts ];
