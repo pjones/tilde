@@ -233,7 +233,7 @@ in
           hwmon-path = cfg.sensorPath;
           units = false;
           base-temperature = 40;
-          warn-temperature = 80;
+          warn-temperature = 86;
           format = "<ramp> <label>°";
           format-warn = "<ramp> <label-warn>°";
           label = "%temperature-c%";

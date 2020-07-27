@@ -27,7 +27,7 @@ in
           padding = 10;
           horizontal_padding = 10;
           frame_width = 2;
-          frame_color = colors.active;
+          frame_color = colors.background-offset;
           font = fonts.primary.name;
           markup = "full";
           format = "<span size=\"large\"><b>%s</b></span>\\n\\n%b";
