@@ -2,6 +2,10 @@
 let
   cfg = config.tilde.programs.oled-display;
 
+  package =
+    pkgs.haskell.lib.justStaticExecutables
+      pkgs.pjones.oled-display;
+
   flags = lib.concatStringsSep " " (
     [
       "-a ${cfg.arduino.path}"
@@ -12,7 +16,7 @@ let
 
   start = pkgs.writeShellScript "oled-display-start" ''
     ${pkgs.coreutils}/bin/rm -f ${cfg.socket}
-    ${pkgs.pjones.oled-display}/bin/display-control ${flags}
+    ${package}/bin/display-control ${flags}
   '';
 in
 {

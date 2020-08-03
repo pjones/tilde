@@ -183,7 +183,7 @@
     "pjones/rofirc": {
         "ref": "master",
         "repo": "https://github.com/pjones/rofirc.git",
-        "rev": "8d03c445c182f21bcdfbe85b6cc14098dca29168",
+        "rev": "4e0473a0e964739d1d708135ad4710eab0a29fbf",
         "type": "git"
     },
     "pjones/themoviedb": {
@@ -204,10 +204,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "vimbrc",
-        "rev": "31d0bcc142743ea38a1bc97160882ddbb4bca4ad",
-        "sha256": "1q8wxga9hpbxbdnf4mr7qbygmbl4ib1pvc3c6zn4q1fqd72dqai6",
+        "rev": "204ec8784200d29530c4f3103d05f896045fea56",
+        "sha256": "031gq7azvi6npjiyhk1rd2243mh34f7g2684jb02pd9jmqg53si3",
         "type": "tarball",
-        "url": "https://github.com/pjones/vimbrc/archive/31d0bcc142743ea38a1bc97160882ddbb4bca4ad.tar.gz",
+        "url": "https://github.com/pjones/vimbrc/archive/204ec8784200d29530c4f3103d05f896045fea56.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/vimeta": {
@@ -225,7 +225,7 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/xmonadrc.git",
-        "rev": "38f526d351f572c273089189efb34f44792b985b",
+        "rev": "917bb6fd8af8c14295f35608c614af4bce3ef2c2",
         "type": "git"
     },
     "pjones/zshrc": {

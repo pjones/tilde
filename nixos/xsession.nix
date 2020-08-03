@@ -15,7 +15,7 @@ in
     '';
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     # Enable workstation settings:
     tilde.workstation.enable = true;
 
