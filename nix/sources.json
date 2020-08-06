@@ -123,7 +123,7 @@
     "pjones/dns-scripts": {
         "ref": "master",
         "repo": "https://github.com/pjones/dns-scripts.git",
-        "rev": "e0c70b90c53379a7f04312396143e89c134a2db7",
+        "rev": "5c35350d19fb743de2d1a7e7c0045f6f9f05325a",
         "type": "git"
     },
     "pjones/edify": {
