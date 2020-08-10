@@ -2,9 +2,7 @@
 let
   cfg = config.tilde.programs.oled-display;
 
-  package =
-    pkgs.haskell.lib.justStaticExecutables
-      pkgs.pjones.oled-display;
+  package = pkgs.pjones.oled-display;
 
   flags = lib.concatStringsSep " " (
     [
