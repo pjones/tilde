@@ -85,6 +85,10 @@ in
             autoPrune.enable = true;
           };
         };
+
+        # Needed by virt-manager:
+        security.wrappers.spice-client-glib-usb-acl-helper.source =
+          "${pkgs.spice_gtk}/bin/spice-client-glib-usb-acl-helper";
       })
       (lib.mkIf (cfg.enable && cfg.type == "laptop") {
         environment.systemPackages = with pkgs;
