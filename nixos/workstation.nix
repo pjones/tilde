@@ -37,6 +37,7 @@ in
           lm_sensors
           OVMF # For EFI booting.
           rfkill
+          spice-gtk
           virtmanager
           wirelesstools
         ];
@@ -88,14 +89,13 @@ in
 
         # Needed by virt-manager:
         security.wrappers.spice-client-glib-usb-acl-helper.source =
-          "${pkgs.spice_gtk}/bin/spice-client-glib-usb-acl-helper";
+          "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper";
       })
       (lib.mkIf (cfg.enable && cfg.type == "laptop") {
-        environment.systemPackages = with pkgs;
-          [
-            acpi
-            powertop
-          ];
+        environment.systemPackages = with pkgs; [
+          acpi
+          powertop
+        ];
 
         # Closing the lid should suspend the computer.  See
         # logind.conf(5) for more details.
