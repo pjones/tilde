@@ -49,8 +49,8 @@ let
 
   modulesRight = modList
     ([
-      "pulseaudio"
       "temperature"
+      "pulseaudio"
     ]
     ++ lib.optional cfg.backlight.enable "backlight"
     ++ lib.optional cfg.power.enable "battery"
@@ -68,7 +68,11 @@ in
     sensorPath = lib.mkOption {
       type = lib.types.path;
       default = "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input";
-      description = "Path to the hwmon sensor file.";
+      description = ''
+        Path to the hwmon sensor file.
+
+        ls /sys/class/hwmon/hwmon*/temp*_input
+      '';
     };
 
     power = {

@@ -1,9 +1,6 @@
 # Create a virtual machine via NixOps:
 { sources ? import ../nix/sources.nix
 }:
-let
-  home-manager-nixos = import "${sources.home-manager}/nixos";
-in
 {
   network.description = "Account Testing VM";
 
@@ -16,23 +13,11 @@ in
 
   machine = { config, ... }: {
     imports = [
-      home-manager-nixos
       ../nixos
+      ../devices/generic-nixos.nix
     ];
 
-    tilde = {
-      enable = true;
-      putInWheel = true;
-      xsession.enable = true;
-    };
-
-    home-manager = {
-      backupFileExtension = "backup";
-      useUserPackages = true;
-    };
-
-    users.users.${config.tilde.username} = {
-      password = "password";
-    };
+    tilde.xsession.enable = true;
+    users.users.${config.tilde.username}.password = "password";
   };
 }
