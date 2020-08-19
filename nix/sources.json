@@ -13,10 +13,16 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
-        "ref": "release-20.03",
-        "repo": "https://github.com/pjones/home-manager.git",
-        "rev": "96fcf3b017d813fac300ecb821b6db6b7b5d0c40",
-        "type": "git"
+        "branch": "release-20.03",
+        "description": "Manage a user environment using Nix",
+        "homepage": "",
+        "owner": "pjones",
+        "repo": "home-manager",
+        "rev": "318bc0754ed6370cfcae13183a7f13f7aa4bc73f",
+        "sha256": "0hgn85yl7gixw1adjfa9nx8axmlpw5y1883lzg3zigknx6ff5hsr",
+        "type": "tarball",
+        "url": "https://github.com/pjones/home-manager/archive/318bc0754ed6370cfcae13183a7f13f7aa4bc73f.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "neuron": {
         "branch": "master",
@@ -195,7 +201,7 @@
     "pjones/tmuxrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/tmuxrc.git",
-        "rev": "26622de8852f6121c99e52a58ff6ce874dd20b9e",
+        "rev": "07461e5d909d2ffac3d9c9e1c9026a5d40147ae1",
         "type": "git"
     },
     "pjones/vimbrc": {
@@ -225,7 +231,7 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/xmonadrc.git",
-        "rev": "b47c797e36e6433ad5b3bf2dab9a3de912e832ea",
+        "rev": "cd9531e9f2cd6db78a9483a9a6a93b734cc0f39a",
         "type": "git"
     },
     "pjones/zshrc": {
@@ -256,6 +262,18 @@
         "sha256": "08j422slazig1lxvpvr6dz9p0hgplr6hv205gc5y4szvgqjcmld2",
         "type": "tarball",
         "url": "https://github.com/polybar/polybar-scripts/archive/68ced291fa42c1505d16a38bb4b3a402bcf8dc80.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "sweet-nova": {
+        "branch": "nova",
+        "description": "Light and dark colorful Gtk3.20+ theme",
+        "homepage": "https://www.gnome-look.org/p/1253385/",
+        "owner": "EliverLara",
+        "repo": "Sweet",
+        "rev": "85830477831aef0dbc77d8c6fc9484485092f434",
+        "sha256": "0kf9dzwskr7a55x5vqjavpn1dzqv8kypmn09srzyzbjssyy710cf",
+        "type": "tarball",
+        "url": "https://github.com/EliverLara/Sweet/archive/85830477831aef0dbc77d8c6fc9484485092f434.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "tabbed": {

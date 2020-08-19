@@ -1,4 +1,6 @@
-{ sources ? import ../nix/sources.nix, pkgs ? import sources.nixpkgs { } }:
+{ sources ? import ../nix/sources.nix
+, pkgs ? import sources.nixpkgs { }
+}:
 let
   virtual = import ./virtual.nix { inherit sources; };
 
@@ -69,8 +71,8 @@ pkgs.nixosTest {
         machine.sleep(3)
 
     with subtest("Launch terminal"):
-        machine.execute("su - ${user.name} -c 'DISPLAY=:0.0 eterm -n &'")
-        machine.wait_for_window("vterm")
+        machine.execute("su - ${user.name} -c 'DISPLAY=:0.0 konsole --hold -e neofetch &'")
+        machine.wait_for_window("konsole")
 
     with subtest("Wait to get a screenshot"):
         machine.sleep(3)

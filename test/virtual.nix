@@ -11,7 +11,7 @@
     security.sudo.wheelNeedsPassword = false;
   };
 
-  machine = { config, ... }: {
+  machine = { config, lib, ... }: {
     imports = [
       ../nixos
       ../devices/generic-nixos.nix
@@ -19,5 +19,7 @@
 
     tilde.xsession.enable = true;
     users.users.${config.tilde.username}.password = "password";
+    virtualisation.libvirtd.enable = lib.mkForce false;
+    virtualisation.docker.enable = lib.mkForce false;
   };
 }

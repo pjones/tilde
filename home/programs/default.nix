@@ -6,6 +6,7 @@
     ./dunst.nix
     ./emacs.nix
     ./grobi.nix
+    ./konsole.nix
     ./mpd.nix
     ./neuron.nix
     ./oled-display.nix

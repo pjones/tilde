@@ -1,7 +1,7 @@
 # There's No Place Like `~`
 
 <p align="center">
-  <img src="https://i.imgur.com/7tYFD0G.png"/>
+  <img src="https://i.imgur.com/ZvyQpO4.png"/>
 </p>
 
 (The screenshot above was taken at the end of the automated tests
@@ -19,7 +19,7 @@ without having to tweak files by hand or in GUI settings tools.
 
   * Window Manager: [XMonad](https://github.com/pjones/xmonadrc)
 
-  * Terminal: [Emacs](https://github.com/pjones/emacsrc) with [`libvterm`](https://github.com/akermu/emacs-libvterm)
+  * Terminal: Konsole with [tmux](https://github.com/pjones/tmuxrc)
 
   * Status Bar: [Polybar](home/programs/polybar.nix)
 

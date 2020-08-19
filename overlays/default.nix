@@ -33,7 +33,9 @@ let
 
 in
 {
-  inherit pjones;
+  pjones = pjones // {
+    avatar = super.callPackage ../pkgs/pjones-avatar.nix { };
+  };
 
   # Some local scripts:
   pulse-audio-scripts = super.callPackage ../pkgs/pulse-audio-scripts.nix { };
@@ -45,6 +47,8 @@ in
 
   # Packages that are not upstream yet:
   oreo-cursors = super.callPackage ../pkgs/oreo-cursors.nix { };
+
+  sweet-nova = super.callPackage ../pkgs/sweet-nova.nix { };
 
   polybar-scripts.player-mpris-tail =
     super.callPackage ../pkgs/polybar-scripts/player-mpris-tail.nix {

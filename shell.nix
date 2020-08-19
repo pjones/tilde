@@ -1,14 +1,21 @@
-{ pkgs ? import ./pkgs { }
+{ sources ? import ./nix/sources.nix
+, pkgs ? import ./pkgs { }
 }:
+let
+  nix_path = {
+    nixpkgs = sources.nixpkgs.url;
+    home-manager = sources.home-manager.url;
+  };
+in
 pkgs.mkShell {
   name = "account-shell";
 
-  # Override the location of the home-manager config file:
-  HOME_MANAGER_CONFIG = toString ./home.nix;
+  buildInputs = with pkgs; [
+    nixops
+  ];
 
-  buildInputs = with pkgs;
-    [
-      home-manager
-      nixops
-    ];
+  # Export a good NIX_PATH for tools that run in this shell.
+  NIX_PATH = with pkgs.lib;
+    concatStringsSep ":"
+      (mapAttrsToList (name: value: "${name}=${value}") nix_path);
 }

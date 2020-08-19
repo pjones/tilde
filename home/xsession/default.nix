@@ -47,7 +47,7 @@ in
         ${pkgs.feh}/bin/feh --bg-fill --no-fehbg ${images.login}
 
         # Launch my window manager:
-        ${pkgs.pjones.xmonadrc}/bin/xmonadrc
+        ${pkgs.pjones.xmonadrc.bin}/bin/xmonadrc
       '';
     };
 

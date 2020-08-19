@@ -26,8 +26,12 @@ in
       enable = lib.mkDefault true;
       layout = lib.mkDefault "us";
 
-      displayManager.sddm.enable = lib.mkDefault true;
       desktopManager.plasma5.enable = lib.mkDefault true;
+
+      displayManager.sddm = {
+        enable = lib.mkDefault true;
+        theme = "sweet-nova";
+      };
 
       # Add a custom desktop session:
       desktopManager.session = lib.singleton {
@@ -59,5 +63,10 @@ in
           ubuntu_font_family
         ] ++ others;
       };
+
+    environment.systemPackages = with pkgs; [
+      (callPackage ../pkgs/sweet-nova.nix { })
+      (callPackage ../pkgs/pjones-avatar.nix { })
+    ];
   };
 }
