@@ -5,6 +5,7 @@
     ./clight.nix
     ./dunst.nix
     ./emacs.nix
+    ./git.nix
     ./grobi.nix
     ./konsole.nix
     ./mpd.nix

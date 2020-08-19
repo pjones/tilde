@@ -38,7 +38,6 @@
 
         bc
         curl
-        gitAndTools.git
         gnumake
         gnupg
         gnutls
