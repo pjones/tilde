@@ -1,3 +1,4 @@
+# This is a NixOS module:
 { config, lib, pkgs, ... }:
 let
   sources = import ../nix/sources.nix;
@@ -16,5 +17,9 @@ in
   home-manager = {
     backupFileExtension = "backup";
     useUserPackages = true;
+
+    users.${config.tilde.username} = { ... }: {
+      imports = [ ./generic-linux.nix ];
+    };
   };
 }

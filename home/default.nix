@@ -31,8 +31,6 @@
     # Packages to install on all devices:
     home.packages = with pkgs;
       [
-        # FIXME: Pull out packages that only work on Linux.
-
         # FIXME: Some of these (direnv) have special options in home-manager.
         direnv
 
@@ -42,7 +40,6 @@
         gnupg
         gnutls
         htop
-        inotifyTools
         jq
         libossp_uuid
         mkpasswd
