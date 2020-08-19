@@ -21,6 +21,9 @@ background_color=$2
 ################################################################################
 # Actions to take before locking the screen.
 preflight() {
+  # Kill gpg-agent so all passphrases are cleared:
+  pkill gpg-agent || :
+
   # Set delay before turning monitor off:
   xset +dpms dpms 300 600 900
 
