@@ -10,6 +10,14 @@ in
     programs.zsh = {
       enable = true;
       enableCompletion = true;
+
+      initExtra = ''
+        source ${zshrc}/share/zshrc/zshrc
+      '';
+
+      envExtra = ''
+        source ${zshrc}/share/zshrc/zshenv
+      '';
     };
 
     home.file = {
@@ -17,11 +25,6 @@ in
       ".bashrc".source = "${bashrc}/share/bashrc";
       ".bash_profile".source = "${bashrc}/share/bash_profile";
       ".inputrc".source = "${bashrc}/share/inputrc";
-
-      # ZSH:
-      ".zshrc".source = "${zshrc}/share/zshrc/zshrc";
-      ".zshenv".source = "${zshrc}/share/zshrc/zshenv";
-      ".zsh".source = "${zshrc}/share/zshrc/zsh";
 
       # tmux: (sort of like a shell :)
       ".tmux.conf".source = "${tmuxrc}/config/tmux.conf";

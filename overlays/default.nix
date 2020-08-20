@@ -45,6 +45,9 @@ in
     path = sources.home-manager;
   };
 
+  # Use the version of nix-on-droid from sources.json:
+  nix-on-droid = super.callPackage "${sources.nix-on-droid}/nix-on-droid" { };
+
   # Packages that are not upstream yet:
   oreo-cursors = super.callPackage ../pkgs/oreo-cursors.nix { };
 
@@ -108,4 +111,7 @@ in
     inherit (super.xorg) xrandr xset;
     inherit (self.polybar-scripts) player-mpris-tail;
   };
+
+  # A gpg-agent/ssh-agent for Android:
+  okc-agents = super.callPackage ../pkgs/okc-agents.nix { };
 }

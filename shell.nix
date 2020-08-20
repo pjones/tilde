@@ -5,6 +5,7 @@ let
   nix_path = {
     nixpkgs = sources.nixpkgs.url;
     home-manager = sources.home-manager.url;
+    nix-on-droid = sources.nix-on-droid.url;
   };
 in
 pkgs.mkShell {
@@ -12,6 +13,8 @@ pkgs.mkShell {
 
   buildInputs = with pkgs; [
     nixops
+    home-manager
+    nix-on-droid
   ];
 
   # Export a good NIX_PATH for tools that run in this shell.
