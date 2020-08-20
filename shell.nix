@@ -11,11 +11,10 @@ in
 pkgs.mkShell {
   name = "account-shell";
 
-  buildInputs = with pkgs; [
-    nixops
-    home-manager
-    nix-on-droid
-  ];
+  buildInputs = with pkgs.lib;
+    [ ]
+    ++ optional (pkgs.system == "x86_64-linux") pkgs.nixops
+    ++ optional (pkgs.system == "aarch64-linux") pkgs.nix-on-droid;
 
   # Export a good NIX_PATH for tools that run in this shell.
   NIX_PATH = with pkgs.lib;
