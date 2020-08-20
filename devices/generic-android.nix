@@ -14,9 +14,12 @@
     config = { pkgs, ... }: {
       imports = [
         ../home
+        ./generic-linux.nix
       ];
 
-      home.programs = with pkgs; [
+      tilde.enable = true;
+
+      home.packages = with pkgs; [
         okc-agents
       ];
 
