@@ -36,6 +36,7 @@
 
         bc
         curl
+        gawk
         gnumake
         gnupg
         gnutls

@@ -27,7 +27,7 @@
         # https://github.com/DDoSolitary/OkcAgent
         if type -p okc-ssh-agent > /dev/null; then
           export SSH_AUTH_SOCK=$HOME/.okc-ssh-agent
-          pkill okc-ssh-agent || :
+          ${pkgs.psmisc}/bin/pkill okc-ssh-agent || :
           okc-ssh-agent "$SSH_AUTH_SOCK" &
         fi
       '';
