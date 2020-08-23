@@ -18,5 +18,6 @@
   home-manager.users.pjones = { ... }: {
     tilde.programs.oled-display.arduino.enable = true;
     tilde.programs.grobi.name = config.networking.hostName;
+    tilde.programs.ssh.keysDir = "~/keys/ssh";
   };
 }

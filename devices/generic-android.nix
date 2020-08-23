@@ -18,6 +18,7 @@
       ];
 
       tilde.enable = true;
+      tilde.programs.ssh.keysDir = null;
 
       home.packages = with pkgs; [
         okc-agents

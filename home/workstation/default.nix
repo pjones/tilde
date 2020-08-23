@@ -23,6 +23,7 @@ in
     # Active some services/plugins:
     tilde.programs.mpd.enable = lib.mkDefault true;
     tilde.programs.neuron.enable = lib.mkDefault true;
+    tilde.programs.nixops.enable = true;
     services.syncthing.enable = lib.mkDefault true;
 
     home.packages = with pkgs; [
