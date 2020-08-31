@@ -1,5 +1,6 @@
-{ stdenvNoCC
+{ stdenv
 , fetchzip
+, autoPatchelfHook
 , system
 }:
 let
@@ -22,11 +23,15 @@ let
   };
 
 in
-stdenvNoCC.mkDerivation rec {
+stdenv.mkDerivation rec {
   inherit version;
   pname = "okc-agents";
   src = fetchzip (urls.${system} // { stripRoot = false; });
   phases = [ "unpackPhase" "installPhase" "fixupPhase" ];
+
+  nativeBuildInputs = [
+    autoPatchelfHook
+  ];
 
   installPhase = ''
     mkdir -p $out/bin
@@ -34,7 +39,7 @@ stdenvNoCC.mkDerivation rec {
     install -m 0555 okc-ssh-agent $out/bin
   '';
 
-  meta = with stdenvNoCC.lib; {
+  meta = with stdenv.lib; {
     description = "A utility that makes OpenKeychain available in your Termux shell";
     homepage = "https://github.com/DDoSolitary/OkcAgent";
     license = licenses.mit;

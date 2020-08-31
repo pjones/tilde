@@ -1,13 +1,8 @@
 # This is a home-manager module:
 { pkgs, ... }:
-
+let
+  packages = import ../home/programs/base.nix { inherit pkgs; };
+in
 {
-  home.packages = with pkgs; [
-    bind # For dig(1)
-    binutils
-    file
-    inetutils
-    inotify-tools
-    psmisc
-  ];
+  home.packages = packages.linux;
 }

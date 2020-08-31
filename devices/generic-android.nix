@@ -11,6 +11,7 @@
   home-manager = {
     backupFileExtension = "backup";
     useUserPackages = true;
+
     config = { pkgs, ... }: {
       imports = [
         ../home
@@ -25,12 +26,15 @@
       ];
 
       programs.zsh.initExtra = ''
-        # https://github.com/DDoSolitary/OkcAgent
-        if type -p okc-ssh-agent > /dev/null; then
-          export SSH_AUTH_SOCK=$HOME/.okc-ssh-agent
-          ${pkgs.psmisc}/bin/pkill okc-ssh-agent || :
-          okc-ssh-agent "$SSH_AUTH_SOCK" &
-        fi
+        start_okc_agent() {
+          # https://github.com/DDoSolitary/OkcAgent
+          if type -p okc-ssh-agent > /dev/null; then
+            export SSH_AUTH_SOCK=$HOME/.okc-ssh-agent
+            ${pkgs.procps}/bin/pkill okc-ssh-agent || :
+            okc-ssh-agent "$SSH_AUTH_SOCK" &
+          fi
+        }
+        start_okc_agent > /dev/null 2>&1
       '';
     };
   };

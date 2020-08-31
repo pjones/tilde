@@ -59,17 +59,10 @@ in
 
         # Packages to install on all machines for all users:
         environment.systemPackages = with pkgs; [
-          bind # For dig(1)
-          binutils
-          coreutils
-          cryptsetup
-          file
-          inetutils
+          usbutils
           lsscsi
           parted
           pciutils
-          psmisc
-          usbutils
         ];
 
         programs.zsh = {
