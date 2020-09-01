@@ -8,6 +8,7 @@
     ./git.nix
     ./grobi.nix
     ./konsole.nix
+    ./man.nix
     ./mpd.nix
     ./neuron.nix
     ./oled-display.nix
