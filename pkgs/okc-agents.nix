@@ -1,47 +1,24 @@
-{ stdenv
-, fetchzip
-, autoPatchelfHook
-, system
+{ rustPlatform
+, fetchFromGitHub
+, lib
 }:
-let
+rustPlatform.buildRustPackage rec {
+  pname = "okc-agents";
   version = "0.1.1";
 
-  mkurl = cpu:
-    "https://github.com/DDoSolitary/okc-agents"
-    + "/releases/download/v0.1.1/okc-agents-v${version}-${cpu}.zip";
-
-  urls = {
-    "x86_64-linux" = {
-      url = mkurl "x86_64";
-      sha256 = "0bmaq2k6bs57sdd3yvyfyl01gim253chff3dccyf42gpfxi3l74k";
-    };
-
-    "aarch64-linux" = {
-      url = mkurl "aarch64";
-      sha256 = "14151hslcj4pwa39sdi4fd8an8jck11rsrr7p7y8vdw7sba1ywxs";
-    };
+  src = fetchFromGitHub {
+    owner = "DDoSolitary";
+    repo = pname;
+    rev = "v${version}";
+    sha256 = "0k90qsmvink3n0z7a4i6fm703hy45xkkbagids6p127xwki1zw3k";
   };
 
-in
-stdenv.mkDerivation rec {
-  inherit version;
-  pname = "okc-agents";
-  src = fetchzip (urls.${system} // { stripRoot = false; });
-  phases = [ "unpackPhase" "installPhase" "fixupPhase" ];
+  cargoSha256 = "0llpqgrvl6qg9pzwfmr9x11mi4kdxc5gkaxbqf96bsaswa0fi3br";
+  verifyCargoDeps = true;
 
-  nativeBuildInputs = [
-    autoPatchelfHook
-  ];
-
-  installPhase = ''
-    mkdir -p $out/bin
-    install -m 0555 okc-gpg $out/bin
-    install -m 0555 okc-ssh-agent $out/bin
-  '';
-
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "A utility that makes OpenKeychain available in your Termux shell";
-    homepage = "https://github.com/DDoSolitary/OkcAgent";
+    homepage = "https://github.com/DDoSolitary/okc-agents";
     license = licenses.mit;
     platforms = platforms.linux;
     maintainers = with maintainers; [ pjones ];
