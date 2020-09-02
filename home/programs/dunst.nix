@@ -8,6 +8,11 @@ let
 
   fonts = import ../misc/fonts.nix { inherit pkgs; };
   colors = import ../misc/colors.nix;
+
+  dmenu = pkgs.writeShellScript "rofi-dmenu" ''
+    ${pkgs.rofi}/bin/rofi -dmenu "$@"
+  '';
+
 in
 {
   options.tilde.programs.dunst = {
@@ -22,6 +27,7 @@ in
       enable = true;
       settings = {
         global = {
+          dmenu = toString dmenu;
           geometry = "350x6-30+30";
           transparency = 10;
           padding = 10;
