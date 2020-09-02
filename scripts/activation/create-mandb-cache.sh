@@ -31,8 +31,10 @@ for profile in $NIX_PROFILES; do
   } >>"$manpath"
 done
 
-env PATH="$_PATH" MANPATH="$_MANPATH" \
+# Build the cache in the background.
+nohup \
+  env PATH="$_PATH" MANPATH="$_MANPATH" \
   mandb \
   --create \
   --user-db \
-  --config-file="$manpath"
+  --config-file="$manpath" &

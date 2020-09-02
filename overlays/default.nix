@@ -92,4 +92,20 @@ in
       (super.callPackage "${sources.nixops-libvirtd}/release.nix" { })
     ];
   }).build.${super.system};
+
+  # Custom hooks:
+  tildeInstallScripts = super.makeSetupHook
+    {
+      deps = [ super.makeWrapper ];
+      substitutions = { shell = super.runtimeShell; };
+    } ../support/setup-hooks/install-scripts.sh;
+
+  # Various scripts needed inside tilde:
+  tilde-scripts-activation = super.callPackage ../pkgs/tilde-scripts-activation.nix { };
+  tilde-scripts-misc = super.callPackage ../pkgs/tilde-scripts-misc.nix { };
+
+  tilde-scripts-lock-screen = super.callPackage ../pkgs/tilde-scripts-lock-screen.nix {
+    inherit (super.xorg) xrandr xset;
+    inherit (self.polybar-scripts) player-mpris-tail;
+  };
 }

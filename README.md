@@ -1,4 +1,4 @@
-# There's No Place Like `~`
+# There's No Place Like `~/`
 
 <p align="center">
   <img src="https://i.imgur.com/ZvyQpO4.png"/>

@@ -7,35 +7,22 @@ let
   cfg = config.tilde.xsession;
   colors = import ../misc/colors.nix;
   images = pkgs.callPackage ../misc/images.nix { };
-  scripts = pkgs.callPackage ../../scripts { };
 
-  inputs = (with pkgs; [
-    coreutils
-    findutils
-    gnugrep
+  path = lib.makeBinPath (with pkgs; [
+    tilde-scripts-lock-screen
     i3lock
-    imagemagick
-    inotifyTools
-    polybar-scripts.player-mpris-tail
-    procps
-    systemd
-    xorg.xrandr
-    xorg.xset
-  ]) ++ [ scripts ];
-
-  PATH = lib.concatMapStringsSep ":" (p: "${p}/bin") inputs;
+  ]);
 
   lockCmd = pkgs.writeShellScript "screen-lock" ''
-    export PATH=${PATH}:$PATH
-
     # Use a fancy locker, with fallback to simple i3lock:
+    export PATH=${path}:$PATH
     lock-screen "${images.lock}" "${colors.background}" ||
       i3lock --nofork --color="${colors.fail}"
   '';
 
   cacheCmd = pkgs.writeShellScript "image-cache" ''
-    export PATH=${PATH}:$PATH
-    ${scripts}/bin/image-cache -b ${images.lock}
+    export PATH=${path}:$PATH
+    image-cache -b ${images.lock}
   '';
 in
 {

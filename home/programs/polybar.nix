@@ -65,16 +65,6 @@ in
   options.tilde.programs.polybar = {
     enable = lib.mkEnableOption "Configure and start Polybar";
 
-    sensorPath = lib.mkOption {
-      type = lib.types.path;
-      default = "/sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input";
-      description = ''
-        Path to the hwmon sensor file.
-
-        ls /sys/class/hwmon/hwmon*/temp*_input
-      '';
-    };
-
     power = {
       enable = lib.mkEnableOption "Battery Display";
 
@@ -126,16 +116,24 @@ in
         pulseSupport = true;
       };
 
-      script = ''
-        export PATH=${pkgs.coreutils}/bin:${pkgs.procps}/bin:$PATH
+      script =
+        let path = lib.makeBinPath (with pkgs; [
+          coreutils
+          procps
+          tilde-scripts-misc
+        ]);
+        in
+        ''
+          export PATH=${path}:$PATH
+          export CORETEMP=$(find-hwmon-device.sh -s coretemp.0)/temp1_input
 
-        {
-          # Give xmonad a second to start and advertise EWMH support.
-          while ! pgrep xmonadrc; do sleep 1; done
-          sleep 1
-          polybar primary
-        } &
-      '';
+          {
+            # Give xmonad a second to start and advertise EWMH support.
+            while ! pgrep xmonadrc; do sleep 1; done
+            sleep 1
+            polybar primary
+          } &
+        '';
 
       config = {
         settings = {
@@ -234,7 +232,7 @@ in
         # https://github.com/polybar/polybar/wiki/Module:-temperature
         "module/temperature" = {
           type = "internal/temperature";
-          hwmon-path = cfg.sensorPath;
+          hwmon-path = "\${env:CORETEMP}";
           units = false;
           base-temperature = 40;
           warn-temperature = 86;

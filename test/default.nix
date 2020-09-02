@@ -24,7 +24,7 @@ pkgs.nixosTest {
       };
 
       # Some extra RAM for X11:
-      virtualisation.memorySize = 1024;
+      virtualisation.memorySize = 2048;
 
       # Disable some services that don't work in the test VM.
       home-manager.users.${user.name} = { lib, ... }: {
@@ -82,5 +82,8 @@ pkgs.nixosTest {
         machine.send_key("ctrl-alt-l")
         machine.sleep(3)
         machine.screenshot("lock")
+
+    with subtest("Check mandb cache"):
+        machine.succeed("test -d ${user.home}/.cache/man/etc-profiles-per-user-${user.name}")
   '';
 }
