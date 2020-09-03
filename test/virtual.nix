@@ -18,6 +18,12 @@
     ];
 
     tilde.xsession.enable = true;
+
+    tilde.lock-screen-inhibit = {
+      enable = true;
+      bluetooth.devices = [ "foo" ];
+    };
+
     users.users.${config.tilde.username}.password = "password";
     virtualisation.libvirtd.enable = lib.mkForce false;
     virtualisation.docker.enable = lib.mkForce false;

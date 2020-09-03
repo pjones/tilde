@@ -17,6 +17,7 @@ in
     ./workstation.nix
     ./xsession.nix
     ./yubikey.nix
+    ./modules
   ];
 
   #### Interface:
