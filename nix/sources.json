@@ -30,10 +30,10 @@
         "homepage": "https://neuron.zettel.page",
         "owner": "srid",
         "repo": "neuron",
-        "rev": "15e53733e692e0e7523a2b023f5e16faca544395",
-        "sha256": "09jw7cj37z3bd98b4rcwnydcv6nawwyr2hp3mp8bh72j2vxw3f6n",
+        "rev": "6d5bb217c0cb36335c46506f7cb65f869b22e3f5",
+        "sha256": "0wk2wby7r04n9vr1cvz9v3hax5j688j2p4n6g54q9f7lgr51wfbx",
         "type": "tarball",
-        "url": "https://github.com/srid/neuron/archive/15e53733e692e0e7523a2b023f5e16faca544395.tar.gz",
+        "url": "https://github.com/srid/neuron/archive/6d5bb217c0cb36335c46506f7cb65f869b22e3f5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-on-droid": {
@@ -78,10 +78,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "925ae0dee63cf2c59533a6258340812e5643428a",
-        "sha256": "1g3kkwyma23lkszdvgb4dn91g35b082k55ys8azc7j4s6vxpzmaw",
+        "rev": "4bd1938e03e1caa49a6da1ec8cff802348458f05",
+        "sha256": "0529npmibafjr80i2bhqg22pjr3d5qz1swjcq2jkdla1njagkq2k",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/925ae0dee63cf2c59533a6258340812e5643428a.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/4bd1938e03e1caa49a6da1ec8cff802348458f05.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oreo-cursors": {
