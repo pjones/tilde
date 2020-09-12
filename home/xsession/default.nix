@@ -128,9 +128,10 @@ in
       vlc
 
       # Creative
-      gwenview
       darktable
+      gdal
       gimp
+      gwenview
       imagemagick
       inkscape
       kicad
@@ -139,7 +140,6 @@ in
       openscad
       prusa-slicer
       qmapshack
-      slic3r
       xournal
     ];
   };
