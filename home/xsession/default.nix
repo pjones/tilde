@@ -57,9 +57,6 @@ in
     services.udiskie.enable = true;
     services.unclutter.enable = true;
 
-    # Nix drv caching and background building:
-    services.lorri.enable = true;
-
     # Communicate with my phone:
     services.kdeconnect = {
       enable = true;

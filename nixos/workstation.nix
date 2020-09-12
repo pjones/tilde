@@ -45,6 +45,12 @@ in
         # For using different Nix caches:
         nix.trustedUsers = [ "@wheel" ];
 
+        # For improved experience developing with Nix:
+        nix.extraOptions = ''
+          keep-outputs = true
+          keep-derivations = true
+        '';
+
         # Useful services:
         hardware.bluetooth.enable = true;
         services.blueman.enable = lib.mkDefault true;

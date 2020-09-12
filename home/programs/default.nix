@@ -3,6 +3,7 @@
 {
   imports = [
     ./clight.nix
+    ./direnv.nix
     ./dunst.nix
     ./emacs.nix
     ./git.nix
