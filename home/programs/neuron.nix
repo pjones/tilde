@@ -1,10 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.tilde.programs.neuron;
-
-  neuron = with pkgs.haskell.lib;
-    justStaticExecutables pkgs.haskellPackages.neuron;
-
+  neuron = pkgs.haskellPackages.neuron;
   bin = "${neuron}/bin/neuron";
   sport = toString cfg.port;
 

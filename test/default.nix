@@ -29,11 +29,21 @@ pkgs.nixosTest {
       virtualisation.memorySize = 2048;
 
       # Disable some services that don't work in the test VM.
-      home-manager.users.${user.name} = { lib, ... }: {
+      home-manager.users.${user.name} = { pkgs, lib, ... }: {
         tilde.programs.mpd.enable = false;
         tilde.programs.neuron.enable = false;
         services.syncthing.enable = false;
         services.udiskie.enable = lib.mkForce false;
+
+        # Force some packages to build to make sure they work even
+        # though they were disabled above:
+        home.packages = with pkgs; [
+          haskellPackages.neuron
+          mpd
+          pjones.oled-display
+          syncthing
+          udiskie
+        ];
       };
 
       environment.systemPackages = with pkgs; [

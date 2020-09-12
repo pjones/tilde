@@ -63,7 +63,7 @@ in
   # Use the latest version of Neuron:
   haskellPackages = super.haskellPackages.override (orig: {
     overrides = super.lib.composeExtensions (orig.overrides or (_: _: { }))
-      (_: _: { neuron = import sources.neuron; });
+      (_: _: { neuron = import sources.neuron { }; });
   });
 
   # Use a more recent version of tabbed, with a patch that fixes an
