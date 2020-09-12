@@ -52,7 +52,7 @@
         diff."gpg".textconv =
           "${pkgs.gnupg}/bin/gpg2 --no-tty --decrypt --use-agent";
 
-        url."git@github.com:".insteadOf = "https://github.com/";
+        url."git@github.com:".pushInsteadOf = "https://github.com/";
       };
     };
 
