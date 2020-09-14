@@ -67,7 +67,7 @@ in
           };
 
           "scgateway" = {
-            hostname = "198.202.228.11";
+            hostname = "198.202.228.119";
             port = 2251;
             identityFile = keys.scors;
           };
