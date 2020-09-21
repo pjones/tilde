@@ -31,10 +31,11 @@
       ];
 
       ignores = [
-        "/dist/"
-        "/dist-newstyle/"
+        "dist/"
+        "dist-newstyle/"
         "/result"
-        "/TAGS"
+        "TAGS"
+        ".direnv/"
       ];
 
       extraConfig = {
