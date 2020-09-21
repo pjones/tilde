@@ -76,7 +76,7 @@ in
         services.printing = {
           enable = true;
           drivers = with pkgs; [
-            cups-googlecloudprint
+            canon-cups-ufr2
           ];
         };
 
