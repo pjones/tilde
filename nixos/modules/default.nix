@@ -1,7 +1,0 @@
-{ ... }:
-
-{
-  imports = [
-    ./lock-screen-inhibit
-  ];
-}

@@ -162,6 +162,18 @@
         "rev": "dd802939b134e2908b4eecd856a66425ef80688b",
         "type": "git"
     },
+    "pjones/inhibit-screensaver": {
+        "branch": "master",
+        "description": "Inhibit the screensaver if a command exits successfully",
+        "homepage": "",
+        "owner": "pjones",
+        "repo": "inhibit-screensaver",
+        "rev": "c296ffe84a3fd371fd7dfd0bbe70ab4916b3f698",
+        "sha256": "0k5nfdwz2zadprd76iqsivxqhpzr09y8nxkxnzm4m37rixs47whp",
+        "type": "tarball",
+        "url": "https://github.com/pjones/inhibit-screensaver/archive/c296ffe84a3fd371fd7dfd0bbe70ab4916b3f698.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "pjones/network-scripts": {
         "ref": "master",
         "repo": "https://github.com/pjones/network-scripts.git",

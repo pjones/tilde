@@ -10,9 +10,6 @@ let
   };
 
   xdo = "${pkgs.xdotool}/bin/xdotool";
-
-  lock-screen-inhibit =
-    import ./lock-screen-inhibit.nix { inherit pkgs user; };
 in
 pkgs.nixosTest {
   name = "${user.name}-account";
@@ -89,9 +86,6 @@ pkgs.nixosTest {
     with subtest("Wait to get a screenshot"):
         machine.sleep(3)
         machine.screenshot("screen")
-
-    # FIXME: Get lock screen inhibit tests to run.
-    # Right now they fail because `systemctl --user` can't connect to the bus.
 
     with subtest("Lock screen"):
         machine.send_key("ctrl-alt-l")
