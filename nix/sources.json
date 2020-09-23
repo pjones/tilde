@@ -151,10 +151,16 @@
         "type": "git"
     },
     "pjones/emacsrc": {
-        "ref": "master",
-        "repo": "https://github.com/pjones/emacsrc.git",
-        "rev": "952acafac7404e1f2f423a5e5d90024fea3303eb",
-        "type": "git"
+        "branch": "feature/notmuch",
+        "description": "My Emacs configuration files",
+        "homepage": null,
+        "owner": "pjones",
+        "repo": "emacsrc",
+        "rev": "f02d39f9baf3ba6b736fbb7026af3cec1f95e86d",
+        "sha256": "04pblf7c6avxs3bj061llnnjwdq791h9c68imwqm8ciiqq9jbs3n",
+        "type": "tarball",
+        "url": "https://github.com/pjones/emacsrc/archive/f02d39f9baf3ba6b736fbb7026af3cec1f95e86d.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
         "ref": "master",
