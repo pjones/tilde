@@ -39,7 +39,8 @@ preflight() {
 
 ################################################################################
 restore() {
-  xset dpms 0 0 0
+  xset -dpms
+  xset s default
   systemctl --user start picom.service || :
   pkill -SIGUSR2 dunst || :
 }

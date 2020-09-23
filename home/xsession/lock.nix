@@ -41,7 +41,6 @@ let
       export PATH=/run/wrappers/bin:${path}:$PATH
       ${pkgs.pjones.inhibit-screensaver.bin}/bin/inhibit-screensaver \
         --frequency ${toString cfg.lock.bluetooth.frequency} \
-        --activate \
         --query 'pgrep i3lock' \
         -- bluetooth-ping.sh ${devices}
     '';
