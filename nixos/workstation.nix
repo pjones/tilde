@@ -54,8 +54,13 @@ in
         # Useful services:
         hardware.bluetooth.enable = true;
         services.blueman.enable = lib.mkDefault true;
-        services.avahi.enable = true;
         services.clight.enable = true;
+
+        # Local service discovery:
+        services.avahi = {
+          enable = true;
+          domainName = config.networking.domain;
+        };
 
         # Networking:
         networking = {

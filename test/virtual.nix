@@ -17,6 +17,7 @@
       ../devices/generic-nixos.nix
     ];
 
+    networking.domain = "devalot.com";
     tilde.xsession.enable = true;
 
     users.users.${config.tilde.username}.password = "password";
