@@ -12,11 +12,7 @@
   };
 
   machine = { config, lib, ... }: {
-    imports = [
-      ../nixos
-      ../devices/generic-nixos.nix
-    ];
-
+    imports = [ ../devices/generic-nixos.nix ];
     networking.domain = "devalot.com";
     tilde.xsession.enable = true;
 

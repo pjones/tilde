@@ -7,6 +7,7 @@ in
 {
   imports = [
     "${sources.home-manager}/nixos"
+    ../nixos
   ];
 
   tilde = {
