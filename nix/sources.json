@@ -174,10 +174,10 @@
         "homepage": "",
         "owner": "pjones",
         "repo": "inhibit-screensaver",
-        "rev": "46e6009dfbc312649afe9f8ecdd060b373f77ad0",
-        "sha256": "0jxy9brc3hbxi6kpyxy1r3k76y7llivmv59zsf8rzkrb03m6g9wx",
+        "rev": "1befd52df7d6d3188eb761dcd1bfb1b9fbece825",
+        "sha256": "0zimm9c038ppcl1y2bvh6827arbinzfb7gbbvpb8kixqycyry8rv",
         "type": "tarball",
-        "url": "https://github.com/pjones/inhibit-screensaver/archive/46e6009dfbc312649afe9f8ecdd060b373f77ad0.tar.gz",
+        "url": "https://github.com/pjones/inhibit-screensaver/archive/1befd52df7d6d3188eb761dcd1bfb1b9fbece825.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/network-scripts": {

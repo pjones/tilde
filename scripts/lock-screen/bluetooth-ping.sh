@@ -16,9 +16,9 @@ check_device() {
 
   if "$L2PING_BIN" -c "$L2PING_COUNT" "$device" >/dev/null 2>&1; then
     online+=("$device")
-    echo "==> $device is online"
+    echo "$device is online"
   else
-    echo "==> $device is offline"
+    echo "$device is offline"
   fi
 }
 

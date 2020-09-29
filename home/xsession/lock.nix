@@ -28,6 +28,7 @@ let
   inhibitCmd =
     let
       path = lib.makeBinPath (with pkgs; [
+        bashInteractive # for sh(1)
         coreutils
         procps # for pgrep(1)
         systemd # to run loginctl
@@ -39,6 +40,7 @@ let
     in
     pkgs.writeShellScript "inhibit-screensaver" ''
       export PATH=/run/wrappers/bin:${path}:$PATH
+      exec >&2 # Redirect stdout to stderr
       ${pkgs.pjones.inhibit-screensaver.bin}/bin/inhibit-screensaver \
         --frequency ${toString cfg.lock.bluetooth.frequency} \
         --query 'pgrep i3lock' \
