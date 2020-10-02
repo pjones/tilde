@@ -78,10 +78,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4bd1938e03e1caa49a6da1ec8cff802348458f05",
-        "sha256": "0529npmibafjr80i2bhqg22pjr3d5qz1swjcq2jkdla1njagkq2k",
+        "rev": "b4db68ff563895eea6aab4ff24fa04ef403dfe14",
+        "sha256": "1qbs7p0mmcmpg70ibd437hl57byqx5q0pc61p1dckrkazj7kq0pc",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/4bd1938e03e1caa49a6da1ec8cff802348458f05.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/b4db68ff563895eea6aab4ff24fa04ef403dfe14.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oreo-cursors": {
@@ -151,15 +151,15 @@
         "type": "git"
     },
     "pjones/emacsrc": {
-        "branch": "feature/notmuch",
+        "branch": "trunk",
         "description": "My Emacs configuration files",
-        "homepage": null,
+        "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "f02d39f9baf3ba6b736fbb7026af3cec1f95e86d",
-        "sha256": "04pblf7c6avxs3bj061llnnjwdq791h9c68imwqm8ciiqq9jbs3n",
+        "rev": "897a828d519f9580d3936c98f69a1cd95ce3b600",
+        "sha256": "0pxn0agk9y7incbymhbry4qj7q8d8al1vzsdrzbp3c6yjrhls01v",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/f02d39f9baf3ba6b736fbb7026af3cec1f95e86d.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/897a828d519f9580d3936c98f69a1cd95ce3b600.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -261,7 +261,7 @@
     "pjones/xmonadrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/xmonadrc.git",
-        "rev": "cd9531e9f2cd6db78a9483a9a6a93b734cc0f39a",
+        "rev": "86ecd38382c12e1fa662a0ce48917a1b92fcc759",
         "type": "git"
     },
     "pjones/zshrc": {
