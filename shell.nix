@@ -2,6 +2,8 @@
 , pkgs ? import ./pkgs { }
 }:
 let
+  inherit (pkgs) lib;
+
   nix_path = {
     nixpkgs = sources.nixpkgs.url;
     home-manager = sources.home-manager.url;
@@ -9,17 +11,14 @@ let
   };
 in
 pkgs.mkShell {
-  name = "account-shell";
+  name = "tilde-shell";
 
   buildInputs =
-    with pkgs;
-    with pkgs.lib;
-    [ git ]
-    ++ optional (pkgs.system == "x86_64-linux") nixops
-    ++ optional (pkgs.system == "aarch64-linux") nix-on-droid;
+    [ pkgs.git ]
+    ++ lib.optional (pkgs.system == "x86_64-linux") pkgs.nixops
+    ++ lib.optional (pkgs.system == "aarch64-linux") pkgs.nix-on-droid;
 
   # Export a good NIX_PATH for tools that run in this shell.
-  NIX_PATH = with pkgs.lib;
-    concatStringsSep ":"
-      (mapAttrsToList (name: value: "${name}=${value}") nix_path);
+  NIX_PATH = lib.concatStringsSep ":"
+    (lib.mapAttrsToList (name: value: "${name}=${value}") nix_path);
 }
