@@ -27,7 +27,6 @@ in
   config = lib.mkIf cfg.enable {
     # Enable other xsession modules:
     tilde.programs.dunst.enable = lib.mkDefault true;
-    tilde.programs.grobi.enable = lib.mkDefault true;
     tilde.programs.oled-display.enable = lib.mkDefault true;
     tilde.programs.polybar.enable = lib.mkDefault true;
     tilde.programs.rofi.enable = lib.mkDefault true;
