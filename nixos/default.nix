@@ -37,6 +37,7 @@ in
         "dialout"
         "disk"
         "docker"
+        "input"
         "libvirtd"
         "networkmanager"
         "scanner"
