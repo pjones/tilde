@@ -13,17 +13,17 @@ export XAUTHORITY=$HOME/.Xauthority
 
 ################################################################################
 list_builtin_keyboard() {
-  xinput --list --name-only | \
-    grep -Ei '^AT .*keyboard' | \
-      head -n 1
+  xinput --list --name-only |
+    grep -Ei '^AT .*keyboard' |
+    head -n 1
 }
 
 ################################################################################
 name=$(list_builtin_keyboard)
 
 if [ -z "$name" ]; then
-  >&2 echo "ERROR: can't find built-in keyboard!"
-  exit 1
+  echo >&2 "ERROR: can't find built-in keyboard!"
+  exit
 fi
 
 if [ $# -eq 1 ] && [ "$1" = "add" ]; then
