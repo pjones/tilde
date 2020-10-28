@@ -17,7 +17,7 @@ pkgs.nixosTest {
   nodes = {
     machine = { ... }@args: virtual.machine args // {
       services.xserver.displayManager.defaultSession = "xmonad";
-      services.xserver.displayManager.sddm.autoLogin = {
+      services.xserver.displayManager.autoLogin = {
         enable = true;
         user = user.name;
       };

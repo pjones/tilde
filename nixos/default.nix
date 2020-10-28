@@ -57,6 +57,11 @@ in
         # I want firmware updates:
         hardware.enableRedistributableFirmware = true;
 
+        # Basic setup for nixpkgs:
+        nixpkgs.config = {
+          allowUnfree = true; # Proprietary drivers :(
+        };
+
         # Packages to install on all machines for all users:
         environment.systemPackages = with pkgs; [
           usbutils

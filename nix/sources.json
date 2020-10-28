@@ -13,15 +13,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
-        "branch": "release-20.03",
-        "description": "Manage a user environment using Nix",
-        "homepage": "",
-        "owner": "pjones",
+        "branch": "release-20.09",
+        "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
+        "homepage": "https://rycee.gitlab.io/home-manager/",
+        "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "318bc0754ed6370cfcae13183a7f13f7aa4bc73f",
-        "sha256": "0hgn85yl7gixw1adjfa9nx8axmlpw5y1883lzg3zigknx6ff5hsr",
+        "rev": "7339784e07217ed0232e08d1ea33b610c94657d8",
+        "sha256": "0fjisa71cjagckj1ba7nn6wb11sdp2m43y36w5pwja456ii1i7si",
         "type": "tarball",
-        "url": "https://github.com/pjones/home-manager/archive/318bc0754ed6370cfcae13183a7f13f7aa4bc73f.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/7339784e07217ed0232e08d1ea33b610c94657d8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "neuron": {
@@ -73,15 +73,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "nixos-20.03",
+        "branch": "nixos-20.09",
         "description": "Nix Packages collection",
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7c2a362b58a1c2ba72d24aa3869da3b1a91d39e1",
-        "sha256": "0gl4xndyahasa9dv5mi3x9w8s457wl2xh9lcldizcn1irjvkrzs4",
+        "rev": "13d0c311e3ae923a00f734b43fd1d35b47d8943a",
+        "sha256": "0izp5y55whbdaf26w3zy2xvkjvlll39lib1ifvb61ps9gmvlqn39",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/7c2a362b58a1c2ba72d24aa3869da3b1a91d39e1.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/13d0c311e3ae923a00f734b43fd1d35b47d8943a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oreo-cursors": {
@@ -151,15 +151,15 @@
         "type": "git"
     },
     "pjones/emacsrc": {
-        "branch": "trunk",
+        "branch": "feature/nixos-20.09",
         "description": "My Emacs configuration files",
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "71748e8ac4f8bc7bb9f179a28d366d16d2672c8e",
-        "sha256": "0w7fp0h778aldbxgb63lgp56fcffd569d3r4r2plg2s9frg4pwhc",
+        "rev": "dd75c653bea88055efbc9f92afca4d029757cdec",
+        "sha256": "1zhnwilxmlxd4w98lc8wvyr6miz1bbc006433sm2mh5ryj665cz3",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/71748e8ac4f8bc7bb9f179a28d366d16d2672c8e.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/dd75c653bea88055efbc9f92afca4d029757cdec.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -187,10 +187,16 @@
         "type": "git"
     },
     "pjones/oled-display": {
-        "ref": "next",
-        "repo": "https://github.com/pjones/oled-display.git",
-        "rev": "8a97c49442cadb05309c756d39380cf060cba17a",
-        "type": "git"
+        "branch": "trunk",
+        "description": "Display a Pomodoro timer on an OLED display via org-clock.",
+        "homepage": "",
+        "owner": "pjones",
+        "repo": "oled-display",
+        "rev": "e2025eea05494300b5faafca2518f026a08ca4a3",
+        "sha256": "11wx0wg83a69whrpnmz501bngxfaw5xy0rpv66smji81jhby59z8",
+        "type": "tarball",
+        "url": "https://github.com/pjones/oled-display/archive/e2025eea05494300b5faafca2518f026a08ca4a3.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/openid-connect": {
         "ref": "next",
@@ -247,10 +253,16 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/vimeta": {
-        "ref": "next",
-        "repo": "https://github.com/pjones/vimeta.git",
-        "rev": "47c06727ec070d8d808986bd2db53d927c8668a5",
-        "type": "git"
+        "branch": "pjones/release",
+        "description": "Frontend for video metadata tagging tools",
+        "homepage": "",
+        "owner": "pjones",
+        "repo": "vimeta",
+        "rev": "7112c23556a40f922fa69b56e9d38f8fc0eedba5",
+        "sha256": "0jkhvqb6ni14l2ix0z0x8fcisa88616xy60nngy0dgd7gxrc29vq",
+        "type": "tarball",
+        "url": "https://github.com/pjones/vimeta/archive/7112c23556a40f922fa69b56e9d38f8fc0eedba5.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/wschat": {
         "ref": "next",
@@ -259,10 +271,16 @@
         "type": "git"
     },
     "pjones/xmonadrc": {
-        "ref": "master",
-        "repo": "https://github.com/pjones/xmonadrc.git",
-        "rev": "767df14484d082755ff4b3ed8dc171cafafaa8fc",
-        "type": "git"
+        "branch": "trunk",
+        "description": "My XMonad configuration",
+        "homepage": null,
+        "owner": "pjones",
+        "repo": "xmonadrc",
+        "rev": "44df16b70860ba336517f8ff148e3d174d5a0540",
+        "sha256": "0gxrac3ivn7gxxgjw4rn22vdji04f16qqzhmrnrwvq79hkncdv5r",
+        "type": "tarball",
+        "url": "https://github.com/pjones/xmonadrc/archive/44df16b70860ba336517f8ff148e3d174d5a0540.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/zshrc": {
         "ref": "master",

@@ -36,7 +36,6 @@ in
         environment.systemPackages = with pkgs; [
           lm_sensors
           OVMF # For EFI booting.
-          rfkill
           spice-gtk
           virtmanager
           wirelesstools
