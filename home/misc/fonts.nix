@@ -19,7 +19,7 @@
   mono = {
     package = pkgs.hermit;
     name = "Hermit 10";
-    ftname = "Hermit:pixelsize=10:weight=normal";
+    ftname = "Hermit:pixelsize=10:style=Regular";
     offset = 2;
   };
 
@@ -32,8 +32,8 @@
 
   twemoji = {
     package = pkgs.twemoji-color-font;
-    name = "Twemoji 10";
-    ftname = "Twemoji:pixelsize=10";
+    name = "Twitter Color Emoji 10";
+    ftname = "Twitter Color Emoji:style=Regular:pixelsize=10";
     offset = 5;
   };
 
