@@ -18,22 +18,22 @@
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7339784e07217ed0232e08d1ea33b610c94657d8",
-        "sha256": "0fjisa71cjagckj1ba7nn6wb11sdp2m43y36w5pwja456ii1i7si",
+        "rev": "63f299b3347aea183fc5088e4d6c4a193b334a41",
+        "sha256": "0iksjch94wfvyq0cgwv5wq52j0dc9cavm68wka3pahhdvjlxd3js",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/7339784e07217ed0232e08d1ea33b610c94657d8.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/63f299b3347aea183fc5088e4d6c4a193b334a41.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "neuron": {
-        "branch": "master",
+        "branch": "1.0.1.0",
         "description": "Haskell meets Zettelkasten, for your plain-text delight.",
         "homepage": "https://neuron.zettel.page",
         "owner": "srid",
         "repo": "neuron",
-        "rev": "6d5bb217c0cb36335c46506f7cb65f869b22e3f5",
-        "sha256": "0wk2wby7r04n9vr1cvz9v3hax5j688j2p4n6g54q9f7lgr51wfbx",
+        "rev": "7eab4fb8b3d370303e70a3ac6510ff83ee4e81b6",
+        "sha256": "1zl6kgy1sgzfkw0gaarm2r1ip6zjkxkkfii2fvgwjdir0g8m7r4q",
         "type": "tarball",
-        "url": "https://github.com/srid/neuron/archive/6d5bb217c0cb36335c46506f7cb65f869b22e3f5.tar.gz",
+        "url": "https://github.com/srid/neuron/archive/7eab4fb8b3d370303e70a3ac6510ff83ee4e81b6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-on-droid": {
@@ -78,10 +78,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "13d0c311e3ae923a00f734b43fd1d35b47d8943a",
-        "sha256": "0izp5y55whbdaf26w3zy2xvkjvlll39lib1ifvb61ps9gmvlqn39",
+        "rev": "896270d629efd47d14972e96f4fbb79fc9f45c80",
+        "sha256": "0xmjjayg19wm6cn88sh724mrsdj6mgrql6r3zc0g4x9bx4y342p7",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/13d0c311e3ae923a00f734b43fd1d35b47d8943a.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/896270d629efd47d14972e96f4fbb79fc9f45c80.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oreo-cursors": {
@@ -156,10 +156,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "dd75c653bea88055efbc9f92afca4d029757cdec",
-        "sha256": "1zhnwilxmlxd4w98lc8wvyr6miz1bbc006433sm2mh5ryj665cz3",
+        "rev": "c90ee03e10a60941f6bec6817c5e9204cc99680b",
+        "sha256": "1kmbp75zyr5d5qlzfdma5lz8sbizj6khaccxnjhcm8vl0j7cw49g",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/dd75c653bea88055efbc9f92afca4d029757cdec.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/c90ee03e10a60941f6bec6817c5e9204cc99680b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {

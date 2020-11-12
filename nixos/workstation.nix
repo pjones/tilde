@@ -35,6 +35,7 @@ in
         # Extra system pacakges:
         environment.systemPackages = with pkgs; [
           lm_sensors
+          man-pages # Developer man pages.
           OVMF # For EFI booting.
           spice-gtk
           virtmanager
@@ -54,6 +55,9 @@ in
         hardware.bluetooth.enable = true;
         services.blueman.enable = lib.mkDefault true;
         services.clight.enable = true;
+
+        # Index system man pages:
+        documentation.man.generateCaches = true;
 
         # Local service discovery:
         services.avahi = {

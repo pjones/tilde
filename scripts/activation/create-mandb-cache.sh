@@ -12,7 +12,8 @@ manpath=$HOME/.manpath
 _PATH=
 _MANPATH=
 
-rm -rf ~/.manpath "$cache_dir"
+rm -rf "$manpath" "$cache_dir"
+cat /etc/man_db.conf >>"$manpath"
 mkdir -p "$cache_dir"
 
 for profile in $NIX_PROFILES; do
@@ -25,6 +26,8 @@ for profile in $NIX_PROFILES; do
   _MANPATH=$profile/share/man${_MANPATH:+:$_MANPATH}
 
   {
+    echo
+    echo "# From profile $profile:"
     echo "MANPATH_MAP $profile/bin $profile/share/man"
     echo "MANPATH_MAP $profile/sbin $profile/share/man"
     echo "MANDB_MAP $profile/share/man $cache_dir/$name"
