@@ -30,7 +30,6 @@ in
     tilde.programs.oled-display.enable = lib.mkDefault true;
     tilde.programs.polybar.enable = lib.mkDefault true;
     tilde.programs.rofi.enable = lib.mkDefault true;
-    tilde.programs.vimb.enable = lib.mkDefault true;
     tilde.xsession.theme.enable = lib.mkDefault true;
     tilde.xsession.wallpaper.enable = lib.mkDefault true;
 
@@ -98,7 +97,6 @@ in
       libreoffice
       pamixer
       pavucontrol
-      tabbed
       wmctrl
       x11vnc
       xclip
@@ -131,10 +129,10 @@ in
       imagemagick
       inkscape
       kicad
-      librecad
       ngspice
       openscad
       prusa-slicer
+      qcad
       qmapshack
       xournal
     ];

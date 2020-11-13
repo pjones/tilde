@@ -66,22 +66,6 @@ in
       (_: _: { neuron = import sources.neuron { }; });
   });
 
-  # Use a more recent version of tabbed, with a patch that fixes an
-  # issue with vimb:
-  tabbed = super.tabbed.overrideAttrs (orig: {
-    src = sources.tabbed;
-    patches = (orig.patches or [ ]) ++
-      [ ../pkgs/patches/tabbed-configurerequest-resize.patch ];
-  });
-
-  # Use a more recent version of vimb:
-  vimb = super.wrapFirefox
-    (super.vimb-unwrapped.overrideAttrs (_: {
-      version = sources.vimb.branch;
-      src = sources.vimb;
-    }))
-    { };
-
   # Newer version of Font-Awesome:
   font-awesome = super.font-awesome.overrideAttrs (_: {
     name = "font-awesome-" + sources.Font-Awesome.ref;

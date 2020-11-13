@@ -1,7 +1,7 @@
 # There's No Place Like `~/`
 
 <p align="center">
-  <img src="https://i.imgur.com/ZvyQpO4.png"/>
+  <img src="https://i.imgur.com/6pmo56w.png"/>
 </p>
 
 (The screenshot above was taken at the end of the automated tests

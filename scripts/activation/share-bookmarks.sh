@@ -57,13 +57,6 @@ safe_link_file() {
 }
 
 ################################################################################
-bookmarks_vimb() {
-  local bookmarks=$HOME/.config/vimb/bookmark
-  local share=$destination/vimb
-  safe_link_file "$bookmarks" "$share"
-}
-
-################################################################################
 bookmarks_emacs() {
   local bookmarks=$HOME/.cache/emacs/bookmarks
   local share=$destination/emacs
@@ -71,5 +64,4 @@ bookmarks_emacs() {
 }
 
 ################################################################################
-bookmarks_vimb
 bookmarks_emacs

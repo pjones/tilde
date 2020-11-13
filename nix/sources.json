@@ -151,15 +151,15 @@
         "type": "git"
     },
     "pjones/emacsrc": {
-        "branch": "feature/nixos-20.09",
+        "branch": "trunk",
         "description": "My Emacs configuration files",
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "583ae8c01ee59b5ac7a22d07695e0c51eb68903e",
-        "sha256": "0pdpx908wr1m1cij3jcayzfld84d9jxgafdwb3kf696vh3n59bbz",
+        "rev": "15af8bfd34b6094152cee637d8ac5ecc4af4f827",
+        "sha256": "0wzihmi298424862jj8g622rancfkbn2jxbpz0nm9mbijc0mqzma",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/583ae8c01ee59b5ac7a22d07695e0c51eb68903e.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/15af8bfd34b6094152cee637d8ac5ecc4af4f827.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -240,18 +240,6 @@
         "rev": "ded28c1cada8db9b9ae5d0bf7548b77c0dc3060a",
         "type": "git"
     },
-    "pjones/vimbrc": {
-        "branch": "master",
-        "description": "vimb config",
-        "homepage": null,
-        "owner": "pjones",
-        "repo": "vimbrc",
-        "rev": "204ec8784200d29530c4f3103d05f896045fea56",
-        "sha256": "031gq7azvi6npjiyhk1rd2243mh34f7g2684jb02pd9jmqg53si3",
-        "type": "tarball",
-        "url": "https://github.com/pjones/vimbrc/archive/204ec8784200d29530c4f3103d05f896045fea56.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "pjones/vimeta": {
         "branch": "pjones/release",
         "description": "Frontend for video metadata tagging tools",
@@ -322,24 +310,6 @@
         "sha256": "0kf9dzwskr7a55x5vqjavpn1dzqv8kypmn09srzyzbjssyy710cf",
         "type": "tarball",
         "url": "https://github.com/EliverLara/Sweet/archive/85830477831aef0dbc77d8c6fc9484485092f434.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "tabbed": {
-        "ref": "master",
-        "repo": "git://git.suckless.org/tabbed",
-        "rev": "dabf6a25ab01107fc1e0464ee6a3e369d1626f97",
-        "type": "git"
-    },
-    "vimb": {
-        "branch": "master",
-        "description": "Vimb - the vim like browser is a webkit based web browser that behaves like the vimperator plugin for the firefox and usage paradigms from the great editor vim. The goal of vimb is to build a completely keyboard-driven, efficient and pleasurable browsing-experience.",
-        "homepage": "https://fanglingsu.github.io/vimb/",
-        "owner": "fanglingsu",
-        "repo": "vimb",
-        "rev": "14e6120d1e5ffe0d6048410caf576c4d85501bb8",
-        "sha256": "1mmrsan7a0c11dzxalpsmq58yvw1is149qi3r4dsya4ka46if8ff",
-        "type": "tarball",
-        "url": "https://github.com/fanglingsu/vimb/archive/14e6120d1e5ffe0d6048410caf576c4d85501bb8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

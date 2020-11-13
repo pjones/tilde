@@ -68,7 +68,6 @@ pkgs.nixosTest {
         machine.succeed("test -L ${user.home}/.xsession")
 
     with subtest("Verify activation script created some links"):
-        machine.succeed("test -L ${user.home}/.config/vimb/bookmark")
         machine.succeed("test -L ${user.home}/.cache/emacs/bookmarks")
 
     with subtest("Wait for login"):
