@@ -26,5 +26,12 @@
       enableBashIntegration = true;
       enableZshIntegration = true;
     };
+
+    # Chromium:
+    # https://wiki.archlinux.org/index.php/Chromium#Dark_mode
+    xdg.configFile."chromium-flags.conf".text = ''
+      --force-dark-mode
+      --enable-features=WebUIDarkMode
+    '';
   };
 }

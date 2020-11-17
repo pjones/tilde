@@ -110,7 +110,7 @@ in
       xtitle
 
       # Network
-      chromium
+      chromium-launcher
       firefox
 
       # Audio/Video

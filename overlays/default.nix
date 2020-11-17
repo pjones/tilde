@@ -98,4 +98,7 @@ in
 
   # A gpg-agent/ssh-agent for Android:
   okc-agents = super.callPackage ../pkgs/okc-agents.nix { };
+
+  # A wrapper around chromium:
+  chromium-launcher = super.callPackage ../pkgs/chromium-launcher.nix { };
 }
