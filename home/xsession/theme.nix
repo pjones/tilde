@@ -9,8 +9,8 @@ let
   colors = import ../misc/colors.nix;
 
   theme = {
-    package = pkgs.sweet;
-    name = "Sweet-Dark";
+    package = pkgs.sweet-nova;
+    name = "Sweet-Nova";
   };
 
   icons = {
@@ -66,13 +66,20 @@ in
       };
     };
 
-    qt = {
-      enable = true;
-      platformTheme = "gtk";
-    };
-
     # For Gnome settings:
     dconf.enable = true;
+
+    # Qt:
+    home.packages = [ pkgs.libsForQt5.qtstyleplugin-kvantum ];
+    home.sessionVariables.QT_STYLE_OVERRIDE = "Kvantum";
+    xsession.importedVariables = [ "QT_STYLE_OVERRIDE" ];
+
+    xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
+      theme=Sweet-Nova
+    '';
+
+    xdg.configFile."Kvantum/Sweet-Nova".source =
+      "${pkgs.sweet-nova}/share/kvantum/Sweet-Nova";
 
     # Push icons into other applications:
     services.dunst.settings.global.icon_path = lib.mkForce (icon-path "64");
