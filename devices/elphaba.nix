@@ -25,7 +25,7 @@
         let
           internal = "eDP-1";
           external = "DP-1";
-          treadmill = "DP-1-SAM-2302-0-SAMSUNG-";
+          treadmill = "${external}-AUS-9377-16843009-VG245-L8LMQS164419";
         in
         [
           {
