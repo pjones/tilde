@@ -28,12 +28,6 @@ in
 
     home.packages = with pkgs; [
       # System and Security
-      (aspellWithDicts (d: [
-        d.en
-        d.en-computers
-        d.en-science
-      ]))
-      dict
       nixops
       pass
 

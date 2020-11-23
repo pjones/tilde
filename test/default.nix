@@ -56,15 +56,9 @@ pkgs.nixosTest {
     machine.succeed("mkdir -m 0755 -p ${user.home}/notes/bookmarks")
     machine.succeed("chown ${user.name}:root ${user.home}/notes/bookmarks")
 
-    with subtest("Help home-manager get going"):
-        machine.stop_job("home-manager-${user.name}.service")
-        machine.succeed("mkdir -m 0755 -p /nix/var/nix/{profiles,gcroots}/per-user/${user.name}")
-        machine.succeed("chown ${user.name}:root /nix/var/nix/{profiles,gcroots}/per-user/${user.name}")
-        machine.start_job("home-manager-${user.name}.service")
-
     with subtest("Verify home-manager installed config files"):
         machine.wait_for_unit("home-manager-${user.name}.service")
-        machine.succeed("test -L ${user.home}/.emacs")
+        machine.succeed("test -L ${user.home}/.config/emacs/init.el")
         machine.succeed("test -L ${user.home}/.xsession")
 
     with subtest("Verify activation script created some links"):
