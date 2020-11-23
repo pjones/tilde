@@ -29,6 +29,14 @@ stdenv.mkDerivation rec {
       --replace '$(shell . /etc/os-release; echo $$NAME)' "NixOS"
   '';
 
+  postInstall = ''
+    mkdir -p "$out/share";
+
+    for dir in "${chromium}"/share/*; do
+      (cd "$out/share" && ln -s "$dir" .)
+    done
+  '';
+
   meta = with lib; {
     description = "Chromium launcher with support for Pepper Flash and custom user flags.";
     homepage = "https://github.com/foutrelis/chromium-launcher";
