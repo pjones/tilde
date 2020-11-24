@@ -15,7 +15,7 @@ pkgs.nixosTest {
   name = "${user.name}-account";
 
   nodes = {
-    machine = { ... }@args: virtual.machine args // {
+    tilde = { ... }@args: virtual.tilde args // {
       services.xserver.displayManager.defaultSession = "xmonad";
       services.xserver.displayManager.autoLogin = {
         enable = true;
@@ -53,39 +53,39 @@ pkgs.nixosTest {
     start_all()
 
     # Prepare some directories for the tests:
-    machine.succeed("mkdir -m 0755 -p ${user.home}/notes/bookmarks")
-    machine.succeed("chown ${user.name}:root ${user.home}/notes/bookmarks")
+    tilde.succeed("mkdir -m 0755 -p ${user.home}/notes/bookmarks")
+    tilde.succeed("chown ${user.name}:root ${user.home}/notes/bookmarks")
 
     with subtest("Verify home-manager installed config files"):
-        machine.wait_for_unit("home-manager-${user.name}.service")
-        machine.succeed("test -L ${user.home}/.config/emacs/init.el")
-        machine.succeed("test -L ${user.home}/.xsession")
+        tilde.wait_for_unit("home-manager-${user.name}.service")
+        tilde.succeed("test -L ${user.home}/.config/emacs/init.el")
+        tilde.succeed("test -L ${user.home}/.xsession")
 
     with subtest("Verify activation script created some links"):
-        machine.succeed("test -L ${user.home}/.cache/emacs/bookmarks")
+        tilde.succeed("test -L ${user.home}/.cache/emacs/bookmarks")
 
     with subtest("Wait for login"):
-        machine.wait_for_file("${user.home}/.Xauthority")
-        machine.succeed("xauth merge ${user.home}/.Xauthority")
+        tilde.wait_for_file("${user.home}/.Xauthority")
+        tilde.succeed("xauth merge ${user.home}/.Xauthority")
 
     with subtest("Check xmonad started"):
-        machine.wait_until_succeeds("pgrep xmonadrc")
-        machine.sleep(3)
+        tilde.wait_until_succeeds("pgrep xmonadrc")
+        tilde.sleep(3)
 
     with subtest("Launch terminal"):
-        machine.execute("su - ${user.name} -c 'DISPLAY=:0.0 konsole --hold -e neofetch &'")
-        machine.wait_for_window("konsole")
+        tilde.execute("su - ${user.name} -c 'DISPLAY=:0.0 konsole --hold -e neofetch &'")
+        tilde.wait_for_window("konsole")
 
     with subtest("Wait to get a screenshot"):
-        machine.sleep(3)
-        machine.screenshot("screen")
+        tilde.sleep(3)
+        tilde.screenshot("screen")
 
     with subtest("Lock screen"):
-        machine.send_key("ctrl-alt-l")
-        machine.sleep(3)
-        machine.screenshot("lock")
+        tilde.send_key("ctrl-alt-l")
+        tilde.sleep(3)
+        tilde.screenshot("lock")
 
     with subtest("Check mandb cache"):
-        machine.succeed("test -d ${user.home}/.cache/man/etc-profiles-per-user-${user.name}")
+        tilde.succeed("test -d ${user.home}/.cache/man/etc-profiles-per-user-${user.name}")
   '';
 }

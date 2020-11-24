@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ################################################################################
-# Disable the built~in keyboard when using an external keyboard.
+# Disable the built-in keyboard when using an external keyboard.
 set -e
 set -u
 

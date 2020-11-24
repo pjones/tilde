@@ -11,7 +11,7 @@
     security.sudo.wheelNeedsPassword = false;
   };
 
-  machine = { config, lib, ... }: {
+  tilde = { config, lib, ... }: {
     imports = [ ../devices/generic-nixos.nix ];
     networking.domain = "devalot.com";
     tilde.xsession.enable = true;
