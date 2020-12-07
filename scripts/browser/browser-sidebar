@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Use a browser instance that is attached to a XMonad named scratch pad.
+
+set -eu
+set -o pipefail
+
+name=sidebar
+
+if [ $# -gt 0 ]; then
+  # When opening a URL first bring any existing sidebar windows to the
+  # current workspace and give them input focus.
+  matching_window=$(
+    (xdo id -N "chromium-$name" || :) |
+      browser-filter |
+      head -1
+  )
+
+  if [ -n "$matching_window" ]; then
+    wmctrl -iR "$matching_window"
+  fi
+fi
+
+# Now send all arguments to the browser-profile script:
+browser-profile "$name" "$@"

@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Open a URL using the biggest browser window on a specific desktop.
+
+set -eu
+set -o pipefail
+
+desktop=1
+best_window_id=
+best_window_width=0
+
+readarray -t windows < <(
+  xdotool search --desktop "$desktop" --class Chromium |
+    browser-filter
+)
+
+for window in "${windows[@]}"; do
+  width=$(
+    xdotool getwindowgeometry --shell "$window" |
+      awk -F= '$1 == "WIDTH" { print $2 }'
+  )
+
+  if [ -z "$best_window_id" ] || [ "$width" -gt "$best_window_width" ]; then
+    best_window_id=$window
+    best_window_width=$width
+  fi
+done
+
+if [ -n "$best_window_id" ]; then
+  # Just to the correct desktop and window:
+  wmctrl -ia "$best_window_id"
+
+  # Try to convince chromium to use this window next:
+  xdotool key --window "$best_window_id" "Control_L+1"
+else
+  wmctrl -s "$desktop"
+fi
+
+chromium "$@"

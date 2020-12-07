@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Read window IDs from stdin and output only those IDs that represent
+# real browser windows.
+
+# This is a bit complicated because chromium opens three windows per
+# visible browser window so we need to iterate over them all to find
+# the "real" window.
+
+set -eu
+set -o pipefail
+
+get_role() {
+  local id=$1
+
+  (xprop -id "$id" 2>/dev/null || :) |
+    grep WM_WINDOW_ROLE |
+    cut -d' ' -f3 |
+    sed 's/"//g'
+}
+
+while read -ra ids; do
+  for id in "${ids[@]}"; do
+    if [ "$(get_role "$id")" = "browser" ]; then
+      echo "$id"
+    fi
+  done
+done

@@ -112,6 +112,8 @@ in
       # Network
       chromium-launcher
       firefox
+      slack
+      tilde-scripts-browser
 
       # Audio/Video
       cantata

@@ -90,6 +90,7 @@ in
   # Various scripts needed inside tilde:
   tilde-scripts-activation = super.callPackage ../pkgs/tilde-scripts-activation.nix { };
   tilde-scripts-misc = super.callPackage ../pkgs/tilde-scripts-misc.nix { };
+  tilde-scripts-browser = super.callPackage ../pkgs/tilde-scripts-browser.nix { };
 
   tilde-scripts-lock-screen = super.callPackage ../pkgs/tilde-scripts-lock-screen.nix {
     inherit (super.xorg) xrandr xset;

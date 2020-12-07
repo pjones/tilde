@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Open a browser with a specific user profile.
+
+set -eu
+set -o pipefail
+
+usage() {
+  cat <<EOF
+Usage: $(basename "$0") <profile> [options]
+
+  -h      This message
+
+EOF
+}
+
+if [ $# -eq 0 ]; then
+  echo >&2 "ERROR: missing profile name"
+  exit 1
+fi
+
+profile=$1
+shift
+
+chromium \
+  "--user-data-dir=$HOME/.config/chromium-$profile" \
+  "--class=chromium-$profile" \
+  "$@"
