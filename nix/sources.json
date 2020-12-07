@@ -264,10 +264,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "xmonadrc",
-        "rev": "22e87600ce613001b9eb5d0797b09fd33d2e91d1",
-        "sha256": "1c09m0dlrwwmjd9yh53bk9fh31lxx5q2vh4yyyl6p69bam5wj3ck",
+        "rev": "ca132f4088aa048885a9d9e30537458b7da30467",
+        "sha256": "1s68l27m6zqdpv3p9wxrx8ipnbn1psk3cwxj064smhx0xp8pxrvs",
         "type": "tarball",
-        "url": "https://github.com/pjones/xmonadrc/archive/22e87600ce613001b9eb5d0797b09fd33d2e91d1.tar.gz",
+        "url": "https://github.com/pjones/xmonadrc/archive/ca132f4088aa048885a9d9e30537458b7da30467.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/zshrc": {
