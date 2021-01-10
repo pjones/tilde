@@ -31,7 +31,7 @@
           {
             name = "Treadmill Docking Station";
             outputs_connected = [ treadmill ];
-            configure_single = "${external}@1920x1080";
+            configure_single = external;
           }
           {
             name = "Dual Monitors";
