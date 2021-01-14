@@ -156,10 +156,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "46671cf50848b6714a6aef6c3728b031f9c29adb",
-        "sha256": "1cdjdf70255m568p7kidkdyhlnr8fjakp3xdq2ksjgxg3msxpilr",
+        "rev": "15d81b95013ec3e766e533c1ac2da1370c77ad52",
+        "sha256": "0nfjl2bbggcv6glfdc4grsx93d6jw5asw21nzscgivi1kp0f6sp8",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/46671cf50848b6714a6aef6c3728b031f9c29adb.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/15d81b95013ec3e766e533c1ac2da1370c77ad52.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -264,10 +264,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "xmonadrc",
-        "rev": "ca132f4088aa048885a9d9e30537458b7da30467",
-        "sha256": "1s68l27m6zqdpv3p9wxrx8ipnbn1psk3cwxj064smhx0xp8pxrvs",
+        "rev": "df3e419059aa5d4a807caa086cfcc61599a3402e",
+        "sha256": "174c6bh6vv9qib51n7pb41gf4yzhwlw724zg9x69gillw651z7vx",
         "type": "tarball",
-        "url": "https://github.com/pjones/xmonadrc/archive/ca132f4088aa048885a9d9e30537458b7da30467.tar.gz",
+        "url": "https://github.com/pjones/xmonadrc/archive/df3e419059aa5d4a807caa086cfcc61599a3402e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/zshrc": {
