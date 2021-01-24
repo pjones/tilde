@@ -102,4 +102,7 @@ in
 
   # A wrapper around chromium:
   chromium-launcher = super.callPackage ../pkgs/chromium-launcher.nix { };
+
+  # Visual Studio Code (yuck):
+  vscode = import ../pkgs/vscode.nix;
 }

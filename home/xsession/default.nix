@@ -112,6 +112,8 @@ in
       # Network
       chromium-launcher
       firefox
+      krdc
+      signal-desktop
       slack
       tilde-scripts-browser
 
@@ -136,6 +138,7 @@ in
       prusa-slicer
       qcad
       qmapshack
+      vscode
       xournal
     ];
   };
