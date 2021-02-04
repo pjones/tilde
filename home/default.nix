@@ -16,6 +16,9 @@
   };
 
   config = lib.mkIf config.tilde.enable {
+    # Ensure consistent behavior:
+    home.stateVersion = "20.09";
+
     nixpkgs = {
       config.allowUnfree = true;
       config.android_sdk.accept_license = true;
