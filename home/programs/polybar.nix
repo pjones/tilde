@@ -146,16 +146,15 @@ in
           type = "internal/xworkspaces";
           pin-workspaces = false;
           format = iconOkay "" + " <label-state>";
-          label-active = "%{F${colors.active}}%index%%{F-}";
+          label-active = "%name% [%index%]";
           label-active-padding = 1;
-          label-active-underline = colors.active;
-          label-occupied = "%{F${colors.foreground}}%index%%{F-}";
-          label-occupied-padding = 1;
-          label-urgent = "%{F${colors.alert}}%index%%{F-}";
+          label-urgent = "%{F${colors.alert}}%name%%{F-}";
           label-urgent-padding = 2;
           label-urgent-underline = colors.alert;
-          label-empty = "%{F${colors.foreground-dim}}%index%%{F-}";
-          label-empty-padding = 1;
+          label-occupied = "";
+          label-occupied-padding = 0;
+          label-empty = "";
+          label-empty-padding = 0;
         };
 
         # https://github.com/polybar/polybar/wiki/Module:-xwindow
