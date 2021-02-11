@@ -41,8 +41,11 @@ in
       windowManager.command = ''
         ${xdg-set-up}
 
-        # Set initial background image:
-        ${pkgs.feh}/bin/feh --bg-fill --no-fehbg ${images.login}
+        # Set initial background image when not using a wallpaper service:
+        if [ "${toString config.tilde.xsession.wallpaper.enable}" -ne 1 ] ||
+           [ ! -d "${config.tilde.xsession.wallpaper.directory}" ]; then
+          ${pkgs.feh}/bin/feh --bg-fill --no-fehbg ${images.login}
+        fi
 
         # Launch my window manager:
         ${pkgs.pjones.xmonadrc.bin}/bin/xmonadrc
