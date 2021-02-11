@@ -45,7 +45,6 @@ in
       moc
       mpc_cli
       mpg123
-      ncmpcpp
 
       # Document Conversion:
       pandoc
