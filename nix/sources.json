@@ -78,10 +78,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0cfd08f4881bbfdaa57e68835b923d4290588d98",
-        "sha256": "1srd9p37jmrsxgvrxvlibmscphz5p42244285yc5piacvrz1rdcc",
+        "rev": "d4c29df154dc6397ea47a7ed7dd0450a46dd4695",
+        "sha256": "015xcdirr9vh49dszgfb2rayr6mqscmmv2d3dh99ghv8gjcv050y",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/0cfd08f4881bbfdaa57e68835b923d4290588d98.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/d4c29df154dc6397ea47a7ed7dd0450a46dd4695.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oreo-cursors": {
@@ -156,10 +156,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "8d548c02a1686de0747939150438e6efa551b5a8",
-        "sha256": "1arl31s4kwwmarznrpyqjsz0yy024jpmc61xyfw763h3msa7fcvc",
+        "rev": "dd4139aa7dacc9fb55759e6dea19a8a631abbad8",
+        "sha256": "04k731d125sszki5d3nk5w2ic1jj38bmb1smnlcbg37xddn5x2n0",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/8d548c02a1686de0747939150438e6efa551b5a8.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/dd4139aa7dacc9fb55759e6dea19a8a631abbad8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -264,10 +264,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "xmonadrc",
-        "rev": "678c671706ced2f53ccd59a47dae5491fb80056c",
-        "sha256": "04rwwwipkbsh5xl7gpwbz5iq0j2izjhmmn5hxrm5gfpdahh9l440",
+        "rev": "d8a0d10f0a5a41917b2a4553ce542527aaf6e939",
+        "sha256": "1qndfi8gyb0mni4610brz5fdck8rl0y0wr7jfkzhp9jyfwvwyv95",
         "type": "tarball",
-        "url": "https://github.com/pjones/xmonadrc/archive/678c671706ced2f53ccd59a47dae5491fb80056c.tar.gz",
+        "url": "https://github.com/pjones/xmonadrc/archive/d8a0d10f0a5a41917b2a4553ce542527aaf6e939.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/zshrc": {
@@ -310,6 +310,18 @@
         "sha256": "0kf9dzwskr7a55x5vqjavpn1dzqv8kypmn09srzyzbjssyy710cf",
         "type": "tarball",
         "url": "https://github.com/EliverLara/Sweet/archive/85830477831aef0dbc77d8c6fc9484485092f434.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "treesheets": {
+        "branch": "master",
+        "description": "TreeSheets : Free Form Data Organizer (see treesheets.com)",
+        "homepage": "",
+        "owner": "aardappel",
+        "repo": "treesheets",
+        "rev": "7c4ad33542b709b3d73efc35a7899a04ab436750",
+        "sha256": "06sdfb3042z2k45ab4yqx5ql8ac7sdsmvciyazhhbsmy777z0fy2",
+        "type": "tarball",
+        "url": "https://github.com/aardappel/treesheets/archive/7c4ad33542b709b3d73efc35a7899a04ab436750.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

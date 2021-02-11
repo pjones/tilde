@@ -118,6 +118,7 @@ in
       krdc
       signal-desktop
       slack
+      tdesktop
       tilde-scripts-browser
 
       # Audio/Video
@@ -130,6 +131,7 @@ in
 
       # Creative
       darktable
+      dia
       gdal
       gimp
       gwenview
