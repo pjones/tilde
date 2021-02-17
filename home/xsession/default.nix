@@ -120,6 +120,7 @@ in
       slack
       tdesktop
       tilde-scripts-browser
+      zulip
 
       # Audio/Video
       cantata
