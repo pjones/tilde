@@ -52,7 +52,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf false /* FIXME: cfg.enable */ {
     services.udev.extraRules =
       lib.concatMapStringsSep "\n"
         (kbd:
