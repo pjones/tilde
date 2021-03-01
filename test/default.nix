@@ -15,7 +15,9 @@ pkgs.nixosTest {
   name = "${user.name}-account";
 
   nodes = {
-    tilde = { ... }@args: virtual.tilde args // {
+    tilde = { ... }: {
+      imports = [ virtual.tilde ];
+
       services.xserver.displayManager.defaultSession = "xmonad";
       services.xserver.displayManager.autoLogin = {
         enable = true;
@@ -63,6 +65,12 @@ pkgs.nixosTest {
 
     with subtest("Verify activation script created some links"):
         tilde.succeed("test -L ${user.home}/.cache/emacs/bookmarks")
+
+    with subtest("Cron job emulation"):
+        tilde.require_unit_state("crontab-${user.name}-test-job.timer", "active")
+        tilde.start_job("crontab-${user.name}-test-job.service")
+        tilde.wait_for_file("/tmp/crontab-test-job")
+        tilde.succeed("test $(stat --format=%U /tmp/crontab-test-job) = ${user.name}")
 
     with subtest("Wait for login"):
         tilde.wait_for_file("${user.home}/.Xauthority")

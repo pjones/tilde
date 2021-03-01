@@ -13,6 +13,7 @@ in
 {
   #### Additional Files:
   imports = [
+    ./crontab.nix
     ./keyboard.nix
     ./workstation.nix
     ./xsession.nix

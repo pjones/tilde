@@ -16,6 +16,11 @@
     networking.domain = "devalot.com";
     tilde.xsession.enable = true;
 
+    tilde.crontab.test-job = {
+      schedule = "minutely";
+      script = "touch /tmp/crontab-test-job";
+    };
+
     users.users.${config.tilde.username}.password = "password";
     virtualisation.libvirtd.enable = lib.mkForce false;
     virtualisation.docker.enable = lib.mkForce false;
@@ -26,6 +31,7 @@
           "BC:A8:A6:7D:A5:77"
         ];
       };
+
     };
   };
 }

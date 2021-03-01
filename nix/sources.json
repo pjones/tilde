@@ -165,8 +165,20 @@
     "pjones/encryption-utils": {
         "ref": "master",
         "repo": "https://github.com/pjones/encryption-utils.git",
-        "rev": "dd802939b134e2908b4eecd856a66425ef80688b",
+        "rev": "0e1a341d0409cc37767678fe19b94ffb7db115dd",
         "type": "git"
+    },
+    "pjones/image-scripts": {
+        "branch": "trunk",
+        "description": "Peter's image scripts",
+        "homepage": null,
+        "owner": "pjones",
+        "repo": "image-scripts",
+        "rev": "f2952eecdb65f28b03f364cd617626d28ac18867",
+        "sha256": "03kppk7c1gzxd0yc9a5dyq73bxpfyycjcr0cr955msxf03i24lma",
+        "type": "tarball",
+        "url": "https://github.com/pjones/image-scripts/archive/f2952eecdb65f28b03f364cd617626d28ac18867.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/inhibit-screensaver": {
         "branch": "master",

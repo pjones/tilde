@@ -22,6 +22,7 @@ let
     openssh
     openssl
     pjones.network-scripts
+    pjones.image-scripts
     pwgen
     rdiff-backup
     rsync

@@ -8,6 +8,14 @@
 
   tilde.xsession.enable = true;
 
+  tilde.crontab = {
+    image-import = {
+      schedule = "*-*-* 01:15:00";
+      path = [ pkgs.pjones.image-scripts ];
+      script = "image-import -v";
+    };
+  };
+
   home-manager.users.pjones = { ... }: {
     tilde.programs.oled-display.arduino.enable = true;
     tilde.programs.ssh.keysDir = "~/keys/ssh";
