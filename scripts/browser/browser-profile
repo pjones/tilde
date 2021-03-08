@@ -22,7 +22,7 @@ fi
 profile=$1
 shift
 
-chromium \
-  "--user-data-dir=$HOME/.config/chromium-$profile" \
-  "--class=chromium-$profile" \
+browser \
+  "--user-data-dir=$HOME/.config/browser-$profile" \
+  "--class=browser-$profile" \
   "$@"

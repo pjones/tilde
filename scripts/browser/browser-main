@@ -10,7 +10,8 @@ best_window_id=
 best_window_width=0
 
 readarray -t windows < <(
-  xdotool search --desktop "$desktop" --class Chromium |
+  wmctrl -l |
+    awk --assign desktop="$desktop" '$2 == desktop { print $1 }' |
     browser-filter
 )
 
@@ -27,7 +28,7 @@ for window in "${windows[@]}"; do
 done
 
 if [ -n "$best_window_id" ]; then
-  # Just to the correct desktop and window:
+  # Use the correct desktop and window:
   wmctrl -ia "$best_window_id"
 
   # Try to convince chromium to use this window next:
@@ -36,4 +37,4 @@ else
   wmctrl -s "$desktop"
 fi
 
-chromium "$@"
+browser "$@"

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -eu
+set -o pipefail
+
+# Call the configured browser.  Maybe one day this will map arguments
+# so if I'm not using a chromium-based browser I can still use
+# chromium-like arguments.
+
+brave "$@"

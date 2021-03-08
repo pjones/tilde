@@ -15,6 +15,7 @@ let
 in
 {
   imports = [
+    ./browser.nix
     ./lock.nix
     ./theme.nix
     ./wallpaper.nix
@@ -113,6 +114,7 @@ in
       xtitle
 
       # Network
+      brave
       chromium-launcher
       firefox
       krdc

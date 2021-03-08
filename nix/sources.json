@@ -78,10 +78,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d4c29df154dc6397ea47a7ed7dd0450a46dd4695",
-        "sha256": "015xcdirr9vh49dszgfb2rayr6mqscmmv2d3dh99ghv8gjcv050y",
+        "rev": "f26c6ddc472d63418ea9117832d40912407f4abf",
+        "sha256": "01hv2hyaq4n41d2bfp0cdrfk80ykniszj5563w8ryv887d829d5g",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/d4c29df154dc6397ea47a7ed7dd0450a46dd4695.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/f26c6ddc472d63418ea9117832d40912407f4abf.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oreo-cursors": {
@@ -276,10 +276,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "xmonadrc",
-        "rev": "ba29f929d759e87e0c156accbdf2fb153706ff45",
-        "sha256": "0rg5hf2z3243ab7bdlivsy20gdl205nya4ci19i4c7w5k82anxj8",
+        "rev": "392d9a77e2fdf2ceaf8a0f8cdfef77f68e6c1b7c",
+        "sha256": "1qkzzy3clqr306fwg66zmp2c28sd555q8wv5qf7yz1zwz7rsh8nl",
         "type": "tarball",
-        "url": "https://github.com/pjones/xmonadrc/archive/ba29f929d759e87e0c156accbdf2fb153706ff45.tar.gz",
+        "url": "https://github.com/pjones/xmonadrc/archive/392d9a77e2fdf2ceaf8a0f8cdfef77f68e6c1b7c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/zshrc": {
