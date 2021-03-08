@@ -156,10 +156,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "fdcde14afd40419ee9ea0378e0b8c85a55a69292",
-        "sha256": "0aqlsp0xh2nvjhcfk1gihmw19qmy84lnf1mksyzfxxqk0vmg4h9a",
+        "rev": "d05e1c43c0a60904f836040fab25fd3a759a6722",
+        "sha256": "0pz4yvgai4k77ghqiyg0r7iif2nvarhkw9x6108x3aw87j9xn96a",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/fdcde14afd40419ee9ea0378e0b8c85a55a69292.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/d05e1c43c0a60904f836040fab25fd3a759a6722.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -195,7 +195,7 @@
     "pjones/network-scripts": {
         "ref": "master",
         "repo": "https://github.com/pjones/network-scripts.git",
-        "rev": "edc5bae83110d275166d8925d24c793e812a8a53",
+        "rev": "4eea5f9893150e006680b7ce91d723e06e1ad36c",
         "type": "git"
     },
     "pjones/oled-display": {
@@ -276,10 +276,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "xmonadrc",
-        "rev": "392d9a77e2fdf2ceaf8a0f8cdfef77f68e6c1b7c",
-        "sha256": "1qkzzy3clqr306fwg66zmp2c28sd555q8wv5qf7yz1zwz7rsh8nl",
+        "rev": "2b2480bb8188398adb8df052fd25fed02381b8d1",
+        "sha256": "04gp7f0mvk7fx6k215v84knka8vrflib9r7bvaj37bqhhy2338gq",
         "type": "tarball",
-        "url": "https://github.com/pjones/xmonadrc/archive/392d9a77e2fdf2ceaf8a0f8cdfef77f68e6c1b7c.tar.gz",
+        "url": "https://github.com/pjones/xmonadrc/archive/2b2480bb8188398adb8df052fd25fed02381b8d1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/zshrc": {
