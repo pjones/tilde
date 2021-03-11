@@ -120,7 +120,6 @@ in
       krdc
       signal-desktop
       slack
-      tdesktop
       tilde-scripts-browser
       zulip
 
