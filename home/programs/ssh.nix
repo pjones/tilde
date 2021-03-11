@@ -79,7 +79,7 @@ in
             identityFile = keys.scors;
           };
 
-          "rfaextutl01" = {
+          "epa-util01" = {
             proxyJump = "scgateway";
             identityFile = keys.scors;
           };
