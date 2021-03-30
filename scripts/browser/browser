@@ -7,4 +7,8 @@ set -o pipefail
 # so if I'm not using a chromium-based browser I can still use
 # chromium-like arguments.
 
-brave "$@"
+if [ -n "${BROWSER:-}" ]; then
+  "$BROWSER" "$@"
+else
+  brave "$@"
+fi

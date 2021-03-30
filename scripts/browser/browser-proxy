@@ -1,0 +1,137 @@
+#!/usr/bin/env bash
+
+################################################################################
+set -eu
+set -o pipefail
+
+################################################################################
+usage() {
+  cat <<EOF
+Usage: $(basename "$0") [options] -- [browser arguments]
+
+Create a SOCKS proxy via an SSH connection and open a browser using that proxy.
+
+  -C      Use Chromium instead of the default browser
+  -D      Don't delete existing browser profile before starting
+  -H NAME The SSH host to proxy through
+  -P NUM  Use local port NUM for the proxy [$option_port]
+  -p NAME The browser profile to use [$option_profile]
+  -h      This message
+
+EOF
+}
+
+################################################################################
+option_port=12345
+option_profile=proxy
+option_host=
+option_delete_existing=1
+option_use_chromium=0
+
+################################################################################
+ssh_pid=
+
+################################################################################
+cleanup() {
+  if [ -n "$ssh_pid" ]; then
+    kill "$ssh_pid"
+  fi
+}
+trap cleanup EXIT
+
+################################################################################
+wait_for_browser() {
+  local class="browser-$option_profile"
+  local pid
+
+  pid=$(
+    xdotool search --class "$class" getwindowpid %@ |
+      sort -u |
+      head -1
+  )
+
+  if [ -n "$pid" ]; then
+    while kill -s 0 "$pid" 2 >/dev/null &>1; do
+      sleep 30
+    done
+  fi
+}
+
+################################################################################
+start_proxy() {
+  ssh \
+    -C -N \
+    -D "127.0.0.1:$option_port" \
+    "$option_host" &
+
+  ssh_pid=$!
+}
+
+################################################################################
+start_browser() {
+  local profile_options=()
+  local browser_options=("--proxy-server=socks5://127.0.0.1:$option_port")
+
+  if [ "$option_delete_existing" -eq 1 ]; then
+    profile_options+=("-D")
+  fi
+
+  if [ "$option_use_chromium" ]; then
+    export BROWSER=chromium
+  fi
+
+  browser-profile \
+    "${profile_options[@]}" \
+    "$option_profile" \
+    -- "${browser_options[@]}" "$@"
+}
+
+################################################################################
+main() {
+  # Option arguments are in $OPTARG
+  while getopts "hCDH:P:p:" o; do
+    case "${o}" in
+    C)
+      option_use_chromium=1
+      ;;
+
+    D)
+      option_delete_existing=0
+      ;;
+
+    H)
+      option_host=$OPTARG
+      ;;
+
+    P)
+      option_port=$OPTARG
+      ;;
+
+    p)
+      option_profile=$OPTARG
+      ;;
+
+    h)
+      usage
+      exit
+      ;;
+
+    *)
+      exit 1
+      ;;
+    esac
+  done
+
+  shift $((OPTIND - 1))
+
+  if [ -z "$option_host" ]; then
+    echo >&2 "ERROR: missing -H option to set ssh host"
+    exit 1
+  fi
+
+  start_proxy
+  start_browser "$@"
+}
+
+################################################################################
+main "$@"

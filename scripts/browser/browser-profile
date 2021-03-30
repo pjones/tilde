@@ -7,12 +7,34 @@ set -o pipefail
 
 usage() {
   cat <<EOF
-Usage: $(basename "$0") <profile> [options]
+Usage: $(basename "$0") [options] <profile> -- [browser options]
 
+  -D      Delete an existing profile directory before staring
   -h      This message
 
 EOF
 }
+
+option_delete_existing=0
+
+while getopts "D:h" o; do
+  case "${o}" in
+  D)
+    option_delete_existing=1
+    ;;
+
+  h)
+    usage
+    exit
+    ;;
+
+  *)
+    exit 1
+    ;;
+  esac
+done
+
+shift $((OPTIND - 1))
 
 if [ $# -eq 0 ]; then
   echo >&2 "ERROR: missing profile name"
@@ -22,7 +44,17 @@ fi
 profile=$1
 shift
 
+if [ "$#" -ge 1 ] && [ "$1" = "--" ]; then
+  shift
+fi
+
+dir="$HOME/.config/browser-$profile"
+
+if [ "$option_delete_existing" -eq 1 ]; then
+  rm -rf "$dir"
+fi
+
 browser \
-  "--user-data-dir=$HOME/.config/browser-$profile" \
+  "--user-data-dir=$dir" \
   "--class=browser-$profile" \
   "$@"
