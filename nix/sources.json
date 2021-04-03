@@ -78,10 +78,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f26c6ddc472d63418ea9117832d40912407f4abf",
-        "sha256": "01hv2hyaq4n41d2bfp0cdrfk80ykniszj5563w8ryv887d829d5g",
+        "rev": "42a03e4728fc05cb9f123057670e41967f628360",
+        "sha256": "0wrn5nayxckj11z2qlvsya2lzssbccbk50llxmgdm0qb5y14shfk",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/f26c6ddc472d63418ea9117832d40912407f4abf.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/42a03e4728fc05cb9f123057670e41967f628360.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oreo-cursors": {

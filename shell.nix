@@ -5,16 +5,16 @@ let
   inherit (pkgs) lib;
 
   nix_path = {
-    nixpkgs = sources.nixpkgs.url;
-    home-manager = sources.home-manager.url;
-    nix-on-droid = sources.nix-on-droid.url;
+    nixpkgs = sources.nixpkgs;
+    home-manager = sources.home-manager;
+    nix-on-droid = sources.nix-on-droid;
   };
 in
 pkgs.mkShell {
   name = "tilde-shell";
 
   buildInputs =
-    [ pkgs.git ]
+    [ pkgs.git pkgs.niv ]
     ++ lib.optional (pkgs.system == "x86_64-linux") pkgs.nixops
     ++ lib.optional (pkgs.system == "aarch64-linux") pkgs.nix-on-droid;
 
