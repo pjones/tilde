@@ -37,15 +37,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-on-droid": {
-        "branch": "release-20.03",
+        "branch": "release-20.09",
         "description": "Nix-enabled environment for your Android device.",
         "homepage": "https://nix-on-droid.unboiled.info",
         "owner": "t184256",
         "repo": "nix-on-droid",
-        "rev": "b6514583c05999f8f06466b79b1faa466a257ad5",
-        "sha256": "1nxdzcswpz289bkzl7hnm779pz0v7j4irmrymxbky5nfqj23x9nn",
+        "rev": "0dec5d4c97838e5fa853dca934806b26807199c6",
+        "sha256": "1cknwhj222x51g9wbk5nf077clqfnsfv4hyrfzyyghz0xrym4xis",
         "type": "tarball",
-        "url": "https://github.com/t184256/nix-on-droid/archive/b6514583c05999f8f06466b79b1faa466a257ad5.tar.gz",
+        "url": "https://github.com/t184256/nix-on-droid/archive/0dec5d4c97838e5fa853dca934806b26807199c6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixops": {
