@@ -6,7 +6,7 @@ in
 {
   options.tilde.programs.ssh = {
     keysDir = lib.mkOption {
-      type = lib.types.nullOr lib.types.str;
+      type = lib.types.str;
       default = "~/.ssh";
       description = "Directory where SSH private keys are stored";
     };
