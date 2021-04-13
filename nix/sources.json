@@ -78,10 +78,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "42a03e4728fc05cb9f123057670e41967f628360",
-        "sha256": "0wrn5nayxckj11z2qlvsya2lzssbccbk50llxmgdm0qb5y14shfk",
+        "rev": "cce26cd83d20356ee96ac9cf1de748e87fcc50b5",
+        "sha256": "0ji00jz18fvppbi5y98gcalxq2mrsg7dhh9l64yf38jpb5rx3sd4",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/42a03e4728fc05cb9f123057670e41967f628360.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/cce26cd83d20356ee96ac9cf1de748e87fcc50b5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oreo-cursors": {
@@ -156,10 +156,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "92e57dca9e2b834a970365b20be1bf9c1b384c81",
-        "sha256": "0zl8p0yh9q56j5zsbl9rfs6il3g58ds2aav9c64mjz1wca787p14",
+        "rev": "afb1ceba0893debcc55e7cd910e5a5c3bb1cdbeb",
+        "sha256": "0gmzp88dkh8cf46285qhilvjnxd7ds8rma9rpw7chfj7ps43pib7",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/92e57dca9e2b834a970365b20be1bf9c1b384c81.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/afb1ceba0893debcc55e7cd910e5a5c3bb1cdbeb.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
