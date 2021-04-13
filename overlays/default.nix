@@ -74,11 +74,11 @@ in
 
   # NixOps is currently broken:
   # https://github.com/NixOS/nixops/issues/1216
-  nixops = (super.callPackage "${sources.nixops}/release.nix" {
-    p = _: [
-      (super.callPackage "${sources.nixops-libvirtd}/release.nix" { })
-    ];
-  }).build.${super.system};
+  # nixops = (super.callPackage "${sources.nixops}/release.nix" {
+  #   p = _: [
+  #     (super.callPackage "${sources.nixops-libvirtd}/release.nix" { })
+  #   ];
+  # }).build.${super.system};
 
   # Custom hooks:
   tildeInstallScripts = super.makeSetupHook
