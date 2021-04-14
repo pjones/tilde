@@ -156,10 +156,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "afb1ceba0893debcc55e7cd910e5a5c3bb1cdbeb",
-        "sha256": "0gmzp88dkh8cf46285qhilvjnxd7ds8rma9rpw7chfj7ps43pib7",
+        "rev": "716b62be370f3eb2cd04ca23b5a5d62fc9d29417",
+        "sha256": "187xfai7sgqd78p87jfqnc55vdgl4bj1sy6xnhvcmp1dh0zlsgm5",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/afb1ceba0893debcc55e7cd910e5a5c3bb1cdbeb.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/716b62be370f3eb2cd04ca23b5a5d62fc9d29417.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
