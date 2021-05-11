@@ -8,17 +8,9 @@ set -o pipefail
 name=sidebar
 
 if [ $# -gt 0 ]; then
-  # When opening a URL first bring any existing sidebar windows to the
-  # current workspace and give them input focus.
-  matching_window=$(
-    (xdo id -N "browser-$name" || :) |
-      browser-filter |
-      head -1
-  )
-
-  if [ -n "$matching_window" ]; then
-    wmctrl -iR "$matching_window"
-  fi
+  # When opening a URL in the sidebar browser first ensure that
+  # virtual monitor is displayed:
+  hlwm-scratchpads.sh browser-sidebar
 fi
 
 # Now send all arguments to the browser-profile script:

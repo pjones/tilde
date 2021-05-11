@@ -17,7 +17,7 @@ without having to tweak files by hand or in GUI settings tools.
 
   * Linux Distribution: [NixOS][nix]
 
-  * Window Manager: [XMonad](https://github.com/pjones/xmonadrc)
+  * Window Manager: [Herbstluftwm](https://github.com/pjones/hlwmrc)
 
   * Terminal: Konsole with [tmux](https://github.com/pjones/tmuxrc)
 

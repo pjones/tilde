@@ -49,7 +49,7 @@ in
         fi
 
         # Launch my window manager:
-        ${pkgs.pjones.xmonadrc.bin}/bin/xmonadrc
+        ${pkgs.pjones.hlwmrc}/libexec/hlwmrc
       '';
     };
 
@@ -80,19 +80,14 @@ in
       enable = true;
       blur = true;
       fade = true;
-      shadow = true;
-      shadowExclude = [ "focused = 0" ];
-
-      extraOptions = ''
-        shadow-red   = 0;
-        shadow-green = 0.91;
-        shadow-blue  = 0.78;
-        xinerama-shadow-crop = true;
-      '';
+      inactiveDim = "0.4";
     };
 
     # Extra programs to install:
     home.packages = with pkgs; [
+      # Window manager scripts
+      pjones.hlwmrc
+
       # Desktop
       calibre
       glabels
@@ -117,7 +112,7 @@ in
       brave
       chromium-launcher
       firefox
-      krdc
+      remmina
       signal-desktop
       slack
       tilde-scripts-browser

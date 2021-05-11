@@ -18,7 +18,7 @@ pkgs.nixosTest {
     tilde = { ... }: {
       imports = [ virtual.tilde ];
 
-      services.xserver.displayManager.defaultSession = "xmonad";
+      services.xserver.displayManager.defaultSession = "xsession";
       services.xserver.displayManager.autoLogin = {
         enable = true;
         user = user.name;
@@ -76,13 +76,14 @@ pkgs.nixosTest {
         tilde.wait_for_file("${user.home}/.Xauthority")
         tilde.succeed("xauth merge ${user.home}/.Xauthority")
 
-    with subtest("Check xmonad started"):
-        tilde.wait_until_succeeds("pgrep xmonadrc")
+    with subtest("Check window manager started"):
+        tilde.wait_until_succeeds("pgrep herbstluftwm")
         tilde.sleep(3)
 
     with subtest("Launch terminal"):
-        tilde.execute("su - ${user.name} -c 'DISPLAY=:0.0 konsole --hold -e neofetch &'")
+        tilde.execute("su - ${user.name} -c 'DISPLAY=:0 konsole --hold -e neofetch &'")
         tilde.wait_for_window("konsole")
+        tilde.execute("su - ${user.name} -c 'DISPLAY=:0 hlwm-monitor-padding.sh'")
 
     with subtest("Wait to get a screenshot"):
         tilde.sleep(3)

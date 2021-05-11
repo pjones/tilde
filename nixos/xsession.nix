@@ -35,7 +35,7 @@ in
 
       # Add a custom desktop session:
       desktopManager.session = lib.singleton {
-        name = "xmonad";
+        name = "xsession";
         enable = true;
         start = "exec $HOME/.xsession";
       };
