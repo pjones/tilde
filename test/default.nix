@@ -81,9 +81,16 @@ pkgs.nixosTest {
         tilde.sleep(3)
 
     with subtest("Launch terminal"):
-        tilde.execute("su - ${user.name} -c 'DISPLAY=:0 konsole --hold -e neofetch &'")
+        tilde.copy_from_host(
+            "${./stage-for-screenshot.sh}",
+            "/tmp/stage.sh",
+        )
+        tilde.execute(
+            "su - ${user.name} -c 'DISPLAY=:0 herbstclient keybind Control-Alt-s spawn /tmp/stage.sh'"
+        )
+        tilde.sleep(1)
+        tilde.send_key("ctrl-alt-s")
         tilde.wait_for_window("konsole")
-        tilde.execute("su - ${user.name} -c 'DISPLAY=:0 hlwm-monitor-padding.sh'")
 
     with subtest("Wait to get a screenshot"):
         tilde.sleep(3)
