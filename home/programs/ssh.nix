@@ -8,7 +8,25 @@ in
     keysDir = lib.mkOption {
       type = lib.types.str;
       default = "~/.ssh";
-      description = "Directory where SSH private keys are stored";
+      description = "Directory where SSH private keys are stored.";
+    };
+
+    haveRestrictedKeys = lib.mkEnableOption ''
+      Does this host have access to the extra set of SSH keys that I
+      use to access restricted servers?
+    '';
+
+    rfa = {
+      enable = lib.mkEnableOption "SSH Settings for RFA";
+
+      vpnJumpHost = lib.mkOption {
+        type = lib.types.str;
+        description = ''
+          IP address (or host name) for a ProxyJump host that is
+          running a VPN that can then be used to SSH to internal RFA
+          servers.
+        '';
+      };
     };
   };
 
@@ -26,8 +44,6 @@ in
           ServerAliveCountMax 5
           TCPKeepAlive no
           IdentitiesOnly yes
-        ''
-        + lib.optionalString (cfg.keysDir != null) ''
           IdentityFile ${cfg.keysDir}/%l.id_ed25519
         ''
         + lib.optionalString config.tilde.programs.nixops.enable ''
@@ -40,7 +56,7 @@ in
           {
             "*.pmade.com" = pmade;
             "*.devalot.com" = pmade;
-
+          } // lib.optionalAttrs cfg.haveRestrictedKeys {
             "webmaster.ursula.pmade.com" = {
               inherit (pmade) port;
               hostname = "10.11.12.3";
@@ -65,7 +81,7 @@ in
         };
       };
     })
-    (lib.mkIf (config.tilde.enable && cfg.keysDir != null) {
+    (lib.mkIf (config.tilde.enable && cfg.haveRestrictedKeys && cfg.rfa.enable) {
       programs.ssh.matchBlocks =
         let keys = {
           scors = "${cfg.keysDir}/scors.id_rsa";
@@ -80,19 +96,13 @@ in
             identityFile = keys.code;
           };
 
-          "scgateway" = {
-            hostname = "198.202.228.119";
-            port = 2251;
-            identityFile = keys.scors;
-          };
-
           "epa-util01" = {
-            proxyJump = "scgateway";
+            proxyJump = cfg.rfa.vpnJumpHost;
             identityFile = keys.scors;
           };
 
           "cugateway" = {
-            proxyJump = "scgateway";
+            proxyJump = cfg.rfa.vpnJumpHost;
             identityFile = keys.scors;
           };
 

@@ -12,7 +12,10 @@
   home-manager.users.pjones = { ... }: {
     home.packages = with pkgs; [ grobi ];
 
-    tilde.programs.ssh.keysDir = "~/keys/ssh";
+    tilde.programs.ssh = {
+      keysDir = "~/keys/ssh";
+      haveRestrictedKeys = true;
+    };
 
     tilde.programs.polybar = {
       power.enable = true;

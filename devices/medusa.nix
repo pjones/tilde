@@ -18,7 +18,16 @@
 
   home-manager.users.pjones = { ... }: {
     tilde.programs.oled-display.arduino.enable = true;
-    tilde.programs.ssh.keysDir = "~/keys/ssh";
+
+    tilde.programs.ssh = {
+      keysDir = "~/keys/ssh";
+      haveRestrictedKeys = true;
+
+      rfa = {
+        enable = true;
+        vpnJumpHost = "192.168.122.95";
+      };
+    };
 
     tilde.xsession.lock = {
       bluetooth.devices = [
