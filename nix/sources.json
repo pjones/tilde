@@ -156,10 +156,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "ba1ddf6a77a623579989edbba595b86955e7d084",
-        "sha256": "1f1920igx62qpkjq2kprbjxm9lg6sbidxjs7chqhiywc9izwvh36",
+        "rev": "ea5306096eabb755d5510681d9d222e8565f8dac",
+        "sha256": "113y15km82h3ssqkvac3cj4cj2hgrkfhqccdc42cndawp1kkifg1",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/ba1ddf6a77a623579989edbba595b86955e7d084.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/ea5306096eabb755d5510681d9d222e8565f8dac.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -174,10 +174,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "hlwmrc",
-        "rev": "d4d75eed5aadc4160e84dc8095bdfd39f2b94b10",
-        "sha256": "0map2qbz51bvwdiixh24p8p9i0jiw32173h5jbk929p0yiqfrq6h",
+        "rev": "c1828fb3924f55c95fdec5a4d426c47b344b063c",
+        "sha256": "1hynr6nckcn3d229qd3h4yam1qqv9wn2228jb600ya2ynwxayfmz",
         "type": "tarball",
-        "url": "https://github.com/pjones/hlwmrc/archive/d4d75eed5aadc4160e84dc8095bdfd39f2b94b10.tar.gz",
+        "url": "https://github.com/pjones/hlwmrc/archive/c1828fb3924f55c95fdec5a4d426c47b344b063c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/image-scripts": {
