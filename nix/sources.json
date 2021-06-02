@@ -1,27 +1,14 @@
 {
-    "Font-Awesome": {
-        "branch": "master",
-        "description": "The iconic SVG, font, and CSS toolkit",
-        "homepage": "https://fontawesome.com",
-        "owner": "FortAwesome",
-        "ref": "5.13.1",
-        "repo": "Font-Awesome",
-        "rev": "1147d199a35293b391152ee85e2d30988439157f",
-        "sha256": "1qlh1bfczpg2p5flhdsbff404pig6yn885hdc74gic86ndzh954j",
-        "type": "tarball",
-        "url": "https://github.com/FortAwesome/Font-Awesome/archive/1147d199a35293b391152ee85e2d30988439157f.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "home-manager": {
-        "branch": "release-20.09",
+        "branch": "release-21.05",
         "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
-        "homepage": "https://rycee.gitlab.io/home-manager/",
+        "homepage": "https://nix-community.github.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "63f299b3347aea183fc5088e4d6c4a193b334a41",
-        "sha256": "0iksjch94wfvyq0cgwv5wq52j0dc9cavm68wka3pahhdvjlxd3js",
+        "rev": "90493027e33ba9eb3f50dc1da365d0e4ca31bf14",
+        "sha256": "0jnxpc1ywnccri1d3m7hqrmxzifi65dk1zyh9xdlbx1fjm4x6xr5",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/63f299b3347aea183fc5088e4d6c4a193b334a41.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/90493027e33ba9eb3f50dc1da365d0e4ca31bf14.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "neuron": {
@@ -73,15 +60,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
-        "branch": "nixos-20.09",
+        "branch": "nixos-21.05",
         "description": "Nix Packages collection",
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6e83cfb005c6281ab10e908f6386fe1499b67feb",
-        "sha256": "01ds518ri958d6mn5h7vj97cf91zgby3dprz6f7ilw6zrzcj0m3l",
+        "rev": "eaba7870ffc3400eca4407baa24184b7fe337ec1",
+        "sha256": "115disiz4b08iw46cidc7lm0advrxn5g2ldmlrxd53zf03skyb2w",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/6e83cfb005c6281ab10e908f6386fe1499b67feb.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/eaba7870ffc3400eca4407baa24184b7fe337ec1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oreo-cursors": {
@@ -96,12 +83,6 @@
         "url": "https://github.com/varlesh/oreo-cursors/archive/55a72167ea969c7e24914ce4502c6cddc90d253a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "pjones/addy": {
-        "ref": "master",
-        "repo": "https://github.com/pjones/addy.git",
-        "rev": "43d40dd5d0fc4e4b5f2068fa519c7357b31450e0",
-        "type": "git"
-    },
     "pjones/backup-scripts": {
         "ref": "master",
         "repo": "https://github.com/pjones/backup-scripts.git",
@@ -114,52 +95,22 @@
         "rev": "5a51de2762645bbf0eae16065723ed622a360102",
         "type": "git"
     },
-    "pjones/byline": {
-        "ref": "next",
-        "repo": "https://github.com/pjones/byline.git",
-        "rev": "08111eafffa2ffbc07cbc5efeb126c4c3d0e93c1",
-        "type": "git"
-    },
-    "pjones/cassava-streams": {
-        "ref": "master",
-        "repo": "https://github.com/pjones/cassava-streams.git",
-        "rev": "bd4d86d66a4de06bea475bf53bcc83e0efd3bcbc",
-        "type": "git"
-    },
-    "pjones/clockdown": {
-        "ref": "next",
-        "repo": "https://github.com/pjones/clockdown.git",
-        "rev": "bcd827827d4da761daf10e16ccb25c349701edf6",
-        "type": "git"
-    },
-    "pjones/devalot-backend": {
-        "ref": "next",
-        "repo": "https://github.com/pjones/devalot-backend.git",
-        "rev": "2efa9fe8d0bfdbdfcb1705e5910957b04d05664c",
-        "type": "git"
-    },
     "pjones/dns-scripts": {
         "ref": "master",
         "repo": "https://github.com/pjones/dns-scripts.git",
         "rev": "5c35350d19fb743de2d1a7e7c0045f6f9f05325a",
         "type": "git"
     },
-    "pjones/edify": {
-        "ref": "master",
-        "repo": "https://github.com/pjones/edify.git",
-        "rev": "ea2868f53e14553c027def99161606d511b382c0",
-        "type": "git"
-    },
     "pjones/emacsrc": {
-        "branch": "trunk",
+        "branch": "pjones/nixos-21.05",
         "description": "My Emacs configuration files",
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "ea5306096eabb755d5510681d9d222e8565f8dac",
-        "sha256": "113y15km82h3ssqkvac3cj4cj2hgrkfhqccdc42cndawp1kkifg1",
+        "rev": "65b2a26433a5bd7911dd96bc93c9c13e5b387dc2",
+        "sha256": "077v9bxznl29lsf64953rhsfkbw507hzpvvc4izn99mf2cssmc3l",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/ea5306096eabb755d5510681d9d222e8565f8dac.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/65b2a26433a5bd7911dd96bc93c9c13e5b387dc2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -222,40 +173,10 @@
         "url": "https://github.com/pjones/oled-display/archive/e2025eea05494300b5faafca2518f026a08ca4a3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "pjones/openid-connect": {
-        "ref": "next",
-        "repo": "https://github.com/sthenauth/openid-connect.git",
-        "rev": "73124b042b0ab4fb9560dd0e38f471a7b8f8ca97",
-        "type": "git"
-    },
-    "pjones/personal-webhooks": {
-        "ref": "master",
-        "repo": "https://github.com/pjones/personal-webhooks.git",
-        "rev": "597d2858b4517ba9eb0ddeaf5fd4f42f05eaa05c",
-        "type": "git"
-    },
-    "pjones/playlists": {
-        "ref": "master",
-        "repo": "https://github.com/pjones/playlists.git",
-        "rev": "e2dd4208bb6ce9090401f56d23b7899dfbc7e38d",
-        "type": "git"
-    },
-    "pjones/playlists-http": {
-        "ref": "master",
-        "repo": "https://github.com/pjones/playlists-http.git",
-        "rev": "30cd1944dda87ba147d9e589e6b30a76476679f3",
-        "type": "git"
-    },
     "pjones/rofirc": {
         "ref": "master",
         "repo": "https://github.com/pjones/rofirc.git",
         "rev": "4e0473a0e964739d1d708135ad4710eab0a29fbf",
-        "type": "git"
-    },
-    "pjones/themoviedb": {
-        "ref": "next",
-        "repo": "https://github.com/pjones/themoviedb.git",
-        "rev": "45d8345484c87ff9bfc17e4ee89779d4e0e93877",
         "type": "git"
     },
     "pjones/tmuxrc": {
@@ -265,51 +186,21 @@
         "type": "git"
     },
     "pjones/vimeta": {
-        "branch": "pjones/release",
+        "branch": "trunk",
         "description": "Frontend for video metadata tagging tools",
         "homepage": "",
         "owner": "pjones",
         "repo": "vimeta",
-        "rev": "7112c23556a40f922fa69b56e9d38f8fc0eedba5",
-        "sha256": "0jkhvqb6ni14l2ix0z0x8fcisa88616xy60nngy0dgd7gxrc29vq",
+        "rev": "8c24ebb4f8bd0926cca6cab32db34820121e0bde",
+        "sha256": "11rbirzq30jq7ldhja565xffxsrbs74gv4d9ar0dgpgnabw1jxd0",
         "type": "tarball",
-        "url": "https://github.com/pjones/vimeta/archive/7112c23556a40f922fa69b56e9d38f8fc0eedba5.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "pjones/wschat": {
-        "ref": "next",
-        "repo": "https://github.com/pjones/wschat.git",
-        "rev": "ae095b4eedff326b78ca4648aa156cf614bb04e1",
-        "type": "git"
-    },
-    "pjones/xmonadrc": {
-        "branch": "trunk",
-        "description": "My XMonad configuration",
-        "homepage": null,
-        "owner": "pjones",
-        "repo": "xmonadrc",
-        "rev": "9308c15de887b5a52017aec6b3e10a5d5cb1ae81",
-        "sha256": "0vnq8ldwkl2c6gcc4ljc3z6k0mkhfik3gj0adrfj7h41xizvzcw2",
-        "type": "tarball",
-        "url": "https://github.com/pjones/xmonadrc/archive/9308c15de887b5a52017aec6b3e10a5d5cb1ae81.tar.gz",
+        "url": "https://github.com/pjones/vimeta/archive/8c24ebb4f8bd0926cca6cab32db34820121e0bde.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/zshrc": {
         "ref": "master",
         "repo": "https://github.com/pjones/zshrc.git",
         "rev": "64aeb304eb7cca44d2dc6970d2a92271c1a64c22",
-        "type": "git"
-    },
-    "pjones/zxcvbn-dvorak": {
-        "ref": "next",
-        "repo": "https://github.com/sthenauth/zxcvbn-dvorak.git",
-        "rev": "6b58104fd345d0c161b0a35b92fa0b7c6d03a551",
-        "type": "git"
-    },
-    "pjones/zxcvbn-hs": {
-        "ref": "next",
-        "repo": "https://github.com/sthenauth/zxcvbn-hs.git",
-        "rev": "72dd8b711cd3de9125f4d070396a0c7f0175382a",
         "type": "git"
     },
     "polybar-scripts": {
@@ -334,18 +225,6 @@
         "sha256": "0kf9dzwskr7a55x5vqjavpn1dzqv8kypmn09srzyzbjssyy710cf",
         "type": "tarball",
         "url": "https://github.com/EliverLara/Sweet/archive/85830477831aef0dbc77d8c6fc9484485092f434.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "treesheets": {
-        "branch": "master",
-        "description": "TreeSheets : Free Form Data Organizer (see treesheets.com)",
-        "homepage": "",
-        "owner": "aardappel",
-        "repo": "treesheets",
-        "rev": "7c4ad33542b709b3d73efc35a7899a04ab436750",
-        "sha256": "06sdfb3042z2k45ab4yqx5ql8ac7sdsmvciyazhhbsmy777z0fy2",
-        "type": "tarball",
-        "url": "https://github.com/aardappel/treesheets/archive/7c4ad33542b709b3d73efc35a7899a04ab436750.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

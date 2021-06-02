@@ -103,7 +103,7 @@ in
       # Desktop
       calibre
       glabels
-      kdeApplications.spectacle
+      spectacle
       libnotify
       libreoffice
       pamixer

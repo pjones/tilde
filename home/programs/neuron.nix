@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   cfg = config.tilde.programs.neuron;
-  neuron = pkgs.haskellPackages.neuron;
+  neuron = pkgs.neuron-notes;
   bin = "${neuron}/bin/neuron";
   sport = toString cfg.port;
 

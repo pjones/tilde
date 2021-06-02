@@ -16,9 +16,6 @@ in
     '';
   };
 
-
-  # haskellPackages.neuron
-
   config = lib.mkIf cfg.enable {
     # Active some services/plugins:
     tilde.programs.mpd.enable = lib.mkDefault true;
@@ -38,7 +35,6 @@ in
       # beets (2020-04-24: broken)
       abcde
       atomicparsley
-      bs1770gain
       cdrkit # cdrecord, mkisofs, etc.
       ffmpeg
       lame

@@ -37,7 +37,7 @@ pkgs.nixosTest {
         # Force some packages to build to make sure they work even
         # though they were disabled above:
         home.packages = with pkgs; [
-          haskellPackages.neuron
+          neuron-notes
           mpd
           pjones.oled-display
           syncthing

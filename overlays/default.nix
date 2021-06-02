@@ -66,12 +66,6 @@ in
       (_: _: { neuron = import sources.neuron { }; });
   });
 
-  # Newer version of Font-Awesome:
-  font-awesome = super.font-awesome.overrideAttrs (_: {
-    name = "font-awesome-" + sources.Font-Awesome.ref;
-    src = sources.Font-Awesome;
-  });
-
   # NixOps is currently broken:
   # https://github.com/NixOS/nixops/issues/1216
   nixops-hacked = (super.callPackage "${sources.nixops}/release.nix" {
