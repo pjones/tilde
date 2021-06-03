@@ -23,7 +23,7 @@ let
 
     [MainWindow]
     MenuBar=Disabled
-    ToolBarsMovable=Disabled
+    State=AAAA/wAAAAD9AAAAAAAAA9QAAALEAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAIAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAAAAAAHABzAGUAcwBzAGkAbwBuAFQAbwBvAGwAYgBhAHIAAAAAAP////8AAAAAAAAAAA==
 
     [SearchSettings]
     SearchRegExpression=true
@@ -67,6 +67,7 @@ let
 in
 {
   config = lib.mkIf config.tilde.xsession.enable {
+    home.packages = [ pkgs.konsole ];
     home.file = {
       ".config/konsolerc".source = konsolerc;
       ".local/share/konsole/main.profile".source = profile;
