@@ -9,9 +9,6 @@ let
   # Set XDG environment variables to my liking:
   xdg-set-up = pkgs.writeScript "xdg-set-up"
     (lib.readFile ../../support/workstation/xdg.sh);
-
-  # Background images:
-  images = pkgs.callPackage ../misc/images.nix { };
 in
 {
   imports = [
@@ -28,30 +25,17 @@ in
   config = lib.mkIf cfg.enable {
     # Enable other xsession modules:
     tilde.programs.dunst.enable = lib.mkDefault true;
+    tilde.programs.herbstluftwm.enable = lib.mkDefault true;
+    tilde.programs.konsole.enable = lib.mkDefault true;
     tilde.programs.oled-display.enable = lib.mkDefault true;
     tilde.programs.polybar.enable = lib.mkDefault true;
     tilde.programs.rofi.enable = lib.mkDefault true;
+    tilde.xsession.lock.enable = lib.mkDefault true;
     tilde.xsession.theme.enable = lib.mkDefault true;
     tilde.xsession.wallpaper.enable = lib.mkDefault true;
 
     # Enabling an xsession also enables workstation settings:
     tilde.workstation.enable = true;
-
-    xsession = {
-      enable = true;
-      windowManager.command = ''
-        ${xdg-set-up}
-
-        # Set initial background image when not using a wallpaper service:
-        if [ "${toString config.tilde.xsession.wallpaper.enable}" -ne 1 ] ||
-           [ ! -d "${config.tilde.xsession.wallpaper.directory}" ]; then
-          ${pkgs.feh}/bin/feh --bg-fill --no-fehbg ${images.login}
-        fi
-
-        # Launch my window manager:
-        ${pkgs.pjones.hlwmrc}/libexec/hlwmrc
-      '';
-    };
 
     # Services to start when running X11:
     services.blueman-applet.enable = true;
@@ -97,9 +81,6 @@ in
 
     # Extra programs to install:
     home.packages = with pkgs; [
-      # Window manager scripts
-      pjones.hlwmrc
-
       # Desktop
       calibre
       glabels

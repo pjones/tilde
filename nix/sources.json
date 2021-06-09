@@ -5,10 +5,10 @@
         "homepage": "https://nix-community.github.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "90493027e33ba9eb3f50dc1da365d0e4ca31bf14",
-        "sha256": "0jnxpc1ywnccri1d3m7hqrmxzifi65dk1zyh9xdlbx1fjm4x6xr5",
+        "rev": "ab64dc32493996c24607eab2cae6663466ddfb8a",
+        "sha256": "1w7qxjibrjlqi7l293pnxxww1wxsq46wf3xbcpibys6g165s05f4",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/90493027e33ba9eb3f50dc1da365d0e4ca31bf14.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/ab64dc32493996c24607eab2cae6663466ddfb8a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "neuron": {
@@ -120,15 +120,15 @@
         "type": "git"
     },
     "pjones/hlwmrc": {
-        "branch": "trunk",
+        "branch": "pjones/nixos-21.05",
         "description": "Peter's herbstluftwm config",
         "homepage": null,
         "owner": "pjones",
         "repo": "hlwmrc",
-        "rev": "c1828fb3924f55c95fdec5a4d426c47b344b063c",
-        "sha256": "1hynr6nckcn3d229qd3h4yam1qqv9wn2228jb600ya2ynwxayfmz",
+        "rev": "78592faf5682597c3b1cf00ebf342ef52dd1dbeb",
+        "sha256": "1sbdaxpl8zw15cxdwy5zh9gzlf063lii4bz10i32r8dwfq7hxzqc",
         "type": "tarball",
-        "url": "https://github.com/pjones/hlwmrc/archive/c1828fb3924f55c95fdec5a4d426c47b344b063c.tar.gz",
+        "url": "https://github.com/pjones/hlwmrc/archive/78592faf5682597c3b1cf00ebf342ef52dd1dbeb.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/image-scripts": {
@@ -144,22 +144,28 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/inhibit-screensaver": {
-        "branch": "master",
+        "branch": "trunk",
         "description": "Inhibit the screensaver if a command exits successfully",
         "homepage": "",
         "owner": "pjones",
         "repo": "inhibit-screensaver",
-        "rev": "1befd52df7d6d3188eb761dcd1bfb1b9fbece825",
-        "sha256": "0zimm9c038ppcl1y2bvh6827arbinzfb7gbbvpb8kixqycyry8rv",
+        "rev": "b7d32ee5db201d285bbe0cc24dcd9a5692fbee55",
+        "sha256": "18cgf5jsl5y9yfzv04xk9ns802admmq1lx0n0vdx87a88yw4qh3f",
         "type": "tarball",
-        "url": "https://github.com/pjones/inhibit-screensaver/archive/1befd52df7d6d3188eb761dcd1bfb1b9fbece825.tar.gz",
+        "url": "https://github.com/pjones/inhibit-screensaver/archive/b7d32ee5db201d285bbe0cc24dcd9a5692fbee55.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/network-scripts": {
-        "ref": "master",
-        "repo": "https://github.com/pjones/network-scripts.git",
-        "rev": "4eea5f9893150e006680b7ce91d723e06e1ad36c",
-        "type": "git"
+        "branch": "master",
+        "description": null,
+        "homepage": null,
+        "owner": "pjones",
+        "repo": "network-scripts",
+        "rev": "f8fa5d6e2cd37c2563968003563ee7f5a52328b0",
+        "sha256": "0rpsjk73rw6f5zzl3bjq62d2q8h9hy817sn3p4k0hy3zrdh6b6wj",
+        "type": "tarball",
+        "url": "https://github.com/pjones/network-scripts/archive/f8fa5d6e2cd37c2563968003563ee7f5a52328b0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/oled-display": {
         "branch": "trunk",
@@ -167,10 +173,10 @@
         "homepage": "",
         "owner": "pjones",
         "repo": "oled-display",
-        "rev": "e2025eea05494300b5faafca2518f026a08ca4a3",
-        "sha256": "11wx0wg83a69whrpnmz501bngxfaw5xy0rpv66smji81jhby59z8",
+        "rev": "60825a182591354048988873b57109702cc6bd8f",
+        "sha256": "1cbnm1x2i2y2khfhx86l4xi832ai2jqnwmdrb94sbq1mf860mkws",
         "type": "tarball",
-        "url": "https://github.com/pjones/oled-display/archive/e2025eea05494300b5faafca2518f026a08ca4a3.tar.gz",
+        "url": "https://github.com/pjones/oled-display/archive/60825a182591354048988873b57109702cc6bd8f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/rofirc": {

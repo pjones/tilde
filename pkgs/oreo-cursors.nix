@@ -1,4 +1,5 @@
 { stdenvNoCC
+, lib
 , inkscape
 , xcursorgen
 }:
@@ -13,11 +14,11 @@ stdenvNoCC.mkDerivation rec {
     xcursorgen
   ];
 
-  meta = with stdenvNoCC.lib; {
+  meta = {
     description = "Color material cursors for your Linux desktop with cute animation.";
     homepage = "https://github.com/varlesh/oreo-cursors";
-    license = licenses.gpl2;
-    platforms = platforms.linux;
-    maintainers = with maintainers; [ pjones ];
+    license = lib.licenses.gpl2;
+    platforms = lib.platforms.linux;
+    maintainers = with lib.maintainers; [ pjones ];
   };
 }

@@ -70,7 +70,11 @@ cache_file() {
 
   if [ ! -e "$cache" ]; then
     mkdir -p "$(dirname "$cache")"
-    convert -resize "$width" "$image" "$cache"
+
+    convert \
+      -define colorspace:auto-grayscale=false \
+      -resize "$width" \
+      "$image" "$cache"
   fi
 
   echo "$cache"

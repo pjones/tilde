@@ -7,8 +7,8 @@
 {
   imports = [
     ./programs
-    ./xsession
     ./workstation
+    ./xsession
   ];
 
   options.tilde = {

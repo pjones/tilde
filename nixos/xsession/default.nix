@@ -7,6 +7,10 @@ let
   cfg = config.tilde.xsession;
 in
 {
+  imports = [
+    ./fonts.nix
+  ];
+
   options.tilde.xsession = {
     enable = lib.mkEnableOption ''
       Enable the X server and configure Peter's xsession.
@@ -16,8 +20,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # Enable workstation settings:
+    # Enable other settings:
     tilde.workstation.enable = true;
+    tilde.xsession.fonts.enable = true;
 
     # For setting GTK themes:
     services.dbus.packages = [ pkgs.gnome3.dconf ];
@@ -32,41 +37,15 @@ in
         enable = lib.mkDefault true;
         theme = "sweet-nova";
       };
-
-      # Add a custom desktop session:
-      desktopManager.session = lib.singleton {
-        name = "xsession";
-        enable = true;
-        start = "exec $HOME/.xsession";
-      };
     };
 
     # Let me remote in:
     services.openssh.forwardX11 = lib.mkForce true;
     programs.ssh.startAgent = false; # I use GnuPG Agent.
 
-    # Fonts:
-    fonts =
-      let
-        specs = import ../home/misc/fonts.nix { inherit pkgs; };
-        others = map (f: f.package) (lib.attrValues specs);
-      in
-      {
-        fontconfig.enable = true;
-        fontDir.enable = true;
-        enableGhostscriptFonts = true;
-
-        fonts = with pkgs; [
-          dejavu_fonts
-          emacs-all-the-icons-fonts
-          powerline-fonts
-          ubuntu_font_family
-        ] ++ others;
-      };
-
     environment.systemPackages = with pkgs; [
-      (callPackage ../pkgs/sweet-nova.nix { })
-      (callPackage ../pkgs/pjones-avatar.nix { })
+      (callPackage ../../pkgs/sweet-nova.nix { })
+      (callPackage ../../pkgs/pjones-avatar.nix { })
     ];
 
     # Bluetooth tools need to be installed as wrappers so normal users

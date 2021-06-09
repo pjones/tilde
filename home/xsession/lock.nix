@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  cfg = config.tilde.xsession;
+  cfg = config.tilde.xsession.lock;
   colors = import ../misc/colors.nix;
   images = pkgs.callPackage ../misc/images.nix { };
 
@@ -36,19 +36,21 @@ let
         xorg.xset
       ]);
       devices = lib.concatStringsSep " "
-        cfg.lock.bluetooth.devices;
+        cfg.bluetooth.devices;
     in
     pkgs.writeShellScript "inhibit-screensaver" ''
       export PATH=/run/wrappers/bin:${path}:$PATH
       exec >&2 # Redirect stdout to stderr
       ${pkgs.pjones.inhibit-screensaver.bin}/bin/inhibit-screensaver \
-        --frequency ${toString cfg.lock.bluetooth.frequency} \
+        --frequency ${toString cfg.bluetooth.frequency} \
         --query 'pgrep i3lock' \
         -- bluetooth-ping.sh ${devices}
     '';
 in
 {
   options.tilde.xsession.lock = {
+    enable = lib.mkEnableOption "Screen/session locker";
+
     bluetooth = {
       devices = lib.mkOption {
         type = lib.types.listOf lib.types.str;
@@ -103,7 +105,7 @@ in
 
     # Inhibit the screensaver while Bluetooth devices are nearby:
     systemd.user.services.lock-screen-inhibit =
-      lib.mkIf (cfg.lock.bluetooth.devices != [ ]) {
+      lib.mkIf (cfg.bluetooth.devices != [ ]) {
         Unit = {
           Description = "Inhibit the lock screen";
           After = [ "graphical-session-pre.target" ];

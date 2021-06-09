@@ -4,6 +4,8 @@
 , ...
 }:
 let
+  cfg = config.tilde.programs.konsole;
+
   fonts = import ../misc/fonts.nix { inherit pkgs; };
   consoleFont = lib.replaceStrings [ " " ] [ "," ] fonts.mono.name;
 
@@ -66,7 +68,11 @@ let
 
 in
 {
-  config = lib.mkIf config.tilde.xsession.enable {
+  options.tilde.programs.konsole = {
+    enable = lib.mkEnableOption "konsole terminal application";
+  };
+
+  config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.konsole ];
     home.file = {
       ".config/konsolerc".source = konsolerc;

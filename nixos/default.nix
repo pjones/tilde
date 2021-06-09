@@ -16,7 +16,7 @@ in
     ./crontab.nix
     ./keyboard.nix
     ./workstation.nix
-    ./xsession.nix
+    ./xsession
     ./yubikey.nix
   ];
 

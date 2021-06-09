@@ -18,6 +18,7 @@ in
 
   config = lib.mkIf cfg.enable {
     # Active some services/plugins:
+    tilde.programs.man.enable = lib.mkDefault true;
     tilde.programs.mpd.enable = lib.mkDefault true;
     tilde.programs.neuron.enable = lib.mkDefault true;
     tilde.programs.nixops.enable = true;

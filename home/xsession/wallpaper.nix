@@ -5,6 +5,7 @@
 }:
 let
   cfg = config.tilde.xsession.wallpaper;
+  images = pkgs.callPackage ../misc/images.nix { };
 in
 {
   options.tilde.xsession.wallpaper = {
@@ -25,5 +26,13 @@ in
       interval = "5m";
       enableXinerama = true;
     };
+
+    xsession.initExtra = ''
+      # Set initial background image when not using a wallpaper service:
+      if [ "${toString config.tilde.xsession.wallpaper.enable}" -ne 1 ] ||
+         [ ! -d "${config.tilde.xsession.wallpaper.directory}" ]; then
+        ${pkgs.feh}/bin/feh --bg-fill --no-fehbg ${images.login}
+      fi
+    '';
   };
 }
