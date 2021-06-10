@@ -65,10 +65,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "eaba7870ffc3400eca4407baa24184b7fe337ec1",
-        "sha256": "115disiz4b08iw46cidc7lm0advrxn5g2ldmlrxd53zf03skyb2w",
+        "rev": "60cce7e5e1fdf62421ef6d4184ee399b46209366",
+        "sha256": "100xrb925cana1kfd0c7gwkjjalq891vfgr0rn1gl9j8gp3l3gx6",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/eaba7870ffc3400eca4407baa24184b7fe337ec1.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/60cce7e5e1fdf62421ef6d4184ee399b46209366.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oreo-cursors": {
@@ -204,15 +204,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/rofirc": {
-        "branch": "master",
+        "branch": "pjones/nixos-21.05",
         "description": "Peter's rofi config",
         "homepage": null,
         "owner": "pjones",
         "repo": "rofirc",
-        "rev": "4e0473a0e964739d1d708135ad4710eab0a29fbf",
-        "sha256": "1av27d4i7r2djkzr81l9m4gnf6218q0n4cgghrjlbj5iv0s47mjs",
+        "rev": "235539d0a8e7384cecc9ae92deb25f81034d2fd3",
+        "sha256": "17kg3vb2dyaj32v7qirr0kx3kfv4hl7xsr54awsrvb2jnar6z8xr",
         "type": "tarball",
-        "url": "https://github.com/pjones/rofirc/archive/4e0473a0e964739d1d708135ad4710eab0a29fbf.tar.gz",
+        "url": "https://github.com/pjones/rofirc/archive/235539d0a8e7384cecc9ae92deb25f81034d2fd3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/tmuxrc": {
@@ -240,15 +240,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/zshrc": {
-        "branch": "master",
+        "branch": "pjones/nixos-21.05",
         "description": "Peter's `zsh` configuration files",
         "homepage": null,
         "owner": "pjones",
         "repo": "zshrc",
-        "rev": "64aeb304eb7cca44d2dc6970d2a92271c1a64c22",
-        "sha256": "1g94bkcr4d0h1ar1pzr9kf60v9gfsdfvbx8hymjn94djfdx9f8na",
+        "rev": "e4bf9a5ab998dbe36fe59514f52eb457b172a064",
+        "sha256": "0n9xid653q6a7ld9517f9z6yvvv3wc936bacs66dbsb6m8l2a084",
         "type": "tarball",
-        "url": "https://github.com/pjones/zshrc/archive/64aeb304eb7cca44d2dc6970d2a92271c1a64c22.tar.gz",
+        "url": "https://github.com/pjones/zshrc/archive/e4bf9a5ab998dbe36fe59514f52eb457b172a064.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "polybar-scripts": {

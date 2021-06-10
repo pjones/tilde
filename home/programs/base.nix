@@ -8,6 +8,7 @@ let
     cryptsetup
     curl
     file
+    fzf
     gawk
     gnugrep
     gnumake
@@ -21,8 +22,8 @@ let
     nix-prefetch-scripts
     openssh
     openssl
-    pjones.network-scripts
     pjones.image-scripts
+    pjones.network-scripts
     pwgen
     rdiff-backup
     rsync
