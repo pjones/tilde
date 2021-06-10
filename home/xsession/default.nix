@@ -6,9 +6,6 @@
 let
   cfg = config.tilde.xsession;
 
-  # Set XDG environment variables to my liking:
-  xdg-set-up = pkgs.writeScript "xdg-set-up"
-    (lib.readFile ../../support/workstation/xdg.sh);
 in
 {
   imports = [
@@ -77,6 +74,21 @@ in
           "_HLWMRC_TAGS@:s *?= 'visible-monitor'"
         ];
       '';
+    };
+
+    # Set XDG user directories:
+    xdg.userDirs = {
+      enable = true;
+      createDirectories = true;
+
+      desktop = "$HOME/desktop";
+      documents = "$HOME/documents";
+      download = "$HOME/download";
+      music = "$HOME/documents/music";
+      pictures = "$HOME/documents/pictures";
+      publicShare = "$HOME/public";
+      templates = "$HOME/documents/templates";
+      videos = "$HOME/documents/videos";
     };
 
     # Extra programs to install:
