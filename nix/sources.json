@@ -108,7 +108,7 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/emacsrc": {
-        "branch": "pjones/nixos-21.05",
+        "branch": "trunk",
         "description": "My Emacs configuration files",
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
@@ -132,7 +132,7 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/hlwmrc": {
-        "branch": "pjones/nixos-21.05",
+        "branch": "trunk",
         "description": "Peter's herbstluftwm config",
         "homepage": null,
         "owner": "pjones",
@@ -204,7 +204,7 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/rofirc": {
-        "branch": "pjones/nixos-21.05",
+        "branch": "trunk",
         "description": "Peter's rofi config",
         "homepage": null,
         "owner": "pjones",
@@ -240,7 +240,7 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/zshrc": {
-        "branch": "pjones/nixos-21.05",
+        "branch": "trunk",
         "description": "Peter's `zsh` configuration files",
         "homepage": null,
         "owner": "pjones",
