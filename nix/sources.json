@@ -167,6 +167,18 @@
         "url": "https://github.com/pjones/inhibit-screensaver/archive/b7d32ee5db201d285bbe0cc24dcd9a5692fbee55.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "pjones/maintenance-scripts": {
+        "branch": "trunk",
+        "description": "Peter's sysadmin maintenance scripts",
+        "homepage": null,
+        "owner": "pjones",
+        "repo": "maintenance-scripts",
+        "rev": "d8cd5cc8facf8bf048157b4616f0ce203421662f",
+        "sha256": "1mriyayqzvzpmz3m2ny0ja4dcdxgwwsfzcqca2q313bhf08i1hxq",
+        "type": "tarball",
+        "url": "https://github.com/pjones/maintenance-scripts/archive/d8cd5cc8facf8bf048157b4616f0ce203421662f.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "pjones/network-scripts": {
         "branch": "master",
         "description": null,

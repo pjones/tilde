@@ -13,6 +13,25 @@ in
   tilde = {
     enable = true;
     putInWheel = true;
+
+    crontab =
+      let
+        maintenance-scripts =
+          pkgs.callPackage sources."pjones/maintenance-scripts" { };
+      in
+      {
+        # All machines should have their download directory cleaned
+        # periodically:
+        clean-download-directory = {
+          schedule = "daily";
+          path = [ maintenance-scripts ];
+          script = ''
+            if [ -d "$HOME/download" ]; then
+              delete-older-files.sh "$HOME/download"
+            fi
+          '';
+        };
+      };
   };
 
   home-manager = {
