@@ -27,7 +27,7 @@ without having to tweak files by hand or in GUI settings tools.
 
   * Theme: [Sweet](https://github.com/EliverLara/Sweet)
 
-  * Icons: [Elementary](https://github.com/elementary/icons)
+  * Icons: [Pop](https://github.com/pop-os/icon-theme)
 
   * Cursors: [Oreo Pink](https://github.com/varlesh/oreo-cursors)
 

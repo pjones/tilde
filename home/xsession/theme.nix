@@ -14,8 +14,8 @@ let
   };
 
   icons = {
-    package = pkgs.pantheon.elementary-icon-theme;
-    name = "elementary";
+    package = pkgs.pop-icon-theme;
+    name = "Pop";
   };
 
   cursor = {
@@ -42,7 +42,7 @@ let
   icon-path = size: lib.concatMapStringsSep ":"
     (cat:
       let base = config.home.profileDirectory;
-      in "${base}/share/icons/${icons.name}/${cat}/${size}")
+      in "${base}/share/icons/${icons.name}/${size}/${cat}")
     icon-categories;
 in
 {
@@ -82,7 +82,7 @@ in
       "${pkgs.sweet-nova}/share/kvantum/Sweet-Nova";
 
     # Push icons into other applications:
-    services.dunst.settings.global.icon_path = lib.mkForce (icon-path "64");
+    services.dunst.settings.global.icon_path = lib.mkForce (icon-path "64x64");
 
     # X-Resources:
     xresources.properties = {
