@@ -254,23 +254,6 @@ in
           label = iconOkay "" + " %output%";
         };
 
-        "module/menu" = {
-          type = "custom/menu";
-          label-open = "";
-          label-close = iconWarn "" + " ";
-          label-separator = "|";
-
-          menu-0-0 = "Polybar Tray";
-          menu-0-0-exec = "polybar tray &";
-        };
-
-        "module/quit" = {
-          type = "custom/ipc";
-          format = iconOkay "";
-          hook-0 = "echo"; # Because you have to define *something*.
-          click-left = "polybar-msg -p %pid% cmd quit";
-        };
-
         "base" = {
           inherit background foreground;
 
@@ -293,17 +276,14 @@ in
           height = 20;
           offset-x = "5%";
           radius-bottom = "8.0";
+
           modules-left = modulesLeft;
           modules-right = modulesRight;
           modules-center = modulesCenter;
-        };
 
-        "bar/tray" = {
-          "inherit" = "base";
-          width = 100;
-          height = 20;
-          tray-position = "right";
-          modules-left = "quit";
+          tray-position = "left";
+          tray-detached = false;
+          tray-padding = 4;
         };
       };
     };
