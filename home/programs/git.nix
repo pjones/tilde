@@ -39,6 +39,7 @@
       ];
 
       extraConfig = {
+        init.defaultBranch = "trunk";
         core.pager = "less -SRiJMWF";
         color.ui = "auto";
         color.pager = true;
