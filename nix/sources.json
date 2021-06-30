@@ -137,10 +137,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "hlwmrc",
-        "rev": "78592faf5682597c3b1cf00ebf342ef52dd1dbeb",
-        "sha256": "1sbdaxpl8zw15cxdwy5zh9gzlf063lii4bz10i32r8dwfq7hxzqc",
+        "rev": "9f38a3023660c8c1b617be7689823f09115ecf75",
+        "sha256": "0hjh24z1mz3x15ikkb5a6snq8wfrrr4x0rawisikwxyg4mnin912",
         "type": "tarball",
-        "url": "https://github.com/pjones/hlwmrc/archive/78592faf5682597c3b1cf00ebf342ef52dd1dbeb.tar.gz",
+        "url": "https://github.com/pjones/hlwmrc/archive/9f38a3023660c8c1b617be7689823f09115ecf75.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/image-scripts": {
@@ -245,10 +245,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "zshrc",
-        "rev": "e4bf9a5ab998dbe36fe59514f52eb457b172a064",
-        "sha256": "0n9xid653q6a7ld9517f9z6yvvv3wc936bacs66dbsb6m8l2a084",
+        "rev": "90bd515017e58c13b5c6764d8418a6caad689c1f",
+        "sha256": "0md76l37h101mb16pdpr3b8qn4bbr8h7w04bzb9iipbj0x5hslxl",
         "type": "tarball",
-        "url": "https://github.com/pjones/zshrc/archive/e4bf9a5ab998dbe36fe59514f52eb457b172a064.tar.gz",
+        "url": "https://github.com/pjones/zshrc/archive/90bd515017e58c13b5c6764d8418a6caad689c1f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "polybar-scripts": {
