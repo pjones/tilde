@@ -7,22 +7,25 @@ in
 {
   network.description = "Account Testing VM";
 
-  defaults = {
+  defaults = { lib, ... }: {
     deployment.targetEnv = "libvirtd";
-    deployment.libvirtd.memorySize = 2048;
-    deployment.libvirtd.baseImageSize = 50;
-    security.sudo.wheelNeedsPassword = false;
-  };
-
-  tilde = { config, lib, ... }: {
-    imports = [ ../devices/generic-nixos.nix ];
     networking.domain = "devalot.com";
-    tilde.username = user.name;
-    tilde.xsession.enable = true;
+    security.sudo.wheelNeedsPassword = false;
 
+    tilde.username = user.name;
     users.users.${user.name}.password = user.password;
+
     virtualisation.libvirtd.enable = lib.mkForce false;
     virtualisation.docker.enable = lib.mkForce false;
+  };
+
+  desktop-testing = { config, lib, ... }: {
+    imports = [ ../devices/generic-nixos.nix ];
+
+    deployment.libvirtd.memorySize = 2048;
+    deployment.libvirtd.baseImageSize = 50;
+
+    tilde.xsession.enable = true;
 
     home-manager.users.${config.tilde.username} = { ... }: {
       tilde.xsession.lock = {
@@ -32,5 +35,9 @@ in
       };
 
     };
+  };
+
+  basic-testing = { lib, ... }: {
+    imports = [ ../devices/generic-nixos.nix ];
   };
 }
