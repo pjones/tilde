@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, options, lib, ... }:
 let
   cfg = config.tilde.programs.ssh;
 
@@ -43,6 +43,10 @@ in
           ServerAliveInterval 300
           ServerAliveCountMax 5
           TCPKeepAlive no
+        ''
+        + lib.optionalString
+          (cfg.keysDir != options.tilde.programs.ssh.keysDir.default
+            || config.tilde.programs.nixops.enable) ''
           IdentitiesOnly yes
           IdentityFile ${cfg.keysDir}/%l.id_ed25519
         ''
