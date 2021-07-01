@@ -26,7 +26,6 @@ in
 
     home.packages = with pkgs; [
       # System and Security
-      nixops
       pass
 
       # Network
