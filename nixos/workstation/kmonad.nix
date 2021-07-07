@@ -74,6 +74,9 @@ let
       description = "KMonad for ${keyboard.device}";
       script = "${cfg.package}/bin/kmonad ${mkCfg keyboard}";
       serviceConfig.Restart = "no";
+      serviceConfig.User = "kmonad";
+      serviceConfig.SupplementaryGroups = [ "input" "uinput" ];
+      serviceConfig.Nice = -20;
     };
   };
 in
@@ -97,6 +100,13 @@ in
 
   config = lib.mkIf cfg.enable {
     users.groups.uinput = { };
+    users.groups.kmonad = { };
+
+    users.users.kmonad = {
+      description = "KMonad system user.";
+      group = "kmonad";
+      isSystemUser = true;
+    };
 
     services.udev.extraRules = ''
       # KMonad user access to /dev/uinput
