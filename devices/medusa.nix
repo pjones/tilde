@@ -16,6 +16,13 @@
     };
   };
 
+  tilde.workstation.kmonad = {
+    enable = true;
+    keyboards.leopold = {
+      device = "/dev/input/by-id/usb-Cypress_USB_Keyboard-event-kbd";
+    };
+  };
+
   home-manager.users.pjones = { ... }: {
     tilde.programs.oled-display.arduino.enable = true;
 

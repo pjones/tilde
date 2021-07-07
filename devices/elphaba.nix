@@ -9,6 +9,14 @@
   tilde.xsession.enable = true;
   tilde.workstation.type = "laptop";
 
+  tilde.workstation.kmonad = {
+    enable = true;
+    keyboards = {
+      internal.device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+      filco.device = "/dev/input/by-id/usb-04d9_USB_Keyboard-event-kbd";
+    };
+  };
+
   home-manager.users.pjones = { ... }: {
     home.packages = with pkgs; [ grobi ];
 

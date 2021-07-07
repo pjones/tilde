@@ -7,6 +7,10 @@ let
   cfg = config.tilde.workstation;
 in
 {
+  imports = [
+    workstation/kmonad.nix
+  ];
+
   options.tilde.workstation = {
     enable = lib.mkEnableOption ''
       Enable settings for workstations.
@@ -30,7 +34,6 @@ in
       (lib.mkIf cfg.enable {
         # Some other modules to enable by default:
         tilde.workstation.yubikey.enable = lib.mkDefault true;
-        tilde.workstation.keyboard.enable = lib.mkDefault true;
 
         # Extra system pacakges:
         environment.systemPackages = with pkgs; [

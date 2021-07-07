@@ -1,0 +1,57 @@
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet cmp  rctl
+)
+
+
+(defalias
+  ;; Left-hand Home Row:
+  aa (tap-hold-next-release 200 a lalt)
+  gs (tap-hold-next-release 200 s lmet)
+  sd (tap-hold-next-release 200 d lsft)
+  cf (tap-hold-next-release 200 f lctl)
+  rg (tap-hold-next-release 200 g (layer-toggle raise))
+
+  ;; Right-hand Home Row:
+  rh (tap-hold-next-release 200 h (layer-toggle raise))
+  cj (tap-hold-next-release 200 j rctl)
+  sk (tap-hold-next-release 200 k rsft)
+  gl (tap-hold-next-release 200 l rmet)
+  a; (tap-hold-next-release 200 ; lalt)
+
+  ;; Media:
+  vd volumedown
+  vu volumeup
+  nxt nextsong
+  prv previoussong
+  ply playpause
+
+  ;; The grave key activates the media layer:
+  mgv (tap-hold-next-release 200 grv (layer-toggle media)))
+
+(deflayer qwerty
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @mgv @aa  @gs  @sd  @cf  @rg  @rh  @cj  @sk  @gl  @a;  '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt           spc            ralt rmet cmp  rctl
+)
+
+(deflayer raise
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    esc  _    _    _    _    _    _    _    _    _    _    _    _
+  caps _    _    _    _    _    left down up   rght _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              bspc           _    _    _    _
+)
+
+(deflayer media
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    @prv @vd  @vu  @nxt f15  f16  _
+  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _              @ply           _    _    _    _
+)

@@ -11,6 +11,18 @@
         "url": "https://github.com/nix-community/home-manager/archive/ab64dc32493996c24607eab2cae6663466ddfb8a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "kmonad": {
+        "branch": "master",
+        "description": "An advanced keyboard manager",
+        "homepage": null,
+        "owner": "kmonad",
+        "repo": "kmonad",
+        "rev": "768d5e4e1375d80607440bdcd10296ca7f6f00ea",
+        "sha256": "15i6s2mn5bg5cwqhq6j95smadf2vf2f9pczqdpy51hhqv9vspg5n",
+        "type": "tarball",
+        "url": "https://github.com/kmonad/kmonad/archive/768d5e4e1375d80607440bdcd10296ca7f6f00ea.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "neuron": {
         "branch": "1.0.1.0",
         "description": "Haskell meets Zettelkasten, for your plain-text delight.",
@@ -65,10 +77,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "60cce7e5e1fdf62421ef6d4184ee399b46209366",
-        "sha256": "100xrb925cana1kfd0c7gwkjjalq891vfgr0rn1gl9j8gp3l3gx6",
+        "rev": "21b696caf392ad6fa513caf3327d0aa0430ffb72",
+        "sha256": "1056r3383aaf5zhf7rbvka76gqxb8b7rwqxnmar29vxhs9h56m5k",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/60cce7e5e1fdf62421ef6d4184ee399b46209366.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/21b696caf392ad6fa513caf3327d0aa0430ffb72.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "oreo-cursors": {
