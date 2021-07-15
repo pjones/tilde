@@ -149,10 +149,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "hlwmrc",
-        "rev": "1d50f908c9a104a4c10307dbf6b8f60b1bbcccec",
-        "sha256": "0yi2yl2cfq427bwaxvx9q45w7ydxa60591546qcv3y3yzv0dffqa",
+        "rev": "34cf61bd809acbc73ea6f5f8b9083f3834117a73",
+        "sha256": "1xqa9acy2znj33lq1k343kklds6wh8df133qgqcvimjm2i8n5lrf",
         "type": "tarball",
-        "url": "https://github.com/pjones/hlwmrc/archive/1d50f908c9a104a4c10307dbf6b8f60b1bbcccec.tar.gz",
+        "url": "https://github.com/pjones/hlwmrc/archive/34cf61bd809acbc73ea6f5f8b9083f3834117a73.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/image-scripts": {

@@ -25,7 +25,9 @@ in
     deployment.libvirtd.memorySize = 2048;
     deployment.libvirtd.baseImageSize = 50;
 
-    tilde.xsession.enable = true;
+    tilde.xsession = {
+      enable = true;
+    };
 
     home-manager.users.${config.tilde.username} = { ... }: {
       tilde.xsession.lock = {
@@ -33,7 +35,6 @@ in
           "BC:A8:A6:7D:A5:77"
         ];
       };
-
     };
   };
 

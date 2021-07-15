@@ -5,6 +5,8 @@
 }:
 let
   cfg = config.tilde.programs.herbstluftwm;
+  de = config.tilde.xsession.desktopEnv;
+
 in
 {
   options.tilde.programs.herbstluftwm = {
@@ -19,9 +21,16 @@ in
 
     xsession = {
       enable = lib.mkDefault true;
-      windowManager.command = ''
-        ${pkgs.pjones.hlwmrc}/libexec/hlwmrc
-      '';
+      windowManager.command =
+        let
+          command = "${pkgs.pjones.hlwmrc}/libexec/hlwmrc";
+
+          decmd = ''
+            export ${de.envVar}=${command}
+            ${de.command}
+          '';
+        in
+        if de.enable then decmd else command;
     };
   };
 }

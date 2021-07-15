@@ -52,6 +52,8 @@ in
     enable = lib.mkEnableOption "Screen/session locker";
 
     bluetooth = {
+      enable = lib.mkEnableOption "Inhibit the lock screen";
+
       devices = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];
@@ -73,39 +75,41 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    services.screen-locker = {
-      enable = true;
-      lockCmd = toString lockCmd;
-      inactiveInterval = 10;
-    };
-
-    # Disable xautolock-session, it's not needed:
-    systemd.user.services.xautolock-session =
-      lib.mkForce { };
-
-    # Cache correctly sized images for the lock screen:
-    systemd.user.services.lock-screen-image-cache = {
-      Unit = {
-        Description = "Cache lock screen images";
-        After = [ "graphical-session-pre.target" ];
-        PartOf = [ "graphical-session.target" ];
+  config = lib.mkMerge [
+    (lib.mkIf cfg.enable {
+      services.screen-locker = {
+        enable = true;
+        lockCmd = toString lockCmd;
+        inactiveInterval = 10;
       };
 
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
+      # Disable xautolock-session, it's not needed:
+      systemd.user.services.xautolock-session =
+        lib.mkForce { };
 
-      Service = {
-        ExecStart = toString cacheCmd;
-        Restart = "always";
-        RestartSec = 3;
-      };
-    };
+      # Cache correctly sized images for the lock screen:
+      systemd.user.services.lock-screen-image-cache = {
+        Unit = {
+          Description = "Cache lock screen images";
+          After = [ "graphical-session-pre.target" ];
+          PartOf = [ "graphical-session.target" ];
+        };
 
-    # Inhibit the screensaver while Bluetooth devices are nearby:
-    systemd.user.services.lock-screen-inhibit =
-      lib.mkIf (cfg.bluetooth.devices != [ ]) {
+        Install = {
+          WantedBy = [ "graphical-session.target" ];
+        };
+
+        Service = {
+          ExecStart = toString cacheCmd;
+          Restart = "always";
+          RestartSec = 3;
+        };
+      };
+    })
+
+    (lib.mkIf (cfg.bluetooth.enable && cfg.bluetooth.devices != [ ]) {
+      # Inhibit the screensaver while Bluetooth devices are nearby:
+      systemd.user.services.lock-screen-inhibit = {
         Unit = {
           Description = "Inhibit the lock screen";
           After = [ "graphical-session-pre.target" ];
@@ -122,5 +126,6 @@ in
           RestartSec = 3;
         };
       };
-  };
+    })
+  ];
 }
