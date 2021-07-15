@@ -37,8 +37,12 @@ in
     # Services to start when running X11:
     services.blueman-applet.enable = true;
     services.network-manager-applet.enable = true;
-    services.udiskie.enable = true;
     services.unclutter.enable = true;
+
+    services.udiskie = {
+      enable = true;
+      automount = false;
+    };
 
     # Communicate with my phone:
     services.kdeconnect = {
