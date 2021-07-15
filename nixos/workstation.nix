@@ -9,6 +9,7 @@ in
 {
   imports = [
     workstation/kmonad.nix
+    workstation/qmk.nix
   ];
 
   options.tilde.workstation = {

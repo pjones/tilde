@@ -17,6 +17,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # Keyboard settings:
+    home.keyboard = {
+      layout = "us";
+      options = [ "compose:ralt" ];
+    };
+
     # Active some services/plugins:
     tilde.programs.man.enable = lib.mkDefault true;
     tilde.programs.mpd.enable = lib.mkDefault true;
