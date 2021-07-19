@@ -20,7 +20,7 @@ let
 
   cursor = {
     package = pkgs.oreo-cursors;
-    name = "oreo_pink_cursors";
+    name = "oreo_purple_cursors";
   };
 
   icon-categories = [
