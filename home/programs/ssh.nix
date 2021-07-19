@@ -115,6 +115,12 @@ in
             identityFile = keys.clemson;
             user = "rsp30947";
           };
+
+          "hhs-phx-p-utl02" = {
+            proxyJump = "cugateway";
+            identityFile = keys.clemson;
+            user = "rsp30947";
+          };
         };
     })
   ];
