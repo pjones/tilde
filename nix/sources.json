@@ -83,18 +83,6 @@
         "url": "https://github.com/nixos/nixpkgs/archive/b2f87e0043aaf3f0f05cc983bd6aa80a616b8352.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "oreo-cursors": {
-        "branch": "master",
-        "description": "oreo-cursors",
-        "homepage": null,
-        "owner": "varlesh",
-        "repo": "oreo-cursors",
-        "rev": "55a72167ea969c7e24914ce4502c6cddc90d253a",
-        "sha256": "1pbjf20bkd3ji4p10d8y44jmlp20xq0wkjbmlxmnnl6xhmh4g7pv",
-        "type": "tarball",
-        "url": "https://github.com/varlesh/oreo-cursors/archive/55a72167ea969c7e24914ce4502c6cddc90d253a.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "pjones/backup-scripts": {
         "branch": "master",
         "description": "Peter's Backup Scripts",

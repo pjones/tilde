@@ -19,8 +19,9 @@ let
   };
 
   cursor = {
-    package = pkgs.oreo-cursors;
-    name = "oreo_purple_cursors";
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Original-Classic";
+    size = 24;
   };
 
   icon-categories = [

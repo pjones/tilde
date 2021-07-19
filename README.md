@@ -29,7 +29,7 @@ without having to tweak files by hand or in GUI settings tools.
 
   * Icons: [Pop](https://github.com/pop-os/icon-theme)
 
-  * Cursors: [Oreo Pink](https://github.com/varlesh/oreo-cursors)
+  * Cursors: [Bibata](https://github.com/ful1e5/Bibata_Cursor)
 
   * Proportional Font: [Overpass](https://overpassfont.org/)
 

@@ -48,9 +48,10 @@ in
   # Use the version of nix-on-droid from sources.json:
   nix-on-droid = super.callPackage "${sources.nix-on-droid}/nix-on-droid" { };
 
-  # Packages that are not upstream yet:
-  oreo-cursors = super.callPackage ../pkgs/oreo-cursors.nix { };
+  # Package way out of date:
+  bibata-cursors = super.callPackage ../pkgs/bibata-cursors.nix { };
 
+  # Packages that are not upstream yet:
   sweet-nova = super.callPackage ../pkgs/sweet-nova.nix { };
 
   polybar-scripts.player-mpris-tail =
