@@ -25,6 +25,10 @@
   ;; Shift-insert:
   sin (around lsft ins)
 
+  ;; Typing macros:
+  ltd (tap-macro < -)
+  dgt (tap-macro - >)
+
   ;; Media:
   vd volumedown
   vu volumeup
@@ -45,9 +49,9 @@
 
 (deflayer raise
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    esc  _    _    _    _    _    _    @sin _    _    |    \    _
+  _    esc  _    _    _    _    _    _    @sin _    |    _    _    _
   _    _    _    caps _    _    left down up   rght _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    @ltd @dgt \    _
   _    _    _              bspc           _    _    _    _
 )
 
