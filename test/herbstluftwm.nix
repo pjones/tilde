@@ -74,7 +74,7 @@ pkgs.nixosTest {
         machine.screenshot("screen")
 
     with subtest("Lock screen"):
-        machine.send_key("ctrl-alt-l")
+        machine.execute("loginctl lock-sessions")
         machine.sleep(3)
         machine.screenshot("lock")
   '';
