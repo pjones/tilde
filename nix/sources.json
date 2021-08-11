@@ -113,10 +113,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "57cfd233f3f9171aa5bd2bd54a38e74b4a26552f",
-        "sha256": "0jlsx8an3kbwi9wsdp8srvln371mspg2744mfck8nk30sz4v2r5h",
+        "rev": "5fad6293de43f7646e462ebce8207c12236b4897",
+        "sha256": "1i29vyk4p1sgyg09nvy1v29dnb8dphis9chd7nsg6zwgm3hxv6ry",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/57cfd233f3f9171aa5bd2bd54a38e74b4a26552f.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/5fad6293de43f7646e462ebce8207c12236b4897.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -125,10 +125,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "encryption-utils",
-        "rev": "d99efbe895caeebd47be6c35fba1cce31e9ef376",
-        "sha256": "0yyl46qbdwkk847c5yvc2pxv164v120r67mcnqxdg4r6cw1gwrkb",
+        "rev": "09de58dfd68a6c9b1821b14683b904185f29d3ae",
+        "sha256": "01j216qxm31nbbnzkspp8cm7jgy67x7cxpi8kf840sz4wfa9b53y",
         "type": "tarball",
-        "url": "https://github.com/pjones/encryption-utils/archive/d99efbe895caeebd47be6c35fba1cce31e9ef376.tar.gz",
+        "url": "https://github.com/pjones/encryption-utils/archive/09de58dfd68a6c9b1821b14683b904185f29d3ae.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/hlwmrc": {
@@ -185,10 +185,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "network-scripts",
-        "rev": "f8fa5d6e2cd37c2563968003563ee7f5a52328b0",
-        "sha256": "0rpsjk73rw6f5zzl3bjq62d2q8h9hy817sn3p4k0hy3zrdh6b6wj",
+        "rev": "56c42a9e9f669294f9271084345ae048adc7faa7",
+        "sha256": "0vqsqca19dfx2dz59zdz9jd7spf1scspyzq5agmimlzbi0qqn4hp",
         "type": "tarball",
-        "url": "https://github.com/pjones/network-scripts/archive/f8fa5d6e2cd37c2563968003563ee7f5a52328b0.tar.gz",
+        "url": "https://github.com/pjones/network-scripts/archive/56c42a9e9f669294f9271084345ae048adc7faa7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/oled-display": {
