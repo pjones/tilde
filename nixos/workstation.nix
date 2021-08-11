@@ -115,18 +115,19 @@ in
           powertop
         ];
 
-        # Closing the lid should suspend the computer.  See
-        # logind.conf(5) for more details.
-        services.logind.extraConfig = ''
-          IdleAction=ignore
-          HandlePowerKey=hybrid-sleep
-          HandleSuspendKey=suspend
-          HandleHibernateKey=suspend
-          HandleLidSwitch=suspend
-          PowerKeyIgnoreInhibited=on
-          SuspendKeyIgnoreInhibited=on
-          HibernateKeyIgnoreInhibited=on
-          LidSwitchIgnoreInhibited=on
+        services.logind = {
+          # Closing the lid while on battery power will store
+          # hibernation data to disk then suspend.
+          lidSwitch = "hybrid-sleep";
+
+          # Closing the lid while powered will suspend, then after
+          # some amount of time has passed, hibernate.
+          lidSwitchExternalPower = "suspend-then-hibernate";
+        };
+
+        systemd.sleep.extraConfig = ''
+          # Delay before suspend turns into hibernate:
+          HibernateDelaySec=1h
         '';
 
         # Useful services:
