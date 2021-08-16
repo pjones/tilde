@@ -5,13 +5,13 @@
 set -eu
 set -o pipefail
 
-name=sidebar
+name=browser-sidebar
 
 if [ $# -gt 0 ]; then
   # When opening a URL in the sidebar browser first ensure that
   # virtual monitor is displayed:
-  hlwm-scratchpads.sh browser-sidebar
+  hlwm-scratchpads.sh "$name"
 fi
 
 # Now send all arguments to the browser-profile script:
-browser-profile "$name" "$@"
+browser-on-desktop "$name" "$@"

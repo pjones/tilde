@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eu
+set -o pipefail
+
+if [ $# -lt 1 ]; then
+  echo >&2 "ERROR: give at least one URL"
+fi
+
+# Firefox kiosk mode sucks.
+chromium --app="$1"
