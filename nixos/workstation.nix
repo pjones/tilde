@@ -116,19 +116,12 @@ in
         ];
 
         services.logind = {
-          # Closing the lid while on battery power will store
-          # hibernation data to disk then suspend.
+          # Closing the lid will store hibernation data to disk then
+          # suspend.  Therefore, if the battery dies while on standby,
+          # you can still get back to where you left off.
           lidSwitch = "hybrid-sleep";
-
-          # Closing the lid while powered will suspend, then after
-          # some amount of time has passed, hibernate.
-          lidSwitchExternalPower = "suspend-then-hibernate";
+          lidSwitchExternalPower = "hybrid-sleep";
         };
-
-        systemd.sleep.extraConfig = ''
-          # Delay before suspend turns into hibernate:
-          HibernateDelaySec=1h
-        '';
 
         # Useful services:
         hardware.acpilight.enable = true;
