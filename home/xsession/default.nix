@@ -136,10 +136,13 @@ in
         # Network
         brave
         chromium-launcher
+        element-desktop
         firefox
+        mattermost-desktop
         remmina
         signal-desktop
         slack
+        tdesktop
         tilde-scripts-browser
         zulip
 
