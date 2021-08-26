@@ -97,6 +97,7 @@ in
           "code.rfa.sc.gov" = {
             user = "git";
             port = 7999;
+            proxyJump = cfg.rfa.vpnJumpHost;
             identityFile = keys.code;
           };
 
