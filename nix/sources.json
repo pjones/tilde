@@ -5,10 +5,10 @@
         "homepage": "https://nix-community.github.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "35a24648d155843a4d162de98c17b1afd5db51e4",
-        "sha256": "06w327cvbqpi2fpl5rqk664vrl0ls0jqfkzx8vgvbcn1pmxsl0y3",
+        "rev": "f5adb9be829f487f99bcc0f1884f74ddb85f70c8",
+        "sha256": "1x77fglv81rrpihkv8vnl1023hawg83k42vbflp76blgljv1sxm7",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/35a24648d155843a4d162de98c17b1afd5db51e4.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/f5adb9be829f487f99bcc0f1884f74ddb85f70c8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "kmonad": {
@@ -77,10 +77,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b2f87e0043aaf3f0f05cc983bd6aa80a616b8352",
-        "sha256": "1mkg49dxkzkci6a6vh0cly98lh4mmg7fqdxi7fgjbps1y8bh7i2r",
+        "rev": "9d6766c0f0b3b03bd63ffc08b2e23e476145719d",
+        "sha256": "1hsr5zcmvbakpvzj1b5d2vz7195mbhvv58slplgwglxq8glnl9ff",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/b2f87e0043aaf3f0f05cc983bd6aa80a616b8352.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/9d6766c0f0b3b03bd63ffc08b2e23e476145719d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/backup-scripts": {
@@ -113,10 +113,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "5fad6293de43f7646e462ebce8207c12236b4897",
-        "sha256": "1i29vyk4p1sgyg09nvy1v29dnb8dphis9chd7nsg6zwgm3hxv6ry",
+        "rev": "ac997e37e7945c41e466165003d8e20fd9bec70f",
+        "sha256": "1lwcvljfkwrvm01m85hm5vk5jipqmg4kp6iswww79dc8ffpwpywk",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/5fad6293de43f7646e462ebce8207c12236b4897.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/ac997e37e7945c41e466165003d8e20fd9bec70f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -137,10 +137,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "hlwmrc",
-        "rev": "9ff82eacd1cdb074bac334d58ca178fe7d9eecb9",
-        "sha256": "1s9rpmvhkz59329qhy2hzivn6ny5z231jimg1adm3lrw5vl3vqgh",
+        "rev": "84f9f9759592bb234ae7356b596984866a8fee0c",
+        "sha256": "097v0iyjmz74g2nlhabvq2jvn1mnyjyxmsp9k0a7phws7ypjkykq",
         "type": "tarball",
-        "url": "https://github.com/pjones/hlwmrc/archive/9ff82eacd1cdb074bac334d58ca178fe7d9eecb9.tar.gz",
+        "url": "https://github.com/pjones/hlwmrc/archive/84f9f9759592bb234ae7356b596984866a8fee0c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/image-scripts": {
