@@ -18,6 +18,7 @@
     ./rofi.nix
     ./shells.nix
     ./ssh.nix
+    ./telegram.nix
   ];
 
   # Configure programs that don't need their own file:

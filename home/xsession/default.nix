@@ -58,6 +58,7 @@ in
       tilde.programs.konsole.enable = lib.mkDefault true;
       tilde.programs.oled-display.enable = lib.mkDefault true;
       tilde.programs.rofi.enable = lib.mkDefault true;
+      tilde.programs.telegram.enable = lib.mkDefault true;
       tilde.xsession.lock.bluetooth.enable = lib.mkDefault true;
 
       # Communicate with my phone:
@@ -142,7 +143,6 @@ in
         remmina
         signal-desktop
         slack
-        tdesktop
         tilde-scripts-browser
         zulip
 
