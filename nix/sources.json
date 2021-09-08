@@ -77,10 +77,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9d6766c0f0b3b03bd63ffc08b2e23e476145719d",
-        "sha256": "1hsr5zcmvbakpvzj1b5d2vz7195mbhvv58slplgwglxq8glnl9ff",
+        "rev": "12eb1d16ae3b6cbf0ea83e9228bca8ffd7cfe347",
+        "sha256": "1i72kjml6z0fskfmim5am0v868dydgvm4yvc4ckm0447i7z8cgpa",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/9d6766c0f0b3b03bd63ffc08b2e23e476145719d.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/12eb1d16ae3b6cbf0ea83e9228bca8ffd7cfe347.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/backup-scripts": {
@@ -113,10 +113,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "ac997e37e7945c41e466165003d8e20fd9bec70f",
-        "sha256": "1lwcvljfkwrvm01m85hm5vk5jipqmg4kp6iswww79dc8ffpwpywk",
+        "rev": "d46981327a0623aeec89a39a1a690d79ca164851",
+        "sha256": "1yz425i7fq0ql9c1rwjv0j056a6vncnshrv0iwa6jm6xq8pvdgdi",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/ac997e37e7945c41e466165003d8e20fd9bec70f.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/d46981327a0623aeec89a39a1a690d79ca164851.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -221,10 +221,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "tmuxrc",
-        "rev": "f4a3315c6fcfedf578d2fdc280b017bfa8a43540",
-        "sha256": "0l1sw9v7i6rxb71dkz0ar8dwgfvmrwsnhvhwzfn3k83zi1g8lfb0",
+        "rev": "a1826f0988b208b4f715c13b62a20475480a16fe",
+        "sha256": "0k40z9lycl1f75rkgf39ziv5pivyds72swaff0avk3z5j8jq4nn8",
         "type": "tarball",
-        "url": "https://github.com/pjones/tmuxrc/archive/f4a3315c6fcfedf578d2fdc280b017bfa8a43540.tar.gz",
+        "url": "https://github.com/pjones/tmuxrc/archive/a1826f0988b208b4f715c13b62a20475480a16fe.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/vimeta": {
