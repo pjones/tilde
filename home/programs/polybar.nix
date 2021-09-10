@@ -233,7 +233,7 @@ in
           type = "internal/temperature";
           hwmon-path = "\${env:CORETEMP}";
           units = false;
-          base-temperature = 40;
+          base-temperature = 60;
           warn-temperature = 86;
           format = "<ramp> <label>°";
           format-warn = "<ramp> <label-warn>°";
