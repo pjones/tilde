@@ -7,6 +7,7 @@
     ./dunst.nix
     ./emacs.nix
     ./git.nix
+    ./gromit-mpx.nix
     ./herbstluftwm.nix
     ./konsole.nix
     ./man.nix

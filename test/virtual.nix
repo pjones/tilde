@@ -30,6 +30,8 @@ in
     };
 
     home-manager.users.${config.tilde.username} = { ... }: {
+      tilde.programs.gromit-mpx.enable = true;
+
       tilde.xsession.lock = {
         bluetooth.devices = [
           "BC:A8:A6:7D:A5:77"
