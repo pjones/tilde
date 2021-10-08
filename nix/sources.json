@@ -77,10 +77,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e85f0175e3effe9ba191d66c09e8f1b7d6362d5e",
-        "sha256": "1qr2hmymbzwj8jrz6smcgc04scgwp2v5070x22k4fvh261g1n4zw",
+        "rev": "781b1f8e3a2194e1e233cd62b4f2193e129a07f7",
+        "sha256": "1pgg2x08l6irs77lyrg7mqwbz2vgias98102j0n1f3kxfg1f9b91",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/e85f0175e3effe9ba191d66c09e8f1b7d6362d5e.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/781b1f8e3a2194e1e233cd62b4f2193e129a07f7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/backup-scripts": {
@@ -113,10 +113,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "d46981327a0623aeec89a39a1a690d79ca164851",
-        "sha256": "1yz425i7fq0ql9c1rwjv0j056a6vncnshrv0iwa6jm6xq8pvdgdi",
+        "rev": "6dc6fcde3e208a9dc0666de3e9dbcfec7bafd8ab",
+        "sha256": "033z9d99ahbjdnzpwf0w0xrc1sk9w158vnanyni8mn1zam678lb6",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/d46981327a0623aeec89a39a1a690d79ca164851.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/6dc6fcde3e208a9dc0666de3e9dbcfec7bafd8ab.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
@@ -137,10 +137,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "hlwmrc",
-        "rev": "84f9f9759592bb234ae7356b596984866a8fee0c",
-        "sha256": "097v0iyjmz74g2nlhabvq2jvn1mnyjyxmsp9k0a7phws7ypjkykq",
+        "rev": "a7c8b0b1e49f9acc7e9fb5c0ee96930227b50225",
+        "sha256": "1i2pxfjynws3n3rs1bfdcvq6ay7b1jvb5g4zvnbmjpysxv0k05ab",
         "type": "tarball",
-        "url": "https://github.com/pjones/hlwmrc/archive/84f9f9759592bb234ae7356b596984866a8fee0c.tar.gz",
+        "url": "https://github.com/pjones/hlwmrc/archive/a7c8b0b1e49f9acc7e9fb5c0ee96930227b50225.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/image-scripts": {
