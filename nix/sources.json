@@ -185,10 +185,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "network-scripts",
-        "rev": "56c42a9e9f669294f9271084345ae048adc7faa7",
-        "sha256": "0vqsqca19dfx2dz59zdz9jd7spf1scspyzq5agmimlzbi0qqn4hp",
+        "rev": "38e88ba5bdde7d563ee2e09f179a477fd308f97e",
+        "sha256": "0smbcwskz4n9dn6viyvkh1mprwj9y960lvk657a549f27kz2fc4p",
         "type": "tarball",
-        "url": "https://github.com/pjones/network-scripts/archive/56c42a9e9f669294f9271084345ae048adc7faa7.tar.gz",
+        "url": "https://github.com/pjones/network-scripts/archive/38e88ba5bdde7d563ee2e09f179a477fd308f97e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/oled-display": {
