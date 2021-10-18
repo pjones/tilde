@@ -8,9 +8,13 @@ pkgs.nixosTest {
   name = "tilde-config-test";
 
   nodes = {
-    machine = { ... }: {
+    machine = { config, ... }: {
       imports = [ ../devices/generic-nixos.nix ];
       tilde.username = user.name;
+
+      home-manager.users.${config.tilde.username} = { ... }: {
+        tilde.programs.emacs.enable = true;
+      };
     };
   };
 

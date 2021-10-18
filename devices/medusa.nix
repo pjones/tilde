@@ -17,6 +17,7 @@
   };
 
   home-manager.users.pjones = { ... }: {
+    tilde.programs.emacs.enable = true;
     tilde.programs.oled-display.arduino.enable = true;
 
     tilde.programs.ssh = {

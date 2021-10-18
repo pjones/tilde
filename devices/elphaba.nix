@@ -19,6 +19,7 @@
 
   home-manager.users.pjones = { ... }: {
     home.packages = with pkgs; [ grobi ];
+    tilde.programs.emacs.enable = true;
 
     tilde.programs.ssh = {
       keysDir = "~/keys/ssh";
