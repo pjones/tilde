@@ -85,7 +85,7 @@ in
         };
       };
     })
-    (lib.mkIf (config.tilde.enable && cfg.haveRestrictedKeys && cfg.rfa.enable) {
+    (lib.mkIf (config.tilde.enable && cfg.rfa.enable) {
       programs.ssh.matchBlocks =
         let keys = {
           scors = "${cfg.keysDir}/scors.id_rsa";
@@ -98,29 +98,44 @@ in
             user = "git";
             port = 7999;
             proxyJump = cfg.rfa.vpnJumpHost;
-            identityFile = keys.code;
+            identityFile =
+              if cfg.haveRestrictedKeys
+              then keys.code
+              else null;
           };
 
           "epa-util01" = {
             proxyJump = cfg.rfa.vpnJumpHost;
-            identityFile = keys.scors;
+            identityFile =
+              if cfg.haveRestrictedKeys
+              then keys.scors
+              else null;
           };
 
           "cugateway" = {
             proxyJump = cfg.rfa.vpnJumpHost;
-            identityFile = keys.scors;
+            identityFile =
+              if cfg.haveRestrictedKeys
+              then keys.scors
+              else null;
           };
 
           "hutl" = {
             proxyJump = "cugateway";
-            identityFile = keys.clemson;
             user = "rsp30947";
+            identityFile =
+              if cfg.haveRestrictedKeys
+              then keys.clemson
+              else null;
           };
 
           "hhs-phx-p-utl02" = {
             proxyJump = "cugateway";
-            identityFile = keys.clemson;
             user = "rsp30947";
+            identityFile =
+              if cfg.haveRestrictedKeys
+              then keys.clemson
+              else null;
           };
         };
     })
