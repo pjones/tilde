@@ -6,6 +6,7 @@
     ./direnv.nix
     ./dunst.nix
     ./emacs.nix
+    ./firefox.nix
     ./git.nix
     ./gromit-mpx.nix
     ./herbstluftwm.nix

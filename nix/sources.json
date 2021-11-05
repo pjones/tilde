@@ -1,4 +1,28 @@
 {
+    "NUR": {
+        "branch": "master",
+        "description": "Nix User Repository: User contributed nix packages [maintainer=@Mic92]",
+        "homepage": "https://nur.nix-community.org/",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "041951902d612ce0e0c5a217df529fb05e555ca2",
+        "sha256": "0vmd0zh8jh5r9csphs60mpjv8afa2bjv0z1sy5qnavnwdns7icd6",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/NUR/archive/041951902d612ce0e0c5a217df529fb05e555ca2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "firefox-csshacks": {
+        "branch": "master",
+        "description": "Collection of userstyles affecting the browser",
+        "homepage": null,
+        "owner": "MrOtherGuy",
+        "repo": "firefox-csshacks",
+        "rev": "357e5bc0b4879c5d565aff86c51514ec198aebf1",
+        "sha256": "0gsysj4zd5jlhmmvnvwpyk66zizsiacypxabf0n5689jwy8k5mi9",
+        "type": "tarball",
+        "url": "https://github.com/MrOtherGuy/firefox-csshacks/archive/357e5bc0b4879c5d565aff86c51514ec198aebf1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "home-manager": {
         "branch": "release-21.05",
         "description": "Manage a user environment using Nix  [maintainer=@rycee] ",
@@ -137,10 +161,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "hlwmrc",
-        "rev": "2065db2343d5bdc3f5ab9d04dcd7ce0caab003f1",
-        "sha256": "1hlsvjgfv9sr105mv6fxlxv6kmsdgghagwzr7j6bwc7jlk2w2s9f",
+        "rev": "5ded2640ed4217e99e5bbd6ea4d485cdfd26d721",
+        "sha256": "0l6fbqp8ycjaz74amyzw5m4j2c0vpnx5fla809fjsgw11qv58a62",
         "type": "tarball",
-        "url": "https://github.com/pjones/hlwmrc/archive/2065db2343d5bdc3f5ab9d04dcd7ce0caab003f1.tar.gz",
+        "url": "https://github.com/pjones/hlwmrc/archive/5ded2640ed4217e99e5bbd6ea4d485cdfd26d721.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/image-scripts": {
@@ -273,6 +297,18 @@
         "sha256": "0kf9dzwskr7a55x5vqjavpn1dzqv8kypmn09srzyzbjssyy710cf",
         "type": "tarball",
         "url": "https://github.com/EliverLara/Sweet/archive/85830477831aef0dbc77d8c6fc9484485092f434.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "tridactyl_emacs_config": {
+        "branch": "main",
+        "description": "Emacs bindings for Tridactyl",
+        "homepage": "",
+        "owner": "jumper047",
+        "repo": "tridactyl_emacs_config",
+        "rev": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd",
+        "sha256": "1hmnpfqv6y634gr5rhanf7wsv90f6i5r2l4dq71a14hm2ava6rm9",
+        "type": "tarball",
+        "url": "https://github.com/jumper047/tridactyl_emacs_config/archive/5674d6bb38abbe639dd8caaf3d81f33fc06f59fd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

@@ -7,16 +7,5 @@ if [ $# -lt 1 ]; then
   echo >&2 "ERROR: give at least one URL"
 fi
 
-url=$1
-host=$(sed --regexp-extended 's|^https?://([^/]+)/?.*$|\1|' <<<"$url")
-
-profile=$(sha256sum - <<<"$host" | cut -d' ' -f1)
-data_dir="$HOME/.config/browser-$profile"
-mkdir -p "$data_dir"
-
-# Firefox kiosk mode sucks.
-chromium \
-  --user-data-dir="$data_dir" \
-  --app="$url" &
-
-sleep 0.5 # Chromium sometimes ignores fast requests.
+firefox -P app --new-window "$1" &
+sleep 0.5

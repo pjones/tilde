@@ -10,5 +10,5 @@ set -o pipefail
 if [ -n "${BROWSER:-}" ]; then
   "$BROWSER" "$@"
 else
-  firefox "$@"
+  firefox -P default "$@"
 fi

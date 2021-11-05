@@ -54,6 +54,7 @@ in
       tilde.workstation.enable = true;
 
       # Enable other xsession modules:
+      tilde.programs.firefox.enable = lib.mkDefault true;
       tilde.programs.gromit-mpx.enable = lib.mkDefault true;
       tilde.programs.herbstluftwm.enable = lib.mkDefault true;
       tilde.programs.konsole.enable = lib.mkDefault true;
@@ -139,8 +140,6 @@ in
         brave
         chromium-launcher
         element-desktop
-        firefox
-        mattermost-desktop
         remmina
         signal-desktop
         slack

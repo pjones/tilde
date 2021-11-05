@@ -37,6 +37,9 @@ in
     avatar = super.callPackage ../pkgs/pjones-avatar.nix { };
   };
 
+  # https://nur.nix-community.org
+  nur = import sources.NUR { pkgs = self; };
+
   # Some local scripts:
   pulse-audio-scripts = super.callPackage ../pkgs/pulse-audio-scripts.nix { };
 
@@ -95,8 +98,18 @@ in
   # A gpg-agent/ssh-agent for Android:
   okc-agents = super.callPackage ../pkgs/okc-agents.nix { };
 
+  # Firefox CSS Hacks:
+  firefox-csshacks = super.callPackage ../pkgs/firefox-csshacks.nix { };
+
+  # Emacs configuration for tridactyl:
+  tridactyl_emacs_config = super.callPackage ../pkgs/tridactyl_emacs_config.nix { };
+
   # A wrapper around chromium:
-  chromium-launcher = super.callPackage ../pkgs/chromium-launcher.nix { };
+  chromium-launcher = super.callPackage ../pkgs/chromium-launcher.nix {
+    chromium = super.chromium.override {
+      ungoogled = false; # Currently broken :(
+    };
+  };
 
   # Visual Studio Code (yuck):
   vscode = import ../pkgs/vscode.nix;
