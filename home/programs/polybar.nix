@@ -44,7 +44,6 @@ let
   # Active modules:
   modulesLeft = modList [
     "workspace"
-    "window"
   ];
 
   modulesRight = modList
@@ -155,15 +154,6 @@ in
           label-occupied-padding = 0;
           label-empty = "";
           label-empty-padding = 0;
-        };
-
-        # https://github.com/polybar/polybar/wiki/Module:-xwindow
-        "module/window" = {
-          type = "internal/xwindow";
-          format = "<label>";
-          label = iconOkay "" + " %title%";
-          label-maxlen = 100;
-          label-empty = "";
         };
 
         # https://github.com/polybar/polybar/wiki/Module:-date

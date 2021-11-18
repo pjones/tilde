@@ -81,21 +81,7 @@ in
       # Make things pretty:
       services.picom = {
         enable = true;
-        blur = false;
         fade = true;
-        inactiveDim = "0.4";
-
-        extraOptions = ''
-          # Windows that are considered to always be focused.
-          #
-          # visible-monitor is a tag I put on windows that are on
-          # monitors that are visible but are not the primary monitor.
-          focus-exclude = [
-            "class_g = 'Rofi'",
-            "class_g = 'Polybar'",
-            "_HLWMRC_TAGS@:s *?= 'visible-monitor'"
-          ];
-        '';
       };
 
       # Set XDG user directories:

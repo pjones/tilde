@@ -101,10 +101,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "781b1f8e3a2194e1e233cd62b4f2193e129a07f7",
-        "sha256": "1pgg2x08l6irs77lyrg7mqwbz2vgias98102j0n1f3kxfg1f9b91",
+        "rev": "46251a79f752ae1d46ef733e8e9760b6d3429da4",
+        "sha256": "1xsp0xyrf8arjkf4wi09n96kbg0r8igsmzx8bhc1nj4nr078p0pg",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/781b1f8e3a2194e1e233cd62b4f2193e129a07f7.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/46251a79f752ae1d46ef733e8e9760b6d3429da4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/backup-scripts": {
@@ -161,10 +161,10 @@
         "homepage": null,
         "owner": "pjones",
         "repo": "hlwmrc",
-        "rev": "7af968d442ccc41449f5027161e3d75ca20a3dd9",
-        "sha256": "1z6rijxhwvh75vjiwax3xfsa05qck8hby34ps7cqrg82jgx4vrjd",
+        "rev": "f4dfa12383e8c042043f7b220d9857537f934980",
+        "sha256": "0x7civ9vmm2gjhhhpwajfr0b01rnz4asqsv3az7s5symr1014lax",
         "type": "tarball",
-        "url": "https://github.com/pjones/hlwmrc/archive/7af968d442ccc41449f5027161e3d75ca20a3dd9.tar.gz",
+        "url": "https://github.com/pjones/hlwmrc/archive/f4dfa12383e8c042043f7b220d9857537f934980.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/image-scripts": {
