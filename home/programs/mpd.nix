@@ -14,9 +14,6 @@ in
       playlistDirectory = "${config.home.homeDirectory}/documents/playlists";
     };
 
-    # D-Bus broadcasting:
-    services.mpdris2.enable = config.tilde.xsession.enable;
-
     # ncmpcpp:
     programs.ncmpcpp = {
       enable = true;
