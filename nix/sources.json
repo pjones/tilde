@@ -101,10 +101,10 @@
         "homepage": null,
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "46251a79f752ae1d46ef733e8e9760b6d3429da4",
-        "sha256": "1xsp0xyrf8arjkf4wi09n96kbg0r8igsmzx8bhc1nj4nr078p0pg",
+        "rev": "a284564b7f75ac4db73607db02076e8da9d42c9d",
+        "sha256": "108869dfr9ac0fff2yf7iqh8pcz6wpvbjnqjl4mc4g72ykn3g41s",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/46251a79f752ae1d46ef733e8e9760b6d3429da4.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/a284564b7f75ac4db73607db02076e8da9d42c9d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/backup-scripts": {
@@ -137,10 +137,10 @@
         "homepage": "https://github.com/pjones/emacsrc",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "c06373ee3ba8a3648ff7a2e576f9f0a3d7b01399",
-        "sha256": "0nd7fjd16hh4291l0sycjn1qynza1awjhknnc7ng2807igirlg2r",
+        "rev": "6e3c8c664d9904805bc9b29df2c1c99579257328",
+        "sha256": "1yhy76mncisffv5qy7ca76rzcid3qy3hqdpcxypma19vvsc3yakr",
         "type": "tarball",
-        "url": "https://github.com/pjones/emacsrc/archive/c06373ee3ba8a3648ff7a2e576f9f0a3d7b01399.tar.gz",
+        "url": "https://github.com/pjones/emacsrc/archive/6e3c8c664d9904805bc9b29df2c1c99579257328.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "pjones/encryption-utils": {
