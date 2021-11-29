@@ -24,8 +24,8 @@ in
     services.gromit-mpx = {
       enable = true;
       opacity = 1.0;
-      hotKey = "F8";
-      undoKey = "F7";
+      hotKey = "F9";
+      undoKey = "F10";
 
       tools =
         let
@@ -91,6 +91,11 @@ in
               size = 3;
             })) [ tool1 tool2 tool3 tool4 ];
     };
+
+    home.packages = [
+      (pkgs.writeScriptBin "gromit-mpx-toggle.sh"
+        (readFile ../../scripts/misc/gromit-mpx-toggle.sh))
+    ];
   };
 }
 
