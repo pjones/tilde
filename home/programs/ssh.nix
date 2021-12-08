@@ -87,11 +87,29 @@ in
     })
     (lib.mkIf (config.tilde.enable && cfg.rfa.enable) {
       programs.ssh.matchBlocks =
-        let keys = {
-          scors = "${cfg.keysDir}/scors.id_rsa";
-          code = "${cfg.keysDir}/code.rfa.sc.gov.id_rsa";
-          clemson = "${cfg.keysDir}/clemson.id_rsa";
-        };
+        let
+          keys = {
+            scors = "${cfg.keysDir}/scors.id_rsa";
+            code = "${cfg.keysDir}/code.rfa.sc.gov.id_rsa";
+            clemson = "${cfg.keysDir}/clemson.id_rsa";
+          };
+
+          # Utility machines:
+          util = {
+            proxyJump = "cugateway";
+            user = "rsp30947";
+
+            identityFile =
+              if cfg.haveRestrictedKeys
+              then keys.clemson
+              else null;
+
+            extraOptions = {
+              # CentOS 6 :(
+              HostKeyAlgorithms = "+ssh-rsa";
+              PubkeyAcceptedKeyTypes = "+ssh-rsa";
+            };
+          };
         in
         {
           "code.rfa.sc.gov" = {
@@ -120,23 +138,8 @@ in
               else null;
           };
 
-          "hutl" = {
-            proxyJump = "cugateway";
-            user = "rsp30947";
-            identityFile =
-              if cfg.haveRestrictedKeys
-              then keys.clemson
-              else null;
-          };
-
-          "hhs-phx-p-utl02" = {
-            proxyJump = "cugateway";
-            user = "rsp30947";
-            identityFile =
-              if cfg.haveRestrictedKeys
-              then keys.clemson
-              else null;
-          };
+          "hutl" = util;
+          "hutl2" = util // { hostname = "hhs-phx-p-utl02.clemson.edu"; };
         };
     })
   ];
