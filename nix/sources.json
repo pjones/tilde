@@ -71,30 +71,6 @@
         "url": "https://github.com/t184256/nix-on-droid/archive/0dec5d4c97838e5fa853dca934806b26807199c6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "nixops": {
-        "branch": "master",
-        "description": "NixOps is a tool for deploying to NixOS machines in a network or cloud.",
-        "homepage": "https://nixos.org/nixops",
-        "owner": "NixOS",
-        "repo": "nixops",
-        "rev": "4cfb70513bad149183adc3ac741c176d83b0e9d5",
-        "sha256": "0irf9wha2rxla6z7mywj5z29bvjbpwlxqj2s29ygsbhp6hnlbzzz",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixops/archive/4cfb70513bad149183adc3ac741c176d83b0e9d5.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "nixops-libvirtd": {
-        "branch": "master",
-        "description": "NixOps libvirtd backend plugin [maintainer=@AmineChikhaoui]",
-        "homepage": "",
-        "owner": "nix-community",
-        "repo": "nixops-libvirtd",
-        "rev": "1c29f6c716dad9ad58aa863ebc9575422459bf95",
-        "sha256": "0g2ag4mhgrxws3h4q8cvfh4ks1chgpjm018ayqd48lagyvi32l8m",
-        "type": "tarball",
-        "url": "https://github.com/nix-community/nixops-libvirtd/archive/1c29f6c716dad9ad58aa863ebc9575422459bf95.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "nixpkgs": {
         "branch": "nixos-21.11",
         "description": "Nix Packages collection",

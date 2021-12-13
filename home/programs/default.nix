@@ -14,7 +14,6 @@
     ./man.nix
     ./mpd.nix
     ./neuron.nix
-    ./nixops.nix
     ./oled-display.nix
     ./polybar.nix
     ./rofi.nix

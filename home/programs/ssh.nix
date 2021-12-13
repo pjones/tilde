@@ -45,13 +45,9 @@ in
           TCPKeepAlive no
         ''
         + lib.optionalString
-          (cfg.keysDir != options.tilde.programs.ssh.keysDir.default
-            || config.tilde.programs.nixops.enable) ''
+          (cfg.keysDir != options.tilde.programs.ssh.keysDir.default) ''
           IdentitiesOnly yes
           IdentityFile ${cfg.keysDir}/%l.id_ed25519
-        ''
-        + lib.optionalString config.tilde.programs.nixops.enable ''
-          IdentityFile ${cfg.keysDir}/nixops.id_ed25519
         '';
 
         matchBlocks =

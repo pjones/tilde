@@ -15,7 +15,6 @@ pkgs.mkShell {
 
   buildInputs =
     [ pkgs.git pkgs.openssh pkgs.niv ]
-    ++ lib.optional (pkgs.system == "x86_64-linux") pkgs.nixops
     ++ lib.optional (pkgs.system == "aarch64-linux") pkgs.nix-on-droid;
 
   # Export a good NIX_PATH for tools that run in this shell.
