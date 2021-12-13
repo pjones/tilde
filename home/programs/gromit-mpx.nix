@@ -4,7 +4,7 @@ with lib;
 let
   cfg = config.tilde.programs.gromit-mpx;
 
-  # FIXME: temporary until Home Manager 21.11 is released:
+  # FIXME: temporary until Home Manager 22.05 is released:
   gromitService =
     builtins.fetchurl {
       url = "https://raw.githubusercontent.com/pjones/home-manager/pjones/gromit-mpx-21.05/modules/services/gromit-mpx.nix";

@@ -75,7 +75,6 @@ in
           nat.internalInterfaces = [ "ve-+" ];
           networkmanager.enable = true;
           useDHCP = false;
-          wicd.enable = false;
           wireless.enable = false;
         };
 
@@ -104,10 +103,6 @@ in
             autoPrune.enable = true;
           };
         };
-
-        # Needed by virt-manager:
-        security.wrappers.spice-client-glib-usb-acl-helper.source =
-          "${pkgs.spice-gtk}/bin/spice-client-glib-usb-acl-helper";
       })
       (lib.mkIf (cfg.enable && cfg.type == "laptop") {
         environment.systemPackages = with pkgs; [

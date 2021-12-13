@@ -29,6 +29,7 @@ in
     tilde.xsession.fonts.enable = true;
 
     # For setting GTK themes:
+    programs.dconf.enable = true;
     services.dbus.packages = [ pkgs.gnome3.dconf ];
 
     services.xserver = lib.mkIf cfg.enable {
