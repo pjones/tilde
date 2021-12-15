@@ -57,7 +57,15 @@ in
         # I want firmware updates:
         hardware.enableRedistributableFirmware = true;
 
-        # Basic setup for nixpkgs:
+        # Basic setup for nix and nixpkgs:
+        nix = {
+          package = pkgs.nix_2_4; # FIXME: remove in NixOS 22.05
+          nixPath = [ "nixpkgs=${pkgs.path}" ];
+          extraOptions = ''
+            experimental-features = nix-command flakes
+          '';
+        };
+
         nixpkgs.config = {
           allowUnfree = true; # Proprietary drivers :(
         };
@@ -95,8 +103,6 @@ in
 
       ({
         home-manager.users.${cfg.username} = { ... }: {
-          imports = [ ../home ];
-
           config = lib.mkIf cfg.enable {
             # Propagate some settings into home-manager:
             home.username = cfg.username;

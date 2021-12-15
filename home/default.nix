@@ -22,7 +22,9 @@
     nixpkgs = {
       config.allowUnfree = true;
       config.android_sdk.accept_license = true;
-      overlays = [ (import ../overlays) ];
+      config.extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
     };
 
     # Custom activation scripts:

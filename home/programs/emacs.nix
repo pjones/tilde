@@ -3,12 +3,9 @@
 , ...
 }:
 let
-  sources = import ../../nix/sources.nix;
   cfg = config.tilde.programs.emacs;
 in
 {
-  imports = [ "${sources."pjones/emacsrc"}/nix/home.nix" ];
-
   options.tilde.programs.emacs = {
     enable = lib.mkEnableOption "Emacs and Peter's Configuration";
   };

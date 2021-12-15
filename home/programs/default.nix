@@ -1,7 +1,10 @@
-{ ...
+{ config
+, lib
+, ...
 }:
 {
   imports = [
+    ./base.nix
     ./clight.nix
     ./direnv.nix
     ./dunst.nix
@@ -22,7 +25,7 @@
   ];
 
   # Configure programs that don't need their own file:
-  config = {
+  config = lib.mkIf config.tilde.enable {
     # Chromium:
     # https://wiki.archlinux.org/index.php/Chromium#Dark_mode
     xdg.configFile."chromium-flags.conf".text = ''

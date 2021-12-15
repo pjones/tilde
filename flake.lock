@@ -1,0 +1,338 @@
+{
+  "nodes": {
+    "bashrc": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639434789,
+        "narHash": "sha256-E+mTDoxsBWu6qPAweykIrUUQGhKDJt1WV93azBXT1bQ=",
+        "owner": "pjones",
+        "repo": "bashrc",
+        "rev": "2ed3e14d406ffc6b9b3ecc22d3cebdc416d3394f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "bashrc",
+        "type": "github"
+      }
+    },
+    "emacsrc": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639156649,
+        "narHash": "sha256-eFgJMmeXLdcyLPKLIx408VhvG92dxYGQaBtbvrFF+Ig=",
+        "owner": "pjones",
+        "repo": "emacsrc",
+        "rev": "fb2ba9129e1d31fd0e1b3c7245b3251c8021c9d3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "ref": "pjones/update-to-nixos-21.11",
+        "repo": "emacsrc",
+        "type": "github"
+      }
+    },
+    "encryption-utils": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639501108,
+        "narHash": "sha256-voznrPMLn7A8Ia+aTDWZGOy0vFZkHMKyQ+rJ19Sc5K0=",
+        "owner": "pjones",
+        "repo": "encryption-utils",
+        "rev": "61d193e206da579c3f213de18d9f8d65e4a59a85",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "encryption-utils",
+        "type": "github"
+      }
+    },
+    "herbstluftwm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1638803794,
+        "narHash": "sha256-08EXWckppi3y22iQmGauuwkYEABAInqEcM3ojvnXo2s=",
+        "owner": "herbstluftwm",
+        "repo": "herbstluftwm",
+        "rev": "1199ee9218b66d5f9f61c9b99cefc96926fabd23",
+        "type": "github"
+      },
+      "original": {
+        "owner": "herbstluftwm",
+        "repo": "herbstluftwm",
+        "type": "github"
+      }
+    },
+    "hlwmrc": {
+      "inputs": {
+        "herbstluftwm": "herbstluftwm",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639434976,
+        "narHash": "sha256-e7OqalYL1HO4mpgXM0eVOaCHbOsKOPPD9rxH9tAj554=",
+        "owner": "pjones",
+        "repo": "hlwmrc",
+        "rev": "ee670e0431c2838ea4969807abe06959cd7c9762",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "hlwmrc",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1638553958,
+        "narHash": "sha256-leETjYMtD9y37CvfRSQhIGibcIl4dNVlFkY/8QgqmAM=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "6ce1d64073f48b9bc9425218803b1b607454c1e7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-21.11",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "image-scripts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639591967,
+        "narHash": "sha256-SionL7WLZ4i6JICT+w5G1LjoujDKBoa30VeQE54Y/SI=",
+        "owner": "pjones",
+        "repo": "image-scripts",
+        "rev": "da72784f3aa86d6058f071af63b6c64d526bf7d0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "image-scripts",
+        "type": "github"
+      }
+    },
+    "inhibit-screensaver": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639502764,
+        "narHash": "sha256-Kk6OWhzJpA3sRJZiDDonk4yIN74UFR4SXaY+L2rtttA=",
+        "owner": "pjones",
+        "repo": "inhibit-screensaver",
+        "rev": "2549cb086d6371364bf301a7ccf5cd6798a1236e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "inhibit-screensaver",
+        "type": "github"
+      }
+    },
+    "maintenance-scripts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639514980,
+        "narHash": "sha256-6aChu0wNkx+5n+Qg+g7px21ZiEg3ooTr6BIFxUi12k0=",
+        "owner": "pjones",
+        "repo": "maintenance-scripts",
+        "rev": "836a4a39718bacd02b0411d5be6e57bf09f06b0c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "maintenance-scripts",
+        "type": "github"
+      }
+    },
+    "network-scripts": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639597472,
+        "narHash": "sha256-iDZjJD+COOWqBVtgpewPXKzFTkYIpZt9oG4+Au2NCIQ=",
+        "owner": "pjones",
+        "repo": "network-scripts",
+        "rev": "084276e26a53e9f6976606f13e17d2b408d4bc21",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "network-scripts",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1639161226,
+        "narHash": "sha256-75Y08ynJDTq6HHGIF+8IADBJSVip0UyWQH7jqSFnRR8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "573095944e7c1d58d30fc679c81af63668b54056",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-21.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nur": {
+      "locked": {
+        "lastModified": 1639434088,
+        "narHash": "sha256-JWDHikqfkk/ax3WSE8ZbNY/o2zFiuB19LP22VdMX/Jw=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "534e613b8d15794209b9adb9a7026cbd696fe357",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
+    "oled-display": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639520204,
+        "narHash": "sha256-mAWNEoFe659TSSqq6tboqcQTJa8yBktFElnDJjdfOrM=",
+        "owner": "pjones",
+        "repo": "oled-display",
+        "rev": "bb4e5f77c9d25f2a302ad551534432ab1269219c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "oled-display",
+        "type": "github"
+      }
+    },
+    "rofirc": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639436485,
+        "narHash": "sha256-AAHmnfXvg0FfMdGdM8rXt4J3SW/TmJ7lJ2ruKpCHnKE=",
+        "owner": "pjones",
+        "repo": "rofirc",
+        "rev": "0640cf8ae8ef95f0f301a6ade8a134d288be2205",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "rofirc",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "bashrc": "bashrc",
+        "emacsrc": "emacsrc",
+        "encryption-utils": "encryption-utils",
+        "hlwmrc": "hlwmrc",
+        "home-manager": "home-manager",
+        "image-scripts": "image-scripts",
+        "inhibit-screensaver": "inhibit-screensaver",
+        "maintenance-scripts": "maintenance-scripts",
+        "network-scripts": "network-scripts",
+        "nixpkgs": "nixpkgs",
+        "nur": "nur",
+        "oled-display": "oled-display",
+        "rofirc": "rofirc",
+        "tmuxrc": "tmuxrc",
+        "zshrc": "zshrc"
+      }
+    },
+    "tmuxrc": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639437569,
+        "narHash": "sha256-kQ2gVdRa9ytrHr83PhTEfPEEXctB+yWqg05pyLC303c=",
+        "owner": "pjones",
+        "repo": "tmuxrc",
+        "rev": "a3d3f34a7ee62e43070b1a4d3dec956d454b13e0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "tmuxrc",
+        "type": "github"
+      }
+    },
+    "zshrc": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1639434859,
+        "narHash": "sha256-DkL9r/QnM9SwAjX6sLF9mZqHAsAcBHSC+RamP3L++RU=",
+        "owner": "pjones",
+        "repo": "zshrc",
+        "rev": "b1383ceb47976ecdbffd6dfcc548a649db5491a4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "zshrc",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

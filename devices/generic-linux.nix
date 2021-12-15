@@ -1,8 +1,21 @@
 # This is a home-manager module:
-{ pkgs, ... }:
-let
-  packages = import ../home/programs/base.nix { inherit pkgs; };
-in
+{ ... }:
 {
-  home.packages = packages.linux;
+  imports = [
+    ../home
+  ];
+
+  config = {
+    home.username = "pjones";
+    home.homeDirectory = "/home/pjones";
+
+    home-manager = {
+      backupFileExtension = "backup";
+      useUserPackages = true;
+    };
+
+    tilde = {
+      enable = true;
+    };
+  };
 }

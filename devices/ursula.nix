@@ -5,4 +5,8 @@
   imports = [
     ./generic-nixos.nix
   ];
+
+  config = {
+    networking.hostName = "ursula";
+  };
 }

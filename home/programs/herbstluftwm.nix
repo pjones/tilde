@@ -17,6 +17,7 @@ in
     home.packages = with pkgs; [
       # Window manager scripts
       pjones.hlwmrc
+      herbstluftwm
     ];
 
     xsession = {

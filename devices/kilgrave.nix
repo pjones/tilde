@@ -6,8 +6,12 @@
     ./generic-nixos.nix
   ];
 
-  home-manager.users.pjones = { ... }: {
-    tilde.programs.neuron.enable = true;
-    services.syncthing.enable = true;
+  config = {
+    networking.hostName = "kilgrave";
+
+    home-manager.users.pjones = { ... }: {
+      tilde.programs.neuron.enable = true;
+      services.syncthing.enable = true;
+    };
   };
 }

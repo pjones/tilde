@@ -1,12 +1,13 @@
-{ sources ? import ../nix/sources.nix
-, pkgs ? import sources.nixpkgs { }
-}:
+{ pkgs, module }:
 pkgs.nixosTest {
   name = "tilde-kmonad-test";
 
   nodes = {
     machine = { ... }: {
-      imports = [ ../devices/generic-nixos.nix ];
+      imports = [
+        module
+        ../devices/generic-nixos.nix
+      ];
 
       tilde.workstation.kmonad = {
         enable = true;

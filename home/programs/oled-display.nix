@@ -2,7 +2,7 @@
 let
   cfg = config.tilde.programs.oled-display;
 
-  package = pkgs.pjones.oled-display;
+  package = pkgs.pjones.display-control;
 
   flags = lib.concatStringsSep " " (
     [

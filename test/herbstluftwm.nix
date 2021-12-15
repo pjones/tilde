@@ -1,6 +1,4 @@
-{ sources ? import ../nix/sources.nix
-, pkgs ? import sources.nixpkgs { }
-}:
+{ pkgs, module }:
 let
   user = import ./user.nix;
 in
@@ -8,9 +6,10 @@ pkgs.nixosTest {
   name = "tilde-herbstluftwm-test";
 
   nodes = {
-    machine = { lib, ... }: {
+    machine = { lib, modulesPath, ... }: {
       imports = [
-        "${sources.nixpkgs}/nixos/tests/common/x11.nix"
+        "${modulesPath}/../tests/common/x11.nix"
+        module
         ../devices/generic-nixos.nix
       ];
 

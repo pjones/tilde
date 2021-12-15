@@ -1,6 +1,4 @@
-{ sources ? import ../nix/sources.nix
-, pkgs ? import sources.nixpkgs { }
-}:
+{ pkgs, module }:
 let
   user = import ./user.nix;
 in
@@ -9,7 +7,11 @@ pkgs.nixosTest {
 
   nodes = {
     machine = { ... }: {
-      imports = [ ../devices/generic-nixos.nix ];
+      imports = [
+        module
+        ../devices/generic-nixos.nix
+      ];
+
       tilde.username = user.name;
 
       home-manager.users.${user.name} = { ... }: {

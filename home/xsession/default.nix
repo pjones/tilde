@@ -58,6 +58,7 @@ in
       tilde.programs.gromit-mpx.enable = lib.mkDefault true;
       tilde.programs.herbstluftwm.enable = lib.mkDefault true;
       tilde.programs.konsole.enable = lib.mkDefault true;
+      tilde.programs.oled-display.enable = lib.mkDefault true;
       tilde.programs.rofi.enable = lib.mkDefault true;
       tilde.xsession.lock.bluetooth.enable = lib.mkDefault true;
 

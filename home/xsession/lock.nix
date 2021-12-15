@@ -41,7 +41,7 @@ let
     pkgs.writeShellScript "inhibit-screensaver" ''
       export PATH=/run/wrappers/bin:${path}:$PATH
       exec >&2 # Redirect stdout to stderr
-      ${pkgs.pjones.inhibit-screensaver.bin}/bin/inhibit-screensaver \
+      ${pkgs.pjones.inhibit-screensaver}/bin/inhibit-screensaver \
         --frequency ${toString cfg.bluetooth.frequency} \
         --query 'pgrep i3lock' \
         -- bluetooth-ping.sh ${devices}
