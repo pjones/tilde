@@ -152,6 +152,19 @@
       defaultPackage.x86_64-linux = self.packages.x86_64-linux.screenshot;
 
       ##########################################################################
+      apps.x86_64-linux = {
+        # Launch a VM running Pete's configuration:
+        demo = {
+          type = "app";
+          program = "${self.packages.x86_64-linux.demo}/bin/run-tilde-demo-vm";
+        };
+      };
+
+      ##########################################################################
+      # Default app is to run the demo VM:
+      defaultApp.x86_64-linux = self.apps.x86_64-linux.demo;
+
+      ##########################################################################
       checks.x86_64-linux =
         let
           pkgs = nixpkgsFor.x86_64-linux;

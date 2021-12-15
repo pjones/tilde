@@ -7,6 +7,8 @@ in
   ];
 
   config = {
+    networking.hostName = "tilde-demo";
+
     tilde = {
       enable = true;
       putInWheel = true;
