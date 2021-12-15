@@ -30,8 +30,6 @@ in
     virtualisation = {
       diskSize = 8000; # MB
       memorySize = 2048; # MB
-      writableStoreUseTmpfs = false;
-      useBootLoader = true;
 
       forwardPorts = [{
         from = "host";
