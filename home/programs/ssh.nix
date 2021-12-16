@@ -48,6 +48,9 @@ in
           (cfg.keysDir != options.tilde.programs.ssh.keysDir.default) ''
           IdentitiesOnly yes
           IdentityFile ${cfg.keysDir}/%l.id_ed25519
+        ''
+        + lib.optionalString cfg.haveRestrictedKeys ''
+          IdentityFile ${cfg.keysDir}/deploy.id_ed25519
         '';
 
         matchBlocks =
