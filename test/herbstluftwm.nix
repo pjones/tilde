@@ -8,7 +8,7 @@ pkgs.nixosTest {
   nodes = {
     machine = { lib, modulesPath, ... }: {
       imports = [
-        "${modulesPath}/../tests/common/x11.nix"
+        (modulesPath + "/../tests/common/x11.nix")
         module
         ../devices/generic-nixos.nix
       ];

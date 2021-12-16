@@ -5,8 +5,8 @@ let
 in
 {
   imports = [
-    "${modulesPath}/profiles/qemu-guest.nix"
-    "${modulesPath}/virtualisation/qemu-vm.nix"
+    (modulesPath + "/profiles/qemu-guest.nix")
+    (modulesPath + "/virtualisation/qemu-vm.nix")
   ];
 
   config = {
