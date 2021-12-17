@@ -30,16 +30,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1639156649,
-        "narHash": "sha256-eFgJMmeXLdcyLPKLIx408VhvG92dxYGQaBtbvrFF+Ig=",
+        "lastModified": 1639755150,
+        "narHash": "sha256-Qs/8Au94b9GddgcF+t3gTrrg8h7FiK3BvSpOoU9QksA=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "fb2ba9129e1d31fd0e1b3c7245b3251c8021c9d3",
+        "rev": "583da7615076f452a24009033b3e3a5825567d70",
         "type": "github"
       },
       "original": {
         "owner": "pjones",
-        "ref": "pjones/update-to-nixos-21.11",
         "repo": "emacsrc",
         "type": "github"
       }
@@ -144,9 +143,7 @@
     },
     "inhibit-screensaver": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "lastModified": 1639502764,
@@ -204,6 +201,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1639130158,
+        "narHash": "sha256-/5a/7J3AE5ATzB3HdFZ9C9VlPbUK5bIGsRX7veSujXA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3b422991781220853035dbe353ba8b7cb279b6b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-21.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1639161226,
         "narHash": "sha256-75Y08ynJDTq6HHGIF+8IADBJSVip0UyWQH7jqSFnRR8=",
         "owner": "NixOS",
@@ -218,13 +231,29 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1638922083,
+        "narHash": "sha256-IlQm69UmCfQBwccn+zZULwun0KRtdWFNYQ4jEA3VwW0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "fe56507bd3063a30f3a741a45bf3ba74a91cfac2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-21.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nur": {
       "locked": {
-        "lastModified": 1639434088,
-        "narHash": "sha256-JWDHikqfkk/ax3WSE8ZbNY/o2zFiuB19LP22VdMX/Jw=",
+        "lastModified": 1639743772,
+        "narHash": "sha256-Xf+cDLwB2lHZvRm70R3tBYdN8jyTysyYPquwjFaOiz4=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "534e613b8d15794209b9adb9a7026cbd696fe357",
+        "rev": "62e3c6dbd31f9d2edd2ceca0f66043f92b0f5acb",
         "type": "github"
       },
       "original": {
@@ -235,9 +264,7 @@
     },
     "oled-display": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1639520204,
@@ -284,7 +311,7 @@
         "inhibit-screensaver": "inhibit-screensaver",
         "maintenance-scripts": "maintenance-scripts",
         "network-scripts": "network-scripts",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "oled-display": "oled-display",
         "rofirc": "rofirc",

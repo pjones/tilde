@@ -12,7 +12,7 @@
       bashrc.url = "github:pjones/bashrc";
       bashrc.inputs.nixpkgs.follows = "nixpkgs";
 
-      emacsrc.url = "github:pjones/emacsrc/pjones/update-to-nixos-21.11";
+      emacsrc.url = "github:pjones/emacsrc";
       emacsrc.inputs.nixpkgs.follows = "nixpkgs";
       emacsrc.inputs.home-manager.follows = "home-manager";
 
