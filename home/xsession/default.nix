@@ -98,65 +98,6 @@ in
         templates = "$HOME/documents/templates";
         videos = "$HOME/documents/videos";
       };
-
-      # Extra programs to install:
-      home.packages = with pkgs; [
-        # Desktop
-        calibre
-        glabels
-        spectacle
-        libnotify
-        libreoffice
-        pamixer
-        pavucontrol
-        wmctrl
-        x11vnc
-        xclip
-        xdo
-        xdotool
-        xorg.xev
-        xorg.xhost
-        xorg.xrandr
-        xorg.xset
-        xorg.xwininfo
-        xtitle
-
-        # Network
-        chromium-launcher
-        element-desktop
-        remmina
-        tilde-scripts-browser
-
-        # Audio/Video
-        cantata
-        cdparanoia
-        handbrake
-        vlc
-
-        # Creative
-        darktable
-        dia
-        gdal
-        gimp
-        gwenview
-        imagemagick
-        inkscape
-        kicad
-        ngspice
-        openscad
-        prusa-slicer
-        qcad
-        qmapshack
-        xournal
-      ] ++
-      # Packages that don't build on aarch64:
-      lib.optionals pkgs.stdenv.isx86_64 [
-        pkgs.makemkv
-        pkgs.signal-desktop
-        pkgs.slack
-        pkgs.spotify
-        pkgs.zulip
-      ];
     })
 
     (lib.mkIf (cfg.enable && !cfg.desktopEnv.enable) {

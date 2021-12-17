@@ -85,7 +85,7 @@
         network-scripts = inputs.network-scripts.overlay;
         nur = inputs.nur.overlay;
         rofirc = inputs.rofirc.overlay;
-        tilde = import ./overlays;
+        tilde = import pkgs/overlay.nix;
         tmuxrc = inputs.tmuxrc.overlay;
         zshrc = inputs.zshrc.overlay;
       };

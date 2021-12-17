@@ -1,14 +1,10 @@
 # A shell environment that includes adb and a script to debloat
 # Samsung devices.
+{ pkgs ? import <nixpkgs> {
+    config.android_sdk.accept_license = true;
+  }
+}:
 let
-  sources = import ../nix/sources.nix;
-
-  pkgs = import sources.nixpkgs {
-    config = {
-      android_sdk.accept_license = true;
-    };
-  };
-
   inherit (pkgs) lib;
 
   samsungDebloat =
@@ -42,10 +38,7 @@ pkgs.mkShell {
 
   buildInputs = [
     samsungDebloat
-    pkgs.androidsdk_9_0
-
-    # NixOS 21.11:
-    # pkgs.android-tools
+    pkgs.android-tools
   ];
 }
 
