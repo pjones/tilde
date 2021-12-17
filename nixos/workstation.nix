@@ -86,9 +86,10 @@ in
         # Printing:
         services.printing = {
           enable = true;
-          drivers = with pkgs; [
-            canon-cups-ufr2
-          ];
+          drivers =
+            lib.optional
+              pkgs.stdenv.isx86_64
+              pkgs.canon-cups-ufr2;
         };
 
         # Needed for some other services:
@@ -120,7 +121,7 @@ in
 
         # Useful services:
         hardware.acpilight.enable = true;
-        services.thermald.enable = true;
+        services.thermald.enable = pkgs.stdenv.isx86_64;
         services.upower.enable = true;
         powerManagement.powertop.enable = true;
       })

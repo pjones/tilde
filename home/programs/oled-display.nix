@@ -40,7 +40,7 @@ in
   };
 
   #### Implementation:
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && pkgs.stdenv.isx86_64) {
     systemd.user.services.oled-display = {
       Unit = {
         Description = "OLED Display Controller";

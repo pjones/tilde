@@ -52,13 +52,26 @@
         "aarch64-linux"
         "x86_64-darwin"
         "aarch64-darwin"
-        "armv7l-linux"
-        "i686-linux"
+
+        # OpenJDK prevents this from working:
+        # "armv7l-linux"
       ];
 
       # Function to generate a set based on supported systems:
       forAllSystems = f:
         nixpkgs.lib.genAttrs supportedSystems (system: f system);
+
+      # Like `forAllSystems` except just those that are Linux:
+      forLinuxSystems = f: builtins.listToAttrs
+        (builtins.filter (set: set ? name)
+          (builtins.map
+            (system:
+              let pkgs = nixpkgsFor.${system}; in
+              nixpkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
+                name = system;
+                value = f system;
+              })
+            supportedSystems));
 
       # Package overlay:
       overlays = {
@@ -143,37 +156,39 @@
       };
 
       ##########################################################################
-      packages.x86_64-linux = {
+      packages = forLinuxSystems (system: {
         demo = self.nixosConfigurations.demo.config.system.build.vm;
-        screenshot = self.checks.x86_64-linux.herbstluftwm;
-      };
+        screenshot = self.checks.${system}.herbstluftwm;
+      });
 
       ##########################################################################
-      defaultPackage.x86_64-linux = self.packages.x86_64-linux.screenshot;
+      defaultPackage = forLinuxSystems (system:
+        self.packages.${system}.screenshot);
 
       ##########################################################################
-      apps.x86_64-linux = {
+      apps = forLinuxSystems (system: {
         # Launch a VM running Pete's configuration:
         demo = {
           type = "app";
-          program = "${self.packages.x86_64-linux.demo}/bin/run-tilde-demo-vm";
+          program = "${self.packages.${system}.demo}/bin/run-tilde-demo-vm";
         };
-      };
+      });
 
       ##########################################################################
       # Default app is to run the demo VM:
-      defaultApp.x86_64-linux = self.apps.x86_64-linux.demo;
+      defaultApp = forLinuxSystems (system:
+        self.apps.${system}.demo);
 
       ##########################################################################
-      checks.x86_64-linux =
+      checks = forLinuxSystems (system:
         let
-          pkgs = nixpkgsFor.x86_64-linux;
+          pkgs = nixpkgsFor.${system};
           module = self.nixosModules.tilde;
           test = path: import path { inherit pkgs module; };
 
           machine = module:
             let machine = nixpkgs.lib.nixosSystem {
-              system = "x86_64-linux";
+              inherit system;
               modules = [
                 test/vm.nix
                 module
@@ -195,7 +210,7 @@
           medusa = machine self.nixosModules.medusa;
           moriarty = machine self.nixosModules.moriarty;
           ursula = machine self.nixosModules.ursula;
-        };
+        });
 
       ##########################################################################
       devShell = forAllSystems (system:

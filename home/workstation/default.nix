@@ -49,7 +49,6 @@ in
 
       # Document Conversion:
       pandoc
-      pdftk
 
       # Development
       libxml2
@@ -62,6 +61,9 @@ in
       pjones.encryption-utils
       # pjones.vimeta
       pulse-audio-scripts
+    ] ++
+    lib.optionals (pkgs.stdenv.isx86_64 || pkgs.stdenv.isAarch64) [
+      pkgs.pdftk # Doesn't work in amr7l.
     ];
   };
 }

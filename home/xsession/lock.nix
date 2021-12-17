@@ -107,25 +107,29 @@ in
       };
     })
 
-    (lib.mkIf (cfg.bluetooth.enable && cfg.bluetooth.devices != [ ]) {
-      # Inhibit the screensaver while Bluetooth devices are nearby:
-      systemd.user.services.lock-screen-inhibit = {
-        Unit = {
-          Description = "Inhibit the lock screen";
-          After = [ "graphical-session-pre.target" ];
-          PartOf = [ "graphical-session.target" ];
-        };
+    (lib.mkIf
+      (cfg.bluetooth.enable &&
+        pkgs.stdenv.isx86_64 &&
+        cfg.bluetooth.devices != [ ])
+      {
+        # Inhibit the screensaver while Bluetooth devices are nearby:
+        systemd.user.services.lock-screen-inhibit = {
+          Unit = {
+            Description = "Inhibit the lock screen";
+            After = [ "graphical-session-pre.target" ];
+            PartOf = [ "graphical-session.target" ];
+          };
 
-        Install = {
-          WantedBy = [ "graphical-session.target" ];
-        };
+          Install = {
+            WantedBy = [ "graphical-session.target" ];
+          };
 
-        Service = {
-          ExecStart = toString inhibitCmd;
-          Restart = "always";
-          RestartSec = 3;
+          Service = {
+            ExecStart = toString inhibitCmd;
+            Restart = "always";
+            RestartSec = 3;
+          };
         };
-      };
-    })
+      })
   ];
 }

@@ -122,21 +122,15 @@ in
         xtitle
 
         # Network
-        brave
         chromium-launcher
         element-desktop
         remmina
-        signal-desktop
-        slack
         tilde-scripts-browser
-        zulip
 
         # Audio/Video
         cantata
         cdparanoia
         handbrake
-        makemkv
-        spotify
         vlc
 
         # Creative
@@ -153,8 +147,15 @@ in
         prusa-slicer
         qcad
         qmapshack
-        vscode
         xournal
+      ] ++
+      # Packages that don't build on aarch64:
+      lib.optionals pkgs.stdenv.isx86_64 [
+        pkgs.makemkv
+        pkgs.signal-desktop
+        pkgs.slack
+        pkgs.spotify
+        pkgs.zulip
       ];
     })
 
