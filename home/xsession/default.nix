@@ -98,6 +98,18 @@ in
         templates = "$HOME/documents/templates";
         videos = "$HOME/documents/videos";
       };
+
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "image/jpeg" = "gwenview.desktop";
+          "image/png" = "gwenview.desktop";
+          "x-scheme-handler/element" = "element-desktop.desktop";
+          "x-scheme-handler/sgnl" = "signal-desktop.desktop";
+          "x-scheme-handler/signalcaptcha" = "signal-desktop.desktop";
+          "x-scheme-handler/slack" = "slack.desktop";
+        };
+      };
     })
 
     (lib.mkIf (cfg.enable && !cfg.desktopEnv.enable) {
