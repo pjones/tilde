@@ -102,11 +102,22 @@ in
         videos = "$HOME/documents/videos";
       };
 
+      xdg.desktopEntries = {
+        feh-view = {
+          name = "FEH";
+          genericName = "Image Viewer";
+          exec = "${pkgs.feh}/bin/feh --auto-zoom --scale-down %U";
+          terminal = false;
+          categories = [ "Application" ];
+          mimeType = [ "image/jpeg" "image/png" ];
+        };
+      };
+
       xdg.mimeApps = {
         enable = true;
         defaultApplications = {
-          "image/jpeg" = "gwenview.desktop";
-          "image/png" = "gwenview.desktop";
+          "image/jpeg" = "feh-view.desktop";
+          "image/png" = "feh-view.desktop";
           "x-scheme-handler/element" = "element-desktop.desktop";
           "x-scheme-handler/sgnl" = "signal-desktop.desktop";
           "x-scheme-handler/signalcaptcha" = "signal-desktop.desktop";
