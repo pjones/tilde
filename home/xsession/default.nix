@@ -50,6 +50,9 @@ in
 
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
+      # Allow other desktop sessions to be started if wanted:
+      xsession.scriptPath = ".hm-xsession";
+
       # Enabling an xsession also enables workstation settings:
       tilde.workstation.enable = true;
 

@@ -36,7 +36,16 @@ in
       enable = lib.mkDefault true;
       layout = lib.mkDefault "us";
 
+      windowManager.session = [{
+        name = "hm";
+        start = ''
+          ${pkgs.runtimeShell} $HOME/.hm-xsession &
+          waitPID=$!
+        '';
+      }];
+
       desktopManager.plasma5.enable = lib.mkDefault true;
+      displayManager.defaultSession = lib.mkForce "none+hm";
 
       displayManager.sddm = {
         enable = lib.mkDefault true;
