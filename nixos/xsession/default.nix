@@ -51,6 +51,17 @@ in
         enable = lib.mkDefault true;
         theme = "sweet-nova";
       };
+
+      libinput = {
+        enable = true;
+
+        touchpad = {
+          clickMethod = "clickfinger";
+          disableWhileTyping = true;
+          scrollMethod = "twofinger";
+          tapping = false;
+        };
+      };
     };
 
     # Let me remote in:
