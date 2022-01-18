@@ -30,11 +30,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1642525267,
-        "narHash": "sha256-28rlqCIzOMJv6n3mEIVOroQVK53bDVb1yW3ZgE+JxHk=",
+        "lastModified": 1642532174,
+        "narHash": "sha256-exr0gg9RFxnYqjn24KrC/7q1fGfnfBH+McI4J5qARBU=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "5fb410e72e961091aafe775e6d0356dc75594584",
+        "rev": "5eb1de0fa4955d68cc245f7ed1a2c0f03ea1962a",
         "type": "github"
       },
       "original": {
