@@ -40,7 +40,6 @@ pkgs.nixosTest {
         machine.succeed("chown -R ${user.name}:root ${user.home}/download")
         machine.require_unit_state("crontab-${user.name}-clean-download-directory.timer", "active")
         machine.start_job("crontab-${user.name}-clean-download-directory.service")
-        machine.wait_for_job("crontab-${user.name}-clean-download-directory.service")
         machine.wait_until_fails("pgrep -u ${user.name} delete-older-files.sh")
         machine.succeed("test -e ${user.home}/download/should-be-kept")
         machine.succeed("test ! -e ${user.home}/download/should-be-removed")
