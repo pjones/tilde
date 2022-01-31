@@ -74,6 +74,7 @@ in
           nat.enable = true;
           nat.internalInterfaces = [ "ve-+" ];
           networkmanager.enable = true;
+          networkmanager.unmanaged = [ "interface-name:ve-*" ];
           useDHCP = false;
           wireless.enable = false;
         };
