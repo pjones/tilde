@@ -32,17 +32,17 @@
   prv previoussong
   ply playpause
 
-  ;; The caps lock key activates the media layer:
-  mcl (tap-hold-next-release 200 caps (layer-toggle media))
+  ;; Grave key or media layer:
+  mgv (tap-hold-next-release 200 grv (layer-toggle media))
 
-  ;; Left shift or grave:
-  sgv (tap-hold-next-release 200 grv lsft))
+  ;; Caps or left shift:
+  scp (tap-hold-next-release 200 caps lsft))
 
 (deflayer qwerty
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  @mcl @aa  @gs  @sd  @cf  @rg  @rh  @cj  @sk  @gl  @a;  '    ret
-  @sgv z    x    c    v    b    n    m    ,    .    /    rsft
+  @mgv @aa  @gs  @sd  @cf  @rg  @rh  @cj  @sk  @gl  @a;  '    ret
+  @scp z    x    c    v    b    n    m    ,    .    /    rsft
   lctl lmet lalt           spc            ralt rmet cmp  rctl
 )
 
