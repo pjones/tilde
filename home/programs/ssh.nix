@@ -137,6 +137,16 @@ in
               else null;
           };
 
+          # Development container:
+          "aviary" = {
+            forwardAgent = true;
+            remoteForwards = [{
+              bind.port = 2204;
+              host.address = cfg.rfa.vpnJumpHost;
+              host.port = 22;
+            }];
+          };
+
           "hutl" = util;
           "hutl2" = util // { hostname = "hhs-phx-p-utl02.clemson.edu"; };
         };
