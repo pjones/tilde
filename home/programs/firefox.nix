@@ -106,6 +106,8 @@ in
         colours dark
 
         set homepages ["${homepage}"]
+        set newtab ${homepage}
+        set searchengine dd
         set modeindicatorshowkeys true
 
         set hintautoselect false
@@ -130,7 +132,9 @@ in
         bind <C-u><C-u>f hint -b
         bind <C-u>f hint -t
 
+        bind g reload
         bind r reload
+        bind <C-u>g reloadhard
         bind <C-u>r reloadhard
 
         bind n scrollline 10
@@ -157,6 +161,7 @@ in
         ${bindGlobal "<C-x>k tabclose"}
 
         set searchurls.az https://smile.amazon.com/s?k=%s&ref=nb_sb_noss
+        set searchurls.dd https://duckduckgo.com/?q=%s
         set searchurls.go https://www.google.com/search?q=%s
         set searchurls.ha https://hackage.haskell.org/packages/search?terms=%s
         set searchurls.ho https://hoogle.haskell.org/?hoogle=%s&scope=set%3Astackage
