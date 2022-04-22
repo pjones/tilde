@@ -124,6 +124,10 @@ in
           "x-scheme-handler/slack" = "slack.desktop";
         };
       };
+
+      # Some apps are rude and overwrite this file:
+      # https://github.com/nix-community/home-manager/issues/1213
+      xdg.configFile."mimeapps.list".force = true;
     })
 
     (lib.mkIf (cfg.enable && !cfg.desktopEnv.enable) {
