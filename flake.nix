@@ -3,29 +3,31 @@
 
   inputs =
     {
-      nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.11";
+      nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
       nur.url = "github:nix-community/NUR";
 
-      home-manager.url = "github:nix-community/home-manager/release-21.11";
+      home-manager.url = "github:nix-community/home-manager/master";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
       bashrc.url = "github:pjones/bashrc";
       bashrc.inputs.nixpkgs.follows = "nixpkgs";
 
-      emacsrc.url = "github:pjones/emacsrc";
+      emacsrc.url = "github:pjones/emacsrc/pjones/nixos-22.05";
       emacsrc.inputs.nixpkgs.follows = "nixpkgs";
       emacsrc.inputs.home-manager.follows = "home-manager";
 
       encryption-utils.url = "github:pjones/encryption-utils";
       encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
 
-      hlwmrc.url = "github:pjones/hlwmrc";
+      hlwmrc.url = "github:pjones/hlwmrc/pjones/nixos-22.05";
       hlwmrc.inputs.nixpkgs.follows = "nixpkgs";
 
       image-scripts.url = "github:pjones/image-scripts";
       image-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
       inhibit-screensaver.url = "github:pjones/inhibit-screensaver";
+
+      kmonad.url = "github:kmonad/kmonad?dir=nix";
 
       maintenance-scripts.url = "github:pjones/maintenance-scripts";
       maintenance-scripts.inputs.nixpkgs.follows = "nixpkgs";
@@ -81,6 +83,7 @@
         hlwmrc = inputs.hlwmrc.overlay;
         image-scripts = inputs.image-scripts.overlay;
         inhibit-screensaver = inputs.inhibit-screensaver.overlay;
+        kmonad = inputs.kmonad.overlay;
         maintenance-scripts = inputs.maintenance-scripts.overlay;
         network-scripts = inputs.network-scripts.overlay;
         nur = inputs.nur.overlay;

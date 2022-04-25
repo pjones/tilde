@@ -11,18 +11,6 @@
         "url": "https://github.com/MrOtherGuy/firefox-csshacks/archive/357e5bc0b4879c5d565aff86c51514ec198aebf1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "kmonad": {
-        "branch": "master",
-        "description": "An advanced keyboard manager",
-        "homepage": null,
-        "owner": "kmonad",
-        "repo": "kmonad",
-        "rev": "768d5e4e1375d80607440bdcd10296ca7f6f00ea",
-        "sha256": "15i6s2mn5bg5cwqhq6j95smadf2vf2f9pczqdpy51hhqv9vspg5n",
-        "type": "tarball",
-        "url": "https://github.com/kmonad/kmonad/archive/768d5e4e1375d80607440bdcd10296ca7f6f00ea.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "neuron": {
         "branch": "1.0.1.0",
         "description": "Haskell meets Zettelkasten, for your plain-text delight.",

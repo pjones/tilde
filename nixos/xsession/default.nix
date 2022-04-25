@@ -30,7 +30,7 @@ in
 
     # For setting GTK themes:
     programs.dconf.enable = true;
-    services.dbus.packages = [ pkgs.gnome3.dconf ];
+    services.dbus.packages = [ pkgs.dconf ];
 
     services.xserver = lib.mkIf cfg.enable {
       enable = lib.mkDefault true;

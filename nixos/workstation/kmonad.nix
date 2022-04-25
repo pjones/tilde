@@ -3,8 +3,6 @@
 let
   cfg = config.tilde.workstation.kmonad;
 
-  package = pkgs.callPackage ../../pkgs/kmonad.nix { };
-
   # Per-keyboard options:
   keyboard = { name, ... }: {
     options = {
@@ -86,7 +84,7 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = package;
+      default = pkgs.kmonad;
       example = "pkgs.haskellPacakges.kmonad";
       description = "The KMonad package to use.";
     };
