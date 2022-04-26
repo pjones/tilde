@@ -86,11 +86,11 @@
         "vterm": "vterm"
       },
       "locked": {
-        "lastModified": 1650830255,
-        "narHash": "sha256-9EFoBBAamOvrEK3WV75zFQizLxVMJXunJ4T7I28E96M=",
+        "lastModified": 1651012590,
+        "narHash": "sha256-m8NHBKFzqRiWXg3M3hvCltxi3H/47xuPRbx9wz9hnkI=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "cf003253e2783a5ed990f776a24a7cd6092aca82",
+        "rev": "f7c6abf19ce19b383d274c6e7e777069daba75e9",
         "type": "github"
       },
       "original": {
