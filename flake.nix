@@ -220,6 +220,8 @@
         let pkgs = nixpkgsFor.${system};
         in
         pkgs.mkShell {
+          NIX_PATH = "nixpkgs=${pkgs.path}";
+
           buildInputs = [
             inputs.home-manager.outputs.defaultPackage.${system}
           ];
