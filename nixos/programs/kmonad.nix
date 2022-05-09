@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.tilde.workstation.kmonad;
+  cfg = config.tilde.programs.kmonad;
 
   # Per-keyboard options:
   keyboard = { name, ... }: {
@@ -79,7 +79,7 @@ let
   };
 in
 {
-  options.tilde.workstation.kmonad = {
+  options.tilde.programs.kmonad = {
     enable = lib.mkEnableOption "KMonad: An advanced keyboard manager.";
 
     package = lib.mkOption {

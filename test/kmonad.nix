@@ -9,7 +9,7 @@ pkgs.nixosTest {
         ../devices/generic-nixos.nix
       ];
 
-      tilde.workstation.kmonad = {
+      tilde.programs.kmonad = {
         enable = true;
         keyboards.qemu = {
           device = "/dev/input/event0";

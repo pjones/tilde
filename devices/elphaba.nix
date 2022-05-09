@@ -13,7 +13,7 @@
       xsession.enable = true;
       workstation.type = "laptop";
 
-      workstation.kmonad = {
+      programs.kmonad = {
         enable = true;
         keyboards = {
           internal.device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";

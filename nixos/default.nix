@@ -15,7 +15,7 @@ in
   imports = [
     ./crontab.nix
     ./workstation.nix
-    ./xsession
+    ./xsession.nix
     ./yubikey.nix
   ];
 

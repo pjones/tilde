@@ -4,7 +4,7 @@
 , ...
 }:
 let
-  cfg = config.tilde.xsession.lock;
+  cfg = config.tilde.programs.inhibit-lock-screen;
 
   inhibitCmd =
     let
@@ -13,7 +13,6 @@ let
         coreutils
         procps # for pgrep(1)
         systemd # to run loginctl
-        tilde-scripts-lock-screen # for the bluetooth ping script
         xorg.xset
       ]);
       devices = lib.concatStringsSep " "
@@ -24,14 +23,15 @@ let
       exec >&2 # Redirect stdout to stderr
       ${pkgs.pjones.inhibit-screensaver}/bin/inhibit-screensaver \
         --frequency ${toString cfg.bluetooth.frequency} \
-        -- bluetooth-ping.sh ${devices}
+        --query 'pgrep kscreenlocker' \
+        -- ${../../scripts/misc/bluetooth-ping.sh} ${devices}
     '';
 in
 {
-  options.tilde.xsession.lock = {
-    bluetooth = {
-      enable = lib.mkEnableOption "Inhibit the lock screen";
+  options.tilde.programs.inhibit-lock-screen = {
+    enable = lib.mkEnableOption "Inhibit the lock screen";
 
+    bluetooth = {
       devices = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];
@@ -55,8 +55,7 @@ in
 
   config = lib.mkMerge [
     (lib.mkIf
-      (false &&
-        cfg.bluetooth.enable &&
+      (cfg.enable &&
         pkgs.stdenv.isx86_64 &&
         cfg.bluetooth.devices != [ ])
       {

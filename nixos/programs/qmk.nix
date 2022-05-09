@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  cfg = config.tilde.workstation;
+  cfg = config.tilde.programs.qmk;
 
   # udev properties that need to be set for each keyboard:
   qmkUdevProps = [
@@ -30,6 +30,10 @@ let
     lib.concatStringsSep "\n" (map qmkRule chips);
 in
 {
+  options.tilde.programs.qmk = {
+    enable = lib.mkEnableOption "QMK Firmware Rules and Helper Apps";
+  };
+
   config = lib.mkIf cfg.enable {
     services.udev.extraRules = mkUdevRules qmkChips;
   };

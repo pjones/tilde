@@ -7,10 +7,6 @@ let
   cfg = config.tilde.xsession;
 in
 {
-  imports = [
-    ./fonts.nix
-  ];
-
   options.tilde.xsession = {
     enable = lib.mkEnableOption ''
       Enable the X server and configure Peter's xsession.
@@ -22,7 +18,7 @@ in
   config = lib.mkIf cfg.enable {
     # Enable other settings:
     tilde.workstation.enable = true;
-    tilde.xsession.fonts.enable = true;
+    tilde.programs.qmk.enable = true;
 
     services.xserver = lib.mkIf cfg.enable {
       enable = lib.mkDefault true;
@@ -53,8 +49,8 @@ in
     programs.ssh.startAgent = false; # I use GnuPG Agent.
 
     environment.systemPackages = with pkgs; [
-      (callPackage ../../pkgs/sweet-nova.nix { })
-      (callPackage ../../pkgs/pjones-avatar.nix { })
+      (callPackage ../pkgs/sweet-nova.nix { })
+      (callPackage ../pkgs/pjones-avatar.nix { })
     ];
 
     # Bluetooth tools need to be installed as wrappers so normal users
@@ -66,5 +62,21 @@ in
       group = "nogroup";
       capabilities = "cap_net_raw+ep";
     };
+
+    fonts =
+      let
+        specs = import ../home/misc/fonts.nix { inherit pkgs; };
+        others = map (f: f.package) (lib.attrValues specs);
+      in
+      {
+        fontconfig.enable = true;
+        fontDir.enable = true;
+        enableGhostscriptFonts = true;
+
+        fonts = with pkgs; [
+          dejavu_fonts
+          ubuntu_font_family
+        ] ++ others;
+      };
   };
 }

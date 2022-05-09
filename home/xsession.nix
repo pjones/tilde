@@ -8,11 +8,6 @@ let
 
 in
 {
-  imports = [
-    ./browser.nix
-    ./lock.nix
-  ];
-
   options.tilde.xsession = {
     enable = lib.mkEnableOption "Enable an X11 session";
   };
@@ -23,11 +18,10 @@ in
       tilde.workstation.enable = true;
 
       # Enable other xsession modules:
-      tilde.programs.firefox.enable = lib.mkDefault true;
+      tilde.programs.browser.enable = lib.mkDefault true;
       tilde.programs.gromit-mpx.enable = lib.mkDefault true;
       tilde.programs.konsole.enable = lib.mkDefault true;
       tilde.programs.oled-display.enable = lib.mkDefault true;
-      tilde.xsession.lock.bluetooth.enable = lib.mkDefault true;
 
       # Communicate with my phone:
       services.kdeconnect = {

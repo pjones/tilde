@@ -8,8 +8,8 @@ let
 in
 {
   imports = [
-    workstation/kmonad.nix
-    workstation/qmk.nix
+    programs/kmonad.nix
+    programs/qmk.nix
   ];
 
   options.tilde.workstation = {

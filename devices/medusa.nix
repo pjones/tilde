@@ -35,9 +35,9 @@
         };
       };
 
-      tilde.xsession.lock.bluetooth = {
+      tilde.programs.inhibit-lock-screen = {
         enable = true;
-        devices = [
+        bluetooth.devices = [
           "80:86:D9:3A:A9:BB"
         ];
       };
