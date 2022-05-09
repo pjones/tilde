@@ -9,6 +9,9 @@ in
   config = {
     networking.hostName = "tilde-demo";
 
+    # KDE Plasma is memory hungry in a VM:
+    virtualisation.memorySize = 6144; # MB
+
     tilde = {
       enable = true;
       putInWheel = true;

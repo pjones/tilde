@@ -33,7 +33,6 @@ let
 
   profile = pkgs.writeText "konsole.profile" ''
     [Appearance]
-    ColorScheme=Sweet
     Font=${consoleFont},-1,5,50,0,0,0,0,0,Regular
     UseFontLineChararacters=true
 
@@ -41,7 +40,6 @@ let
     CursorShape=1
 
     [General]
-    Command=${pkgs.pjones.tmuxrc}/bin/tmux-new-terminal
     LocalTabTitleFormat=%d %w
     Name=main
     Parent=FALLBACK/
@@ -77,8 +75,6 @@ in
     home.file = {
       ".config/konsolerc".source = konsolerc;
       ".local/share/konsole/main.profile".source = profile;
-      ".local/share/konsole/Sweet.colorscheme".source =
-        "${pkgs.sweet-nova}/share/konsole/themes/sweet-nova/Sweet.colorscheme";
     };
   };
 }

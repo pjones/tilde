@@ -90,7 +90,7 @@
         calibre # Comprehensive e-book software
         cantata # A graphical client for MPD
         cdparanoia # A tool and library for reading digital audio from CDs
-        chromium-launcher # A wrapper around chromium:
+        chromium # A wrapper around chromium:
         darktable # Virtual lighttable and darkroom for photographers
         dia # Gnome Diagram drawing software
         element-desktop # A feature-rich client for Matrix.org

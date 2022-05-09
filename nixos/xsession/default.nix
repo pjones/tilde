@@ -17,10 +17,6 @@ in
 
       Implies that this machine is a workstation as well.
     '';
-
-    plasma = lib.mkEnableOption ''
-      Use the KDE Plasma desktop environment.
-    '';
   };
 
   config = lib.mkIf cfg.enable {
@@ -28,24 +24,12 @@ in
     tilde.workstation.enable = true;
     tilde.xsession.fonts.enable = true;
 
-    # For setting GTK themes:
-    programs.dconf.enable = true;
-    services.dbus.packages = [ pkgs.dconf ];
-
     services.xserver = lib.mkIf cfg.enable {
       enable = lib.mkDefault true;
       layout = lib.mkDefault "us";
 
-      windowManager.session = [{
-        name = "hm";
-        start = ''
-          ${pkgs.runtimeShell} $HOME/.hm-xsession &
-          waitPID=$!
-        '';
-      }];
-
-      desktopManager.plasma5.enable = lib.mkDefault true;
-      displayManager.defaultSession = lib.mkForce "none+hm";
+      desktopManager.plasma5.enable =
+        lib.mkDefault true;
 
       displayManager.sddm = {
         enable = lib.mkDefault true;
@@ -81,18 +65,6 @@ in
       owner = "nobody";
       group = "nogroup";
       capabilities = "cap_net_raw+ep";
-    };
-
-    home-manager.users.${config.tilde.username} = { ... }: {
-      tilde.xsession.desktopEnv = lib.mkIf cfg.plasma {
-        enable = true;
-        envVar = "KDEWM";
-        command =
-          (lib.findFirst
-            (session: session.name == "plasma5")
-            (builtins.abort "plasma5 is missing!")
-            config.services.xserver.desktopManager.session).start;
-      };
     };
   };
 }

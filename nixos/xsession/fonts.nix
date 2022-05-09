@@ -24,8 +24,6 @@ in
 
         fonts = with pkgs; [
           dejavu_fonts
-          emacs-all-the-icons-fonts
-          powerline-fonts
           ubuntu_font_family
         ] ++ others;
       };

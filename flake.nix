@@ -19,9 +19,6 @@
       encryption-utils.url = "github:pjones/encryption-utils";
       encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
 
-      hlwmrc.url = "github:pjones/hlwmrc/pjones/nixos-22.05";
-      hlwmrc.inputs.nixpkgs.follows = "nixpkgs";
-
       image-scripts.url = "github:pjones/image-scripts";
       image-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -36,9 +33,6 @@
       network-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
       oled-display.url = "github:pjones/oled-display";
-
-      rofirc.url = "github:pjones/rofirc";
-      rofirc.inputs.nixpkgs.follows = "nixpkgs";
 
       tmuxrc.url = "github:pjones/tmuxrc";
       tmuxrc.inputs.nixpkgs.follows = "nixpkgs";
@@ -80,14 +74,12 @@
         bashrc = inputs.bashrc.overlay;
         oled-display = inputs.oled-display.overlay;
         encryption-utils = inputs.encryption-utils.overlay;
-        hlwmrc = inputs.hlwmrc.overlay;
         image-scripts = inputs.image-scripts.overlay;
         inhibit-screensaver = inputs.inhibit-screensaver.overlay;
         kmonad = inputs.kmonad.overlay;
         maintenance-scripts = inputs.maintenance-scripts.overlay;
         network-scripts = inputs.network-scripts.overlay;
         nur = inputs.nur.overlay;
-        rofirc = inputs.rofirc.overlay;
         tilde = import pkgs/overlay.nix;
         tmuxrc = inputs.tmuxrc.overlay;
         zshrc = inputs.zshrc.overlay;
@@ -161,12 +153,11 @@
       ##########################################################################
       packages = forLinuxSystems (system: {
         demo = self.nixosConfigurations.demo.config.system.build.vm;
-        screenshot = self.checks.${system}.herbstluftwm;
       });
 
       ##########################################################################
       defaultPackage = forLinuxSystems (system:
-        self.packages.${system}.screenshot);
+        self.packages.${system}.demo);
 
       ##########################################################################
       apps = forLinuxSystems (system: {
@@ -203,7 +194,6 @@
           # Tests:
           config = test test/config.nix;
           cron = test test/cron.nix;
-          herbstluftwm = test test/herbstluftwm.nix;
           kmonad = test test/kmonad.nix;
           mandb = test test/mandb.nix;
 

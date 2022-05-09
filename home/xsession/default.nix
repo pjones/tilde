@@ -6,63 +6,27 @@
 let
   cfg = config.tilde.xsession;
 
-  deType = {
-    options = {
-      enable = lib.mkEnableOption "Use a desktop environment.";
-
-      command = lib.mkOption {
-        type = lib.types.str;
-        description = "Command to start a desktop environment.";
-      };
-
-      envVar = lib.mkOption {
-        type = lib.types.str;
-        description = ''
-          Environment variable name to tell the DE what window manger
-          to use.
-        '';
-      };
-    };
-  };
-
 in
 {
   imports = [
     ./browser.nix
     ./lock.nix
-    ./theme.nix
-    ./wallpaper.nix
   ];
 
   options.tilde.xsession = {
     enable = lib.mkEnableOption "Enable an X11 session";
-
-    desktopEnv = lib.mkOption {
-      type = lib.types.submodule deType;
-      default = { };
-      description = ''
-        If you want to use a desktop environment you can set these
-        options in order to get it started with the chosen window
-        manger.
-      '';
-    };
   };
 
   config = lib.mkMerge [
     (lib.mkIf cfg.enable {
-      # Allow other desktop sessions to be started if wanted:
-      xsession.scriptPath = ".hm-xsession";
-
       # Enabling an xsession also enables workstation settings:
       tilde.workstation.enable = true;
 
       # Enable other xsession modules:
       tilde.programs.firefox.enable = lib.mkDefault true;
       tilde.programs.gromit-mpx.enable = lib.mkDefault true;
-      tilde.programs.herbstluftwm.enable = lib.mkDefault true;
       tilde.programs.konsole.enable = lib.mkDefault true;
       tilde.programs.oled-display.enable = lib.mkDefault true;
-      tilde.programs.rofi.enable = lib.mkDefault true;
       tilde.xsession.lock.bluetooth.enable = lib.mkDefault true;
 
       # Communicate with my phone:
@@ -79,12 +43,6 @@ in
         defaultCacheTtlSsh = 14400;
         maxCacheTtl = 7200;
         maxCacheTtlSsh = 21600;
-      };
-
-      # Make things pretty:
-      services.picom = {
-        enable = true;
-        fade = true;
       };
 
       # Set XDG user directories:
@@ -128,30 +86,6 @@ in
       # Some apps are rude and overwrite this file:
       # https://github.com/nix-community/home-manager/issues/1213
       xdg.configFile."mimeapps.list".force = true;
-    })
-
-    (lib.mkIf (cfg.enable && !cfg.desktopEnv.enable) {
-      # Services to start when running X11:
-      tilde.programs.dunst.enable = lib.mkDefault true;
-      tilde.programs.polybar.enable = lib.mkDefault true;
-      tilde.xsession.lock.enable = lib.mkDefault true;
-      tilde.xsession.theme.enable = lib.mkDefault true;
-      tilde.xsession.wallpaper.enable = lib.mkDefault true;
-
-      services.network-manager-applet.enable = true;
-      services.unclutter.enable = true;
-
-      # Enable blueman and disable unwanted plugins:
-      services.blueman-applet.enable = true;
-
-      dconf.settings."org/blueman/general" = {
-        plugin-list = [ "!ConnectionNotifier" ];
-      };
-
-      services.udiskie = {
-        enable = true;
-        automount = false;
-      };
     })
   ];
 }

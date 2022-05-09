@@ -1,14 +1,14 @@
 { stdenvNoCC
 , lib
 , tildeInstallScripts
-, chromium-launcher
+, chromium
 , coreutils
 , wmctrl
 , xdo
 }:
 let
   path = lib.makeBinPath [
-    chromium-launcher
+    chromium
     coreutils
     wmctrl
     xdo

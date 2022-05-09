@@ -58,7 +58,6 @@ in
         # Useful services:
         hardware.bluetooth.enable = true;
         services.blueman.enable = lib.mkDefault true;
-        services.clight.enable = true;
 
         # Index system man pages:
         documentation.man.generateCaches = true;

@@ -135,44 +135,6 @@
         "type": "github"
       }
     },
-    "herbstluftwm": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1650017788,
-        "narHash": "sha256-OY4mBy8zMC8cr9JYe4DQFJvgVX16+a0UtRpJ7Rmh04I=",
-        "owner": "herbstluftwm",
-        "repo": "herbstluftwm",
-        "rev": "5a627d555d98f3ead15bb5b4573c925e60594e56",
-        "type": "github"
-      },
-      "original": {
-        "owner": "herbstluftwm",
-        "repo": "herbstluftwm",
-        "type": "github"
-      }
-    },
-    "hlwmrc": {
-      "inputs": {
-        "herbstluftwm": "herbstluftwm",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1650913755,
-        "narHash": "sha256-pj8IOBIdZ9FogkO/xWua0PEgD+C+ukFC125daR8At5c=",
-        "owner": "pjones",
-        "repo": "hlwmrc",
-        "rev": "e087bf1a34a19236cb20633f753864a7dca7729a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pjones",
-        "ref": "pjones/nixos-22.05",
-        "repo": "hlwmrc",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -422,32 +384,11 @@
         "type": "github"
       }
     },
-    "rofirc": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1639436485,
-        "narHash": "sha256-AAHmnfXvg0FfMdGdM8rXt4J3SW/TmJ7lJ2ruKpCHnKE=",
-        "owner": "pjones",
-        "repo": "rofirc",
-        "rev": "0640cf8ae8ef95f0f301a6ade8a134d288be2205",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pjones",
-        "repo": "rofirc",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "bashrc": "bashrc",
         "emacsrc": "emacsrc",
         "encryption-utils": "encryption-utils",
-        "hlwmrc": "hlwmrc",
         "home-manager": "home-manager",
         "image-scripts": "image-scripts",
         "inhibit-screensaver": "inhibit-screensaver",
@@ -457,7 +398,6 @@
         "nixpkgs": "nixpkgs_3",
         "nur": "nur",
         "oled-display": "oled-display",
-        "rofirc": "rofirc",
         "tmuxrc": "tmuxrc",
         "zshrc": "zshrc"
       }

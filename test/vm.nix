@@ -28,8 +28,8 @@ in
     };
 
     virtualisation = {
-      diskSize = 8000; # MB
-      memorySize = 2048; # MB
+      diskSize = lib.mkDefault 8000; # MB
+      memorySize = lib.mkDefault 2048; # MB
 
       forwardPorts = [{
         from = "host";

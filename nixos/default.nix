@@ -110,7 +110,6 @@ in
             tilde.enable = cfg.enable;
             tilde.xsession.enable = cfg.xsession.enable;
             tilde.workstation.enable = cfg.workstation.enable;
-            tilde.programs.clight.enable = config.services.clight.enable;
           };
         };
       })
