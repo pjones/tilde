@@ -17,6 +17,7 @@
     ./mpd.nix
     ./neuron.nix
     ./oled-display.nix
+    ./plasma.nix
     ./shells.nix
     ./ssh.nix
   ];
