@@ -86,16 +86,16 @@
         "vterm": "vterm"
       },
       "locked": {
-        "lastModified": 1651946712,
-        "narHash": "sha256-8R7WQ9QZa9L3zdrLL7Lis8y2JZqQMl8ACe4u67jrsv8=",
+        "lastModified": 1652143554,
+        "narHash": "sha256-XzE0AcB4Z5xFw3yIyKaQXjBp9+WtXdLFg4r0lW0ZvW0=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "8012f089927fe13e5e11acc75b3290281ec85ce0",
+        "rev": "6342ced3a3b11e07e4f4a5dbad8f885ae1e33409",
         "type": "github"
       },
       "original": {
         "owner": "pjones",
-        "ref": "pjones/nixos-22.05",
+        "ref": "unstable",
         "repo": "emacsrc",
         "type": "github"
       }
