@@ -64,6 +64,13 @@ in
           categories = [ "Application" ];
           mimeType = [ "image/jpeg" "image/png" ];
         };
+
+        start-desktop-apps = {
+          name = "Start Desktop Apps";
+          exec = "${../scripts/misc/start-desktop-apps.sh}";
+          terminal = false;
+          categories = [ "Application" ];
+        };
       };
 
       xdg.mimeApps = {
