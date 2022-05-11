@@ -14,6 +14,10 @@ key=gtk-key-theme-name
 function set_gtk2() {
   local gtk2=~/.gtkrc-2.0
 
+  if [ -L "$gtk2" ]; then
+    rm "$gtk2"
+  fi
+
   if ! [ -e "$gtk2" ]; then
     touch "$gtk2"
   fi
@@ -26,6 +30,10 @@ function set_gtk2() {
 ################################################################################
 function set_gtk3() {
   local gtk3=~/.config/gtk-3.0/settings.ini
+
+  if [ -L "$gtk3" ]; then
+    rm "$gtk3"
+  fi
 
   if ! [ -e "$gtk3" ]; then
     mkdir -p "$(dirname "$gtk3")"
