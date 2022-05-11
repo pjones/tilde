@@ -38,6 +38,7 @@ in
         defaultCacheTtlSsh = 14400;
         maxCacheTtl = 7200;
         maxCacheTtlSsh = 21600;
+        pinentryFlavor = "qt";
       };
 
       # Set XDG user directories:
