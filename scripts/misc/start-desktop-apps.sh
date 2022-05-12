@@ -15,11 +15,11 @@ GTD)
 Social)
   signal-desktop --enable-features=UseOzonePlatform --ozone-platform=x11 &
   browser-app "https://web.telegram.org" &
-  browser-app "https://chat.rfa.sc.gov" &
   browser-app "https://messages.google.com/web/conversations"
   ;;
 
 RFA)
+  browser-app "https://chat.rfa.sc.gov" &
   browser-app "https://code.rfa.sc.gov/" &
   browser-app "https://outlook.office.com" &
   e
