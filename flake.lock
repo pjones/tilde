@@ -120,21 +120,6 @@
         "type": "github"
       }
     },
-    "flake-utils": {
-      "locked": {
-        "lastModified": 1631561581,
-        "narHash": "sha256-3VQMV5zvxaVLvqqUrNz3iJelLw30mIVSfZmAaauM3dA=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "7e5bf3925f6fbdfaf50a2a7ca0be2879c4261d19",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -196,11 +181,22 @@
     },
     "kmonad": {
       "inputs": {
-        "flake-utils": "flake-utils",
+        "kmonad": "kmonad_2",
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "dir": "nix",
+        "narHash": "sha256-/X3chWx8lyp+Nf+3cCmzbXWu8d6KSvKXWeNOvqfoE+M=",
+        "path": "pkgs/kmonad",
+        "type": "path"
+      },
+      "original": {
+        "path": "pkgs/kmonad",
+        "type": "path"
+      }
+    },
+    "kmonad_2": {
+      "flake": false,
+      "locked": {
         "lastModified": 1651937557,
         "narHash": "sha256-gvQsenQrEsLxLFgUGJhJBIx3+t1dtLMMTVEO/yZ8nRg=",
         "owner": "kmonad",
@@ -209,7 +205,6 @@
         "type": "github"
       },
       "original": {
-        "dir": "nix",
         "owner": "kmonad",
         "repo": "kmonad",
         "type": "github"
@@ -290,17 +285,18 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1632418649,
-        "narHash": "sha256-4rZspkiQU7zbsuciRRMgoEPkAF/+FSv2jx/VIPxPVx4=",
-        "owner": "NixOS",
+        "lastModified": 1645296114,
+        "narHash": "sha256-y53N7TyIkXsjMpOG7RhvqJFGDacLs9HlyHeSTBioqYU=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "056a3c1fae30d06d14b171b9023743c21a23ec1a",
+        "rev": "530a53dcbc9437363471167a5e4762c5fcfa34a1",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
+        "owner": "nixos",
         "ref": "nixos-21.05",
-        "type": "indirect"
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs_3": {

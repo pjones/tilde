@@ -96,7 +96,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && pkgs.stdenv.targetPlatform.isLinux) {
     users.groups.uinput = { };
     users.groups.kmonad = { };
 

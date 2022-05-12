@@ -24,7 +24,7 @@
 
       inhibit-screensaver.url = "github:pjones/inhibit-screensaver";
 
-      kmonad.url = "github:kmonad/kmonad?dir=nix";
+      kmonad.url = "path:pkgs/kmonad";
 
       maintenance-scripts.url = "github:pjones/maintenance-scripts";
       maintenance-scripts.inputs.nixpkgs.follows = "nixpkgs";
