@@ -127,14 +127,14 @@ in
         kwin = {
           "Activate Window Demanding Attention".keys = [ "Meta+U" ];
           "Expose" = { keys = none; display = "Toggle Present Windows (Current desktop)"; };
-          "ExposeAll" = { keys = [ "Meta+\\," ]; display = "Toggle Present Windows (All desktops)"; };
+          "ExposeAll" = { keys = [ "Meta+." ]; display = "Toggle Present Windows (All desktops)"; };
           "ExposeClass" = { keys = none; display = "Toggle Present Windows (Window class)"; };
           "Kill Window".keys = [ "Meta+Shift+Q" ];
           "MoveMouseToFocus".keys = [ "Meta+W" ];
           "Show Desktop".keys = none;
           "ShowDesktopGrid" = { keys = none; display = "Show Desktop Grid"; };
           "Suspend Compositing".keys = none;
-          "Switch to Next Screen".keys = [ "Meta+." ];
+          "Switch to Next Screen".keys = none;
           "Switch Window Down" = { keys = [ "Meta+J" ]; display = "Switch to Window Below"; };
           "Switch Window Left" = { keys = [ "Meta+H" ]; display = "Switch to Window to the Left"; };
           "Switch Window Right" = { keys = [ "Meta+L" ]; display = "Switch to Window to the Right"; };
@@ -219,12 +219,35 @@ in
       };
 
       kwinrc = {
+        Effect-DimInactive.DimByGroup = false;
+        Effect-DimInactive.Strength = 35;
+        Effect-PresentWindows.BorderActivateAll = 9;
+        Effect-PresentWindows.LayoutMode = 2;
+        Effect-PresentWindows.ShowPanel = false;
         MouseBindings.CommandTitlebarWheel = "Change Opacity";
+        Plugins.diminactiveEnabled = true;
+        Plugins.sheetEnabled = true;
+        TabBox.DesktopMode = 0;
+        TabBox.HighlightWindows = false;
+        TabBox.LayoutName = "present_windows";
         Windows.ElectricBorderMaximize = false;
         Windows.ElectricBorders = 1;
         Windows.FocusPolicy = "FocusFollowsMouse";
         Windows.Placement = "Smart";
+        Windows.SeparateScreenFocus = true;
         Windows.TitlebarDoubleClickCommand = "Shade";
+      };
+
+      kwinrulesrc = {
+        General.count = 1;
+        General.rules = "c94e5639-cf10-448e-b974-456c14ffbe40";
+        "c94e5639-cf10-448e-b974-456c14ffbe40" = {
+          Description = "Pinentry Dialogs";
+          noborder = true;
+          noborderrule = 3;
+          wmclass = "pinentry";
+          wmclassmatch = 1;
+        };
       };
 
       plasma-localerc = {
