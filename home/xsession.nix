@@ -89,6 +89,17 @@ in
       # Some apps are rude and overwrite this file:
       # https://github.com/nix-community/home-manager/issues/1213
       xdg.configFile."mimeapps.list".force = true;
+
+      # Make Plasma load the Home Manager environment:
+      xdg.configFile."plasma-workspace/env/hm-session-vars.sh".text = ''
+        if [ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+          . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+        fi
+
+        if [ -e "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh" ]; then
+          . "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
+        fi
+      '';
     })
   ];
 }
