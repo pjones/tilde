@@ -53,6 +53,14 @@
         # "armv7l-linux"
       ];
 
+      hosts = [
+        "elphaba"
+        "kilgrave"
+        "medusa"
+        "moriarty"
+        "ursula"
+      ];
+
       # Function to generate a set based on supported systems:
       forAllSystems = f:
         nixpkgs.lib.genAttrs supportedSystems (system: f system);
@@ -93,8 +101,9 @@
           overlays = builtins.attrValues overlays;
         });
 
+
       # A NixOS module that bootstraps the tilde home manager modules:
-      nixosBootstrapHomeManager = { config, ... }: {
+      nixosBootstrapHomeManager = { config, pkgs, ... }: {
         home-manager = {
           backupFileExtension = "backup";
           useGlobalPkgs = true;
@@ -114,16 +123,23 @@
       ##########################################################################
       # NixOS module for importing into your system flake:
       nixosModules =
-        let hostFrom = path: { ... }: {
-          imports = [
-            self.nixosModules.tilde
-            path
-          ];
-        };
+        let
+          hostFrom = path: { ... }: {
+            imports = [
+              self.nixosModules.tilde
+              path
+            ];
+          };
+          hostModules = builtins.listToAttrs (map
+            (host: {
+              name = host;
+              value = hostFrom ./devices/${host}.nix;
+            })
+            hosts);
         in
         {
           # Base module:
-          tilde = { ... }: {
+          tilde = { pkgs, ... }: {
             imports = [
               ./nixos
               { nixpkgs.overlays = builtins.attrValues overlays; }
@@ -131,14 +147,7 @@
               nixosBootstrapHomeManager
             ];
           };
-
-          # Host modules:
-          elphaba = hostFrom devices/elphaba.nix;
-          kilgrave = hostFrom devices/kilgrave.nix;
-          medusa = hostFrom devices/medusa.nix;
-          moriarty = hostFrom devices/moriarty.nix;
-          ursula = hostFrom devices/ursula.nix;
-        };
+        } // hostModules;
 
       ##########################################################################
       # A generic NixOS configuration that can be used as a demo:
@@ -189,6 +198,13 @@
               ];
             };
             in machine.config.system.build.vm;
+
+          hostChecks = builtins.listToAttrs (map
+            (host: {
+              name = host;
+              value = machine self.nixosModules.${host};
+            })
+            hosts);
         in
         {
           # Tests:
@@ -196,14 +212,7 @@
           cron = test test/cron.nix;
           kmonad = test test/kmonad.nix;
           mandb = test test/mandb.nix;
-
-          # Virtual Machines:
-          elphaba = machine self.nixosModules.elphaba;
-          kilgrave = machine self.nixosModules.kilgrave;
-          medusa = machine self.nixosModules.medusa;
-          moriarty = machine self.nixosModules.moriarty;
-          ursula = machine self.nixosModules.ursula;
-        });
+        } // hostChecks);
 
       ##########################################################################
       devShell = forAllSystems (system:
