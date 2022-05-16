@@ -59,7 +59,6 @@ in
 
         # Basic setup for nix and nixpkgs:
         nix = {
-          package = pkgs.nix_2_4; # FIXME: remove in NixOS 22.05
           nixPath = [ "nixpkgs=${pkgs.path}" ];
           extraOptions = ''
             experimental-features = nix-command flakes
