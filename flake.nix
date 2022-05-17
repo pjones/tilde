@@ -223,6 +223,7 @@
 
           buildInputs = [
             inputs.home-manager.outputs.defaultPackage.${system}
+            pkgs.neofetch
           ];
         });
     };
