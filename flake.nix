@@ -161,26 +161,17 @@
 
       ##########################################################################
       packages = forLinuxSystems (system: {
-        demo = self.nixosConfigurations.demo.config.system.build.vm;
+        default = self.nixosConfigurations.demo.config.system.build.vm;
       });
-
-      ##########################################################################
-      defaultPackage = forLinuxSystems (system:
-        self.packages.${system}.demo);
 
       ##########################################################################
       apps = forLinuxSystems (system: {
-        # Launch a VM running Pete's configuration:
-        demo = {
+        # Launch a VM running Peter's configuration:
+        default = {
           type = "app";
-          program = "${self.packages.${system}.demo}/bin/run-tilde-demo-vm";
+          program = "${self.packages.${system}.default}/bin/run-tilde-demo-vm";
         };
       });
-
-      ##########################################################################
-      # Default app is to run the demo VM:
-      defaultApp = forLinuxSystems (system:
-        self.apps.${system}.demo);
 
       ##########################################################################
       checks = forLinuxSystems (system:
@@ -215,16 +206,17 @@
         } // hostChecks);
 
       ##########################################################################
-      devShell = forAllSystems (system:
-        let pkgs = nixpkgsFor.${system};
-        in
-        pkgs.mkShell {
-          NIX_PATH = "nixpkgs=${pkgs.path}";
+      devShells = forAllSystems (system:
+        let pkgs = nixpkgsFor.${system}; in
+        {
+          default = pkgs.mkShell {
+            NIX_PATH = "nixpkgs=${pkgs.path}";
 
-          buildInputs = [
-            inputs.home-manager.outputs.defaultPackage.${system}
-            pkgs.neofetch
-          ];
+            buildInputs = [
+              inputs.home-manager.outputs.defaultPackage.${system}
+              pkgs.neofetch
+            ];
+          };
         });
     };
 }
