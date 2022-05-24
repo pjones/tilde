@@ -412,6 +412,7 @@ in
     home.packages = with pkgs; [
       crudini # For editing the GTK settings.ini file.
       krunner-pass # Access passwords in krunner
+      libsForQt5.qtstyleplugin-kvantum # For some themes
       qt5.qttools # for qdbus(1)
     ];
 
