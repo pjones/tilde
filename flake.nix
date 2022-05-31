@@ -3,16 +3,16 @@
 
   inputs =
     {
-      nixpkgs.url = "github:NixOS/nixpkgs/release-22.05";
+      nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
       nur.url = "github:nix-community/NUR";
 
-      home-manager.url = "github:nix-community/home-manager/master";
+      home-manager.url = "github:nix-community/home-manager/release-22.05";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
       bashrc.url = "github:pjones/bashrc";
       bashrc.inputs.nixpkgs.follows = "nixpkgs";
 
-      emacsrc.url = "github:pjones/emacsrc/unstable";
+      emacsrc.url = "github:pjones/emacsrc";
       emacsrc.inputs.nixpkgs.follows = "nixpkgs";
       emacsrc.inputs.home-manager.follows = "home-manager";
 
@@ -114,7 +114,7 @@
           users.${config.tilde.username} = { ... }: {
             imports = [
               ./home
-              inputs.emacsrc.homeManagerModule
+              inputs.emacsrc.homeManagerModules.default
               inputs.haskellrc.homeManagerModules.default
             ];
           };
