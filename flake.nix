@@ -27,7 +27,7 @@
 
       inhibit-screensaver.url = "github:pjones/inhibit-screensaver";
 
-      kmonad.url = "path:pkgs/kmonad";
+      kmonad.url = "github:kmonad/kmonad?dir=nix";
 
       maintenance-scripts.url = "github:pjones/maintenance-scripts";
       maintenance-scripts.inputs.nixpkgs.follows = "nixpkgs";
@@ -83,14 +83,13 @@
       # Package overlay:
       overlays = {
         bashrc = inputs.bashrc.overlay;
-        oled-display = inputs.oled-display.overlay;
         encryption-utils = inputs.encryption-utils.overlay;
         image-scripts = inputs.image-scripts.overlay;
         inhibit-screensaver = inputs.inhibit-screensaver.overlay;
-        kmonad = inputs.kmonad.overlay;
         maintenance-scripts = inputs.maintenance-scripts.overlay;
         network-scripts = inputs.network-scripts.overlay;
         nur = inputs.nur.overlay;
+        oled-display = inputs.oled-display.overlay;
         tilde = import pkgs/overlay.nix;
         tmuxrc = inputs.tmuxrc.overlay;
         zshrc = inputs.zshrc.overlay;
@@ -148,6 +147,7 @@
               ./nixos
               { nixpkgs.overlays = builtins.attrValues overlays; }
               home-manager.nixosModules.home-manager
+              inputs.kmonad.nixosModules.default
               nixosBootstrapHomeManager
             ];
           };
@@ -205,7 +205,6 @@
           # Tests:
           config = test test/config.nix;
           cron = test test/cron.nix;
-          kmonad = test test/kmonad.nix;
           mandb = test test/mandb.nix;
         } // hostChecks);
 
