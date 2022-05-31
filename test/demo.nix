@@ -21,6 +21,7 @@ in
     home-manager.users.${config.tilde.username} = { ... }: {
       tilde.programs.emacs.enable = true;
       tilde.programs.gromit-mpx.enable = true;
+      tilde.programs.haskell.enable = true;
 
       tilde.programs.inhibit-lock-screen = {
         enable = true;

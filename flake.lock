@@ -120,6 +120,26 @@
         "type": "github"
       }
     },
+    "haskellrc": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1654020151,
+        "narHash": "sha256-tSxWy4R2weCNUaT4hUEKOieVnZaolElqwusmtSgq2D0=",
+        "owner": "pjones",
+        "repo": "haskellrc",
+        "rev": "d6ba166eac8e1b1bc2c272326153ed137278983c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "haskellrc",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -386,6 +406,7 @@
         "bashrc": "bashrc",
         "emacsrc": "emacsrc",
         "encryption-utils": "encryption-utils",
+        "haskellrc": "haskellrc",
         "home-manager": "home-manager",
         "image-scripts": "image-scripts",
         "inhibit-screensaver": "inhibit-screensaver",

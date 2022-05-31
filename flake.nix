@@ -19,6 +19,9 @@
       encryption-utils.url = "github:pjones/encryption-utils";
       encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
 
+      haskellrc.url = "github:pjones/haskellrc";
+      haskellrc.inputs.nixpkgs.follows = "nixpkgs";
+
       image-scripts.url = "github:pjones/image-scripts";
       image-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -112,6 +115,7 @@
             imports = [
               ./home
               inputs.emacsrc.homeManagerModule
+              inputs.haskellrc.homeManagerModules.default
             ];
           };
         };

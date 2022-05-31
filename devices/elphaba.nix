@@ -23,6 +23,7 @@
 
     home-manager.users.pjones = { ... }: {
       tilde.programs.emacs.enable = true;
+      tilde.programs.haskell.enable = true;
 
       tilde.programs.ssh = {
         keysDir = "~/keys/ssh";
