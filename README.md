@@ -1,7 +1,7 @@
 # There's No Place Like `~/`
 
 <p align="center">
-  <img src="https://i.imgur.com/nYfz86I.png"/>
+  <img src="./support/screenshot.png"/>
 </p>
 
 ## Reproducible Configuration
