@@ -31,6 +31,14 @@
         keysDir = "~/keys/ssh";
         haveRestrictedKeys = true;
       };
+
+      # For remote file editing:
+      programs.ssh.matchBlocks.medusa = {
+        hostname = "medusa.private.pmade.com";
+        forwardAgent = true;
+        forwardX11 = true;
+        forwardX11Trusted = true;
+      };
     };
   };
 }
