@@ -35,6 +35,7 @@
       # For remote file editing:
       programs.ssh.matchBlocks.medusa = {
         hostname = "medusa.private.pmade.com";
+        port = 4;
         forwardAgent = true;
         forwardX11 = true;
         forwardX11Trusted = true;
