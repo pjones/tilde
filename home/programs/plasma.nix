@@ -232,7 +232,7 @@ in
 
         kwin = {
           "Activate Window Demanding Attention".keys = [ "Meta+U" ];
-          "Expose" = { keys = none; display = "Toggle Present Windows (Current desktop)"; };
+          "Expose" = { keys = [ "Meta+\\," ]; display = "Toggle Present Windows (Current desktop)"; };
           "ExposeAll" = { keys = [ "Meta+." ]; display = "Toggle Present Windows (All desktops)"; };
           "ExposeClass" = { keys = none; display = "Toggle Present Windows (Window class)"; };
           "Kill Window".keys = [ "Meta+Shift+Q" ];
@@ -357,6 +357,11 @@ in
         General."only basic indexing" = true;
       };
 
+      ksmserverrc = {
+        General.excludeApps = "emacs";
+        General.loginMode = "emptySession";
+      };
+
       kwinrc = {
         Effect-DimInactive.DimByGroup = false;
         Effect-DimInactive.Strength = 35;
@@ -365,16 +370,24 @@ in
         Effect-PresentWindows.ShowPanel = false;
         MouseBindings.CommandTitlebarWheel = "Change Opacity";
         Plugins.diminactiveEnabled = true;
+        Plugins.kwin4_effect_eyeonscreenEnabled = true;
+        Plugins.kwin4_effect_translucencyEnabled = true;
+        Plugins.kwin4_effect_windowapertureEnabled = false;
+        Plugins.magnifierEnabled = true;
         Plugins.sheetEnabled = true;
+        Plugins.wobblywindowsEnabled = true;
+        Plugins.zoomEnabled = false;
         TabBox.DesktopMode = 0;
         TabBox.HighlightWindows = true;
-        TabBox.LayoutName = null;
+        TabBox.LayoutName = "present_windows";
         TabBoxAlternative.ShowDesktopMode = 1;
         Windows.ElectricBorderMaximize = false;
         Windows.ElectricBorders = null;
+        Windows.ElectricBorderTiling = false;
         Windows.FocusPolicy = "FocusFollowsMouse";
         Windows.Placement = "Smart";
         Windows.SeparateScreenFocus = true;
+        Windows.SnapOnlyWhenOverlapping = true;
         Windows.TitlebarDoubleClickCommand = "Shade";
       };
 
