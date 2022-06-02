@@ -66,13 +66,6 @@ in
               user = "webmaster";
               identityFile = "${cfg.keysDir}/webmaster.id_ed25519";
             };
-
-            "muchsync.devalot.com" = {
-              inherit (pmade) port;
-              hostname = "10.11.12.2";
-              identityFile = "${cfg.keysDir}/muchsync.id_ed25519";
-              extraOptions.IdentityAgent = "none";
-            };
           };
       };
     })
