@@ -425,8 +425,18 @@ in
     home.packages = with pkgs; [
       crudini # For editing the GTK settings.ini file.
       krunner-pass # Access passwords in krunner
+      libsForQt5.ktouch # A touch typing tutor from the KDE software collection
       libsForQt5.qtstyleplugin-kvantum # For some themes
       qt5.qttools # for qdbus(1)
+
+      # Kontact:
+      libsForQt5.kontact # Personal information manager
+      libsForQt5.kmail # Mail client
+      libsForQt5.kaddressbook # KDE contact manager
+      libsForQt5.korganizer # Personal organizer
+      libsForQt5.kalendar # A calendar application using Akonadi to sync with external services
+      libsForQt5.kmail-account-wizard # ?
+      libsForQt5.akonadi-import-wizard # ?
     ];
 
     home.activation.configure-plasma =
