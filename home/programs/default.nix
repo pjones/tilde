@@ -16,7 +16,6 @@
     ./konsole.nix
     ./man.nix
     ./mpd.nix
-    ./neuron.nix
     ./oled-display.nix
     ./plasma.nix
     ./shells.nix

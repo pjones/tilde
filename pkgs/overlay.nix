@@ -11,18 +11,6 @@ in
   # Firefox CSS Hacks:
   firefox-csshacks = prev.callPackage ./firefox-csshacks.nix { };
 
-  # I'm stuck on Neuron 1.0.1.0 right now, which is an unreleased and
-  # yet old version :(
-  haskellPackages = prev.haskellPackages.override (orig: {
-    overrides = prev.lib.composeExtensions
-      (orig.overrides or (_: _: { }))
-      (_: super: {
-        neuron = super.neuron.overrideAttrs (_: {
-          src = "${sources.neuron}/neuron";
-        });
-      });
-  });
-
   # A gpg-agent/ssh-agent for Android:
   okc-agents = prev.callPackage ./okc-agents.nix { };
 

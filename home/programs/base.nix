@@ -72,7 +72,6 @@
       lib.optionals pkgs.stdenv.isLinux (with pkgs; [
         black # The uncompromising Python code formatter
         gnuplot # A portable command-line driven graphing utility for many platforms
-        neuron-notes # Future-proof system for plain-text notes
         nixpkgs-fmt # Nix code formatter for nixpkgs
         shellcheck # Shell script analysis tool
         shfmt # A shell parser and formatter
