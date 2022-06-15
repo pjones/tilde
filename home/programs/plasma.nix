@@ -120,11 +120,15 @@ let
       groups;
 
   kWriteConfig = file: group: attrs:
+    let groups = # Groups may be nested with a dot:
+      map (grp: "--group " + lib.escapeShellArg grp)
+        (lib.splitString "." group);
+    in
     lib.concatStringsSep "\n" (lib.mapAttrsToList
       (key: value: ''
         ${pkgs.libsForQt5.kconfig}/bin/kwriteconfig5 \
           --file ''${XDG_CONFIG_HOME:-$HOME/.config}/${lib.escapeShellArg file} \
-          --group ${lib.escapeShellArg group} \
+          ${lib.concatStringsSep " " groups} \
           --key ${lib.escapeShellArg key} \
           ${toKdeValue value}
       '')
