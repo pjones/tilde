@@ -371,6 +371,14 @@ in
         Plugins.konsoleprofilesEnabled = false;
         Plugins.recentdocumentsEnabled = false;
         Plugins.webshortcutsEnabled = false;
+        "Runners.Pass".showAdditionalActions = true;
+        "Runners.Pass".showFullFileContentAction = false;
+        "Runners.Pass.AdditionalActions.0".Icon = "contact-new";
+        "Runners.Pass.AdditionalActions.0".Name = "User";
+        "Runners.Pass.AdditionalActions.0".Regex = "^(?:user|username|login): (.+?)$";
+        "Runners.Pass.AdditionalActions.1".Icon = "applications-internet";
+        "Runners.Pass.AdditionalActions.1".Name = "URL";
+        "Runners.Pass.AdditionalActions.1".Regex = "^url: (.+?)$";
       };
 
       ksmserverrc = {
