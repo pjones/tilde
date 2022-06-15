@@ -357,6 +357,18 @@ in
         General."only basic indexing" = true;
       };
 
+      krunnerrc = {
+        General.FreeFloating = true;
+        Plugins.appstreamEnabled = false;
+        Plugins.bookmarksEnabled = false;
+        Plugins.browserhistoryEnabled = false;
+        Plugins.browsertabsEnabled = false;
+        Plugins.katesessionsEnabled = false;
+        Plugins.konsoleprofilesEnabled = false;
+        Plugins.recentdocumentsEnabled = false;
+        Plugins.webshortcutsEnabled = false;
+      };
+
       ksmserverrc = {
         General.excludeApps = "emacs";
         General.loginMode = "emptySession";
@@ -368,6 +380,7 @@ in
         Effect-PresentWindows.BorderActivateAll = 9;
         Effect-PresentWindows.LayoutMode = 2;
         Effect-PresentWindows.ShowPanel = false;
+        ModifierOnlyShortcuts.Meta = "";
         MouseBindings.CommandTitlebarWheel = "Change Opacity";
         Plugins.diminactiveEnabled = true;
         Plugins.kwin4_effect_eyeonscreenEnabled = true;
