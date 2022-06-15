@@ -11,10 +11,15 @@
 
     services.kmonad = lib.mkIf (pkgs.system == "x86_64-linux") {
       enable = true;
+
       keyboards.internal = {
         device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
-        fallthrough = true;
         config = builtins.readFile ../support/keyboard/us_60.kbd;
+
+        defcfg = {
+          enable = true;
+          fallthrough = true;
+        };
       };
     };
 
