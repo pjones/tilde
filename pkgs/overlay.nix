@@ -11,6 +11,20 @@ in
   # Firefox CSS Hacks:
   firefox-csshacks = prev.callPackage ./firefox-csshacks.nix { };
 
+  # Patch netatalk to fix core dumps:
+  # See: https://github.com/Netatalk/Netatalk/pull/174
+  netatalk = prev.netatalk.overrideAttrs (orig:
+    let patch = prev.fetchpatch {
+      name = "fix-netatalk-core-dumps";
+      url = "https://patch-diff.githubusercontent.com/raw/Netatalk/Netatalk/pull/174.diff";
+      sha256 = "sha256-hyJASc7g9qTlMDjZwhz9hO/p4dnvzvceV+oBoj4HOVY=";
+    };
+    in
+    {
+      version = orig.version + "p1";
+      patches = [ patch ] ++ orig.patches;
+    });
+
   # A gpg-agent/ssh-agent for Android:
   okc-agents = prev.callPackage ./okc-agents.nix { };
 
