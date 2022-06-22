@@ -406,12 +406,13 @@ in
         TabBox.HighlightWindows = true;
         TabBox.LayoutName = "present_windows";
         TabBoxAlternative.ShowDesktopMode = 1;
+        Windows.ActiveMouseScreen = false;
         Windows.ElectricBorderMaximize = false;
         Windows.ElectricBorders = null;
         Windows.ElectricBorderTiling = false;
         Windows.FocusPolicy = "FocusFollowsMouse";
         Windows.Placement = "Smart";
-        Windows.SeparateScreenFocus = true;
+        Windows.SeparateScreenFocus = false;
         Windows.SnapOnlyWhenOverlapping = true;
         Windows.TitlebarDoubleClickCommand = "Shade";
       };
