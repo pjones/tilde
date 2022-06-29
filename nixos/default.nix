@@ -39,6 +39,7 @@ in
         "docker"
         "input"
         "libvirtd"
+        "media"
         "networkmanager"
         "scanner"
         "users"
