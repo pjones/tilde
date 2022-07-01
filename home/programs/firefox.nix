@@ -6,7 +6,7 @@
 let
   cfg = config.tilde.programs.firefox;
 
-  homepage = "https://hq.pmade.com/garden/5/f/5f3fc002-92fa-4073-9fca-299af253aedf.html";
+  homepage = "https://hq.pmade.com/";
 
   settings = {
     # UI:
