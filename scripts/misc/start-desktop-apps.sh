@@ -6,7 +6,16 @@ set -eu
 set -o pipefail
 
 ################################################################################
-case $(wmctrl -d | awk '$2 == "*" { print $10 }') in
+desktop=$(
+  wmctrl -d |
+    awk '$2 == "*" {
+        for (i=($8 == "N/A" ? 9 : 10); i<=NF; i++) {
+          printf("%s%s", $i, i<NF ? OFS : "\n")
+        }
+      }'
+)
+
+case "$desktop" in
 GTD)
   e
   browser --new-window "https://calendar.google.com/calendar/"
