@@ -35,6 +35,11 @@
       tilde.programs.ssh = {
         keysDir = "~/keys/ssh";
         haveRestrictedKeys = true;
+
+        rfa = {
+          enable = true;
+          vpnJumpHost = "192.168.122.19";
+        };
       };
 
       # For remote file editing:
