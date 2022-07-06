@@ -132,6 +132,7 @@ in
 
           # Development container:
           "aviary" = {
+            hostname = "192.168.233.2";
             forwardAgent = true;
             remoteForwards = [{
               bind.port = 2204;
