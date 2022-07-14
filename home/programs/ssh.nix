@@ -134,6 +134,13 @@ in
           "aviary" = {
             hostname = "192.168.233.2";
             forwardAgent = true;
+
+            localForwards = [{
+              bind.port = 3000;
+              host.address = "127.0.0.1";
+              host.port = 3000;
+            }];
+
             remoteForwards = [{
               bind.port = 2204;
               host.address = cfg.rfa.vpnJumpHost;
