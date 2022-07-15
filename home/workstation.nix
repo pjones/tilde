@@ -26,6 +26,6 @@ in
     # Active some services/plugins:
     tilde.programs.man.enable = lib.mkDefault true;
     tilde.programs.mpd.enable = lib.mkDefault true;
-    services.syncthing.enable = lib.mkDefault true;
+    tilde.programs.syncthing.enable = lib.mkDefault true;
   };
 }

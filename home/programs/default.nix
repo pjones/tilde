@@ -20,5 +20,6 @@
     ./plasma.nix
     ./shells.nix
     ./ssh.nix
+    ./syncthing.nix
   ];
 }
