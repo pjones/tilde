@@ -55,6 +55,9 @@ in
   config = lib.mkMerge
     [
       (lib.mkIf cfg.enable {
+        # Basic security:
+        networking.firewall.enable = true;
+
         # I want firmware updates:
         hardware.enableRedistributableFirmware = true;
 
