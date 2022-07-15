@@ -10,7 +10,7 @@
     networking.hostName = "kilgrave";
 
     home-manager.users.pjones = { ... }: {
-      services.syncthing.enable = true;
+      tilde.programs.syncthing.enable = true;
     };
   };
 }
