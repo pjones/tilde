@@ -75,10 +75,11 @@ in
 
         # Packages to install on all machines for all users:
         environment.systemPackages = with pkgs; [
-          usbutils
           lsscsi
           parted
           pciutils
+          smartmontools
+          usbutils
         ];
 
         programs.zsh = {
