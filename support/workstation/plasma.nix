@@ -181,7 +181,7 @@
       "mediacontrol"."previousmedia" = "Media Previous";
       "mediacontrol"."stopmedia" = "Media Stop";
       "org.kde.dolphin.desktop"."_launch" = [ ];
-      "org.kde.krunner.desktop"."RunClipboard" = "Meta+Shift+Space";
+      "org.kde.krunner.desktop"."RunClipboard" = [ ];
       "org.kde.krunner.desktop"."_launch" = "Meta+Space";
       "org.kde.plasma.emojier.desktop"."_launch" = "Meta+Shift+E";
       "org.kde.spectacle.desktop"."ActiveWindowScreenShot" = "Meta+Print";
@@ -245,8 +245,9 @@
       "kded5rc"."Module-browserintegrationreminder"."autoload" = false;
       "kded5rc"."PlasmaBrowserIntegration"."shownCount" = 100;
       "kdeglobals"."DirSelect Dialog"."DirSelectDialog Size" = "811,598";
-      "kdeglobals"."DirSelect Dialog"."History Items[$e]" = "file:$HOME/documents/recreation/data/maps,file:$HOME/documents/pictures/backgrounds/Space,file:$HOME/documents/pictures/backgrounds/Tall/Cyberpunk,file:$HOME/documents/pictures/backgrounds/Cyberpunk,file:$HOME/documents/pictures/backgrounds/Abstract";
       "kdeglobals"."General"."AllowKDEAppsToRememberWindowPositions" = false;
+      "kdeglobals"."General"."XftHintStyle" = "hintslight";
+      "kdeglobals"."General"."XftSubPixel" = "rgb";
       "kdeglobals"."KDE"."SingleClick" = false;
       "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
       "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
@@ -268,6 +269,7 @@
       "kdeglobals"."KFileDialog Settings"."View Style" = "Detail";
       "kdeglobals"."WM"."activeBackground" = "47,52,63";
       "kdeglobals"."WM"."activeBlend" = "47,52,63";
+      "kdeglobals"."WM"."activeFont" = "Cousine,10,-1,5,50,0,0,0,0,0";
       "kdeglobals"."WM"."activeForeground" = "211,218,227";
       "kdeglobals"."WM"."inactiveBackground" = "47,52,63";
       "kdeglobals"."WM"."inactiveBlend" = "47,52,63";
@@ -373,10 +375,11 @@
       "khotkeysrc"."Data_3Conditions"."Comment" = "";
       "khotkeysrc"."Data_3Conditions"."ConditionsCount" = 0;
       "khotkeysrc"."DirSelect Dialog"."DirSelectDialog Size[$d]" = "";
-      "khotkeysrc"."DirSelect Dialog"."History Items[$d]" = "";
       "khotkeysrc"."General"."AllowKDEAppsToRememberWindowPositions[$d]" = "";
       "khotkeysrc"."General"."ColorSchemeHash[$d]" = "";
       "khotkeysrc"."General"."ColorScheme[$d]" = "";
+      "khotkeysrc"."General"."XftHintStyle[$d]" = "";
+      "khotkeysrc"."General"."XftSubPixel[$d]" = "";
       "khotkeysrc"."Gestures"."Disabled" = true;
       "khotkeysrc"."Gestures"."MouseButton" = 2;
       "khotkeysrc"."Gestures"."Timeout" = 300;
@@ -409,6 +412,7 @@
       "khotkeysrc"."Voice"."Shortcut" = "";
       "khotkeysrc"."WM"."activeBackground[$d]" = "";
       "khotkeysrc"."WM"."activeBlend[$d]" = "";
+      "khotkeysrc"."WM"."activeFont[$d]" = "";
       "khotkeysrc"."WM"."activeForeground[$d]" = "";
       "khotkeysrc"."WM"."inactiveBackground[$d]" = "";
       "khotkeysrc"."WM"."inactiveBlend[$d]" = "";
@@ -486,9 +490,10 @@
       "kwinrc"."Windows"."SeparateScreenFocus" = false;
       "kwinrc"."Windows"."SnapOnlyWhenOverlapping" = true;
       "kwinrc"."Windows"."TitlebarDoubleClickCommand" = "Shade";
-      "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "M";
-      "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "IAX";
-      "kwinrc"."org.kde.kdecoration2"."theme" = "__aurorae__svg__Sweet-Dark-transparent";
+      "kwinrc"."org.kde.kdecoration2"."BorderSize" = "Tiny";
+      "kwinrc"."org.kde.kdecoration2"."BorderSizeAuto" = false;
+      "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "XIA";
+      "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "FSNM";
       "kwinrulesrc"."1"."Description" = "Pinentry Dialogs";
       "kwinrulesrc"."1"."noborder" = true;
       "kwinrulesrc"."1"."noborderrule" = 3;
@@ -517,8 +522,6 @@
       "plasmanotifyrc"."Notifications"."NormalAlwaysOnTop" = true;
       "plasmanotifyrc"."Services.krunner_pass"."ShowInHistory" = false;
       "plasmarc"."Theme"."name" = "default";
-      "systemsettingsrc"."KFileDialog Settings"."Recent Files[$e]" = "file:$HOME/documents/pictures/peter/bowtie-books.jpg,file:$HOME/documents/pictures/peter/pjones-400x400.jpg";
-      "systemsettingsrc"."KFileDialog Settings"."Recent URLs[$e]" = "file:$HOME/documents/pictures/peter/,file:$HOME/documents/pictures/";
       "systemsettingsrc"."KFileDialog Settings"."detailViewIconSize" = 16;
     };
   };
