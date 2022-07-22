@@ -40,7 +40,7 @@
         vim # The most popular clone of the VI editor
         wget # Tool for retrieving files using HTTP, HTTPS, and FTP
         which # Shows the full path of (shell) commands
-        youtube-dl # Command-line tool to download videos from YouTube.com and other sites
+        yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
         zip # Compressor/archiver for creating and modifying zipfiles
       ] ++
       lib.optionals pkgs.stdenv.isLinux (with pkgs; [
