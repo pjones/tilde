@@ -48,4 +48,7 @@ in
 
   # Emacs configuration for tridactyl:
   tridactyl_emacs_config = prev.callPackage ./tridactyl_emacs_config.nix { };
+
+  # Virtue Font:
+  virtue-font = prev.callPackage ./virtue.nix { };
 }

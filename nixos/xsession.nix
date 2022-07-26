@@ -76,6 +76,7 @@ in
         fonts = with pkgs; [
           dejavu_fonts
           ubuntu_font_family
+          virtue-font
         ] ++ others;
       };
   };
