@@ -254,11 +254,11 @@
       "kdeglobals"."General"."XftSubPixel" = "rgb";
       "kdeglobals"."General"."fixed" = "Hermit,10,-1,5,50,0,0,0,0,0";
       "kdeglobals"."General"."font" = "FreeSans,11,-1,5,50,0,0,0,0,0";
-      "kdeglobals"."General"."menuFont" = "Virtue,11,-1,5,50,0,0,0,0,0";
+      "kdeglobals"."General"."menuFont" = "FreeSans,10,-1,5,50,0,0,0,0,0";
       "kdeglobals"."General"."smallestReadableFont" = "FreeSans,9,-1,5,50,0,0,0,0,0";
-      "kdeglobals"."General"."toolBarFont" = "Virtue,11,-1,5,50,0,0,0,0,0";
+      "kdeglobals"."General"."toolBarFont" = "FreeSans,10,-1,5,50,0,0,0,0,0";
       "kdeglobals"."KDE"."SingleClick" = false;
-      "kdeglobals"."KDE"."widgetStyle" = "kvantum";
+      "kdeglobals"."KDE"."widgetStyle" = "Breeze";
       "kdeglobals"."KFileDialog Settings"."Allow Expansion" = false;
       "kdeglobals"."KFileDialog Settings"."Automatically select filename extension" = true;
       "kdeglobals"."KFileDialog Settings"."Breadcrumb Navigation" = true;
@@ -279,7 +279,7 @@
       "kdeglobals"."KFileDialog Settings"."View Style" = "Detail";
       "kdeglobals"."WM"."activeBackground" = "237,167,113";
       "kdeglobals"."WM"."activeBlend" = "138,94,131";
-      "kdeglobals"."WM"."activeFont" = "Virtue,11,-1,5,50,0,0,0,0,0";
+      "kdeglobals"."WM"."activeFont" = "FreeSans,12,-1,5,50,0,0,0,0,0";
       "kdeglobals"."WM"."activeForeground" = "248,248,248";
       "kdeglobals"."WM"."inactiveBackground" = "151,153,155";
       "kdeglobals"."WM"."inactiveBlend" = "137,143,154";
@@ -458,6 +458,7 @@
       "kscreenlockerrc"."Greeter.Wallpaper.org.kde.slideshow.General"."SlidePaths" = "/home/pjones/documents/pictures/backgrounds/Space";
       "ksmserverrc"."General"."excludeApps" = "emacs";
       "ksmserverrc"."General"."loginMode" = "emptySession";
+      "ksplashrc"."KSplash"."Engine" = "none";
       "kwalletrc"."Wallet"."First Use" = false;
       "kwinrc"."Compositing"."OpenGLIsUnsafe" = false;
       "kwinrc"."Desktops"."Id_1" = "b495e19a-6f1d-48b1-9831-2d08775bfce7";
@@ -511,8 +512,13 @@
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "S";
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "IAX";
       "kwinrulesrc"."1"."Description" = "Pinentry Dialogs";
+      "kwinrulesrc"."1"."above" = true;
+      "kwinrulesrc"."1"."aboverule" = 3;
+      "kwinrulesrc"."1"."closeablerule" = 2;
       "kwinrulesrc"."1"."noborder" = true;
       "kwinrulesrc"."1"."noborderrule" = 3;
+      "kwinrulesrc"."1"."type" = 8;
+      "kwinrulesrc"."1"."typerule" = 2;
       "kwinrulesrc"."1"."wmclass" = "pinentry";
       "kwinrulesrc"."1"."wmclassmatch" = 1;
       "kwinrulesrc"."General"."count" = 1;
@@ -530,6 +536,7 @@
       "kwinrulesrc"."c94e5639-cf10-448e-b974-456c14ffbe40"."above" = true;
       "kwinrulesrc"."c94e5639-cf10-448e-b974-456c14ffbe40"."aboverule" = 3;
       "kwinrulesrc"."c94e5639-cf10-448e-b974-456c14ffbe40"."closeablerule" = 2;
+      "kwinrulesrc"."c94e5639-cf10-448e-b974-456c14ffbe40"."noborderrule" = 3;
       "kwinrulesrc"."c94e5639-cf10-448e-b974-456c14ffbe40"."type" = 8;
       "kwinrulesrc"."c94e5639-cf10-448e-b974-456c14ffbe40"."typerule" = 2;
       "kwinrulesrc"."c94e5639-cf10-448e-b974-456c14ffbe40"."wmclass" = "pinentry";
@@ -540,6 +547,7 @@
       "plasmanotifyrc"."Notifications"."LowPriorityHistory" = true;
       "plasmanotifyrc"."Notifications"."NormalAlwaysOnTop" = true;
       "plasmanotifyrc"."Services.krunner_pass"."ShowInHistory" = false;
+      "plasmarc"."Theme"."name" = "default";
       "systemsettingsrc"."KFileDialog Settings"."detailViewIconSize" = 16;
     };
   };
