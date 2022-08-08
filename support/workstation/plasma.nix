@@ -242,8 +242,6 @@
       "dolphinrc"."KFileDialog Settings"."Places Icons Static Size" = 22;
       "kactivitymanagerdrc"."activities"."89255051-24dc-4cdb-b8e5-f7611f0fc925" = "Default";
       "kactivitymanagerdrc"."main"."currentActivity" = "89255051-24dc-4cdb-b8e5-f7611f0fc925";
-      "kcminputrc"."Mouse"."cursorSize" = 42;
-      "kcminputrc"."Mouse"."cursorTheme" = "retrosmart-xcursor-black";
       "kcminputrc"."Tmp"."update_info" = "delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize";
       "kded5rc"."Module-browserintegrationreminder"."autoload" = false;
       "kded5rc"."Module-device_automounter"."autoload" = false;
@@ -458,7 +456,6 @@
       "kscreenlockerrc"."Greeter.Wallpaper.org.kde.slideshow.General"."SlidePaths" = "/home/pjones/documents/pictures/backgrounds/Space";
       "ksmserverrc"."General"."excludeApps" = "emacs";
       "ksmserverrc"."General"."loginMode" = "emptySession";
-      "ksplashrc"."KSplash"."Engine" = "none";
       "kwalletrc"."Wallet"."First Use" = false;
       "kwinrc"."Compositing"."OpenGLIsUnsafe" = false;
       "kwinrc"."Desktops"."Id_1" = "b495e19a-6f1d-48b1-9831-2d08775bfce7";
@@ -509,7 +506,7 @@
       "kwinrc"."Windows"."TitlebarDoubleClickCommand" = "Shade";
       "kwinrc"."org.kde.kdecoration2"."BorderSize" = "Tiny";
       "kwinrc"."org.kde.kdecoration2"."BorderSizeAuto" = false;
-      "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "S";
+      "kwinrc"."org.kde.kdecoration2"."ButtonsOnLeft" = "MFS";
       "kwinrc"."org.kde.kdecoration2"."ButtonsOnRight" = "IAX";
       "kwinrulesrc"."1"."Description" = "Pinentry Dialogs";
       "kwinrulesrc"."1"."above" = true;
@@ -547,7 +544,6 @@
       "plasmanotifyrc"."Notifications"."LowPriorityHistory" = true;
       "plasmanotifyrc"."Notifications"."NormalAlwaysOnTop" = true;
       "plasmanotifyrc"."Services.krunner_pass"."ShowInHistory" = false;
-      "plasmarc"."Theme"."name" = "default";
       "systemsettingsrc"."KFileDialog Settings"."detailViewIconSize" = 16;
     };
   };
