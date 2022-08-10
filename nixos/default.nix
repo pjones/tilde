@@ -30,6 +30,12 @@ in
       description = "The username to use.";
     };
 
+    email = lib.mkOption {
+      type = lib.types.str;
+      default = lib.concatStringsSep "@" [ cfg.username config.networking.domain ];
+      description = "The email address of the primary user.";
+    };
+
     extraGroups = lib.mkOption {
       type = with lib.types; listOf str;
       default = [
@@ -81,6 +87,24 @@ in
           smartmontools
           usbutils
         ];
+
+        # Monitor the SMART status on compatible drives:
+        # See: smartd.conf(5)
+        services.smartd = {
+          enable = true;
+          autodetect = true;
+          defaults.autodetected = "-a -o on -s (S/../.././02|L/../../7/04)";
+
+          notifications = {
+            test = true;
+
+            mail = {
+              enable = true;
+              sender = cfg.email;
+              recipient = cfg.email;
+            };
+          };
+        };
 
         programs.zsh = {
           enable = true;

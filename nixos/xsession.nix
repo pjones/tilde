@@ -48,6 +48,9 @@ in
     services.openssh.forwardX11 = lib.mkForce true;
     programs.ssh.startAgent = false; # I use GnuPG Agent.
 
+    # Allow smartd to display notifications on the X11 display:
+    services.smartd.notifications.x11.enable = true;
+
     environment.systemPackages = with pkgs; [
       (callPackage ../pkgs/sweet-nova.nix { })
       (callPackage ../pkgs/pjones-avatar.nix { })
