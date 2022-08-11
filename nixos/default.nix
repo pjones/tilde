@@ -31,8 +31,8 @@ in
     };
 
     email = lib.mkOption {
-      type = lib.types.str;
-      default = lib.concatStringsSep "@" [ cfg.username config.networking.domain ];
+      type = lib.types.nullOr lib.types.str;
+      default = null;
       description = "The email address of the primary user.";
     };
 
@@ -99,7 +99,7 @@ in
             test = true;
 
             mail = {
-              enable = true;
+              enable = cfg.email != null;
               sender = cfg.email;
               recipient = cfg.email;
             };
