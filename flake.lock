@@ -386,11 +386,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1639434859,
-        "narHash": "sha256-DkL9r/QnM9SwAjX6sLF9mZqHAsAcBHSC+RamP3L++RU=",
+        "lastModified": 1660179024,
+        "narHash": "sha256-0PDbDF7pQDadm4HBhn6q1T8ilHfbLLIwpmISmwOuBRQ=",
         "owner": "pjones",
         "repo": "zshrc",
-        "rev": "b1383ceb47976ecdbffd6dfcc548a649db5491a4",
+        "rev": "751aaaaa6b4cade6e2baf57ca023ee3292586a69",
         "type": "github"
       },
       "original": {
