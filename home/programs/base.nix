@@ -70,8 +70,6 @@
         pulse-audio-scripts # Scripts for working with PulseAudio
       ] ++
       lib.optionals pkgs.stdenv.isLinux (with pkgs; [
-        black # The uncompromising Python code formatter
-        gnuplot # A portable command-line driven graphing utility for many platforms
         nixpkgs-fmt # Nix code formatter for nixpkgs
         shellcheck # Shell script analysis tool
         shfmt # A shell parser and formatter
@@ -130,7 +128,6 @@
       # Packages that don't build on aarch64:
       lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
         makemkv # Convert blu-ray and dvd to mkv
-        sage # Open Source Mathematics Software, free alternative to Magma, Maple, Mathematica, and Matlab
         signal-desktop # Private, simple, and secure messenger
         slack # Desktop client for Slack
         spotify # Play music from the Spotify music service
