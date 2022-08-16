@@ -26,6 +26,7 @@
       "ksmserver"."Log Out Without Confirmation" = [ ];
       "ksmserver"."Reboot Without Confirmation" = [ ];
       "kwin"."Activate Window Demanding Attention" = "Meta+U";
+      "kwin"."Arrange Windows" = "Meta+A";
       "kwin"."Decrease Opacity" = [ ];
       "kwin"."Expose" = "Meta+,";
       "kwin"."ExposeAll" = "Meta+.";
@@ -111,7 +112,7 @@
       "kwin"."Window Maximize Vertical" = [ ];
       "kwin"."Window Minimize" = "Meta+M";
       "kwin"."Window Move" = [ ];
-      "kwin"."Window Move Center" = [ ];
+      "kwin"."Window Move Center" = "Meta+C";
       "kwin"."Window No Border" = [ ];
       "kwin"."Window On All Desktops" = [ ];
       "kwin"."Window One Desktop Down" = [ ];
@@ -216,7 +217,7 @@
       "plasmashell"."cycleNextAction" = [ ];
       "plasmashell"."cyclePrevAction" = [ ];
       "plasmashell"."edit_clipboard" = [ ];
-      "plasmashell"."manage activities" = "Meta+A";
+      "plasmashell"."manage activities" = [ ];
       "plasmashell"."next activity" = [ ];
       "plasmashell"."previous activity" = [ ];
       "plasmashell"."repeat_action" = [ ];
@@ -490,6 +491,7 @@
       "kwinrc"."Plugins"."magnifierEnabled" = true;
       "kwinrc"."Plugins"."sheetEnabled" = true;
       "kwinrc"."Plugins"."slideEnabled" = false;
+      "kwinrc"."Plugins"."windowposEnabled" = true;
       "kwinrc"."Plugins"."wobblywindowsEnabled" = true;
       "kwinrc"."Plugins"."zoomEnabled" = false;
       "kwinrc"."Script-desktopchangeosd"."PopupHideDelay" = 500;

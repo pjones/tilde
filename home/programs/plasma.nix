@@ -5,6 +5,18 @@ let
 
   gtkConfig = pkgs.writeScript "gtk-config"
     (builtins.readFile ../../support/gtk-config.sh);
+
+  mkKWinScript = name: src:
+    pkgs.stdenvNoCC.mkDerivation {
+      inherit name src;
+      phases = [ "unpackPhase" "installPhase" "fixupPhase" ];
+
+      installPhase = ''
+        mkdir -p "$out/contents/code"
+        cp ${name}.js "$out/contents/code/main.js"
+        cp metadata.* "$out"
+      '';
+    };
 in
 {
   options.tilde.programs.plasma = {
@@ -21,6 +33,11 @@ in
       libsForQt5.qtstyleplugin-kvantum # For some themes
       qt5.qttools # for qdbus(1)
     ];
+
+    home.file = {
+      ".local/share/kwin/scripts/windowpos".source =
+        builtins.toString (mkKWinScript "windowpos" ../../scripts/kwin/windowpos);
+    };
 
     home.activation.configure-gtk = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD ${gtkConfig}
