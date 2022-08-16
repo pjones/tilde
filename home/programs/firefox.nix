@@ -74,8 +74,8 @@ in
         id = 0;
 
         userChrome = ''
-          @import url(${pkgs.firefox-csshacks}/chrome/combined_tabs_and_main_toolbars.css);
           @import url(${pkgs.firefox-csshacks}/chrome/combined_favicon_and_tab_close_button.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
         '';
       };
 
@@ -86,6 +86,7 @@ in
         id = 1;
 
         userChrome = ''
+          @import url(${pkgs.firefox-csshacks}/chrome/combined_favicon_and_tab_close_button.css);
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_toolbox.css);
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
         '';
@@ -174,6 +175,7 @@ in
         set searchurls.go https://www.google.com/search?q=%s
         set searchurls.ha https://hackage.haskell.org/packages/search?terms=%s
         set searchurls.ho https://hoogle.haskell.org/?hoogle=%s&scope=set%3Astackage
+        set searchurls.md https://www.themoviedb.org/search?query=%s
         set searchurls.no https://search.nixos.org/options?query=%s
         set searchurls.np https://search.nixos.org/packages?query=%s
         set searchurls.wd https://en.wiktionary.org/w/index.php?search=%s
