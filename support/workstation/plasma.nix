@@ -27,12 +27,14 @@
       "ksmserver"."Reboot Without Confirmation" = [ ];
       "kwin"."Activate Window Demanding Attention" = "Meta+U";
       "kwin"."Arrange Windows" = "Meta+A";
+      "kwin"."Clear Jump List" = "Meta+Alt+'";
       "kwin"."Decrease Opacity" = [ ];
       "kwin"."Expose" = "Meta+,";
       "kwin"."ExposeAll" = "Meta+.";
       "kwin"."ExposeClass" = [ ];
       "kwin"."Increase Opacity" = [ ];
       "kwin"."Invert Screen Colors" = [ ];
+      "kwin"."Jump to Window" = "Meta+'";
       "kwin"."Kill Window" = "Meta+Shift+Q";
       "kwin"."MoveMouseToCenter" = [ ];
       "kwin"."MoveMouseToFocus" = "Meta+Shift+W";
@@ -41,6 +43,7 @@
       "kwin"."MoveZoomRight" = [ ];
       "kwin"."MoveZoomUp" = [ ];
       "kwin"."Overview" = "Meta+O";
+      "kwin"."Pull Window" = "Meta+C";
       "kwin"."Setup Window Shortcut" = [ ];
       "kwin"."Show Desktop" = [ ];
       "kwin"."ShowDesktopGrid" = "Meta+D";
@@ -85,6 +88,7 @@
       "kwin"."Switch to Screen 5" = [ ];
       "kwin"."Switch to Screen 6" = [ ];
       "kwin"."Switch to Screen 7" = [ ];
+      "kwin"."Toggle Jump List" = "Meta+\"";
       "kwin"."Toggle Night Color" = [ ];
       "kwin"."Toggle Window Raise/Lower" = [ ];
       "kwin"."ToggleCurrentThumbnail" = "Meta+Ctrl+T";
@@ -112,7 +116,7 @@
       "kwin"."Window Maximize Vertical" = [ ];
       "kwin"."Window Minimize" = "Meta+M";
       "kwin"."Window Move" = [ ];
-      "kwin"."Window Move Center" = "Meta+C";
+      "kwin"."Window Move Center" = [ ];
       "kwin"."Window No Border" = [ ];
       "kwin"."Window On All Desktops" = [ ];
       "kwin"."Window One Desktop Down" = [ ];
@@ -483,12 +487,14 @@
       "kwinrc"."Plugins"."contrastEnabled" = false;
       "kwinrc"."Plugins"."diminactiveEnabled" = true;
       "kwinrc"."Plugins"."grid-tilingEnabled" = false;
+      "kwinrc"."Plugins"."jumplistEnabled" = true;
       "kwinrc"."Plugins"."kwin-packerEnabled" = true;
       "kwinrc"."Plugins"."kwin4_effect_eyeonscreenEnabled" = true;
       "kwinrc"."Plugins"."kwin4_effect_fadedesktopEnabled" = true;
       "kwinrc"."Plugins"."kwin4_effect_translucencyEnabled" = true;
       "kwinrc"."Plugins"."kwin4_effect_windowapertureEnabled" = false;
       "kwinrc"."Plugins"."magnifierEnabled" = true;
+      "kwinrc"."Plugins"."pullwindowEnabled" = true;
       "kwinrc"."Plugins"."sheetEnabled" = true;
       "kwinrc"."Plugins"."slideEnabled" = false;
       "kwinrc"."Plugins"."windowposEnabled" = true;
@@ -503,6 +509,7 @@
       "kwinrc"."Windows"."ElectricBorderMaximize" = false;
       "kwinrc"."Windows"."ElectricBorderTiling" = false;
       "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
+      "kwinrc"."Windows"."Placement" = "Smart";
       "kwinrc"."Windows"."SeparateScreenFocus" = false;
       "kwinrc"."Windows"."SnapOnlyWhenOverlapping" = true;
       "kwinrc"."Windows"."TitlebarDoubleClickCommand" = "Shade";

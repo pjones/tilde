@@ -1,0 +1,22 @@
+{
+  "KPlugin": {
+    "Authors": [
+      {
+        "Email": "pjones@devalot.com",
+        "Name": "Peter J. Jones"
+      }
+    ],
+    "Description": "Jump Between a Set of Windows",
+    "Icon": "preferences-system-windows-script-test",
+    "Id": "jumplist",
+    "License": "GPL",
+    "Name": "",
+    "ServiceTypes": [
+      "KWin/Script"
+    ],
+    "Version": "1.0"
+  },
+  "X-KDE-PluginKeyword": "jumplist",
+  "X-Plasma-API": "javascript",
+  "X-Plasma-MainScript": "code/main.js"
+}

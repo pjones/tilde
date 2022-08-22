@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=PullWindow
+Comment=Pull a window to the primary screen
+Icon=preferences-system-windows-script-test
+
+Type=Service
+
+X-Plasma-API=javascript
+X-Plasma-MainScript=code/main.js
+X-KDE-PluginInfo-Author=Peter J. Jones
+X-KDE-PluginInfo-Email=pjones@devalot.com
+X-KDE-PluginInfo-Name=pullwindow
+X-KDE-PluginInfo-Version=1.0
+
+X-KDE-PluginInfo-License=GPL
+X-KDE-ServiceTypes=KWin/Script
+X-KDE-PluginKeyword=pullwindow

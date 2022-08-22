@@ -35,6 +35,12 @@ in
     ];
 
     home.file = {
+      ".local/share/kwin/scripts/jumplist".source =
+        builtins.toString (mkKWinScript "jumplist" ../../scripts/kwin/jumplist);
+
+      ".local/share/kwin/scripts/pullwindow".source =
+        builtins.toString (mkKWinScript "pullwindow" ../../scripts/kwin/pullwindow);
+
       ".local/share/kwin/scripts/windowpos".source =
         builtins.toString (mkKWinScript "windowpos" ../../scripts/kwin/windowpos);
     };
