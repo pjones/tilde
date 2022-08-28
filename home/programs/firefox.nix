@@ -24,6 +24,7 @@ let
     "extensions.formautofill.creditCards.enabled" = false;
     "extensions.pocket.enabled" = false;
     "signon.rememberSignons" = false;
+    "media.gmp-widevinecdm.visible" = false;
 
     # Privacy:
     "privacy.donottrackheader.enabled" = true;
@@ -76,6 +77,7 @@ in
         userChrome = ''
           @import url(${pkgs.firefox-csshacks}/chrome/combined_favicon_and_tab_close_button.css);
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/tabs_on_bottom.css);
         '';
       };
 
@@ -89,6 +91,7 @@ in
           @import url(${pkgs.firefox-csshacks}/chrome/combined_favicon_and_tab_close_button.css);
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_toolbox.css);
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/tabs_on_bottom.css);
         '';
       };
     };
