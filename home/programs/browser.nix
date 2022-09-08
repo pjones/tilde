@@ -24,31 +24,37 @@ in
   config = lib.mkIf cfg.enable {
     tilde.programs.firefox.enable = true;
 
-    home.file = {
-      ".local/share/applications/browser.desktop".text = ''
-        [Desktop Entry]
-        Type=Application
-        Exec=browser %U
-        Terminal=false
-        Name=Browser
-        Comment=Browser Wrapper
-        GenericName=Web Browser
-        MimeType=${lib.concatStringsSep ";" mimeTypes}
-        Categories=Network;WebBrowser;
-      '';
+    xdg.desktopEntries = {
+      browser = {
+        name = "Browser";
+        icon = "firefox";
+        genericName = "Web Browser";
+        exec = "${pkgs.tilde-scripts-browser}/bin/browser %U";
+        terminal = false;
+        comment = "Wrapper around Firefox";
+        categories = [ "Network" "WebBrowser" ];
+        mimeType = mimeTypes;
+      };
+
+      facebook = {
+        name = "Facebook";
+        icon = "firefox";
+        exec = "${pkgs.tilde-scripts-browser}/bin/facebook";
+        terminal = false;
+        comment = "Firefox wrapper for Facebook";
+      };
     };
 
     xdg.mimeApps = {
       enable = lib.mkDefault true;
 
-      defaultApplications =
-        builtins.listToAttrs
-          (map
-            (name: {
-              inherit name;
-              value = "browser.desktop";
-            })
-            mimeTypes);
+      defaultApplications = builtins.listToAttrs
+        (map
+          (name: {
+            inherit name;
+            value = "browser.desktop";
+          })
+          mimeTypes);
     };
   };
 }
