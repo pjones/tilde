@@ -12,7 +12,6 @@
     ./git.nix
     ./gromit-mpx.nix
     ./haskell.nix
-    ./inhibit-lock-screen.nix
     ./konsole.nix
     ./man.nix
     ./mpd.nix

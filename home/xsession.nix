@@ -21,7 +21,6 @@ in
       tilde.programs.browser.enable = lib.mkDefault true;
       tilde.programs.gromit-mpx.enable = lib.mkDefault true;
       tilde.programs.konsole.enable = lib.mkDefault true;
-      tilde.programs.oled-display.enable = lib.mkDefault true;
       tilde.programs.plasma.enable = lib.mkDefault true;
 
       # Communicate with my phone:

@@ -30,6 +30,7 @@
     home-manager.users.pjones = { ... }: {
       tilde.programs.emacs.enable = true;
       tilde.programs.haskell.enable = true;
+      tilde.programs.oled-display.enable = true;
       tilde.programs.oled-display.arduino.enable = true;
 
       tilde.programs.ssh = {
@@ -40,13 +41,6 @@
           enable = true;
           vpnJumpHost = "192.168.122.95";
         };
-      };
-
-      tilde.programs.inhibit-lock-screen = {
-        enable = true;
-        bluetooth.devices = [
-          "80:86:D9:3A:A9:BB"
-        ];
       };
     };
   };

@@ -56,16 +56,6 @@ in
       (callPackage ../pkgs/pjones-avatar.nix { })
     ];
 
-    # Bluetooth tools need to be installed as wrappers so normal users
-    # can use them.  For example, the screensaver inhibit code in this
-    # repo.
-    security.wrappers.l2ping = {
-      source = "${pkgs.bluez}/bin/l2ping";
-      owner = "nobody";
-      group = "nogroup";
-      capabilities = "cap_net_raw+ep";
-    };
-
     fonts =
       let
         specs = import ../home/misc/fonts.nix { inherit pkgs; };

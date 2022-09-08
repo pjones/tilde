@@ -25,8 +25,6 @@
       image-scripts.url = "github:pjones/image-scripts";
       image-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
-      inhibit-screensaver.url = "github:pjones/inhibit-screensaver";
-
       kmonad.url = "github:kmonad/kmonad?dir=nix";
 
       maintenance-scripts.url = "github:pjones/maintenance-scripts";
@@ -89,7 +87,6 @@
         bashrc = inputs.bashrc.overlay;
         encryption-utils = inputs.encryption-utils.overlay;
         image-scripts = inputs.image-scripts.overlay;
-        inhibit-screensaver = inputs.inhibit-screensaver.overlay;
         maintenance-scripts = inputs.maintenance-scripts.overlay;
         network-scripts = inputs.network-scripts.overlay;
         nur = inputs.nur.overlay;

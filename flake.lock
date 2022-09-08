@@ -125,27 +125,9 @@
         "type": "github"
       }
     },
-    "inhibit-screensaver": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1639502764,
-        "narHash": "sha256-Kk6OWhzJpA3sRJZiDDonk4yIN74UFR4SXaY+L2rtttA=",
-        "owner": "pjones",
-        "repo": "inhibit-screensaver",
-        "rev": "2549cb086d6371364bf301a7ccf5cd6798a1236e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pjones",
-        "repo": "inhibit-screensaver",
-        "type": "github"
-      }
-    },
     "kmonad": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
         "dir": "nix",
@@ -205,22 +187,6 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1639130158,
-        "narHash": "sha256-/5a/7J3AE5ATzB3HdFZ9C9VlPbUK5bIGsRX7veSujXA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "3b422991781220853035dbe353ba8b7cb279b6b3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-21.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
         "lastModified": 1653326962,
         "narHash": "sha256-W8feCYqKTsMre4nAEpv5Kx1PVFC+hao/LwqtB2Wci/8=",
         "owner": "NixOS",
@@ -235,7 +201,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1662025319,
         "narHash": "sha256-ZJlBQ7jXynq4+Jg9+DgOe8FJG8sDIeFFYP3V3K98KUs=",
@@ -251,7 +217,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1638922083,
         "narHash": "sha256-IlQm69UmCfQBwccn+zZULwun0KRtdWFNYQ4jEA3VwW0=",
@@ -284,7 +250,7 @@
     },
     "oled-display": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1639520204,
@@ -347,11 +313,10 @@
         "haskellrc": "haskellrc",
         "home-manager": "home-manager",
         "image-scripts": "image-scripts",
-        "inhibit-screensaver": "inhibit-screensaver",
         "kmonad": "kmonad",
         "maintenance-scripts": "maintenance-scripts",
         "network-scripts": "network-scripts",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "oled-display": "oled-display",
         "plasma-manager": "plasma-manager",

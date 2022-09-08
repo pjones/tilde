@@ -22,13 +22,6 @@ in
       tilde.programs.emacs.enable = true;
       tilde.programs.gromit-mpx.enable = true;
       tilde.programs.haskell.enable = true;
-
-      tilde.programs.inhibit-lock-screen = {
-        enable = true;
-        bluetooth.devices = [
-          "BC:A8:A6:7D:A5:77"
-        ];
-      };
     };
   };
 }
