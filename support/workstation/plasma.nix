@@ -468,12 +468,14 @@
       "kwinrc"."Desktops"."Id_3" = "e5261024-201e-4a6e-8753-5abea633293a";
       "kwinrc"."Desktops"."Id_4" = "e8d636e1-e5b2-4565-87e4-5de72e0b98d4";
       "kwinrc"."Desktops"."Id_5" = "99bc9473-f439-432a-9736-793a634ee965";
+      "kwinrc"."Desktops"."Id_6" = "b8a2221f-720d-40af-9066-d2be898ca640";
       "kwinrc"."Desktops"."Name_1" = "GTD";
       "kwinrc"."Desktops"."Name_2" = "Social";
       "kwinrc"."Desktops"."Name_3" = "Hacking";
       "kwinrc"."Desktops"."Name_4" = "RFA";
       "kwinrc"."Desktops"."Name_5" = "Sharing";
-      "kwinrc"."Desktops"."Number" = 5;
+      "kwinrc"."Desktops"."Name_6" = "School";
+      "kwinrc"."Desktops"."Number" = 6;
       "kwinrc"."Desktops"."Rows" = 2;
       "kwinrc"."Effect-DimInactive"."DimByGroup" = false;
       "kwinrc"."Effect-DimInactive"."DimFullScreen" = false;
@@ -495,6 +497,7 @@
       "kwinrc"."Plugins"."kwin4_effect_windowapertureEnabled" = false;
       "kwinrc"."Plugins"."magnifierEnabled" = true;
       "kwinrc"."Plugins"."pullwindowEnabled" = true;
+      "kwinrc"."Plugins"."screenedgeEnabled" = false;
       "kwinrc"."Plugins"."sheetEnabled" = true;
       "kwinrc"."Plugins"."slideEnabled" = false;
       "kwinrc"."Plugins"."windowposEnabled" = true;
@@ -509,7 +512,6 @@
       "kwinrc"."Windows"."ElectricBorderMaximize" = false;
       "kwinrc"."Windows"."ElectricBorderTiling" = false;
       "kwinrc"."Windows"."FocusPolicy" = "FocusFollowsMouse";
-      "kwinrc"."Windows"."Placement" = "Smart";
       "kwinrc"."Windows"."SeparateScreenFocus" = false;
       "kwinrc"."Windows"."SnapOnlyWhenOverlapping" = true;
       "kwinrc"."Windows"."TitlebarDoubleClickCommand" = "Shade";
@@ -552,6 +554,7 @@
       "plasmanotifyrc"."Jobs"."PermanentPopups" = false;
       "plasmanotifyrc"."Notifications"."LowPriorityHistory" = true;
       "plasmanotifyrc"."Notifications"."NormalAlwaysOnTop" = true;
+      "plasmanotifyrc"."Notifications"."PopupPosition" = "TopRight";
       "plasmanotifyrc"."Services.krunner_pass"."ShowInHistory" = false;
       "systemsettingsrc"."KFileDialog Settings"."detailViewIconSize" = 16;
     };
