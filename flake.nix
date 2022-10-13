@@ -207,6 +207,7 @@
           # Tests:
           config = test test/config.nix;
           cron = test test/cron.nix;
+          emacs = inputs.emacsrc.checks.${system}.default;
           mandb = test test/mandb.nix;
         } // hostChecks);
 
