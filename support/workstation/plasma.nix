@@ -389,8 +389,6 @@
       "khotkeysrc"."Data_3Conditions"."ConditionsCount" = 0;
       "khotkeysrc"."DirSelect Dialog"."DirSelectDialog Size[$d]" = "";
       "khotkeysrc"."General"."AllowKDEAppsToRememberWindowPositions[$d]" = "";
-      "khotkeysrc"."General"."ColorSchemeHash[$d]" = "";
-      "khotkeysrc"."General"."ColorScheme[$d]" = "";
       "khotkeysrc"."General"."XftHintStyle[$d]" = "";
       "khotkeysrc"."General"."XftSubPixel[$d]" = "";
       "khotkeysrc"."General"."fixed[$d]" = "";

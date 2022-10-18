@@ -30,7 +30,6 @@ in
       crudini # For editing the GTK settings.ini file.
       krunner-pass # Access passwords in krunner
       libsForQt5.ktouch # A touch typing tutor from the KDE software collection
-      libsForQt5.qtstyleplugin-kvantum # For some themes
       qt5.qttools # for qdbus(1)
     ];
 
