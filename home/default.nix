@@ -17,7 +17,7 @@
 
   config = lib.mkIf config.tilde.enable {
     # Ensure consistent behavior:
-    home.stateVersion = "20.09";
+    home.stateVersion = lib.mkDefault "22.11";
 
     nixpkgs = {
       config.allowUnfree = true;

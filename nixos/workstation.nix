@@ -46,7 +46,7 @@ in
         ];
 
         # For using different Nix caches:
-        nix.trustedUsers = [ "@wheel" ];
+        nix.settings.trusted-users = [ "@wheel" ];
 
         # For improved experience developing with Nix:
         nix.extraOptions = ''

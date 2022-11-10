@@ -3,16 +3,16 @@
 
   inputs =
     {
-      nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+      nixpkgs.url = "github:NixOS/nixpkgs/master";
       nur.url = "github:nix-community/NUR";
 
-      home-manager.url = "github:nix-community/home-manager/release-22.05";
+      home-manager.url = "github:nix-community/home-manager/master";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
       bashrc.url = "github:pjones/bashrc";
       bashrc.inputs.nixpkgs.follows = "nixpkgs";
 
-      emacsrc.url = "github:pjones/emacsrc";
+      emacsrc.url = "github:pjones/emacsrc/next";
       emacsrc.inputs.nixpkgs.follows = "nixpkgs";
       emacsrc.inputs.home-manager.follows = "home-manager";
 
