@@ -31,11 +31,11 @@
         "passmm": "passmm"
       },
       "locked": {
-        "lastModified": 1669924814,
-        "narHash": "sha256-2to76M0BJpyOIb1jceSCO9fxRhI3xo+1aserNIRBayA=",
+        "lastModified": 1669938311,
+        "narHash": "sha256-bef+4nZsD911PUrmXZDnzOjTKwxcIjo4PiI5pApfASU=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "a00c071e4bc3ec7c4c44097789e4bb113d5a93a2",
+        "rev": "40c212b38f075b2ac89f0e9ffdcccb366e0e1c2b",
         "type": "github"
       },
       "original": {

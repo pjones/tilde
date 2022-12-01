@@ -27,13 +27,9 @@ const tileWindows = function(screenNum, clients, gap=2) {
 
 // Move windows to where I like them to be.
 const arrangeWindows = function() {
-  let emacsWindows = [];
-
   workspace.clientList().forEach(client => {
     if (client.desktop == workspace.currentDesktop) {
-      if (client.resourceClass == "emacs") {
-        emacsWindows.push(client);
-      } else if (client.caption.match(/Messages for web/)) {
+      if (client.caption.match(/Messages for web/)) {
         client.frameGeometry = {x: 18, y: 874, width: 775, height: 990};
       } else if (client.caption.match(/Signal/)) {
         client.frameGeometry = {x: 800, y: 874, width: 890, height: 990};
@@ -50,10 +46,6 @@ const arrangeWindows = function() {
       }
     }
   });
-
-  // Order the windows from left to right, then tile N of them:
-  emacsWindows.sort((a, b) => a.frameGeometry.x - b.frameGeometry.x);
-  tileWindows(0, emacsWindows.filter(client => client.screen == 0).slice(0, 3));
 };
 
 const printAllWindows = function() {
