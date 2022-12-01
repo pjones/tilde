@@ -3,8 +3,12 @@
 let
   cfg = config.tilde.programs.plasma;
 
-  gtkConfig = pkgs.writeScript "gtk-config"
-    (builtins.readFile ../../support/gtk-config.sh);
+  gtkConfig = pkgs.writeShellApplication
+    {
+      name = "gtk-config";
+      runtimeInputs = with pkgs; [ crudini ];
+      text = (builtins.readFile ../../support/gtk-config.sh);
+    };
 
   mkKWinScript = name: src:
     pkgs.stdenvNoCC.mkDerivation {
@@ -27,7 +31,6 @@ in
     programs.plasma = (import ../../support/workstation/plasma.nix).programs.plasma;
 
     home.packages = with pkgs; [
-      crudini # For editing the GTK settings.ini file.
       krunner-pass # Access passwords in krunner
       libsForQt5.ktouch # A touch typing tutor from the KDE software collection
       qt5.qttools # for qdbus(1)
@@ -45,7 +48,7 @@ in
     };
 
     home.activation.configure-gtk = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      $DRY_RUN_CMD ${gtkConfig}
+      $DRY_RUN_CMD ${gtkConfig}/bin/gtk-config
     '';
   };
 }
