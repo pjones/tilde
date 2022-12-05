@@ -31,11 +31,11 @@
         "passmm": "passmm"
       },
       "locked": {
-        "lastModified": 1669938311,
-        "narHash": "sha256-bef+4nZsD911PUrmXZDnzOjTKwxcIjo4PiI5pApfASU=",
+        "lastModified": 1670277815,
+        "narHash": "sha256-cE97mQ9WkwxH17LCI+lD1HiXljx3I8a+VCJT53Kgimo=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "40c212b38f075b2ac89f0e9ffdcccb366e0e1c2b",
+        "rev": "c7c18c4f1c514659ad03c9d24581524e0467d979",
         "type": "github"
       },
       "original": {
@@ -270,11 +270,11 @@
     "passmm": {
       "flake": false,
       "locked": {
-        "lastModified": 1610150904,
-        "narHash": "sha256-ZgkuSlQqrpBvJCyLESWmaRVJvdfdgK0rpID0aa6QVmQ=",
+        "lastModified": 1670182020,
+        "narHash": "sha256-VjRp0Cb8UEJMbxWXKvRW83tanc+O5jOCrnjD2WT2YOY=",
         "owner": "pjones",
         "repo": "passmm",
-        "rev": "d78d1bf4f397180d2256248df589f33aafb4c8b4",
+        "rev": "66691e301dff476eaff7c6e817ed9df96d4404c8",
         "type": "github"
       },
       "original": {
