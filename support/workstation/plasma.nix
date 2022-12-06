@@ -282,7 +282,7 @@
       "kdeglobals"."KFileDialog Settings"."View Style" = "Detail";
       "kdeglobals"."WM"."activeBackground" = "237,167,113";
       "kdeglobals"."WM"."activeBlend" = "138,94,131";
-      "kdeglobals"."WM"."activeFont" = "FreeSans,12,-1,5,50,0,0,0,0,0";
+      "kdeglobals"."WM"."activeFont" = "FreeSans,10,-1,5,50,0,0,0,0,0";
       "kdeglobals"."WM"."activeForeground" = "248,248,248";
       "kdeglobals"."WM"."inactiveBackground" = "151,153,155";
       "kdeglobals"."WM"."inactiveBlend" = "137,143,154";
