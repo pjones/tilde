@@ -447,12 +447,12 @@
       "krunnerrc"."Plugins"."webshortcutsEnabled" = false;
       "krunnerrc"."Runners.Pass"."showAdditionalActions" = true;
       "krunnerrc"."Runners.Pass"."showFullFileContentAction" = false;
-      "krunnerrc"."Runners.Pass.AdditionalActions.0"."Icon" = "contact-new";
+      "krunnerrc"."Runners.Pass.AdditionalActions.0"."Icon" = "system-users";
       "krunnerrc"."Runners.Pass.AdditionalActions.0"."Name" = "User";
-      "krunnerrc"."Runners.Pass.AdditionalActions.0"."Regex" = "^(?:user|username|login): (.+?)$";
+      "krunnerrc"."Runners.Pass.AdditionalActions.0"."Regex" = "(?i)^(?:user|username|login): (.+?)$";
       "krunnerrc"."Runners.Pass.AdditionalActions.1"."Icon" = "applications-internet";
       "krunnerrc"."Runners.Pass.AdditionalActions.1"."Name" = "URL";
-      "krunnerrc"."Runners.Pass.AdditionalActions.1"."Regex" = "^url: (.+?)$";
+      "krunnerrc"."Runners.Pass.AdditionalActions.1"."Regex" = "(?i)^url: (.+?)$";
       "kscreenlockerrc"."Daemon"."Timeout" = 30;
       "kscreenlockerrc"."Greeter"."WallpaperPlugin" = "org.kde.slideshow";
       "kscreenlockerrc"."Greeter.Wallpaper.org.kde.slideshow.General"."SlideInterval" = 120;
