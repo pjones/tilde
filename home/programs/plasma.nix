@@ -31,10 +31,28 @@ in
     programs.plasma = (import ../../support/workstation/plasma.nix).programs.plasma;
 
     home.packages = with pkgs; [
-      krunner-pass # Access passwords in krunner
+      pjones.rofirc
       libsForQt5.ktouch # A touch typing tutor from the KDE software collection
       qt5.qttools # for qdbus(1)
     ];
+
+    xdg.desktopEntries = {
+      lock-screen = {
+        name = "Lock Screen";
+        exec = "loginctl lock-session";
+        icon = "emblem-system";
+        terminal = false;
+        categories = [ "System" ];
+      };
+
+      sleep-system = {
+        name = "Sleep";
+        exec = "systemctl suspend-then-hibernate";
+        icon = "emblem-system";
+        terminal = false;
+        categories = [ "System" ];
+      };
+    };
 
     home.file = {
       ".local/share/kwin/scripts/jumplist".source =

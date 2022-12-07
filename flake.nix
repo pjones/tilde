@@ -39,6 +39,9 @@
       plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
       plasma-manager.inputs.home-manager.follows = "home-manager";
 
+      rofirc.url = "github:pjones/rofirc";
+      rofirc.inputs.nixpkgs.follows = "nixpkgs";
+
       tmuxrc.url = "github:pjones/tmuxrc";
       tmuxrc.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -92,6 +95,7 @@
         network-scripts = inputs.network-scripts.overlay;
         nur = inputs.nur.overlay;
         oled-display = inputs.oled-display.overlay;
+        rofirc = inputs.rofirc.overlays.default;
         tilde = import pkgs/overlay.nix;
         tmuxrc = inputs.tmuxrc.overlay;
         zshrc = inputs.zshrc.overlay;
@@ -188,14 +192,16 @@
           test = path: import path { inherit pkgs module; };
 
           machine = module:
-            let machine = nixpkgs.lib.nixosSystem {
-              inherit system;
-              modules = [
-                test/vm.nix
-                module
-              ];
-            };
-            in machine.config.system.build.vm;
+            let
+              machine = nixpkgs.lib.nixosSystem {
+                inherit system;
+                modules = [
+                  test/vm.nix
+                  module
+                ];
+              };
+            in
+            machine.config.system.build.vm;
 
           hostChecks = builtins.listToAttrs (map
             (host: {

@@ -68,6 +68,7 @@ in
         start-desktop-apps = {
           name = "Start Desktop Apps";
           exec = "${../scripts/misc/start-desktop-apps.sh}";
+          icon = "document-open";
           terminal = false;
           categories = [ "Application" ];
         };
