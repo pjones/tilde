@@ -313,11 +313,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1670431960,
-        "narHash": "sha256-xcMZy2DICnVjPeV5tbfK8+k+KP8m1nQUEF/wtc6gFus=",
+        "lastModified": 1670522476,
+        "narHash": "sha256-r2Ra5l/cyNPy/Fe+3yH67lxWq58/ZJvLR9TOH9AgveQ=",
         "owner": "pjones",
         "repo": "rofirc",
-        "rev": "47b3c491ff5e7fad71416d9eeb50c4067b01ec21",
+        "rev": "ad018180ddadc01d4f6ff3108948b14fbaea3f30",
         "type": "github"
       },
       "original": {
