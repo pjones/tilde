@@ -23,6 +23,12 @@ in
       tilde.programs.konsole.enable = lib.mkDefault true;
       tilde.programs.plasma.enable = lib.mkDefault true;
 
+      # Hide the mouse cursor when not in use:
+      services.unclutter = {
+        enable = true;
+        extraOptions = [ "ignore-scrolling" ];
+      };
+
       # Communicate with my phone:
       services.kdeconnect = {
         enable = true;
@@ -89,17 +95,6 @@ in
       # Some apps are rude and overwrite this file:
       # https://github.com/nix-community/home-manager/issues/1213
       xdg.configFile."mimeapps.list".force = true;
-
-      # Make Plasma load the Home Manager environment:
-      xdg.configFile."plasma-workspace/env/hm-session-vars.sh".text = ''
-        if [ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
-          . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-        fi
-
-        if [ -e "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh" ]; then
-          . "/etc/profiles/per-user/$USER/etc/profile.d/hm-session-vars.sh"
-        fi
-      '';
 
       # https://github.com/nix-community/home-manager/issues/2064
       systemd.user.targets.tray = {

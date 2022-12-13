@@ -22,6 +22,9 @@
       haskellrc.url = "github:pjones/haskellrc";
       haskellrc.inputs.nixpkgs.follows = "nixpkgs";
 
+      hlwmrc.url = "github:pjones/hlwmrc";
+      hlwmrc.inputs.nixpkgs.follows = "nixpkgs";
+
       image-scripts.url = "github:pjones/image-scripts";
       image-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -90,6 +93,7 @@
       overlays = {
         bashrc = inputs.bashrc.overlay;
         encryption-utils = inputs.encryption-utils.overlay;
+        hlwmrc = inputs.hlwmrc.overlays.default;
         image-scripts = inputs.image-scripts.overlay;
         maintenance-scripts = inputs.maintenance-scripts.overlay;
         network-scripts = inputs.network-scripts.overlay;
