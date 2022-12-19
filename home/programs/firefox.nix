@@ -128,7 +128,7 @@ in
       ''
         sanitize tridactyllocal tridactylsync
         source ${pkgs.tridactyl_emacs_config}/etc/emacs_bindings
-        set editorcmd e -cws browsers -- --eval '(progn (find-file "%f") (forward-line (1- %l)) (forward-char %c))'
+        set editorcmd e -cw -- +%l:%c %f
 
         colours dark
 
