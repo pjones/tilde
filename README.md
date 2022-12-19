@@ -16,6 +16,8 @@ without having to tweak files by hand or in GUI settings tools.
 
   * Desktop Environment: KDE Plasma
 
+  * Window Manager: [herbstluftwm][]
+
   * Terminal: Emacs w/ libvterm
 
   * Monospace Font: [Hermit](https://pcaro.es/p/hermit/)
@@ -23,3 +25,4 @@ without having to tweak files by hand or in GUI settings tools.
 [nix]: https://nixos.org/
 [nixpkgs]: https://github.com/NixOS/nixpkgs
 [home-manager]: https://github.com/rycee/home-manager
+[herbstluftwm]: https://github.com/pjones/hlwmrc

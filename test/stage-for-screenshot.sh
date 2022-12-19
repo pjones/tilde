@@ -3,6 +3,9 @@
 set -eux
 set -o pipefail
 
+feh --bg-fill --no-fehbg /tmp/wallpaper.jpg
+xdotool mousemove 0 0
+
 herbstclient lock
 
 for i in $(herbstclient list_monitors | cut -d: -f1); do

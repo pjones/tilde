@@ -219,6 +219,7 @@
           config = test test/config.nix;
           cron = test test/cron.nix;
           emacs = inputs.emacsrc.checks.${system}.default;
+          herbstluftwm = test test/herbstluftwm.nix;
           mandb = test test/mandb.nix;
         } // hostChecks);
 

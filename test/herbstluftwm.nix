@@ -1,6 +1,12 @@
 { pkgs, module }:
 let
   user = import ./user.nix;
+
+  # https://www.reddit.com/r/wallpapers/comments/ge4hrd/geometry/
+  wallpaper = pkgs.fetchurl {
+    url = "https://i.redd.it/tg9ac8kn10x41.jpg";
+    sha256 = "0pb32hzrngl06c1icb2hmdq8ja7v1gc2m4ss32ihp6rk45c59lji";
+  };
 in
 pkgs.nixosTest {
   name = "tilde-herbstluftwm-test";
@@ -14,32 +20,23 @@ pkgs.nixosTest {
       ];
 
       services.xserver = {
-        displayManager.defaultSession = lib.mkForce "xsession";
         windowManager.icewm.enable = lib.mkForce false;
-
-        # Add a custom desktop session just for this test:
-        desktopManager.session = lib.singleton {
-          name = "xsession";
-          enable = true;
-          start = "exit 1"; # Should never be called.
-        };
+        windowManager.herbstluftwm.enable = true;
+        windowManager.herbstluftwm.configFile = "${pkgs.pjones.hlwmrc}/config/autostart";
+        displayManager.defaultSession = lib.mkForce "none+herbstluftwm";
       };
 
       test-support.displayManager.auto.user = user.name;
-
       tilde.username = user.name;
-      tilde.xsession.fonts.enable = true;
 
       home-manager.users.${user.name} = { pkgs, lib, ... }: {
-        tilde.programs.herbstluftwm.enable = true;
         tilde.programs.konsole.enable = true;
-        tilde.programs.polybar.enable = true;
-        tilde.xsession.lock.enable = true;
-        tilde.xsession.wallpaper.enable = true;
       };
 
       environment.systemPackages = with pkgs; [
+        feh
         neofetch
+        xdotool
       ];
     };
   };
@@ -58,6 +55,10 @@ pkgs.nixosTest {
 
     with subtest("Launch terminal"):
         machine.copy_from_host(
+            "${wallpaper}",
+            "/tmp/wallpaper.jpg",
+        )
+        machine.copy_from_host(
             "${./stage-for-screenshot.sh}",
             "/tmp/stage.sh",
         )
@@ -71,10 +72,5 @@ pkgs.nixosTest {
     with subtest("Wait to get a screenshot"):
         machine.sleep(3)
         machine.screenshot("screen")
-
-    with subtest("Lock screen"):
-        machine.execute("loginctl lock-sessions")
-        machine.sleep(3)
-        machine.screenshot("lock")
   '';
 }
