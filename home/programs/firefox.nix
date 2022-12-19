@@ -23,7 +23,7 @@ let
     "extensions.formautofill.addresses.enabled" = false;
     "extensions.formautofill.creditCards.enabled" = false;
     "extensions.pocket.enabled" = false;
-    "signon.rememberSignons" = false;
+    "signon.rememberSignons" = true;
     "media.gmp-widevinecdm.visible" = false;
 
     # Privacy:
