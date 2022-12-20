@@ -48,6 +48,9 @@
       tmuxrc.url = "github:pjones/tmuxrc";
       tmuxrc.inputs.nixpkgs.follows = "nixpkgs";
 
+      wsl.url = "github:nix-community/NixOS-WSL";
+      wsl.inputs.nixpkgs.follows = "nixpkgs";
+
       zshrc.url = "github:pjones/zshrc";
       zshrc.inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -166,12 +169,23 @@
 
       ##########################################################################
       # A generic NixOS configuration that can be used as a demo:
-      nixosConfigurations.demo = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          self.nixosModules.tilde
-          ./test/demo.nix
-        ];
+      nixosConfigurations = {
+        demo = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            self.nixosModules.tilde
+            ./test/demo.nix
+          ];
+        };
+
+        hyde = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            inputs.wsl.nixosModules.wsl
+            self.nixosModules.tilde
+            ./devices/hyde.nix
+          ];
+        };
       };
 
       ##########################################################################
@@ -233,6 +247,7 @@
             buildInputs = [
               inputs.home-manager.outputs.defaultPackage.${system}
               pkgs.neofetch
+              pkgs.nixpkgs-fmt
             ];
           };
         });
