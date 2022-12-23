@@ -99,6 +99,7 @@
         imagemagick # A software suite to create, edit, compose, or convert bitmap images
         inkscape # Vector graphics editor
         kicad # Open Source Electronics Design Automation suite
+        krdc # Remote desktop client
         libnotify # A library that sends desktop notifications to a notification daemon
         libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
         ngspice # The Next Generation Spice (Electronic Circuit Simulator)
