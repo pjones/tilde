@@ -9,6 +9,7 @@
 
   config = {
     networking.hostName = "hyde";
+    system.stateVersion = lib.mkDefault "22.11";
 
     wsl = {
       enable = true;
