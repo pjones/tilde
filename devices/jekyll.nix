@@ -50,6 +50,13 @@
         forwardX11 = true;
         forwardX11Trusted = true;
       };
+
+      tilde.programs.polybar = {
+        backlight.enable = true;
+        power.enable = true;
+        power.battery = "BAT1";
+        power.adapter = "ACAD";
+      };
     };
   };
 }
