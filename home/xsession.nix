@@ -72,7 +72,7 @@ in
       documents = "$HOME/documents";
       download = "$HOME/download";
       music = "$HOME/documents/music";
-      pictures = "$HOME/documents/pictures";
+      pictures = "$HOME/.config/wallpapers";
       publicShare = "$HOME/public";
       templates = "$HOME/documents/templates";
       videos = "$HOME/documents/videos";
