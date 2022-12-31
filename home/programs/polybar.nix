@@ -128,9 +128,15 @@ in
           # FIXME: export CORETEMP=$(find-hwmon-device.sh -s coretemp.0)/temp1_input
 
           # Give herbstluftwm a second to start and advertise EWMH support.
-          while ! pgrep herbstluftwm; do sleep 1; done
-          sleep 1
-          polybar primary &
+          #
+          # Starting this group in the background is important so
+          # systemd doesn't sit and wait for polybar to timeout, all
+          # while holding up the X session.
+          {
+            while ! pgrep herbstluftwm; do sleep 1; done
+            sleep 1
+            polybar primary
+          } &
         '';
 
       config = {
