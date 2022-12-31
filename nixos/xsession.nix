@@ -5,6 +5,7 @@
 }:
 let
   cfg = config.tilde.xsession;
+  colors = import ../home/misc/colors.nix { inherit pkgs; };
 in
 {
   options.tilde.xsession = {
@@ -20,17 +21,28 @@ in
     tilde.workstation.enable = true;
     tilde.programs.qmk.enable = true;
 
-    services.xserver = lib.mkIf cfg.enable {
+    services.xserver = {
       enable = lib.mkDefault true;
       layout = lib.mkDefault "us";
 
-      desktopManager.plasma5.enable =
-        lib.mkDefault true;
-
       displayManager.sddm = {
         enable = lib.mkDefault true;
-        theme = "sweet-nova";
+        theme = colors.theme.name;
       };
+
+      displayManager.defaultSession = lib.mkForce "none+hm";
+      desktopManager.plasma5.enable = lib.mkDefault true;
+      desktopManager.xfce.enable = lib.mkDefault true;
+
+      windowManager.session = [{
+        name = "hm";
+        desktopNames = [ "XFCE" ];
+        bgSupport = true;
+        start = ''
+          ${pkgs.runtimeShell} $HOME/.hm-xsession &
+          waitPID=$!
+        '';
+      }];
 
       libinput = {
         enable = true;
@@ -52,7 +64,7 @@ in
     services.smartd.notifications.x11.enable = true;
 
     environment.systemPackages = with pkgs; [
-      (callPackage ../pkgs/sweet-nova.nix { })
+      colors.theme.package
       (callPackage ../pkgs/pjones-avatar.nix { })
     ];
 

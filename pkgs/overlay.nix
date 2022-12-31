@@ -3,6 +3,10 @@ final: prev:
 let
   sources = import ../nix/sources.nix;
 
+  polybar-scripts = sources.polybar-scripts // {
+    version = "git-" + builtins.substring 0 7 sources.polybar-scripts.rev;
+  };
+
 in
 {
   pjones = (prev.pjones or { }) //
@@ -13,6 +17,13 @@ in
 
   # A gpg-agent/ssh-agent for Android:
   okc-agents = prev.callPackage ./okc-agents.nix { };
+
+  polybar-scripts.player-mpris-tail =
+    prev.callPackage ./polybar-scripts/player-mpris-tail.nix {
+      inherit polybar-scripts;
+      inherit (prev) stdenv;
+      inherit (prev.python3Packages) wrapPython dbus-python pygobject3;
+    };
 
   # Some local scripts:
   pulse-audio-scripts = prev.callPackage ./pulse-audio-scripts.nix { };

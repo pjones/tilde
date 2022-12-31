@@ -31,29 +31,8 @@ in
     programs.plasma = (import ../../support/workstation/plasma.nix).programs.plasma;
 
     home.packages = with pkgs; [
-      herbstluftwm
-      libsForQt5.ktouch # A touch typing tutor from the KDE software collection
-      pjones.rofirc
       qt5.qttools # for qdbus(1)
     ];
-
-    xdg.desktopEntries = {
-      lock-screen = {
-        name = "Lock Screen";
-        exec = "loginctl lock-session";
-        icon = "emblem-system";
-        terminal = false;
-        categories = [ "System" ];
-      };
-
-      sleep-system = {
-        name = "Sleep";
-        exec = "systemctl suspend-then-hibernate";
-        icon = "emblem-system";
-        terminal = false;
-        categories = [ "System" ];
-      };
-    };
 
     # Make Plasma load the Home Manager environment:
     xdg.configFile."plasma-workspace/env/hm-session-vars.sh".text = ''
@@ -88,12 +67,6 @@ in
     home.activation.disableKWin = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
       $DRY_RUN_CMD ln -nfs /dev/null ~/.config/systemd/user/plasma-kwin_x11.service
     '';
-
-    # And we need a compositor:
-    services.picom = {
-      enable = true;
-      fade = true;
-    };
 
     # Update GTK settings:
     home.activation.configure-gtk = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

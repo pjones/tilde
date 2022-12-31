@@ -96,16 +96,19 @@
         glabels # Create labels and business cards
         gwenview # KDE image viewer
         handbrake # A tool for converting video files and ripping DVDs
+        herbstluftwm # Tiling window manager
         imagemagick # A software suite to create, edit, compose, or convert bitmap images
         inkscape # Vector graphics editor
         kicad # Open Source Electronics Design Automation suite
         krdc # Remote desktop client
         libnotify # A library that sends desktop notifications to a notification daemon
         libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
+        libsForQt5.ktouch # A touch typing tutor from the KDE software collection
         ngspice # The Next Generation Spice (Electronic Circuit Simulator)
         openscad # 3D parametric model compiler
         pamixer # Pulseaudio command line mixer
         pavucontrol # PulseAudio Volume Control
+        pjones.rofirc # Rofi scripts
         prusa-slicer # G-code generator for 3D printer
         qcad # 2D CAD package based on Qt
         qmapshack # Consumer grade GIS software
