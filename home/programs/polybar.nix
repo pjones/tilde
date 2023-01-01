@@ -11,7 +11,7 @@ let
   fonts = import ../misc/fonts.nix { inherit pkgs; };
 
   player-mpris-tail = pkgs.writeShellScriptBin "player-mpris-tail" ''
-    ${pkgs.polybar-scripts.player-mpris-tail}/bin/player-mpris-tail \
+    ${pkgs.player-mpris-tail}/bin/player-mpris-tail \
       --icon-playing "${iconOkay ""}" \
       --icon-paused "${iconOkay ""}" \
       --icon-stopped "${iconOkay ""}" \

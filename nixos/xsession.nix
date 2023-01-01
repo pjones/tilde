@@ -32,11 +32,9 @@ in
 
       displayManager.defaultSession = lib.mkForce "none+hm";
       desktopManager.plasma5.enable = lib.mkDefault true;
-      desktopManager.xfce.enable = lib.mkDefault true;
 
       windowManager.session = [{
         name = "hm";
-        desktopNames = [ "XFCE" ];
         bgSupport = true;
         start = ''
           ${pkgs.runtimeShell} $HOME/.hm-xsession &
@@ -55,6 +53,10 @@ in
         };
       };
     };
+
+    # For setting GTK themes:
+    programs.dconf.enable = true;
+    services.dbus.packages = [ pkgs.dconf ];
 
     # Let me remote in:
     services.openssh.forwardX11 = lib.mkForce true;

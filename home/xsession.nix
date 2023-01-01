@@ -20,13 +20,12 @@ in
     tilde.workstation.enable = true;
 
     # Enable other xsession modules:
-    services.blueman-applet.enable = true;
     tilde.programs.browser.enable = lib.mkDefault true;
     tilde.programs.gromit-mpx.enable = lib.mkDefault true;
     tilde.programs.gtk.enable = lib.mkDefault true;
+    tilde.programs.herbstluftwm.enable = lib.mkDefault true;
     tilde.programs.konsole.enable = lib.mkDefault true;
     tilde.programs.qt.enable = lib.mkDefault true;
-    tilde.programs.xfce.enable = lib.mkDefault true;
 
     # Hide the mouse cursor when not in use:
     services.unclutter = {
@@ -49,12 +48,6 @@ in
       maxCacheTtl = 7200;
       maxCacheTtlSsh = 21600;
       pinentryFlavor = "qt";
-    };
-
-    # Tray icon for disks:
-    services.udiskie = {
-      enable = true;
-      automount = false;
     };
 
     # And we need a compositor:

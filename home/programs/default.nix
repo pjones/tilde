@@ -7,12 +7,14 @@
     ./base.nix
     ./browser.nix
     ./direnv.nix
+    ./dunst.nix
     ./emacs.nix
     ./firefox.nix
     ./git.nix
     ./gromit-mpx.nix
     ./gtk.nix
     ./haskell.nix
+    ./herbstluftwm.nix
     ./konsole.nix
     ./man.nix
     ./mpd.nix
@@ -20,9 +22,11 @@
     ./plasma.nix
     ./polybar.nix
     ./qt.nix
+    ./screen-lock.nix
     ./shells.nix
     ./ssh.nix
     ./syncthing.nix
+    ./wallpaper.nix
     ./xfce.nix
   ];
 }

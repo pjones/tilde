@@ -46,7 +46,7 @@ nextscdesc=$(pacmd list-sinks | awk '$1 == "device.description" {print substr($0
   sed 's|"||g' | awk -F"," 'NR==v1{print$0}' v1=$((nextind + 1)))
 notify-send \
   -a PulseAudio \
-  -i audio-card \
+  -i settings \
   "PulseAudio" \
   "Default sink changed to \"$nextscdesc\""
 exit

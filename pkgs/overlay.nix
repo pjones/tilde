@@ -18,7 +18,7 @@ in
   # A gpg-agent/ssh-agent for Android:
   okc-agents = prev.callPackage ./okc-agents.nix { };
 
-  polybar-scripts.player-mpris-tail =
+  player-mpris-tail =
     prev.callPackage ./polybar-scripts/player-mpris-tail.nix {
       inherit polybar-scripts;
       inherit (prev) stdenv;
@@ -40,8 +40,9 @@ in
 
   # Various scripts needed inside tilde:
   tilde-scripts-activation = prev.callPackage ./tilde-scripts-activation.nix { };
-  tilde-scripts-misc = prev.callPackage ./tilde-scripts-misc.nix { };
   tilde-scripts-browser = prev.callPackage ./tilde-scripts-browser.nix { };
+  tilde-scripts-lock-screen = prev.callPackage ./tilde-scripts-lock-screen.nix { };
+  tilde-scripts-misc = prev.callPackage ./tilde-scripts-misc.nix { };
 
   # Emacs configuration for tridactyl:
   tridactyl_emacs_config = prev.callPackage ./tridactyl_emacs_config.nix { };
