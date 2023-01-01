@@ -4,25 +4,38 @@ let
   cfg = config.tilde.programs.xfce;
   images = pkgs.callPackage ../misc/images.nix { };
 
+  # Start herbstluftwm:
+  startHerbstluftwm = pkgs.writeShellScript "xfce-start-herbstluftwm" ''
+    # Reset workspace names (herbstluftwm has issues with these):
+    #
+    # No matter what I try herbstluftwm and XFCE fight over workspace names.
+    xfconf-query -c xfwm4 -p /general/workspace_count -n -t int -s 1
+    xfconf-query -c xfwm4 -p /general/workspace_names -n -t string -a -s "default"
+
+    ${pkgs.pjones.hlwmrc}/libexec/hlwmrc --no-tag-import
+  '';
+
+  # XFCE Settings to apply on login:
+  settings = pkgs.writeShellScript "xfce-settings" ''
+    xfconf-query -c xfce4-session -p /startup/ssh-agent/enabled -n -t bool -s false
+    xfconf-query -c xfce4-session -p /startup/gpg-agent/enabled -n -t bool -s false
+
+    # Reset which commands are started with each session:
+    xfconf-query -c xfce4-session -p /sessions/Failsafe/Count -n -t int -s 2
+
+    # Start the settings daemon first:
+    xfconf-query -c xfce4-session -p /sessions/Failsafe/Client0_Command \
+      -n -a -t string -s "xfsettingsd"
+
+    # Use herbstluftwm instead of xfwm4:
+    xfconf-query -c xfce4-session -p /sessions/Failsafe/Client1_Command \
+      -n -a -t string -s "${startHerbstluftwm}"
+  '';
+
   # Generate a desktop file to automatically start something:
   makeAutorun = args:
     let item = pkgs.makeDesktopItem args;
     in "${item}/share/applications/${args.name}.desktop";
-
-  # A package that replaces XFCE components with alternatives:
-  wrappers = pkgs.stdenvNoCC.mkDerivation {
-    name = "xfce-herbstluftwm-wrappers";
-
-    dontUnpack = true;
-    dontBuild = true;
-
-    installPhase = ''
-      mkdir -p "$out/bin"
-      ln -s ${pkgs.pjones.hlwmrc}/libexec/hlwmrc "$out/bin/xfwm4"
-      ln -s ${pkgs.coreutils}/bin/true "$out/bin/xfdesktop"
-      ln -s ${pkgs.coreutils}/bin/true "$out/bin/xfce4-panel"
-    '';
-  };
 in
 {
   options.tilde.programs.xfce = {
@@ -42,7 +55,6 @@ in
     xsession = {
       enable = true;
       windowManager.command = ''
-        export PATH=${wrappers}/bin:$PATH
         ${pkgs.runtimeShell} ${pkgs.xfce.xfce4-session.xinitrc}
       '';
     };
@@ -55,21 +67,10 @@ in
         exec = "${pkgs.xfce.xfce4-notifyd}/lib/xfce4/notifyd/xfce4-notifyd";
       };
 
-    # Swap out desktop wallpaper:
-    services.random-background = {
-      enable = true;
-      imageDirectory = "--recursive ${cfg.wallpaperDirectory}";
-      display = "fill";
-      interval = "5m";
-      enableXinerama = true;
-    };
-
     # Set a default wallpaper:
     xsession.initExtra = ''
-      # Set initial background image when not using a wallpaper service:
-      if [ ! -d "${cfg.wallpaperDirectory}" ]; then
-        ${pkgs.feh}/bin/feh --bg-fill --no-fehbg ${images.login}
-      fi
+      # Apply XFCE settings before starting:
+      ${settings}
     '';
   };
 }
