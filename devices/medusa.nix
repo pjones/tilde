@@ -42,6 +42,12 @@
           vpnJumpHost = "192.168.122.95";
         };
       };
+
+      xsession.initExtra = ''
+        xrandr \
+          --output DisplayPort-0 --auto --primary \
+          --output HDMI-0 --auto --right-of DisplayPort-0 --rotate left | :
+      '';
     };
   };
 }
