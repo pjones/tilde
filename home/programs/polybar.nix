@@ -268,8 +268,6 @@ in
           width = "100%";
           height = 24;
           bottom = true;
-          dpi-x = 0;
-          dpi-y = 0;
 
           modules-left = modulesLeft;
           modules-right = modulesRight;

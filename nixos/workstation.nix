@@ -111,11 +111,11 @@ in
         ];
 
         services.logind = {
-          # Closing the lid will store hibernation data to disk then
-          # suspend.  Therefore, if the battery dies while on standby,
-          # you can still get back to where you left off.
-          lidSwitch = "hybrid-sleep";
-          lidSwitchExternalPower = "hybrid-sleep";
+          lidSwitch = "suspend-then-hibernate";
+          lidSwitchExternalPower = "suspend-then-hibernate";
+          extraConfig = ''
+            HibernateDelaySec=30m
+          '';
         };
 
         # Useful services:
