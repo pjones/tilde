@@ -76,7 +76,6 @@ in
 
         userChrome = ''
           @import url(${pkgs.firefox-csshacks}/chrome/combined_favicon_and_tab_close_button.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
           @import url(${pkgs.firefox-csshacks}/chrome/tabs_on_bottom.css);
         '';
       };
