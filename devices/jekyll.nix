@@ -65,6 +65,11 @@
       xresources.properties = {
         "Xft.dpi" = 144;
       };
+
+      services.polybar.config."bar/primary" = {
+        dpi-x = 144;
+        dpi-y = 144;
+      };
     };
   };
 }
