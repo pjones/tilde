@@ -47,7 +47,7 @@ in
       defaultCacheTtlSsh = 14400;
       maxCacheTtl = 7200;
       maxCacheTtlSsh = 21600;
-      pinentryFlavor = "qt";
+      pinentryFlavor = "gtk2";
     };
 
     # And we need a compositor:
