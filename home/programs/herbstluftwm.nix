@@ -13,7 +13,6 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      autorandr
       hicolor-icon-theme
       xfce.xfce4-icon-theme
     ];
