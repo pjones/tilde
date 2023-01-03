@@ -28,9 +28,6 @@ preflight() {
   # Set delay before turning monitor off:
   xset +dpms dpms 300 600 900
 
-  # Stop the compositor since it breaks i3lock:
-  systemctl --user stop picom.service || :
-
   # Also need to pause Dunst so notifications don't show up:
   pkill -SIGUSR1 dunst || :
 
@@ -42,7 +39,6 @@ preflight() {
 restore() {
   xset -dpms
   xset s default
-  systemctl --user start picom.service || :
   pkill -SIGUSR2 dunst || :
 }
 trap restore EXIT
