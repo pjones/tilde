@@ -37,7 +37,7 @@ in
       services.screen-locker = {
         enable = true;
         lockCmd = toString lockCmd;
-        inactiveInterval = 15;
+        inactiveInterval = 30;
       };
 
       # Disable xautolock-session, it's not needed:
