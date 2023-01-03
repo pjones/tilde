@@ -90,7 +90,7 @@ cache_directory() {
 
   width=$(calc_image_width)
 
-  if [ -d "$dir" ]; then
+  if [ -d "$dir" ] || [ -L "$dir" ]; then
     while IFS= read -r -d '' file; do
       cache_file "$file" "$width"
     done < <(find -L "$dir" \
@@ -106,10 +106,21 @@ watch_directory() {
   local dir=$1
   local parent
   local child
+  local args
 
-  if [ -d "$dir" ]; then
+  if [ -d "$dir" ] || [ -L "$dir" ]; then
     # Watch for file changes:
-    while inotifywait -e modify -e create -r "$dir"; do
+    args=("--no-dereference" "--recursive")
+
+    # If we are watching a symlink, make sure we know if it changes:
+    #
+    # NOTE: As of 2023-01-03 inotifywait won't report when a symlink
+    # is modified to point to another target :(
+    if [ -L "$dir" ]; then
+      args+=("$dir")
+    fi
+
+    while inotifywait -e modify -e create "${args[@]}" "$(realpath "$dir")"; do
       cache_directory "$dir"
     done
   else
