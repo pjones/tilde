@@ -14,8 +14,9 @@ let
     ${pkgs.player-mpris-tail}/bin/player-mpris-tail \
       --icon-playing "${iconOkay ""}" \
       --icon-paused "${iconOkay ""}" \
-      --icon-stopped "${iconOkay ""}" \
+      --icon-stopped "${iconDim ""}" \
       --icon-none "" \
+      --format "{icon} {artist} - {title} ({album})" \
       --blacklist vlc \
       "$@"
   '';
@@ -34,6 +35,7 @@ let
 
   # Wrap an icon with the given color:
   icon = color: str: "%{T1}%{F${color}}${str}%{F-}%{T-}";
+  iconDim = icon colors.background-offset;
   iconOkay = icon colors.okay;
   iconWarn = icon colors.warn;
   iconFail = icon colors.fail;
@@ -150,7 +152,7 @@ in
           type = "internal/xworkspaces";
           pin-workspaces = false;
           format = iconOkay "" + " <label-state>";
-          label-active = "%name% [%index%]";
+          label-active = "%index%:%name%";
           label-active-padding = 1;
           label-urgent = "%{F${colors.alert}}%name%%{F-}";
           label-urgent-padding = 2;
