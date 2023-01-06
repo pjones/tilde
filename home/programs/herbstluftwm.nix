@@ -13,6 +13,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
+      acpilight # For xbacklight
       hicolor-icon-theme
       xfce.xfce4-icon-theme
     ];
