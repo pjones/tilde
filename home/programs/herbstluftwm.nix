@@ -24,6 +24,7 @@ in
 
     services.blueman-applet.enable = true;
     services.network-manager-applet.enable = true;
+    services.pasystray.enable = true;
 
     # Tray icon for disks:
     services.udiskie = {
@@ -35,6 +36,13 @@ in
     tilde.programs.polybar.enable = true;
     tilde.programs.screen-lock.enable = true;
     tilde.programs.wallpaper.enable = true;
+
+    home.pointerCursor = {
+      package = pkgs.catppuccin-cursors.macchiatoMauve;
+      name = "Catppuccin-Macchiato-Mauve-Cursors";
+      x11.enable = true;
+      gtk.enable = true;
+    };
 
     xsession = {
       enable = lib.mkDefault true;
