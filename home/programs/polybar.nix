@@ -59,6 +59,7 @@ let
 
   modulesCenter = modList
     ([
+      "xkeyboard"
       "mpris"
     ] ++ lib.optional oled.enable "pomodoro");
 in
@@ -166,7 +167,7 @@ in
         # https://github.com/polybar/polybar/wiki/Module:-date
         "module/date" = {
           type = "internal/date";
-          label = iconOkay "" + " %date% @ %time%";
+          label = iconOkay "" + " %date% " + iconOkay "" + " %time%";
           date-alt = "%Y-%m-%d";
           time-alt = "%H:%M:%S";
           date = "%A, %d %B %Y";
@@ -223,6 +224,15 @@ in
           type = "custom/script";
           exec = "${player-mpris-tail}/bin/player-mpris-tail";
           tail = true;
+        };
+
+        "module/xkeyboard" = {
+          type = "internal/xkeyboard";
+          format = "<label-indicator>";
+          blacklist-0 = "num lock";
+          blacklist-1 = "scroll lock";
+          label-indicator = "%icon%";
+          indicator-icon-0 = "caps lock;;${iconFail ""}";
         };
 
         # https://github.com/polybar/polybar/wiki/Module:-temperature
