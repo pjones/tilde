@@ -9,10 +9,6 @@
   config = {
     networking.hostName = "jekyll";
 
-    # HiDPI Configuration (more in home section below):
-    hardware.video.hidpi.enable = true;
-    services.xserver.displayManager.sddm.enableHidpi = true;
-
     services.kmonad = lib.mkIf (pkgs.system == "x86_64-linux") {
       enable = true;
 
@@ -29,6 +25,7 @@
 
     tilde = {
       xsession.enable = true;
+      xsession.dpi = 144;
       workstation.type = "laptop";
     };
 
@@ -60,10 +57,6 @@
         power.enable = true;
         power.battery = "BAT1";
         power.adapter = "ACAD";
-      };
-
-      xresources.properties = {
-        "Xft.dpi" = 144;
       };
 
       services.polybar.config."bar/primary" = {

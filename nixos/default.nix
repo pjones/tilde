@@ -135,8 +135,9 @@ in
             home.username = cfg.username;
             home.homeDirectory = config.users.users.${cfg.username}.home;
             tilde.enable = cfg.enable;
-            tilde.xsession.enable = cfg.xsession.enable;
             tilde.workstation.enable = cfg.workstation.enable;
+            tilde.xsession.enable = cfg.xsession.enable;
+            tilde.xsession.dpi = cfg.xsession.dpi;
           };
         };
       })

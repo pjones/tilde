@@ -267,9 +267,19 @@ in
 
         "bar/primary" = {
           "inherit" = "base";
-          width = "100%";
-          height = 24;
           bottom = true;
+          width = "100%";
+
+          height =
+            let
+              base = 24;
+              dpi = config.tilde.xsession.dpi;
+              scaled =
+                if dpi != null
+                then builtins.floor (base * dpi / 96)
+                else base;
+            in
+            scaled;
 
           modules-left = modulesLeft;
           modules-right = modulesRight;
