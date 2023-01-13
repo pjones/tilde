@@ -30,38 +30,42 @@ in
       default = "${config.xdg.configHome}/lock-screen";
       description = "Directory of images";
     };
+
+    lockAfterMin = lib.mkOption {
+      type = lib.types.int;
+      default = 30;
+      description = ''
+        Automatically lock the screen after the given number of
+        minutes.
+      '';
+    };
   };
 
-  config = lib.mkMerge [
-    (lib.mkIf cfg.enable {
-      services.screen-locker = {
-        enable = true;
-        lockCmd = toString lockCmd;
-        inactiveInterval = 30;
+  config = lib.mkIf cfg.enable {
+    services.screen-locker = {
+      enable = true;
+      lockCmd = toString lockCmd;
+      inactiveInterval = cfg.lockAfterMin;
+      xss-lock.screensaverCycle = cfg.lockAfterMin * 60;
+    };
+
+    # Cache correctly sized images for the lock screen:
+    systemd.user.services.lock-screen-image-cache = {
+      Unit = {
+        Description = "Cache lock screen images";
+        After = [ "graphical-session-pre.target" ];
+        PartOf = [ "graphical-session.target" ];
       };
 
-      # Disable xautolock-session, it's not needed:
-      systemd.user.services.xautolock-session =
-        lib.mkForce { };
-
-      # Cache correctly sized images for the lock screen:
-      systemd.user.services.lock-screen-image-cache = {
-        Unit = {
-          Description = "Cache lock screen images";
-          After = [ "graphical-session-pre.target" ];
-          PartOf = [ "graphical-session.target" ];
-        };
-
-        Install = {
-          WantedBy = [ "graphical-session.target" ];
-        };
-
-        Service = {
-          ExecStart = toString cacheCmd;
-          Restart = "always";
-          RestartSec = 3;
-        };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
       };
-    })
-  ];
+
+      Service = {
+        ExecStart = toString cacheCmd;
+        Restart = "always";
+        RestartSec = 3;
+      };
+    };
+  };
 }
