@@ -139,11 +139,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1673980733,
-        "narHash": "sha256-rmPPQGu43f/q1U8xj1YVUlrG4//l6uDhpn8J0Vm6NXo=",
+        "lastModified": 1673986702,
+        "narHash": "sha256-s9JFEI89QRctHFN5QVuq1J95juHgD2tbQVYjibTg0iM=",
         "owner": "pjones",
         "repo": "hlwmrc",
-        "rev": "334a76a5c80dbd92440cdd21ad115d0cf36ce60e",
+        "rev": "08da07d73864157edaa4e1ff9ae7c5061874b90c",
         "type": "github"
       },
       "original": {
