@@ -77,7 +77,7 @@ in
         documents = "$HOME/documents";
         download = "$HOME/download";
         music = "$HOME/documents/music";
-        pictures = "$HOME/.config/wallpapers";
+        pictures = "$HOME/documents/pictures";
         publicShare = "$HOME/public";
         templates = "$HOME/documents/templates";
         videos = "$HOME/documents/videos";
