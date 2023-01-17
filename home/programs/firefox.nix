@@ -17,14 +17,18 @@ let
     "browser.display.use_system_colors" = true;
     "browser.formfill.enable" = false;
     "browser.newtabpage.enabled" = false;
+    "browser.sessionstore.collect_zoom" = false;
+    "browser.sessionstore.resume_from_crash" = false;
+    "browser.sessionstore.resume_session_once" = false;
+    "browser.sessionstore.resuming_after_os_restart" = false;
     "browser.startup.homepage" = homepage;
     "browser.urlbar.trimURLs" = false;
     "dom.forms.autocomplete.formautofill" = false;
     "extensions.formautofill.addresses.enabled" = false;
     "extensions.formautofill.creditCards.enabled" = false;
     "extensions.pocket.enabled" = false;
-    "signon.rememberSignons" = true;
     "media.gmp-widevinecdm.visible" = false;
+    "signon.rememberSignons" = true;
 
     # Privacy:
     "privacy.donottrackheader.enabled" = true;
