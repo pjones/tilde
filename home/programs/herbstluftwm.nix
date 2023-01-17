@@ -23,7 +23,6 @@ in
       package = pkgs.xfce.xfce4-icon-theme;
     };
 
-    services.blueman-applet.enable = true;
     services.network-manager-applet.enable = true;
     services.pasystray.enable = true;
 
