@@ -12,6 +12,19 @@ in
   pjones = (prev.pjones or { }) //
     { avatar = prev.callPackage ./pjones-avatar.nix { }; };
 
+  # Don't use transparent themes by default:
+  dracula-theme = prev.dracula-theme.overrideAttrs (prev: {
+    postInstall = ''
+      pushd "$out/share/Kvantum"
+      mv Dracula Dracula-Transparent
+      cp -a Dracula-Solid Dracula
+      mv Dracula/Dracula-Solid.kvconfig Dracula/Dracula.kvconfig
+      mv Dracula/Dracula-Solid.svg Dracula/Dracula.svg
+      popd
+      ${prev.postInstall or ""}
+    '';
+  });
+
   # Firefox CSS Hacks:
   firefox-csshacks = prev.callPackage ./firefox-csshacks.nix { };
 
