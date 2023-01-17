@@ -16,18 +16,24 @@ desktop=$(
 )
 
 case "$desktop" in
+GTD)
+  e &
+  browser "https://app.fastmail.com/mail/Inbox" &
+  browser "https://app.fastmail.com/calendar/month" &
+  ;;
+
 Social)
   signal-desktop --enable-features=UseOzonePlatform --ozone-platform=x11 &
   browser-app "https://web.telegram.org" &
-  browser-app "https://messages.google.com/web/conversations"
+  browser-app "https://messages.google.com/web/conversations" &
   ;;
 
-RFA)
+RFA1)
   e &
   browser "https://code.rfa.sc.gov/" &
   ;;
 
-RFA_Apps)
+RFA2)
   browser-app "https://chat.rfa.sc.gov" &
   browser-app "https://outlook.office.com" &
   ;;
