@@ -30,9 +30,6 @@ preflight() {
 
   # Also need to pause Dunst so notifications don't show up:
   pkill -SIGUSR1 dunst || :
-
-  # Stop the music player:
-  player-mpris-tail stop || :
 }
 
 ################################################################################
