@@ -34,8 +34,10 @@ preflight() {
 
 ################################################################################
 restore() {
+  # Disable monitor blanking:
   xset -dpms
-  xset s default
+
+  # Resume notifications:
   pkill -SIGUSR2 dunst || :
 }
 trap restore EXIT
