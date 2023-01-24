@@ -20,6 +20,9 @@ function is_active() {
 
 ################################################################################
 function main() {
+  # Start the service if it's not already running:
+  systemctl --user start gromit-mpx.service
+
   if is_active; then
     # Hide the window, release the pointer grab:
     gromit-mpx --visibility

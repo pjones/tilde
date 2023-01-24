@@ -81,6 +81,10 @@ in
             })) [ tool1 tool2 tool3 tool4 ];
     };
 
+    # Don't start by default (shows up on powertop as a hungry
+    # process):
+    systemd.user.services.gromit-mpx.Install.WantedBy = lib.mkForce [ ];
+
     home.packages = [
       (pkgs.writeScriptBin "gromit-mpx-toggle.sh"
         (readFile ../../scripts/misc/gromit-mpx-toggle.sh))

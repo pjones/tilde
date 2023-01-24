@@ -189,11 +189,12 @@ in
           type = "internal/battery";
           battery = cfg.power.battery;
           adapter = cfg.power.adapter;
+          time-format = "%H:%M";
           format-charging = "<animation-charging> <label-charging>";
           format-discharging = "<ramp-capacity> <label-discharging>";
           format-full = "<ramp-capacity> <label-full>";
           label-charging = "%percentage%%";
-          label-discharging = "%percentage%% (%consumption%)";
+          label-discharging = "%percentage%% (%time%@%consumption%W)";
           label-full = "%percentage%%";
           ramp-capacity-0 = iconFail "";
           ramp-capacity-1 = iconWarn "";

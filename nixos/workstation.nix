@@ -97,9 +97,15 @@ in
         time.timeZone = "America/Phoenix";
 
         virtualisation = {
-          libvirtd.enable = true;
+          libvirtd = {
+            enable = true;
+            onShutdown = "suspend";
+            onBoot = "ignore";
+          };
+
           docker = {
             enable = true;
+            enableOnBoot = cfg.type != "laptop";
             autoPrune.enable = true;
           };
         };
@@ -122,7 +128,19 @@ in
         hardware.acpilight.enable = true;
         services.thermald.enable = pkgs.stdenv.isx86_64;
         services.upower.enable = true;
-        powerManagement.powertop.enable = true;
+
+        # This is enabled by desktop environments like Plasma, so we
+        # need to turn it off manually here:
+        services.power-profiles-daemon.enable = lib.mkForce false;
+
+        # And we'll use TLP to deal with power management:
+        services.tlp = {
+          enable = true;
+          settings = {
+            CPU_SCALING_GOVERNOR_ON_AC = "performance";
+            CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+          };
+        };
       })
     ];
 }
