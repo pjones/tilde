@@ -279,30 +279,32 @@ in
           enable-ipc = true;
         };
 
-        "bar/primary" = {
-          "inherit" = "base";
-          bottom = true;
-          width = "100%";
+        "bar/primary" =
+          let
+            # DPI scale factor:
+            scale =
+              if config.tilde.xsession.dpi == null
+              then 1.0
+              else config.tilde.xsession.dpi / 96;
 
-          height =
-            let
-              base = 24;
-              dpi = config.tilde.xsession.dpi;
-              scaled =
-                if dpi != null
-                then builtins.floor (base * dpi / 96)
-                else base;
-            in
-            scaled;
+            # Bar height:
+            height = builtins.floor (24 * scale);
+          in
+          {
+            "inherit" = "base";
+            bottom = true;
+            width = "100%";
+            height = height;
 
-          modules-left = modulesLeft;
-          modules-right = modulesRight;
-          modules-center = modulesCenter;
+            modules-left = modulesLeft;
+            modules-right = modulesRight;
+            modules-center = modulesCenter;
 
-          tray-position = "left";
-          tray-detached = false;
-          tray-padding = 4;
-        };
+            tray-position = "right";
+            tray-detached = false;
+            tray-padding = 4;
+            # tray-scale = scale;
+          };
       };
     };
   };
