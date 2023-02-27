@@ -27,7 +27,10 @@
       };
 
       attributes = [
+        "*.el diff=lisp"
         "*.gpg diff=gpg"
+        "*.lisp diff=lisp"
+        "*.org diff=org"
       ];
 
       ignores = [
@@ -51,8 +54,9 @@
         log.date = "short";
         github.user = "pjones";
 
-        diff."gpg".textconv =
-          "${pkgs.gnupg}/bin/gpg2 --no-tty --decrypt --use-agent";
+        diff."lisp".xfuncname = "^\\((def\\S+\\s+\\S+)";
+        diff."gpg".textconv = "${pkgs.gnupg}/bin/gpg2 --no-tty --decrypt --use-agent";
+        diff."org".xfuncname = "^\\*+ +(.*)$";
 
         url."git@github.com:".pushInsteadOf = "https://github.com/";
       };
