@@ -49,6 +49,11 @@ in
       xss-lock.screensaverCycle = cfg.lockAfterMin * 60;
     };
 
+    xsession.initExtra = ''
+      # Disable the built-in screen blanker:
+      xset s off
+    '';
+
     # Cache correctly sized images for the lock screen:
     systemd.user.services.lock-screen-image-cache = {
       Unit = {
