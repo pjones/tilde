@@ -26,6 +26,7 @@
     ./shells.nix
     ./ssh.nix
     ./syncthing.nix
+    ./thunderbird.nix
     ./wallpaper.nix
     ./xfce.nix
   ];
