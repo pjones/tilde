@@ -48,7 +48,7 @@ in
     users.users.${user.name}.password = user.password;
 
     services.openssh.enable = true;
-    services.openssh.permitRootLogin = "yes";
+    services.openssh.settings.PermitRootLogin = "yes";
 
     tilde.username = user.name;
   };

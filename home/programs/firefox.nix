@@ -8,6 +8,13 @@ let
 
   homepage = "https://notes.jonesbunch.com/";
 
+  extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    darkreader
+    privacy-badger
+    tridactyl
+    ublock-origin
+  ];
+
   settings = {
     # UI:
     "accessibility.typeaheadfind.autostart" = false;
@@ -65,16 +72,9 @@ in
         cfg.enablePlasmaBrowserIntegration = true;
       };
 
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        darkreader
-        privacy-badger
-        tridactyl
-        ublock-origin
-      ];
-
       # General browsing:
       profiles.default = {
-        inherit settings;
+        inherit settings extensions;
         name = "default";
         id = 0;
 
@@ -85,7 +85,7 @@ in
 
       # Site-specific browser configuration:
       profiles.app = {
-        inherit settings;
+        inherit settings extensions;
         name = "app";
         id = 1;
 
@@ -99,7 +99,7 @@ in
 
       # Just for Facebook :(
       profiles.facebook = {
-        inherit settings;
+        inherit settings extensions;
         name = "facebook";
         id = 2;
 

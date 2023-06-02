@@ -47,7 +47,8 @@ in
   # Custom hooks:
   tildeInstallScripts = prev.makeSetupHook
     {
-      deps = [ prev.makeWrapper ];
+      name = "tildeInstallScripts";
+      propagatedBuildInputs = [ prev.makeWrapper ];
       substitutions = { shell = prev.runtimeShell; };
     } ../support/setup-hooks/install-scripts.sh;
 

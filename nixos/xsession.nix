@@ -74,7 +74,7 @@ in
       services.dbus.packages = [ pkgs.dconf ];
 
       # Let me remote in:
-      services.openssh.forwardX11 = lib.mkForce true;
+      services.openssh.settings.X11Forwarding = lib.mkForce true;
       programs.ssh.startAgent = false; # I use GnuPG Agent.
 
       # Allow smartd to display notifications on the X11 display:
@@ -105,7 +105,6 @@ in
 
     (lib.mkIf (cfg.dpi != null) {
       # HiDPI Configuration (more in home section below):
-      hardware.video.hidpi.enable = true;
       services.xserver.displayManager.sddm.enableHidpi = true;
     })
   ];
