@@ -14,8 +14,6 @@ without having to tweak files by hand or in GUI settings tools.
 
   * Linux Distribution: [NixOS][nix]
 
-  * Desktop Environment: KDE Plasma
-
   * Window Manager: [herbstluftwm][]
 
   * Terminal: Emacs w/ libvterm
