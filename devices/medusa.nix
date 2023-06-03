@@ -45,8 +45,8 @@
 
       xsession.initExtra = ''
         xrandr \
-          --output DisplayPort-0 --auto --primary \
-          --output HDMI-0 --auto --right-of DisplayPort-0 || :
+          --output DP-1 --auto --primary \
+          --output HDMI-1 --mode 2560x1440 --rate 59.95 --right-of DP-1
       '';
     };
   };
