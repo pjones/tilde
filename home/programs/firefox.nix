@@ -77,10 +77,6 @@ in
         inherit settings extensions;
         name = "default";
         id = 0;
-
-        userChrome = ''
-          @import url(${pkgs.firefox-csshacks}/chrome/combined_favicon_and_tab_close_button.css);
-        '';
       };
 
       # Site-specific browser configuration:
@@ -90,7 +86,6 @@ in
         id = 1;
 
         userChrome = ''
-          @import url(${pkgs.firefox-csshacks}/chrome/combined_favicon_and_tab_close_button.css);
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_toolbox.css);
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
           @import url(${pkgs.firefox-csshacks}/chrome/tabs_on_bottom.css);
@@ -102,13 +97,7 @@ in
         inherit settings extensions;
         name = "facebook";
         id = 2;
-
-        userChrome = ''
-          @import url(${pkgs.firefox-csshacks}/chrome/combined_favicon_and_tab_close_button.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/autohide_toolbox.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/tabs_on_bottom.css);
-        '';
+        userChrome = config.programs.firefox.profiles.app.userChrome;
       };
     };
 
