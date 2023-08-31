@@ -36,7 +36,6 @@ in
       tilde.programs.gromit-mpx.enable = lib.mkDefault true;
       tilde.programs.gtk.enable = lib.mkDefault true;
       tilde.programs.herbstluftwm.enable = lib.mkDefault true;
-      tilde.programs.konsole.enable = lib.mkDefault true;
       tilde.programs.qt.enable = lib.mkDefault true;
       tilde.programs.thunderbird.enable = lib.mkDefault true;
 
@@ -132,10 +131,8 @@ in
         defaultApplications = {
           "image/jpeg" = "feh-view.desktop";
           "image/png" = "feh-view.desktop";
-          "x-scheme-handler/element" = "element-desktop.desktop";
           "x-scheme-handler/sgnl" = "signal-desktop.desktop";
           "x-scheme-handler/signalcaptcha" = "signal-desktop.desktop";
-          "x-scheme-handler/slack" = "slack.desktop";
         };
       };
 
@@ -164,6 +161,9 @@ in
         "*color7" = colors.white;
         "*color15" = colors.gray;
       };
+
+      # For apps that want a user picture like GDM:
+      home.file.".face".source = "${pkgs.pjones.avatar}/share/faces/pjones.jpg";
     })
 
     (lib.mkIf (cfg.dpi != null) {

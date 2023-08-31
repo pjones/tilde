@@ -69,7 +69,6 @@ in
 
       package = pkgs.firefox.override {
         cfg.enableTridactylNative = true;
-        cfg.enablePlasmaBrowserIntegration = true;
       };
 
       # General browsing:

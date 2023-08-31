@@ -40,13 +40,8 @@ in
         enable = lib.mkDefault true;
         layout = lib.mkDefault "us";
 
-        displayManager.sddm = {
-          enable = lib.mkDefault true;
-          theme = colors.theme.name;
-        };
-
         displayManager.defaultSession = lib.mkForce "none+hm";
-        desktopManager.plasma5.enable = lib.mkDefault true;
+        displayManager.gdm.enable = lib.mkDefault true;
 
         windowManager.session = [{
           name = "hm";
@@ -101,11 +96,6 @@ in
             virtue-font
           ] ++ others;
         };
-    })
-
-    (lib.mkIf (cfg.dpi != null) {
-      # HiDPI Configuration (more in home section below):
-      services.xserver.displayManager.sddm.enableHidpi = true;
     })
   ];
 }

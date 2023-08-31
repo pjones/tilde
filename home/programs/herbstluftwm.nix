@@ -14,6 +14,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       acpilight # For xbacklight
+      herbstluftwm # Tiling window manager
       hicolor-icon-theme
       xfce.xfce4-icon-theme
     ];

@@ -13,7 +13,8 @@ stdenvNoCC.mkDerivation rec {
   };
 
   installPhase = ''
-    mkdir -p "$out/share/sddm/faces"
+    mkdir -p "$out/share/faces" "$out/share/sddm/faces"
+    cp "${src}" "$out/share/faces/pjones.jpg"
     ${imagemagick}/bin/convert \
       -define colorspace:auto-grayscale=false \
       "${src}" "png:$out/share/sddm/faces/pjones.face.icon"

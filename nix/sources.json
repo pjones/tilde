@@ -35,18 +35,6 @@
         "url": "https://github.com/polybar/polybar-scripts/archive/68ced291fa42c1505d16a38bb4b3a402bcf8dc80.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "sweet-nova": {
-        "branch": "nova",
-        "description": "Light and dark colorful Gtk3.20+ theme",
-        "homepage": "https://www.gnome-look.org/p/1253385/",
-        "owner": "EliverLara",
-        "repo": "Sweet",
-        "rev": "85830477831aef0dbc77d8c6fc9484485092f434",
-        "sha256": "0kf9dzwskr7a55x5vqjavpn1dzqv8kypmn09srzyzbjssyy710cf",
-        "type": "tarball",
-        "url": "https://github.com/EliverLara/Sweet/archive/85830477831aef0dbc77d8c6fc9484485092f434.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "tridactyl_emacs_config": {
         "branch": "main",
         "description": "Emacs bindings for Tridactyl",

@@ -84,27 +84,19 @@
     # Packages to install on workstations with a GUI running:
     (lib.mkIf config.tilde.xsession.enable {
       home.packages = with pkgs; [
-        calibre # Comprehensive e-book software
         cantata # A graphical client for MPD
         cdparanoia # A tool and library for reading digital audio from CDs
         chromium # A wrapper around chromium:
         darktable # Virtual lighttable and darkroom for photographers
         dia # Gnome Diagram drawing software
-        element-desktop # A feature-rich client for Matrix.org
         gdal # Translator library for raster geospatial data formats
         gimp # The GNU Image Manipulation Program
-        glabels # Create labels and business cards
-        gwenview # KDE image viewer
         handbrake # A tool for converting video files and ripping DVDs
-        herbstluftwm # Tiling window manager
         imagemagick # A software suite to create, edit, compose, or convert bitmap images
         inkscape # Vector graphics editor
         kicad # Open Source Electronics Design Automation suite
-        krdc # Remote desktop client
         libnotify # A library that sends desktop notifications to a notification daemon
         libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
-        libsForQt5.ktouch # A touch typing tutor from the KDE software collection
-        ngspice # The Next Generation Spice (Electronic Circuit Simulator)
         openscad # 3D parametric model compiler
         pamixer # Pulseaudio command line mixer
         pavucontrol # PulseAudio Volume Control
@@ -113,7 +105,6 @@
         qcad # 2D CAD package based on Qt
         qmapshack # Consumer grade GIS software
         remmina # Remote desktop client written in GTK
-        spectacle # Screenshot capture utility
         tilde-scripts-browser # Browser scripts
         vlc # Cross-platform media player and streaming server
         wmctrl # CLI tool to interact with EWMH/NetWM compatible X Window Managers
@@ -133,9 +124,7 @@
       lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
         makemkv # Convert blu-ray and dvd to mkv
         signal-desktop # Private, simple, and secure messenger
-        slack # Desktop client for Slack
         spotify # Play music from the Spotify music service
-        zulip # Desktop client for Zulip Chat
       ]);
     })
   ];

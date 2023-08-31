@@ -41,9 +41,6 @@ in
   # Some local scripts:
   pulse-audio-scripts = prev.callPackage ./pulse-audio-scripts.nix { };
 
-  # Packages that are not upstream yet:
-  sweet-nova = prev.callPackage ./sweet-nova.nix { };
-
   # Custom hooks:
   tildeInstallScripts = prev.makeSetupHook
     {

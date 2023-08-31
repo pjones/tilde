@@ -7,6 +7,7 @@ feh --bg-fill --no-fehbg /tmp/wallpaper.jpg
 xdotool mousemove 0 0
 
 herbstclient lock
+herbstclient attr theme.title_height 0
 
 for i in $(herbstclient list_monitors | cut -d: -f1); do
   herbstclient chain \

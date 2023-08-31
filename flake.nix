@@ -38,10 +38,6 @@
 
       oled-display.url = "github:pjones/oled-display";
 
-      plasma-manager.url = "github:pjones/plasma-manager";
-      plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
-      plasma-manager.inputs.home-manager.follows = "home-manager";
-
       rofirc.url = "github:pjones/rofirc";
       rofirc.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -128,7 +124,6 @@
               ./home
               inputs.emacsrc.homeManagerModules.default
               inputs.haskellrc.homeManagerModules.default
-              inputs.plasma-manager.homeManagerModules.plasma-manager
             ];
           };
         };
@@ -194,13 +189,29 @@
       });
 
       ##########################################################################
-      apps = forLinuxSystems (system: {
-        # Launch a VM running Peter's configuration:
-        default = {
-          type = "app";
-          program = "${self.packages.${system}.default}/bin/run-tilde-demo-vm";
-        };
-      });
+      apps = forLinuxSystems (system:
+        let pkgs = nixpkgsFor.${system};
+        in {
+          # Launch a VM running Peter's configuration:
+          default = {
+            type = "app";
+            program = "${self.packages.${system}.default}/bin/run-tilde-demo-vm";
+          };
+
+          # Run a VM then take a screenshot and store it locally:
+          screenshot =
+            let
+              script = pkgs.writeShellScript "screenshot" ''
+                cp \
+                  ${self.checks.${system}.herbstluftwm}/screen.png \
+                  support/screenshot.png
+              '';
+            in
+            {
+              type = "app";
+              program = "${script}";
+            };
+        });
 
       ##########################################################################
       checks = forLinuxSystems (system:

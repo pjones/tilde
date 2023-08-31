@@ -19,7 +19,6 @@
     ./man.nix
     ./mpd.nix
     ./oled-display.nix
-    ./plasma.nix
     ./polybar.nix
     ./qt.nix
     ./screen-lock.nix
