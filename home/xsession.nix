@@ -94,6 +94,14 @@ in
           mimeType = [ "image/jpeg" "image/png" ];
         };
 
+        memento-mori = {
+          name = "Memento Mori";
+          exec = "${../scripts/misc/memento-mori.sh}";
+          icon = "document-open";
+          terminal = false;
+          categories = [ "Application" ];
+        };
+
         start-desktop-apps = {
           name = "Start Desktop Apps";
           exec = "${../scripts/misc/start-desktop-apps.sh}";
