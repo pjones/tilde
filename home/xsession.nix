@@ -164,6 +164,19 @@ in
 
       # For apps that want a user picture like GDM:
       home.file.".face".source = "${pkgs.pjones.avatar}/share/faces/pjones.jpg";
+
+      # Random settings:
+      home.activation.random-ini-settings =
+        let
+          script = pkgs.writeShellApplication {
+            name = "set-ini";
+            runtimeInputs = with pkgs; [ crudini ];
+            text = (builtins.readFile ../support/workstation/set-ini.sh);
+          };
+        in
+        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          $DRY_RUN_CMD ${script}/bin/set-ini
+        '';
     })
 
     (lib.mkIf (cfg.dpi != null) {

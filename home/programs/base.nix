@@ -95,6 +95,7 @@
         imagemagick # A software suite to create, edit, compose, or convert bitmap images
         inkscape # Vector graphics editor
         kicad # Open Source Electronics Design Automation suite
+        ksnip # Cross-platform screenshot tool with many annotation features
         libnotify # A library that sends desktop notifications to a notification daemon
         libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
         openscad # 3D parametric model compiler
