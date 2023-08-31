@@ -22,8 +22,10 @@
   gl (tap-hold-next-release 200 l rmet)
   a; (tap-hold-next-release 200 ; lalt)
 
-  ;; Shift-insert:
+  ;; Shifted symbols:
   sin (around lsft ins)
+  und (around lsft -)
+  pls (around lsft =)
 
   ;; Media:
   vd volumedown
@@ -48,7 +50,7 @@
 
 (deflayer raise
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    esc  _    _    _    _    _    _    @sin _    |    _    _    _
+  _    esc  _    _    @und -    @pls =    @sin _    |    _    _    _
   _    _    _    _    _    _    left down up   rght _    _    _
   _    _    _    _    _    _    _    _    _    _    \    _
   _    _    _              bspc           _    _    _    _
