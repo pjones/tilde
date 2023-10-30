@@ -23,8 +23,6 @@ GTD)
   ;;
 
 Social)
-  signal-desktop --enable-features=UseOzonePlatform --ozone-platform=x11 &
-  browser-app "https://web.telegram.org" &
   browser-app "https://messages.google.com/web/conversations" &
   ;;
 
