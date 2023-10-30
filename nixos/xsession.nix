@@ -75,6 +75,9 @@ in
       # Allow smartd to display notifications on the X11 display:
       services.smartd.notifications.x11.enable = true;
 
+      # Other system services that need to be running:
+      services.udisks2.enable = true;
+
       environment.systemPackages = with pkgs; [
         colors.theme.package
         (callPackage ../pkgs/pjones-avatar.nix { })
