@@ -28,14 +28,15 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "passmm": "passmm"
+        "passmm": "passmm",
+        "telega": "telega"
       },
       "locked": {
-        "lastModified": 1697734171,
-        "narHash": "sha256-uEdE0BL/3KEOJiWSY0IHAOZCKfxQf2Hm0qKr21o9ORQ=",
+        "lastModified": 1698684703,
+        "narHash": "sha256-EENwTXItbRh3bUN9HfL08+Bvne60lQT1tZqrdrvTusQ=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "e6207555f1ab04fd056777e7e918bc4df47db593",
+        "rev": "ce275a6f4ca25106fd70a2acd1fccfb72f48ad77",
         "type": "github"
       },
       "original": {
@@ -204,11 +205,11 @@
       },
       "locked": {
         "dir": "nix",
-        "lastModified": 1697534720,
-        "narHash": "sha256-hh5a82fbujCOitFjbzClCMZ/XZQeFsdOHxZWCXXv1i4=",
+        "lastModified": 1698213131,
+        "narHash": "sha256-RPfi08g5DHvq5oEX57sJ1al2smBk0d9d8gAzL7jRnNQ=",
         "owner": "kmonad",
         "repo": "kmonad",
-        "rev": "a1aea16c7a3239c0a3d7522b09edb1d6988bae02",
+        "rev": "1b2ec006259ddbe6cda30db8eb783e8177a9f12b",
         "type": "github"
       },
       "original": {
@@ -329,11 +330,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1697226376,
-        "narHash": "sha256-cumLLb1QOUtWieUnLGqo+ylNt3+fU8Lcv5Zl+tYbRUE=",
+        "lastModified": 1698434055,
+        "narHash": "sha256-Phxi5mUKSoL7A0IYUiYtkI9e8NcGaaV5PJEaJApU1Ko=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "898cb2064b6e98b8c5499f37e81adbdf2925f7c5",
+        "rev": "1a3c95e3b23b3cdb26750621c08cc2f1560cb883",
         "type": "github"
       },
       "original": {
@@ -361,11 +362,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1697646416,
-        "narHash": "sha256-rWB2uADZlVbKlh+RN54+zo2A3P1iBi/FSxRDUtNbSwI=",
+        "lastModified": 1698682568,
+        "narHash": "sha256-tUivLGXEhY0d8+4oXn06S5E5xnufkGmubQuDqPoGwkw=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "32ef23c823f865d09b34076f2b133ce45464a66b",
+        "rev": "bf223184b4e92b6c0c1d0a292a525606dcfe7f01",
         "type": "github"
       },
       "original": {
@@ -464,6 +465,23 @@
         "type": "github"
       }
     },
+    "telega": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1673060303,
+        "narHash": "sha256-pypaQm/PfVciheNUD6WF0VJ3nt0WWSuTe1vnYPpnYDs=",
+        "owner": "zevlg",
+        "repo": "telega.el",
+        "rev": "01e8f9e397bb18522b76d3bcdb74f5798e7c4999",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zevlg",
+        "repo": "telega.el",
+        "rev": "01e8f9e397bb18522b76d3bcdb74f5798e7c4999",
+        "type": "github"
+      }
+    },
     "tmuxrc": {
       "inputs": {
         "nixpkgs": [
@@ -493,11 +511,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1697459493,
-        "narHash": "sha256-HH8ePJIVAsiDHIdS4qnKQ9o4X0KTVGA9cfHBplKqpfs=",
+        "lastModified": 1698222534,
+        "narHash": "sha256-iF9C7C7eT8LVVWx5IOZ/8KKJT8AIw9A5aBA6vqS18l8=",
         "owner": "nix-community",
         "repo": "NixOS-WSL",
-        "rev": "b63b328577f1cb5839f8ecc4fd05040335d4a55a",
+        "rev": "a058cff4b09b3a398d8caa379b4dc96cfedd98c9",
         "type": "github"
       },
       "original": {
