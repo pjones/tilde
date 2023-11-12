@@ -29,10 +29,6 @@
   sin (around lsft ins)
   und (around lsft -)
   pls (around lsft =)
-  lpr (around lsft 9)
-  rpr (around lsft 0)
-  lcb (around lsft [)
-  rcb (around lsft ])
 
   ;; Font Resizing:
   cmn (around lctl -)
@@ -49,7 +45,16 @@
   mgv (tap-hold-next-release 200 grv (layer-toggle media))
 
   ;; Caps or left shift:
-  scp (tap-hold-next-release 200 caps lsft))
+  scp (tap-hold-next-release 200 caps lsft)
+
+  ;; Tap once for X twice for Y:
+  lprn (around lsft 9)
+  rprn (around lsft 0)
+  lcbr (around lsft [)
+  rcbr (around lsft ])
+  prn (multi-tap 200 @lprn @rprn)
+  cbr (multi-tap 200 @lcbr @rcbr)
+  brc (multi-tap 200 [ ]))
 
 (deflayer qwerty
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
@@ -61,17 +66,17 @@
 
 (deflayer raise
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    esc  _    _    @und @cmn @cpl =    @sin _    |    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    left down up   rght _    _    _
-  _    _    _    _    _    -    @pls    _    _    _    \    _
-  _    _    _              bspc         _    _    _    _
+  _    _    _    _    _    -    _    _    _    _    _    _
+  _    _    _              bspc           _    _    _    _
 )
 
 (deflayer lower
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    @lcb _    _    @rcb _    _    |    _    _    _
-  _    _    _    _    _    @lpr @rpr _    _   _    _    _    _
-  _    _    _    _    _    [    ]    _    _    _    _    _
+  _    esc  _    _    @cpl @cmn _    _    @sin _    |    _    _    _
+  -    _    _    del  @prn @cbr _    @brc _    _    _    _    =
+  @und _    _    _    _    _    _    _    _    _    \    @pls
   _    _    _              _              _    _    _    _
 )
 
