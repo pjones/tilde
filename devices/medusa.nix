@@ -18,12 +18,6 @@
           path = [ pkgs.pjones.image-scripts ];
           script = "image-import -v";
         };
-
-        generate-wiki = {
-          schedule = "*-*-* 04:30:00";
-          path = [ pkgs.nix pkgs.git ];
-          script = "cd ~/notes && nix run";
-        };
       };
     };
 
