@@ -89,6 +89,7 @@
         chromium # A wrapper around chromium:
         darktable # Virtual lighttable and darkroom for photographers
         dia # Gnome Diagram drawing software
+        digikam # Photo Management Program
         feh # A light-weight image viewer
         gdal # Translator library for raster geospatial data formats
         gimp # The GNU Image Manipulation Program
