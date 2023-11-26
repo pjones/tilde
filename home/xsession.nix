@@ -163,7 +163,7 @@ in
       };
 
       # For apps that want a user picture like GDM:
-      home.file.".face".source = "${pkgs.pjones.avatar}/share/faces/pjones.jpg";
+      home.file.".face".source = "${pkgs.pjones-avatar}/share/faces/pjones.jpg";
 
       # Random settings:
       home.activation.random-ini-settings =

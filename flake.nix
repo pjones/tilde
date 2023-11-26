@@ -4,7 +4,7 @@
   inputs =
     {
       nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
-      nur.url = "github:nix-community/NUR";
+      nur.url = "github:nix-community/NUR"; # https://nur.nix-community.org/
 
       home-manager.url = "github:nix-community/home-manager/release-23.05";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -49,6 +49,22 @@
 
       zshrc.url = "github:pjones/zshrc";
       zshrc.inputs.nixpkgs.follows = "nixpkgs";
+
+      # For packages I'm building directly:
+      firefox-csshacks = {
+        url = "github:MrOtherGuy/firefox-csshacks";
+        flake = false;
+      };
+
+      polybar-scripts = {
+        url = "github:polybar/polybar-scripts";
+        flake = false;
+      };
+
+      tridactyl_emacs_config = {
+        url = "github:jumper047/tridactyl_emacs_config/5674d6bb38abbe639dd8caaf3d81f33fc06f59fd";
+        flake = false;
+      };
     };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
@@ -99,7 +115,7 @@
         nur = inputs.nur.overlay;
         oled-display = inputs.oled-display.overlay;
         rofirc = inputs.rofirc.overlays.default;
-        tilde = import pkgs/overlay.nix;
+        tilde = import pkgs/overlay.nix { inherit inputs; };
         tmuxrc = inputs.tmuxrc.overlay;
         zshrc = inputs.zshrc.overlay;
       };
@@ -184,9 +200,11 @@
       };
 
       ##########################################################################
-      packages = forLinuxSystems (system: {
-        default = self.nixosConfigurations.demo.config.system.build.vm;
-      });
+      packages = forLinuxSystems (system:
+        let pkgs = nixpkgsFor.${system};
+        in {
+          default = self.nixosConfigurations.demo.config.system.build.vm;
+        } // self.overlays.tilde pkgs pkgs);
 
       ##########################################################################
       apps = forLinuxSystems (system:

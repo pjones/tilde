@@ -1,16 +1,13 @@
 { stdenvNoCC
 , lib
+, inputs
 }:
-
-let
-  sources = import ../nix/sources.nix;
-in
 
 stdenvNoCC.mkDerivation {
   pname = "tridactyl_emacs_config";
-  version = builtins.substring 0 7 sources.tridactyl_emacs_config.rev;
+  version = builtins.substring 0 7 inputs.tridactyl_emacs_config.rev;
 
-  src = sources.tridactyl_emacs_config;
+  src = inputs.tridactyl_emacs_config;
   phases = [ "unpackPhase" "installPhase" "fixupPhase" ];
 
   installPhase = ''

@@ -67,6 +67,22 @@
         "type": "github"
       }
     },
+    "firefox-csshacks": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700969075,
+        "narHash": "sha256-uz6tqkjjTFMvY6IY70ke8dW5nst0AJoWJHObtzalQAc=",
+        "owner": "MrOtherGuy",
+        "repo": "firefox-csshacks",
+        "rev": "67a9e9f9c96e6d007b4c57f1dd7eaceaee135178",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MrOtherGuy",
+        "repo": "firefox-csshacks",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -409,6 +425,22 @@
         "type": "github"
       }
     },
+    "polybar-scripts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699299458,
+        "narHash": "sha256-bhuS2SQYP2KvwkOwfdjGLlismmNyDiViOOkIbVJPR+c=",
+        "owner": "polybar",
+        "repo": "polybar-scripts",
+        "rev": "879834652947a7c6af894effc577dd2bfaa920b7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "polybar",
+        "repo": "polybar-scripts",
+        "type": "github"
+      }
+    },
     "rofirc": {
       "inputs": {
         "nixpkgs": [
@@ -434,6 +466,7 @@
         "bashrc": "bashrc",
         "emacsrc": "emacsrc",
         "encryption-utils": "encryption-utils",
+        "firefox-csshacks": "firefox-csshacks",
         "haskellrc": "haskellrc",
         "hlwmrc": "hlwmrc",
         "home-manager": "home-manager",
@@ -444,8 +477,10 @@
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
         "oled-display": "oled-display",
+        "polybar-scripts": "polybar-scripts",
         "rofirc": "rofirc",
         "tmuxrc": "tmuxrc",
+        "tridactyl_emacs_config": "tridactyl_emacs_config",
         "wsl": "wsl",
         "zshrc": "zshrc"
       }
@@ -499,6 +534,23 @@
       "original": {
         "owner": "pjones",
         "repo": "tmuxrc",
+        "type": "github"
+      }
+    },
+    "tridactyl_emacs_config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1635745041,
+        "narHash": "sha256-qWajthIVkqDCwY1QkUs0DqSt+XFWwVzyI8N4s7G7tsI=",
+        "owner": "jumper047",
+        "repo": "tridactyl_emacs_config",
+        "rev": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jumper047",
+        "repo": "tridactyl_emacs_config",
+        "rev": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd",
         "type": "github"
       }
     },

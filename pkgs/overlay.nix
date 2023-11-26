@@ -1,17 +1,13 @@
 # Arguments to the overlay function:
+{ inputs }:
 final: prev:
 let
-  sources = import ../nix/sources.nix;
-
-  polybar-scripts = sources.polybar-scripts // {
-    version = "git-" + builtins.substring 0 7 sources.polybar-scripts.rev;
+  polybar-scripts = inputs.polybar-scripts // {
+    version = "git-" + builtins.substring 0 7 inputs.polybar-scripts.rev;
   };
 
 in
 {
-  pjones = (prev.pjones or { }) //
-    { avatar = prev.callPackage ./pjones-avatar.nix { }; };
-
   # Don't use transparent themes by default:
   dracula-theme = prev.dracula-theme.overrideAttrs (prev: {
     postInstall = ''
@@ -26,10 +22,13 @@ in
   });
 
   # Firefox CSS Hacks:
-  firefox-csshacks = prev.callPackage ./firefox-csshacks.nix { };
+  firefox-csshacks = prev.callPackage ./firefox-csshacks.nix { inherit inputs; };
 
   # A gpg-agent/ssh-agent for Android:
   okc-agents = prev.callPackage ./okc-agents.nix { };
+
+  # My avatar for display managers:
+  pjones-avatar = prev.callPackage ./pjones-avatar.nix { };
 
   player-mpris-tail =
     prev.callPackage ./polybar-scripts/player-mpris-tail.nix {
@@ -56,7 +55,7 @@ in
   tilde-scripts-misc = prev.callPackage ./tilde-scripts-misc.nix { };
 
   # Emacs configuration for tridactyl:
-  tridactyl_emacs_config = prev.callPackage ./tridactyl_emacs_config.nix { };
+  tridactyl_emacs_config = prev.callPackage ./tridactyl_emacs_config.nix { inherit inputs; };
 
   # Virtue Font:
   virtue-font = prev.callPackage ./virtue.nix { };
