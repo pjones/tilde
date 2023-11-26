@@ -76,6 +76,13 @@ in
         inherit settings extensions;
         name = "default";
         id = 0;
+
+        # https://mrotherguy.github.io/firefox-csshacks/
+        userChrome = ''
+          @import url(${pkgs.firefox-csshacks}/chrome/window_control_placeholder_support.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/linux_gtk_window_control_patch.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/tabs_below_content.css);
+        '';
       };
 
       # Site-specific browser configuration:
@@ -84,7 +91,10 @@ in
         name = "app";
         id = 1;
 
+        # https://mrotherguy.github.io/firefox-csshacks/
         userChrome = ''
+          @import url(${pkgs.firefox-csshacks}/chrome/window_control_placeholder_support.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/linux_gtk_window_control_patch.css);
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_toolbox.css);
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
           @import url(${pkgs.firefox-csshacks}/chrome/tabs_on_bottom.css);
