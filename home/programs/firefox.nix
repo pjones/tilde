@@ -29,6 +29,8 @@ let
     "browser.sessionstore.resume_session_once" = false;
     "browser.sessionstore.resuming_after_os_restart" = false;
     "browser.startup.homepage" = homepage;
+    "browser.tabs.closeWindowWithLastTab" = false;
+    "browser.tabs.inTitlebar" = 0;
     "browser.urlbar.trimURLs" = false;
     "dom.forms.autocomplete.formautofill" = false;
     "extensions.formautofill.addresses.enabled" = false;
@@ -36,6 +38,7 @@ let
     "extensions.pocket.enabled" = false;
     "media.gmp-widevinecdm.visible" = false;
     "signon.rememberSignons" = true;
+    "widget.gtk.overlay-scrollbars.enabled" = false;
 
     # Privacy:
     "privacy.donottrackheader.enabled" = true;
@@ -51,8 +54,12 @@ let
     # Force FF to use the user chrome CSS file:
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
-    # Force FF to use the Super key for its built in shortcuts and
-    # menu bar.  Also keep FF from focusing the menu bar.
+    # Disable keyboard shortcuts in FF by hiding them behind the
+    # "Super" key.  This is the only key I can get to work so FF
+    # doesn't use the control or alt keys.  Also keep FF from focusing
+    # the menu bar.
+    #
+    # https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
     "ui.key.accelKey" = 91;
     "ui.key.menuAccessKey" = 91;
     "ui.key.menuAccessKeyFocuses" = false;
@@ -80,8 +87,9 @@ in
         # https://mrotherguy.github.io/firefox-csshacks/
         userChrome = ''
           @import url(${pkgs.firefox-csshacks}/chrome/window_control_placeholder_support.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/linux_gtk_window_control_patch.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/tabs_below_content.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/tabs_on_bottom.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/loading_indicator_bouncing_line.css);
         '';
       };
 
@@ -92,12 +100,8 @@ in
         id = 1;
 
         # https://mrotherguy.github.io/firefox-csshacks/
-        userChrome = ''
-          @import url(${pkgs.firefox-csshacks}/chrome/window_control_placeholder_support.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/linux_gtk_window_control_patch.css);
+        userChrome = config.programs.firefox.profiles.default.userChrome + ''
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_toolbox.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/tabs_on_bottom.css);
         '';
       };
 
