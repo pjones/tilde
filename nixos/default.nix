@@ -76,10 +76,6 @@ in
           '';
         };
 
-        nixpkgs.config = {
-          allowUnfree = true; # Proprietary drivers :(
-        };
-
         # Packages to install on all machines for all users:
         environment.systemPackages = with pkgs; [
           lsscsi

@@ -12,7 +12,7 @@ pkgs.nixosTest {
   name = "tilde-herbstluftwm-test";
 
   nodes = {
-    machine = { lib, modulesPath, ... }: {
+    machine = { pkgs, lib, modulesPath, ... }: {
       imports = [
         (modulesPath + "/../tests/common/x11.nix")
         module
@@ -20,21 +20,29 @@ pkgs.nixosTest {
       ];
 
       services.xserver = {
-        windowManager.icewm.enable = lib.mkForce false;
-        windowManager.herbstluftwm.enable = true;
-        windowManager.herbstluftwm.configFile = "${pkgs.pjones.hlwmrc}/config/autostart";
-        displayManager.defaultSession = lib.mkForce "none+herbstluftwm";
+        windowManager.session = [{
+          name = "herbs";
+          bgSupport = true;
+          start = ''
+            ${pkgs.pjones.hlwmrc}/libexec/hlwmrc &
+            waitPID=$!
+          '';
+        }];
+
+        displayManager.defaultSession = lib.mkForce "none+herbs";
       };
 
       test-support.displayManager.auto.user = user.name;
       tilde.username = user.name;
+      users.users.${user.name}.password = user.password;
 
       home-manager.users.${user.name} = { pkgs, lib, ... }: {
-        tilde.programs.konsole.enable = true;
+        # tilde.programs.konsole.enable = true;
       };
 
       environment.systemPackages = with pkgs; [
         feh
+        herbstluftwm
         neofetch
         xdotool
       ];
@@ -46,6 +54,7 @@ pkgs.nixosTest {
         start_all()
 
     with subtest("Wait for login"):
+        machine.wait_for_x()
         machine.wait_for_file("${user.home}/.Xauthority")
         machine.succeed("xauth merge ${user.home}/.Xauthority")
 
@@ -62,12 +71,12 @@ pkgs.nixosTest {
             "${./stage-for-screenshot.sh}",
             "/tmp/stage.sh",
         )
-        machine.execute(
+        machine.succeed(
             "su - ${user.name} -c 'DISPLAY=:0 herbstclient keybind Control-Alt-s spawn /tmp/stage.sh'"
         )
         machine.sleep(1)
         machine.send_key("ctrl-alt-s")
-        machine.wait_for_window("konsole")
+        machine.wait_for_window(r"neofetch")
 
     with subtest("Wait to get a screenshot"):
         machine.sleep(3)

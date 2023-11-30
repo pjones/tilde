@@ -41,7 +41,7 @@ in
           man-pages # Developer man pages.
           OVMF # For EFI booting.
           spice-gtk
-          virtmanager
+          virt-manager
           wirelesstools
         ];
 

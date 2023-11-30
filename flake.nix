@@ -3,10 +3,10 @@
 
   inputs =
     {
-      nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+      nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
       nur.url = "github:nix-community/NUR"; # https://nur.nix-community.org/
 
-      home-manager.url = "github:nix-community/home-manager/release-23.05";
+      home-manager.url = "github:nix-community/home-manager/release-23.11";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
       bashrc.url = "github:pjones/bashrc";
@@ -170,7 +170,6 @@
           tilde = { pkgs, ... }: {
             imports = [
               ./nixos
-              { nixpkgs.overlays = builtins.attrValues overlays; }
               home-manager.nixosModules.home-manager
               inputs.kmonad.nixosModules.default
               nixosBootstrapHomeManager
@@ -184,6 +183,7 @@
         demo = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            { nixpkgs.pkgs = nixpkgsFor.x86_64-linux; }
             self.nixosModules.tilde
             ./test/demo.nix
           ];
@@ -192,6 +192,7 @@
         hyde = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            { nixpkgs.pkgs = nixpkgsFor.x86_64-linux; }
             inputs.wsl.nixosModules.wsl
             self.nixosModules.tilde
             ./devices/hyde.nix
@@ -243,6 +244,7 @@
               machine = nixpkgs.lib.nixosSystem {
                 inherit system;
                 modules = [
+                  { nixpkgs.pkgs = nixpkgsFor.${system}; }
                   test/vm.nix
                   module
                 ];
