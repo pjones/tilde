@@ -92,8 +92,7 @@ in
           fontconfig.enable = true;
           fontDir.enable = true;
           enableGhostscriptFonts = true;
-
-          fonts = with pkgs; [
+          packages = with pkgs; [
             dejavu_fonts
             ubuntu_font_family
             virtue-font

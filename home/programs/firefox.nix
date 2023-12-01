@@ -74,9 +74,12 @@ in
     programs.firefox = {
       enable = true;
 
-      package = pkgs.firefox.override {
-        cfg.enableTridactylNative = true;
-      };
+      package = pkgs.firefox.override (orig: {
+        nativeMessagingHosts =
+          (orig.nativeMessagingHosts or [ ]) ++ [
+            pkgs.tridactyl-native
+          ];
+      });
 
       # General browsing:
       profiles.default = {
