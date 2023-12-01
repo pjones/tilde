@@ -1,12 +1,6 @@
 { pkgs, module }:
 let
   user = import ./user.nix;
-
-  # https://www.reddit.com/r/wallpapers/comments/ge4hrd/geometry/
-  wallpaper = pkgs.fetchurl {
-    url = "https://i.redd.it/tg9ac8kn10x41.jpg";
-    sha256 = "0pb32hzrngl06c1icb2hmdq8ja7v1gc2m4ss32ihp6rk45c59lji";
-  };
 in
 pkgs.nixosTest {
   name = "tilde-herbstluftwm-test";
@@ -19,30 +13,18 @@ pkgs.nixosTest {
         ../devices/generic-nixos.nix
       ];
 
-      services.xserver = {
-        windowManager.session = [{
-          name = "herbs";
-          bgSupport = true;
-          start = ''
-            ${pkgs.pjones.hlwmrc}/libexec/hlwmrc &
-            waitPID=$!
-          '';
-        }];
-
-        displayManager.defaultSession = lib.mkForce "none+herbs";
-      };
-
+      services.xserver.displayManager.gdm.enable = lib.mkForce false;
       test-support.displayManager.auto.user = user.name;
-      tilde.username = user.name;
       users.users.${user.name}.password = user.password;
 
-      home-manager.users.${user.name} = { pkgs, lib, ... }: {
-        # tilde.programs.konsole.enable = true;
+      tilde.xsession.enable = true;
+      tilde.username = user.name;
+
+      home-manager.users.${user.name} = { lib, ... }: {
+        tilde.programs.emacs.enable = true;
       };
 
       environment.systemPackages = with pkgs; [
-        feh
-        herbstluftwm
         neofetch
         xdotool
       ];
@@ -53,6 +35,10 @@ pkgs.nixosTest {
     with subtest("Start machines and prepare"):
         start_all()
 
+    with subtest("Verify home-manager installed config files"):
+        machine.wait_for_unit("home-manager-${user.name}.service")
+        machine.succeed("test -L ${user.home}/.config/emacs/init.el")
+
     with subtest("Wait for login"):
         machine.wait_for_x()
         machine.wait_for_file("${user.home}/.Xauthority")
@@ -61,12 +47,6 @@ pkgs.nixosTest {
     with subtest("Check window manager started"):
         machine.wait_until_succeeds("pgrep herbstluftwm")
         machine.sleep(3)
-
-    with subtest("Launch terminal"):
-        machine.copy_from_host(
-            "${wallpaper}",
-            "/tmp/wallpaper.jpg",
-        )
         machine.copy_from_host(
             "${./stage-for-screenshot.sh}",
             "/tmp/stage.sh",

@@ -3,7 +3,6 @@
 set -eux
 set -o pipefail
 
-feh --bg-fill --no-fehbg /tmp/wallpaper.jpg
 xdotool mousemove 0 0
 
 herbstclient lock
@@ -24,4 +23,4 @@ herbstclient \
 
 herbstclient unlock
 
-xterm -hold -e neofetch
+eterm -e neofetch
