@@ -52,6 +52,7 @@ in
       };
 
       # Cache passphrases and keys:
+      programs.gpg.package = pkgs.gnupg240;
       services.gpg-agent = {
         enable = true;
         enableSshSupport = true;

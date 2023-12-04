@@ -24,6 +24,18 @@ in
   # Firefox CSS Hacks:
   firefox-csshacks = prev.callPackage ./firefox-csshacks.nix { inherit inputs; };
 
+  # Needed for Emacs:
+  # https://debbugs.gnu.org/cgi/bugreport.cgi?bug=63256
+  # https://dev.gnupg.org/T6481
+  # FIXME: Remove in NixOS 24.05.
+  gnupg240 = prev.gnupg.overrideAttrs (orig: {
+    version = "2.4.0";
+    src = prev.fetchurl {
+      url = "mirror://gnupg/gnupg/gnupg-2.4.0.tar.bz2";
+      hash = "sha256-HXkVjdAdmSQx3S4/rLif2slxJ/iXhOosthDGAPsMFIM=";
+    };
+  });
+
   # A gpg-agent/ssh-agent for Android:
   okc-agents = prev.callPackage ./okc-agents.nix { };
 
