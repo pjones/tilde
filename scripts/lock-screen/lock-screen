@@ -22,6 +22,9 @@ background_color=$3
 ################################################################################
 # Actions to take before locking the screen.
 preflight() {
+  # Remove SSH keys from the agent:
+  ssh-add -D || :
+
   # Kill gpg-agent so all passphrases are cleared:
   pkill gpg-agent || :
 

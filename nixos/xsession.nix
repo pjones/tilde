@@ -70,7 +70,7 @@ in
 
       # Let me remote in:
       services.openssh.settings.X11Forwarding = lib.mkForce true;
-      programs.ssh.startAgent = false; # I use GnuPG Agent.
+      programs.ssh.startAgent = false; # This happens in Home Manager.
 
       # Allow smartd to display notifications on the X11 display:
       services.smartd.notifications.x11.enable = true;

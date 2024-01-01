@@ -55,7 +55,7 @@ in
       programs.gpg.package = pkgs.gnupg240;
       services.gpg-agent = {
         enable = true;
-        enableSshSupport = true;
+        enableSshSupport = false;
         defaultCacheTtl = 3600;
         defaultCacheTtlSsh = 14400;
         maxCacheTtl = 7200;

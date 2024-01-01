@@ -32,6 +32,8 @@ in
 
   config = lib.mkMerge [
     (lib.mkIf config.tilde.enable {
+      services.ssh-agent.enable = true;
+
       programs.ssh = {
         enable = true;
 
@@ -40,6 +42,7 @@ in
 
         extraConfig = ''
           User pjones
+          AddKeysToAgent yes
           ServerAliveInterval 300
           ServerAliveCountMax 5
           TCPKeepAlive no
