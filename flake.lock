@@ -32,11 +32,11 @@
         "telega": "telega"
       },
       "locked": {
-        "lastModified": 1704413885,
-        "narHash": "sha256-XFJUkNLfriP3WYpE5f2PG00is9pqCt9xQ3M8OhyPIJE=",
+        "lastModified": 1704564931,
+        "narHash": "sha256-+Ln3PYSJu+kfN8XESsjAYQj4tlCeY++VJVsdAiPp2Zg=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "942352b8876f24920da7c1a9e1e1ac67104dcc70",
+        "rev": "558463ba3ee0da4f5be6bd576748296a9f1473d9",
         "type": "github"
       },
       "original": {
@@ -347,11 +347,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1704295289,
-        "narHash": "sha256-9WZDRfpMqCYL6g/HNWVvXF0hxdaAgwgIGeLYiOhmes8=",
+        "lastModified": 1704420045,
+        "narHash": "sha256-C36QmoJd5tdQ5R9MC1jM7fBkZW9zBUqbUCsgwS6j4QU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b0b2c5445c64191fd8d0b31f2b1a34e45a64547d",
+        "rev": "c1be43e8e837b8dbee2b3665a007e761680f0c3d",
         "type": "github"
       },
       "original": {
@@ -379,11 +379,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1704494748,
-        "narHash": "sha256-xGcoKP6UUnaraC0x+RTChotZbNfeNkh6g5zX/pY8Pfs=",
+        "lastModified": 1704554033,
+        "narHash": "sha256-4sgRZyamI4sh6VRk3kgkM/ojW+KCc4iDD0RRa4ed/7k=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "e9a91d76e3d02eb86e304a91fe0b1486bb2d4fcb",
+        "rev": "3fbed9bd2b3c6eced12baea4b61b3a060cd39b8d",
         "type": "github"
       },
       "original": {
