@@ -16,7 +16,6 @@
         gawk # GNU implementation of the Awk programming language
         gnugrep # GNU implementation of the Unix grep command
         gnumake # A tool to control the generation of non-source files from sources
-        gnupg240 # The GNU Privacy Guard, a GPL OpenPGP implementation
         gnutls # The GNU Transport Layer Security Library
         htop # An interactive process viewer for Linux
         inetutils # Collection of common network programs

@@ -51,8 +51,17 @@ in
         indicator = true;
       };
 
-      # Cache passphrases and keys:
-      programs.gpg.package = pkgs.gnupg240;
+      # Use GnuPG and cache passphrases:
+      programs.gpg = {
+        enable = true;
+        package = pkgs.gnupg_plus_960877b;
+        homedir = "${config.home.homeDirectory}/keys/gpg";
+        settings = {
+          default-key = "204284CB";
+          default-recipient-self = true;
+        };
+      };
+
       services.gpg-agent = {
         enable = true;
         enableSshSupport = false;

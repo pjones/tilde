@@ -28,12 +28,13 @@ in
   # https://debbugs.gnu.org/cgi/bugreport.cgi?bug=63256
   # https://dev.gnupg.org/T6481
   # FIXME: Remove in NixOS 24.05.
-  gnupg240 = prev.gnupg.overrideAttrs (orig: {
-    version = "2.4.0";
-    src = prev.fetchurl {
-      url = "mirror://gnupg/gnupg/gnupg-2.4.0.tar.bz2";
-      hash = "sha256-HXkVjdAdmSQx3S4/rLif2slxJ/iXhOosthDGAPsMFIM=";
-    };
+  gnupg_plus_960877b = prev.gnupg.overrideAttrs (orig: {
+    patches = (orig.patches or [ ]) ++ [
+      (prev.fetchurl {
+        url = "https://github.com/gpg/gnupg/commit/960877b10f42ba664af4fb29130a3ba48141e64a.diff";
+        sha256 = "0pa7rvy9i9w16njxdg6ly5nw3zwy0shv0v23l1mmi0b7jy7ldpvf";
+      })
+    ];
   });
 
   # A gpg-agent/ssh-agent for Android:
