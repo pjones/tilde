@@ -119,6 +119,14 @@ in
           categories = [ "Application" ];
         };
 
+        ssh-add-all = {
+          name = "Add All SSH Keys to the Agent";
+          exec = "${pkgs.pjones.network-scripts}/bin/ssh-add-all-keys";
+          icon = "document-open";
+          terminal = false;
+          categories = [ "Application" ];
+        };
+
         lock-screen = {
           name = "Lock Screen";
           exec = "loginctl lock-session";

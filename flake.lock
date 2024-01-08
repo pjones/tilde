@@ -263,11 +263,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1696781846,
-        "narHash": "sha256-TpyTTgAa1z3D57/0NLKDNRzTnXCzDMUN6KLv9KBILvM=",
+        "lastModified": 1704754160,
+        "narHash": "sha256-Apuwgpjc63Mqr82WSPjD4IeNLah3MeDsUvQJ09Kim74=",
         "owner": "pjones",
         "repo": "network-scripts",
-        "rev": "d1886b86ff0d933a6bedd62dd10069e40c87d1ab",
+        "rev": "b385b2cc39e11f090b9ac3af3c25e61ddecf8c17",
         "type": "github"
       },
       "original": {
