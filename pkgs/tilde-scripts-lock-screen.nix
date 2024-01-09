@@ -8,6 +8,7 @@
 , i3lock
 , imagemagick
 , inotifyTools
+, openssh
 , player-mpris-tail
 , procps
 , systemd
@@ -23,6 +24,7 @@ let
     i3lock
     imagemagick
     inotifyTools
+    openssh
     player-mpris-tail
     procps
     systemd

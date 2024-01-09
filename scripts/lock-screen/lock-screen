@@ -23,7 +23,7 @@ background_color=$3
 # Actions to take before locking the screen.
 preflight() {
   # Remove SSH keys from the agent:
-  if [ "${SSH_AUTH_SOCK:=${XDG_RUNTIME_DIR:=/run/user/$(id -u)}/ssh-agent}" ]; then
+  if [ -e "${SSH_AUTH_SOCK:=${XDG_RUNTIME_DIR:=/run/user/$(id -u)}/ssh-agent}" ]; then
     export SSH_AUTH_SOCK
     ssh-add -D || :
   fi
