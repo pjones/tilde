@@ -126,6 +126,7 @@ in
           };
 
           "cugateway" = {
+            user = "peter.jones";
             proxyJump = cfg.rfa.vpnJumpHost;
             identityFile =
               if cfg.haveRestrictedKeys
@@ -151,7 +152,6 @@ in
             }];
           };
 
-          "hutl" = util;
           "hutl2" = util // { hostname = "hhs-phx-p-utl02.clemson.edu"; };
         };
     })
