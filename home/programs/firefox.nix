@@ -117,6 +117,9 @@ in
       };
     };
 
+    home.file.".mozilla/native-messaging-hosts/tridactyl.json".source =
+      "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
+
     home.file.".config/tridactyl/tridactylrc".text =
       let
         # Helper function to generate bind commands:
@@ -138,6 +141,7 @@ in
         set editorcmd e -cw -- +%l:%c %f
 
         colours dark
+        set theme midnight
 
         set homepages ["${homepage}"]
         set newtab ${homepage}
