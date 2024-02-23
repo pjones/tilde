@@ -54,7 +54,6 @@ in
       # Use GnuPG and cache passphrases:
       programs.gpg = {
         enable = true;
-        package = pkgs.gnupg_plus_960877b;
         homedir = "${config.home.homeDirectory}/keys/gpg";
         settings = {
           default-key = "204284CB";
