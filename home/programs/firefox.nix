@@ -37,6 +37,7 @@ let
     "extensions.formautofill.creditCards.enabled" = false;
     "extensions.pocket.enabled" = false;
     "media.gmp-widevinecdm.visible" = false;
+    "mousewheel.system_scroll_override.horizontal.factor" = 1000;
     "signon.rememberSignons" = true;
     "widget.gtk.overlay-scrollbars.enabled" = false;
 
@@ -90,8 +91,9 @@ in
         # https://mrotherguy.github.io/firefox-csshacks/
         userChrome = ''
           @import url(${pkgs.firefox-csshacks}/chrome/window_control_placeholder_support.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/tabs_on_bottom.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/icon_only_tabs.css);
+          @import url(${pkgs.firefox-csshacks}/chrome//hide_tabs_with_one_tab.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/navbar_below_content.css);
           @import url(${pkgs.firefox-csshacks}/chrome/loading_indicator_bouncing_line.css);
         '';
       };
@@ -103,7 +105,9 @@ in
         id = 1;
 
         # https://mrotherguy.github.io/firefox-csshacks/
-        userChrome = config.programs.firefox.profiles.default.userChrome + ''
+        userChrome = ''
+          @import url(${pkgs.firefox-csshacks}/chrome/window_control_placeholder_support.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/autohide_tabstoolbar.css);
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_toolbox.css);
         '';
       };
