@@ -104,7 +104,7 @@ in
 
         memento-mori = {
           name = "Memento Mori";
-          exec = "${../scripts/misc/memento-mori.sh}";
+          exec = "${pkgs.tilde-scripts-misc}/bin/memento-mori.sh";
           icon = "document-open";
           terminal = false;
           categories = [ "Application" ];
@@ -112,7 +112,7 @@ in
 
         start-desktop-apps = {
           name = "Start Desktop Apps";
-          exec = "${../scripts/misc/start-desktop-apps.sh}";
+          exec = "${pkgs.tilde-scripts-misc}/bin/start-desktop-apps.sh";
           icon = "document-open";
           terminal = false;
           categories = [ "Application" ];

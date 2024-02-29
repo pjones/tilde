@@ -18,12 +18,18 @@ desktop=$(
 case "$desktop" in
 GTD)
   e &
-  browser "https://app.fastmail.com/mail/Inbox" &
-  browser "https://app.fastmail.com/calendar/month" &
+  "$(dirname "$0")/memento-mori.sh" &
+  browser-app "https://app.fastmail.com/calendar/month" &
+  browser-app "https://home.jonesbunch.com/" &
+  browser-app "https://ground.news/" &
   ;;
 
 Social)
+  e &
   browser-app "https://messages.google.com/web/conversations" &
+  browser-app "https://bsky.app/" &
+  browser-app "https://hostux.social/" &
+  browser-app "http://10.11.12.1:8081/unread" &
   ;;
 
 RFA1)
