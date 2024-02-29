@@ -92,7 +92,7 @@ in
         userChrome = ''
           @import url(${pkgs.firefox-csshacks}/chrome/window_control_placeholder_support.css);
           @import url(${pkgs.firefox-csshacks}/chrome/icon_only_tabs.css);
-          @import url(${pkgs.firefox-csshacks}/chrome//hide_tabs_with_one_tab.css);
+          @import url(${pkgs.firefox-csshacks}/chrome/hide_tabs_with_one_tab.css);
           @import url(${pkgs.firefox-csshacks}/chrome/navbar_below_content.css);
           @import url(${pkgs.firefox-csshacks}/chrome/loading_indicator_bouncing_line.css);
         '';
@@ -183,6 +183,8 @@ in
         bind p scrollline -10
         bind <A-f> followpage next
         bind <A-b> followpage prev
+        bind <C-+> zoom 0.1 true
+        bind <C--> zoom -0.1 true
 
         " Ignore next key:
         ${bindGlobal "<C-q> nmode ignore 1 mode normal"}
