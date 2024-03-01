@@ -16,7 +16,6 @@
     ./gtk.nix
     ./haskell.nix
     ./herbstluftwm.nix
-    ./konsole.nix
     ./man.nix
     ./mpd.nix
     ./oled-display.nix
@@ -26,8 +25,6 @@
     ./shells.nix
     ./ssh.nix
     ./syncthing.nix
-    ./thunderbird.nix
     ./wallpaper.nix
-    ./xfce.nix
   ];
 }

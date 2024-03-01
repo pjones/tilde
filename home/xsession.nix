@@ -38,7 +38,6 @@ in
       tilde.programs.gtk.enable = lib.mkDefault true;
       tilde.programs.herbstluftwm.enable = lib.mkDefault true;
       tilde.programs.qt.enable = lib.mkDefault true;
-      tilde.programs.thunderbird.enable = lib.mkDefault true;
 
       # Hide the mouse cursor when not in use:
       services.unclutter = {
