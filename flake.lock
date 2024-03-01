@@ -32,11 +32,11 @@
         "telega": "telega"
       },
       "locked": {
-        "lastModified": 1709251126,
-        "narHash": "sha256-wFiHe0Ng9pZ7YLjtfj6cPyPBTlkriWTXoAq3ZCXUgfU=",
+        "lastModified": 1709323560,
+        "narHash": "sha256-fFUFNYxfXHnrPoAs0fViWOk5lUqp7RaS2JEeypjqSzo=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "ac97057c4077446aeebac13d033d01c5c9daaead",
+        "rev": "d8188d2f9b5f54f524a20789de129d4c5cff12c4",
         "type": "github"
       },
       "original": {

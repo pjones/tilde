@@ -33,6 +33,7 @@ in
 
       # Enable other xsession modules:
       tilde.programs.browser.enable = lib.mkDefault true;
+      tilde.programs.contacts.enable = lib.mkDefault true;
       tilde.programs.gromit-mpx.enable = lib.mkDefault true;
       tilde.programs.gtk.enable = lib.mkDefault true;
       tilde.programs.herbstluftwm.enable = lib.mkDefault true;

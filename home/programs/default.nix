@@ -6,6 +6,7 @@
   imports = [
     ./base.nix
     ./browser.nix
+    ./contacts.nix
     ./direnv.nix
     ./dunst.nix
     ./emacs.nix
