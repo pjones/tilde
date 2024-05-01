@@ -94,6 +94,8 @@ in
           enableGhostscriptFonts = true;
           packages = with pkgs; [
             dejavu_fonts
+            ibm-plex
+            tt2020
             ubuntu_font_family
             virtue-font
           ] ++ others;
