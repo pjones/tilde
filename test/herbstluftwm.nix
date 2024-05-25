@@ -13,7 +13,7 @@ pkgs.nixosTest {
         ../devices/generic-nixos.nix
       ];
 
-      services.xserver.displayManager.gdm.enable = lib.mkForce false;
+      services.displayManager.sddm.enable = lib.mkForce false;
       test-support.displayManager.auto.user = user.name;
       users.users.${user.name}.password = user.password;
 

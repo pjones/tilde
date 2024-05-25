@@ -3,10 +3,10 @@
 
   inputs =
     {
-      nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+      nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
       nur.url = "github:nix-community/NUR"; # https://nur.nix-community.org/
 
-      home-manager.url = "github:nix-community/home-manager/release-23.11";
+      home-manager.url = "github:nix-community/home-manager/release-24.05";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
       bashrc.url = "github:pjones/bashrc";

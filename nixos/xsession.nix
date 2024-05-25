@@ -38,10 +38,7 @@ in
 
       services.xserver = {
         enable = lib.mkDefault true;
-        layout = lib.mkDefault "us";
-
-        displayManager.defaultSession = lib.mkForce "none+hm";
-        displayManager.gdm.enable = lib.mkDefault true;
+        xkb.layout = lib.mkDefault "us";
 
         windowManager.session = [{
           name = "hm";
@@ -51,16 +48,22 @@ in
             waitPID=$!
           '';
         }];
+      };
 
-        libinput = {
-          enable = true;
+      services.displayManager = {
+        enable = true;
+        defaultSession = lib.mkForce "none+hm";
+        sddm.enable = lib.mkDefault true;
+      };
 
-          touchpad = {
-            clickMethod = "clickfinger";
-            disableWhileTyping = true;
-            scrollMethod = "twofinger";
-            tapping = false;
-          };
+      services.libinput = {
+        enable = true;
+
+        touchpad = {
+          clickMethod = "clickfinger";
+          disableWhileTyping = true;
+          scrollMethod = "twofinger";
+          tapping = false;
         };
       };
 

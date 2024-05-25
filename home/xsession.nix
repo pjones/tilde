@@ -68,7 +68,7 @@ in
         defaultCacheTtlSsh = 14400;
         maxCacheTtl = 7200;
         maxCacheTtlSsh = 21600;
-        pinentryFlavor = "gtk2";
+        pinentryPackage = pkgs.pinentry-qt;
       };
 
       # And we need a compositor:
