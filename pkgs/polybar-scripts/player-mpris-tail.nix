@@ -3,6 +3,8 @@
 , wrapPython
 , dbus-python
 , pygobject3
+, gobject-introspection
+, wrapGAppsHook3
 }:
 
 stdenv.mkDerivation rec {
@@ -11,8 +13,8 @@ stdenv.mkDerivation rec {
   src = polybar-scripts;
 
   buildInputs = [ wrapPython ];
+  nativeBuildInputs = [ gobject-introspection wrapGAppsHook3 ];
   pythonPath = [ dbus-python pygobject3 ];
-
 
   installPhase = ''
     mkdir -p $out/bin
