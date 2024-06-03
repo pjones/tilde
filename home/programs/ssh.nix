@@ -26,12 +26,12 @@ in
 
         controlMaster = "auto";
         controlPath = "~/.ssh/master-%r@%h:%p";
+        addKeysToAgent = "yes";
+        serverAliveInterval = 300;
+        serverAliveCountMax = 5;
 
         extraConfig = ''
           User pjones
-          AddKeysToAgent yes
-          ServerAliveInterval 300
-          ServerAliveCountMax 5
           TCPKeepAlive no
         ''
         + lib.optionalString
