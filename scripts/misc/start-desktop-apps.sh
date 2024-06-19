@@ -6,14 +6,7 @@ set -eu
 set -o pipefail
 
 ################################################################################
-desktop=$(
-  wmctrl -d |
-    awk '$2 == "*" {
-        for (i=($8 == "N/A" ? 9 : 10); i<=NF; i++) {
-          printf("%s%s", $i, i<NF ? OFS : "\n")
-        }
-      }'
-)
+desktop=$(desktop-workspace -n)
 
 case "$desktop" in
 GTD)

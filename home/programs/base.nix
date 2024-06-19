@@ -89,38 +89,25 @@
         darktable # Virtual lighttable and darkroom for photographers
         dia # Gnome Diagram drawing software
         digikam # Photo Management Program
-        feh # A light-weight image viewer
         gdal # Translator library for raster geospatial data formats
         gimp # The GNU Image Manipulation Program
         handbrake # A tool for converting video files and ripping DVDs
         imagemagick # A software suite to create, edit, compose, or convert bitmap images
         inkscape # Vector graphics editor
         kicad # Open Source Electronics Design Automation suite
-        ksnip # Cross-platform screenshot tool with many annotation features
         libnotify # A library that sends desktop notifications to a notification daemon
         libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
         openscad # 3D parametric model compiler
         pamixer # Pulseaudio command line mixer
         pavucontrol # PulseAudio Volume Control
-        pjones.rofirc # Rofi scripts
+        pjones.desktop-scripts # Personal scripts for desktop environments.
         prusa-slicer # G-code generator for 3D printer
         qcad # 2D CAD package based on Qt
         qmapshack # Consumer grade GIS software
         remmina # Remote desktop client written in GTK
         tilde-scripts-browser # Browser scripts
         vlc # Cross-platform media player and streaming server
-        wmctrl # CLI tool to interact with EWMH/NetWM compatible X Window Managers
-        x11vnc # A VNC server connected to a real X11 screen
-        xclip # Tool to access the X clipboard from a console application
-        xdo # Small X utility to perform elementary actions on windows
-        xdotool # Fake keyboard/mouse input, window management, and more
-        xorg.xev # Print contents of X events
-        xorg.xhost # Sever access control program for X.
-        xorg.xrandr # Primitive command line interface to RandR extension
-        xorg.xset # User preference utility for X
-        xorg.xwininfo # Window information utility for X
         xournalpp # Xournal++ is a handwriting Notetaking software with PDF annotation support
-        xtitle # Outputs X window titles
       ] ++
       # Packages that don't build on aarch64:
       lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [

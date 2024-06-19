@@ -1,71 +1,62 @@
 {
   description = "Peter's NixOS and Home Manager Configuration";
 
-  inputs =
-    {
-      nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-      nur.url = "github:nix-community/NUR"; # https://nur.nix-community.org/
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nur.url = "github:nix-community/NUR"; # https://nur.nix-community.org/
 
-      home-manager.url = "github:nix-community/home-manager/release-24.05";
-      home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-      bashrc.url = "github:pjones/bashrc";
-      bashrc.inputs.nixpkgs.follows = "nixpkgs";
+    bashrc.url = "github:pjones/bashrc";
+    bashrc.inputs.nixpkgs.follows = "nixpkgs";
 
-      emacsrc.url = "github:pjones/emacsrc/nixos-24.05";
-      emacsrc.inputs.nixpkgs.follows = "nixpkgs";
-      emacsrc.inputs.home-manager.follows = "home-manager";
+    desktop-scripts.url = "github:pjones/desktop-scripts";
+    desktop-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
-      encryption-utils.url = "github:pjones/encryption-utils";
-      encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
+    emacsrc.url = "github:pjones/emacsrc/nixos-24.05";
+    emacsrc.inputs.nixpkgs.follows = "nixpkgs";
+    emacsrc.inputs.home-manager.follows = "home-manager";
 
-      haskellrc.url = "github:pjones/haskellrc";
-      haskellrc.inputs.nixpkgs.follows = "nixpkgs";
+    encryption-utils.url = "github:pjones/encryption-utils";
+    encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
 
-      hlwmrc.url = "github:pjones/hlwmrc";
-      hlwmrc.inputs.nixpkgs.follows = "nixpkgs";
+    haskellrc.url = "github:pjones/haskellrc";
+    haskellrc.inputs.nixpkgs.follows = "nixpkgs";
 
-      image-scripts.url = "github:pjones/image-scripts";
-      image-scripts.inputs.nixpkgs.follows = "nixpkgs";
+    image-scripts.url = "github:pjones/image-scripts";
+    image-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
-      kmonad.url = "github:kmonad/kmonad?dir=nix";
+    kmonad.url = "github:kmonad/kmonad?dir=nix";
 
-      maintenance-scripts.url = "github:pjones/maintenance-scripts";
-      maintenance-scripts.inputs.nixpkgs.follows = "nixpkgs";
+    maintenance-scripts.url = "github:pjones/maintenance-scripts";
+    maintenance-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
-      network-scripts.url = "github:pjones/network-scripts";
-      network-scripts.inputs.nixpkgs.follows = "nixpkgs";
+    network-scripts.url = "github:pjones/network-scripts";
+    network-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
-      oled-display.url = "github:pjones/oled-display";
+    oled-display.url = "github:pjones/oled-display";
 
-      rofirc.url = "github:pjones/rofirc";
-      rofirc.inputs.nixpkgs.follows = "nixpkgs";
+    tmuxrc.url = "github:pjones/tmuxrc";
+    tmuxrc.inputs.nixpkgs.follows = "nixpkgs";
 
-      tmuxrc.url = "github:pjones/tmuxrc";
-      tmuxrc.inputs.nixpkgs.follows = "nixpkgs";
+    wsl.url = "github:nix-community/NixOS-WSL";
+    wsl.inputs.nixpkgs.follows = "nixpkgs";
 
-      wsl.url = "github:nix-community/NixOS-WSL";
-      wsl.inputs.nixpkgs.follows = "nixpkgs";
+    zshrc.url = "github:pjones/zshrc";
+    zshrc.inputs.nixpkgs.follows = "nixpkgs";
 
-      zshrc.url = "github:pjones/zshrc";
-      zshrc.inputs.nixpkgs.follows = "nixpkgs";
-
-      # For packages I'm building directly:
-      firefox-csshacks = {
-        url = "github:MrOtherGuy/firefox-csshacks";
-        flake = false;
-      };
-
-      polybar-scripts = {
-        url = "github:polybar/polybar-scripts";
-        flake = false;
-      };
-
-      tridactyl_emacs_config = {
-        url = "github:jumper047/tridactyl_emacs_config/5674d6bb38abbe639dd8caaf3d81f33fc06f59fd";
-        flake = false;
-      };
+    # For packages I'm building directly:
+    firefox-csshacks = {
+      url = "github:MrOtherGuy/firefox-csshacks";
+      flake = false;
     };
+
+    tridactyl_emacs_config = {
+      url = "github:jumper047/tridactyl_emacs_config/5674d6bb38abbe639dd8caaf3d81f33fc06f59fd";
+      flake = false;
+    };
+  };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
@@ -106,15 +97,14 @@
 
       # Package overlay:
       overlays = {
+        desktop-scripts = self.inputs.desktop-scripts.overlays.desktop-scripts;
         bashrc = inputs.bashrc.overlay;
         encryption-utils = inputs.encryption-utils.overlay;
-        hlwmrc = inputs.hlwmrc.overlays.default;
         image-scripts = inputs.image-scripts.overlay;
         maintenance-scripts = inputs.maintenance-scripts.overlay;
         network-scripts = inputs.network-scripts.overlay;
         nur = inputs.nur.overlay;
         oled-display = inputs.oled-display.overlay;
-        rofirc = inputs.rofirc.overlays.default;
         tilde = import pkgs/overlay.nix { inherit inputs; };
         tmuxrc = inputs.tmuxrc.overlay;
         zshrc = inputs.zshrc.overlay;
@@ -216,20 +206,6 @@
             type = "app";
             program = "${self.packages.${system}.default}/bin/run-tilde-demo-vm";
           };
-
-          # Run a VM then take a screenshot and store it locally:
-          screenshot =
-            let
-              script = pkgs.writeShellScript "screenshot" ''
-                cp \
-                  ${self.checks.${system}.herbstluftwm}/screen.png \
-                  support/screenshot.png
-              '';
-            in
-            {
-              type = "app";
-              program = "${script}";
-            };
         });
 
       ##########################################################################
@@ -264,7 +240,6 @@
           config = test test/config.nix;
           cron = test test/cron.nix;
           emacs = inputs.emacsrc.checks.${system}.default;
-          herbstluftwm = test test/herbstluftwm.nix;
           mandb = test test/mandb.nix;
         } // hostChecks);
 

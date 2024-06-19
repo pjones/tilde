@@ -24,7 +24,6 @@
     };
 
     tilde = {
-      xsession.enable = true;
       workstation.type = "laptop";
     };
 

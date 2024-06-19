@@ -10,8 +10,6 @@
     networking.hostName = "medusa";
 
     tilde = {
-      xsession.enable = true;
-
       crontab = {
         image-import = {
           schedule = "*-*-* 01:15:00";

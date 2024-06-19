@@ -3,15 +3,11 @@
 , tildeInstallScripts
 , chromium
 , coreutils
-, wmctrl
-, xdo
 }:
 let
   path = lib.makeBinPath [
     chromium
     coreutils
-    wmctrl
-    xdo
   ];
 in
 stdenvNoCC.mkDerivation {

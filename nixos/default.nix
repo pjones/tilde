@@ -16,7 +16,6 @@ in
   imports = [
     ./crontab.nix
     ./workstation.nix
-    ./xsession.nix
     ./yubikey.nix
   ];
 
@@ -132,8 +131,6 @@ in
             home.homeDirectory = config.users.users.${cfg.username}.home;
             tilde.enable = cfg.enable;
             tilde.workstation.enable = cfg.workstation.enable;
-            tilde.xsession.enable = cfg.xsession.enable;
-            tilde.xsession.dpi = cfg.xsession.dpi;
           };
         };
       })

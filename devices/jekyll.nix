@@ -24,8 +24,6 @@
     };
 
     tilde = {
-      xsession.enable = true;
-      xsession.dpi = 144;
       workstation.type = "laptop";
     };
 
@@ -45,18 +43,6 @@
         forwardAgent = true;
         forwardX11 = true;
         forwardX11Trusted = true;
-      };
-
-      tilde.programs.polybar = {
-        backlight.enable = true;
-        power.enable = true;
-        power.battery = "BAT1";
-        power.adapter = "ACAD";
-      };
-
-      services.polybar.config."bar/primary" = {
-        dpi-x = 144;
-        dpi-y = 144;
       };
 
       # Automatically deal with new monitor connections:

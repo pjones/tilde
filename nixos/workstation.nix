@@ -45,6 +45,10 @@ in
           wirelesstools
         ];
 
+        # Default time zone:
+        time.timeZone = lib.mkDefault "America/Phoenix";
+        time.hardwareClockInLocalTime = true;
+
         # For using different Nix caches:
         nix.settings.trusted-users = [ "@wheel" ];
 
@@ -77,11 +81,6 @@ in
           wireless.enable = false;
         };
 
-        # Sound:
-        sound.enable = true;
-        hardware.pulseaudio.enable = true;
-        hardware.pulseaudio.package = pkgs.pulseaudioFull;
-
         # Printing:
         services.printing = {
           enable = true;
@@ -90,11 +89,6 @@ in
               pkgs.stdenv.isx86_64
               pkgs.canon-cups-ufr2;
         };
-
-        # Needed for some other services:
-        location.provider = "geoclue2";
-        time.hardwareClockInLocalTime = true;
-        time.timeZone = "America/Phoenix";
 
         virtualisation = {
           libvirtd = {
@@ -115,6 +109,11 @@ in
           acpi
           powertop
         ];
+
+        # Use the local time zone:
+        location.provider = "geoclue2";
+        services.localtimed.enable = true;
+        time.timeZone = lib.mkForce null; # "America/Phoenix";
 
         services.logind = {
           lidSwitch = "suspend-then-hibernate";
