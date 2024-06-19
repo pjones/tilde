@@ -71,11 +71,9 @@
       ];
 
       hosts = [
-        "elphaba"
         "jekyll"
         "kilgrave"
         "medusa"
-        "moriarty"
         "ursula"
       ];
 
