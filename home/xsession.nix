@@ -49,6 +49,15 @@ in
     };
 
     xdg.desktopEntries = {
+      image-view = {
+        name = "IMV";
+        genericName = "Image Viewer";
+        exec = "${pkgs.imv}/bin/imv %U";
+        terminal = false;
+        categories = [ "Application" ];
+        mimeType = [ "image/jpeg" "image/png" ];
+      };
+
       memento-mori = {
         name = "Memento Mori";
         exec = "${pkgs.tilde-scripts-misc}/bin/memento-mori.sh";
@@ -73,5 +82,19 @@ in
         categories = [ "Application" ];
       };
     };
+
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "image/jpeg" = "image-view.desktop";
+        "image/png" = "image-view.desktop";
+        "x-scheme-handler/sgnl" = "signal-desktop.desktop";
+        "x-scheme-handler/signalcaptcha" = "signal-desktop.desktop";
+      };
+    };
+
+    # Some apps are rude and overwrite this file:
+    # https://github.com/nix-community/home-manager/issues/1213
+    xdg.configFile."mimeapps.list".force = true;
   };
 }

@@ -4,12 +4,14 @@
 , coreutils
 , findutils
 , gnugrep
+, imv
 }:
 let
   path = lib.makeBinPath [
     coreutils
     findutils
     gnugrep
+    imv
   ];
 in
 stdenvNoCC.mkDerivation {

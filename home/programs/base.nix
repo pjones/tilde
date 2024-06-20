@@ -93,6 +93,7 @@
         gimp # The GNU Image Manipulation Program
         handbrake # A tool for converting video files and ripping DVDs
         imagemagick # A software suite to create, edit, compose, or convert bitmap images
+        imv # A command line image viewer for tiling window managers
         inkscape # Vector graphics editor
         kicad # Open Source Electronics Design Automation suite
         libnotify # A library that sends desktop notifications to a notification daemon

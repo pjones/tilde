@@ -13,11 +13,10 @@ fi
 
 cd "$dir" || exit 1
 
-feh \
-  --scale-down \
-  --image-bg black \
-  --randomize \
-  --recursive \
-  --slideshow-delay 300 \
-  --title "Memento Mori: %n" \
+imv \
+  -b 000000 \
+  -s full \
+  -t 300 \
+  -w "Memento Mori" \
+  -r \
   .
