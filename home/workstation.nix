@@ -17,15 +17,26 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # Keyboard settings:
-    home.keyboard = {
-      layout = "us";
-      options = [ "compose:ralt" ];
-    };
-
     # Active some services/plugins:
     tilde.programs.man.enable = lib.mkDefault true;
     tilde.programs.mpd.enable = lib.mkDefault true;
     tilde.programs.syncthing.enable = lib.mkDefault true;
+
+    # A user service that prepares for suspend:
+    systemd.user.services.onsuspend = {
+      Unit = {
+        Description = "Prepare for suspend";
+        Before = "sleep.target";
+      };
+
+      Service = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.pjones.desktop-scripts}/bin/desktop-pre-suspend";
+      };
+
+      Install = {
+        WantedBy = [ "sleep.target" ];
+      };
+    };
   };
 }
