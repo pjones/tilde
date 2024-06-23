@@ -66,7 +66,6 @@
         niv # Easy dependency management for Nix projects
         pandoc # Conversion between markup formats
         pass # Stores, retrieves, generates, and synchronizes passwords securely
-        pulse-audio-scripts # Scripts for working with PulseAudio
       ] ++
       lib.optionals pkgs.stdenv.isLinux (with pkgs; [
         nixpkgs-fmt # Nix code formatter for nixpkgs
@@ -81,7 +80,7 @@
 
     ############################################################################
     # Packages to install on workstations with a GUI running:
-    (lib.mkIf config.tilde.xsession.enable {
+    (lib.mkIf config.tilde.graphical.enable {
       home.packages = with pkgs; [
         cantata # A graphical client for MPD
         cdparanoia # A tool and library for reading digital audio from CDs

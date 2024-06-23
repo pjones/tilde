@@ -1,9 +1,13 @@
+{ self # Flake reference.
+}:
+
 # This is a NixOS module:
 { config, lib, pkgs, ... }:
 
 {
   imports = [
     ./generic-nixos.nix
+    self.inputs.superkey.nixosModules.jekyll
   ];
 
   config = {
@@ -19,17 +23,20 @@
         defcfg = {
           enable = true;
           fallthrough = true;
+          compose.key = "compose";
         };
       };
     };
 
     tilde = {
+      graphical.enable = true;
       workstation.type = "laptop";
     };
 
     home-manager.users.pjones = { ... }: {
       tilde.programs.emacs.enable = true;
       tilde.programs.haskell.enable = true;
+      tilde.programs.oled-display.enable = false;
 
       tilde.programs.ssh = {
         keysDir = "~/keys/ssh";

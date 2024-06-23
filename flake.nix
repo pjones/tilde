@@ -17,6 +17,13 @@
     emacsrc.url = "github:pjones/emacsrc/nixos-24.05";
     emacsrc.inputs.nixpkgs.follows = "nixpkgs";
     emacsrc.inputs.home-manager.follows = "home-manager";
+    emacsrc.inputs.desktop-scripts.follows = "desktop-scripts";
+
+    superkey.url = "github:pjones/superkey";
+    superkey.inputs.nixpkgs.follows = "nixpkgs";
+    superkey.inputs.home-manager.follows = "home-manager";
+    superkey.inputs.emacsrc.follows = "emacsrc";
+    superkey.inputs.desktop-scripts.follows = "desktop-scripts";
 
     encryption-utils.url = "github:pjones/encryption-utils";
     encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
@@ -95,14 +102,15 @@
 
       # Package overlay:
       overlays = {
-        desktop-scripts = self.inputs.desktop-scripts.overlays.desktop-scripts;
         bashrc = inputs.bashrc.overlay;
+        desktop-scripts = self.inputs.desktop-scripts.overlays.desktop-scripts;
         encryption-utils = inputs.encryption-utils.overlay;
         image-scripts = inputs.image-scripts.overlay;
         maintenance-scripts = inputs.maintenance-scripts.overlay;
         network-scripts = inputs.network-scripts.overlay;
         nur = inputs.nur.overlay;
         oled-display = inputs.oled-display.overlay;
+        rofirc = self.inputs.superkey.overlays.rofirc;
         tilde = import pkgs/overlay.nix { inherit inputs; };
         tmuxrc = inputs.tmuxrc.overlay;
         zshrc = inputs.zshrc.overlay;
@@ -116,7 +124,6 @@
           overlays = builtins.attrValues overlays;
         });
 
-
       # A NixOS module that bootstraps the tilde home manager modules:
       nixosBootstrapHomeManager = { config, pkgs, ... }: {
         home-manager = {
@@ -128,6 +135,7 @@
               ./home
               inputs.emacsrc.homeManagerModules.default
               inputs.haskellrc.homeManagerModules.default
+              inputs.superkey.homeManagerModules.default
             ];
           };
         };
@@ -143,7 +151,7 @@
           hostFrom = path: { ... }: {
             imports = [
               self.nixosModules.tilde
-              path
+              (import path { inherit self; })
             ];
           };
           hostModules = builtins.listToAttrs (map
@@ -159,8 +167,9 @@
             imports = [
               ./nixos
               home-manager.nixosModules.home-manager
-              inputs.kmonad.nixosModules.default
               nixosBootstrapHomeManager
+              inputs.kmonad.nixosModules.default
+              inputs.superkey.nixosModules.default
             ];
           };
         } // hostModules;

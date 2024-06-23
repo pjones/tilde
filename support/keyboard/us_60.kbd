@@ -73,7 +73,7 @@
 (deflayer lower
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    esc  _    _    @cpl @cmn @pls @und @sin _    |    _    _    _
-  _    _    _    del  @prn @cbr =    @brc _    _    _    _    _
+  _    cmp  _    del  @prn @cbr =    @brc _    _    cmp  _    _
   _    _    _    _    _    grv  @tld -    _    _    \    _
   _    _    _              _              _    _    _    _
 )

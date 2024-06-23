@@ -1,15 +1,21 @@
+{ self # Flake reference.
+}:
+
 # This is a NixOS module:
 { config, lib, pkgs, ... }:
 
 {
   imports = [
     ./generic-nixos.nix
+    self.inputs.superkey.nixosModules.medusa
   ];
 
   config = {
     networking.hostName = "medusa";
 
     tilde = {
+      graphical.enable = true;
+
       crontab = {
         image-import = {
           schedule = "*-*-* 01:15:00";

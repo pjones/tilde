@@ -4,23 +4,24 @@
 , ...
 }:
 let
-  cfg = config.tilde.xsession;
+  cfg = config.tilde.graphical;
 in
 {
-  options.tilde.xsession = {
-    enable = lib.mkEnableOption "Enable an X11 session";
+  options.tilde.graphical = {
+    enable = lib.mkEnableOption "Enable a graphical session";
   };
 
   config = lib.mkIf cfg.enable {
-    # Enabling an xsession also enables workstation settings:
+    # Enabling an graphical also enables workstation settings:
     tilde.workstation.enable = true;
 
-    # Enable other xsession modules:
+    # Enable other graphical modules:
     tilde.programs.browser.enable = lib.mkDefault true;
     tilde.programs.contacts.enable = lib.mkDefault true;
     tilde.programs.gromit-mpx.enable = lib.mkDefault true;
-    tilde.programs.gtk.enable = lib.mkDefault true;
-    tilde.programs.qt.enable = lib.mkDefault true;
+
+    # tilde.programs.gtk.enable = lib.mkDefault true;
+    # tilde.programs.qt.enable = lib.mkDefault true;
 
     # Communicate with my phone:
     services.kdeconnect = {

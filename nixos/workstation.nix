@@ -111,9 +111,10 @@ in
         ];
 
         # Use the local time zone:
-        location.provider = "geoclue2";
+        services.geoclue2.enable = true;
         services.localtimed.enable = true;
-        time.timeZone = lib.mkForce null; # "America/Phoenix";
+        location.provider = "geoclue2";
+        time.timeZone = lib.mkForce null;
 
         services.logind = {
           lidSwitch = "suspend-then-hibernate";

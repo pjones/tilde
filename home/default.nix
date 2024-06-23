@@ -6,9 +6,9 @@
 
 {
   imports = [
+    ./graphical.nix
     ./programs
     ./workstation.nix
-    ./xsession.nix
   ];
 
   options.tilde = {

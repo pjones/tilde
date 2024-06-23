@@ -15,6 +15,7 @@ in
   #### Additional Files:
   imports = [
     ./crontab.nix
+    ./graphical.nix
     ./workstation.nix
     ./yubikey.nix
   ];

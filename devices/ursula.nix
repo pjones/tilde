@@ -1,3 +1,6 @@
+{ self # Flake reference.
+}:
+
 # This is a NixOS module:
 { config, lib, pkgs, ... }:
 
