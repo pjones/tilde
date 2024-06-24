@@ -9,7 +9,7 @@ set -o pipefail
 desktop=$(desktop-workspace -n)
 
 case "$desktop" in
-GTD)
+*GTD)
   e &
   "$(dirname "$0")/memento-mori.sh" &
   browser-app "https://app.fastmail.com/calendar/month" &
@@ -17,7 +17,7 @@ GTD)
   browser-app "https://ground.news/" &
   ;;
 
-Social)
+*Social)
   e &
   browser-app "https://messages.google.com/web/conversations" &
   browser-app "https://bsky.app/" &
@@ -25,12 +25,12 @@ Social)
   browser-app "http://10.11.12.1:8081/unread" &
   ;;
 
-RFA1)
+*RFA1)
   e &
   browser "https://code.rfa.sc.gov/" &
   ;;
 
-RFA2)
+*RFA2)
   browser-app "https://chat.rfa.sc.gov" &
   browser-app "https://outlook.office.com" &
   ;;
