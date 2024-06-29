@@ -11,6 +11,7 @@ in
 
     tilde = {
       enable = true;
+      graphical.enable = true;
       putInWheel = true;
     };
 

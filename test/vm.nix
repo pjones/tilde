@@ -43,11 +43,6 @@ in
         target = "/mnt";
       };
 
-      qemu.options = [
-        "-vga none"
-        "-device virtio-gpu-pci"
-      ];
-
       # These probably won't work:
       libvirtd.enable = lib.mkForce false;
       docker.enable = lib.mkForce false;

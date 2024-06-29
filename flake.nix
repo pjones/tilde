@@ -182,6 +182,8 @@
           modules = [
             { nixpkgs.pkgs = nixpkgsFor.x86_64-linux; }
             self.nixosModules.tilde
+            self.inputs.superkey.nixosModules.autologin
+            self.inputs.superkey.nixosModules.qemu-sway
             ./test/demo.nix
           ];
         };
@@ -202,6 +204,11 @@
         let pkgs = nixpkgsFor.${system};
         in {
           default = self.nixosConfigurations.demo.config.system.build.vm;
+
+          screenshot = import test/screenshot.nix {
+            inherit self pkgs;
+            module = self.nixosModules.tilde;
+          };
         } // self.overlays.tilde pkgs pkgs);
 
       ##########################################################################
@@ -213,6 +220,20 @@
             type = "app";
             program = "${self.packages.${system}.default}/bin/run-tilde-demo-vm";
           };
+
+          # Run a VM then take a screenshot and store it locally:
+          screenshot =
+            let
+              script = pkgs.writeShellScript "screenshot" ''
+                cp --force \
+                  ${self.packages.${system}.screenshot}/screen.png \
+                  support/screenshot.png
+              '';
+            in
+            {
+              type = "app";
+              program = "${script}";
+            };
         });
 
       ##########################################################################
@@ -248,6 +269,8 @@
           cron = test test/cron.nix;
           emacs = inputs.emacsrc.checks.${system}.default;
           mandb = test test/mandb.nix;
+          superkey-sway = inputs.superkey.checks.${system}.sway;
+          superkey-greetd = inputs.superkey.checks.${system}.greetd;
         } // hostChecks);
 
       ##########################################################################
