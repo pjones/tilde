@@ -15,6 +15,7 @@
 
     tilde = {
       graphical.enable = true;
+      programs.qmk.enable = true;
 
       crontab = {
         image-import = {

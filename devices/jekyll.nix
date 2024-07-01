@@ -30,6 +30,7 @@
 
     tilde = {
       graphical.enable = true;
+      programs.qmk.enable = true;
       workstation.type = "laptop";
     };
 
