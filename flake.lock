@@ -55,11 +55,11 @@
         "telega": "telega"
       },
       "locked": {
-        "lastModified": 1719853210,
-        "narHash": "sha256-M0Wc82BrpoGFd++ZIY0x8f+SEOPF7wscxbYCe4h6C7c=",
+        "lastModified": 1719959038,
+        "narHash": "sha256-wrYs2IT5WbQWn6ulzKkc2TEYz+i999mnh85/OiF4ubU=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "a23648aa6ebe0b69144336719abff87ef854be78",
+        "rev": "8775f02a5f608cab636f7d6339a922d10706d0ef",
         "type": "github"
       },
       "original": {
@@ -511,11 +511,11 @@
         "waybar": "waybar"
       },
       "locked": {
-        "lastModified": 1719696203,
-        "narHash": "sha256-dtapYC5o5M/hCNZZKsG+DQ73l4qLyrhM7GuZjS7bHgY=",
+        "lastModified": 1719959233,
+        "narHash": "sha256-jxNfA1JEACWm2f5Cf43pUQy17v9Ys3aJzmcVbO1bwmc=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "bb5f8ccf801f99e7bf9016d7dde1158a9f2413ec",
+        "rev": "dfd6accd4eca4bb1b2c2f86ee598ec85a2abce4a",
         "type": "github"
       },
       "original": {
