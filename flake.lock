@@ -511,11 +511,11 @@
         "waybar": "waybar"
       },
       "locked": {
-        "lastModified": 1719962351,
-        "narHash": "sha256-AO40IEabv9LXo1S5K98YPsdK6zArw98+UFuMP01P+UE=",
+        "lastModified": 1720027788,
+        "narHash": "sha256-+bUbOhqDasVDKlij30dn5LDnCpJ6a6YoIODIs5sOtp8=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "26f8d6e4a1a466e5b9c6269aae2e324fd7db6032",
+        "rev": "c24350ff104ab03b047523f8cb2b82a30d4e7a82",
         "type": "github"
       },
       "original": {
