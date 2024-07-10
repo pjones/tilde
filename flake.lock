@@ -508,19 +508,37 @@
           "nixpkgs"
         ],
         "rofirc": "rofirc",
+        "sway-easyfocus": "sway-easyfocus",
         "waybar": "waybar"
       },
       "locked": {
-        "lastModified": 1720027788,
-        "narHash": "sha256-+bUbOhqDasVDKlij30dn5LDnCpJ6a6YoIODIs5sOtp8=",
+        "lastModified": 1720631107,
+        "narHash": "sha256-oMFsOwxPKNu0zXSBJ4FAuuTUFh17zsRzKrDBX7s491o=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "c24350ff104ab03b047523f8cb2b82a30d4e7a82",
+        "rev": "9bfdb17b5b5013c921e2b8701e7c08b9d09be608",
         "type": "github"
       },
       "original": {
         "owner": "pjones",
         "repo": "superkey",
+        "type": "github"
+      }
+    },
+    "sway-easyfocus": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720224963,
+        "narHash": "sha256-ZQg45jmCFK3P7BLnOJmmf31ci+jaala4Xmi10Vd1H78=",
+        "owner": "pjones",
+        "repo": "sway-easyfocus",
+        "rev": "923cc8e1ab557cb469c2df69acc0d3e434357ceb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "ref": "pjones/swap",
+        "repo": "sway-easyfocus",
         "type": "github"
       }
     },

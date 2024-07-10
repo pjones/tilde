@@ -13,16 +13,17 @@ in
     services.gromit-mpx = {
       enable = true;
       opacity = 1.0;
-      hotKey = "F9";
-      undoKey = "F10";
+      hotKey = "F1";
+      undoKey = "F4";
 
       tools =
         let
           mkTool = attrs:
-            let withArrow =
-              if attrs ? arrowSize
-              then { modifiers = (attrs.modifiers or [ ]) ++ [ "2" ]; }
-              else { };
+            let
+              withArrow =
+                if attrs ? arrowSize
+                then { modifiers = (attrs.modifiers or [ ]) ++ [ "2" ]; }
+                else { };
             in
             {
               device = "default";
@@ -84,11 +85,6 @@ in
     # Don't start by default (shows up on powertop as a hungry
     # process):
     systemd.user.services.gromit-mpx.Install.WantedBy = lib.mkForce [ ];
-
-    home.packages = [
-      (pkgs.writeScriptBin "gromit-mpx-toggle.sh"
-        (readFile ../../scripts/misc/gromit-mpx-toggle.sh))
-    ];
   };
 }
 

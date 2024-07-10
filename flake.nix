@@ -110,7 +110,7 @@
         network-scripts = inputs.network-scripts.overlay;
         nur = inputs.nur.overlay;
         oled-display = inputs.oled-display.overlay;
-        rofirc = self.inputs.superkey.overlays.rofirc;
+        superkey = self.inputs.superkey.overlays.superkey;
         tilde = import pkgs/overlay.nix { inherit inputs; };
         tmuxrc = inputs.tmuxrc.overlay;
         zshrc = inputs.zshrc.overlay;
