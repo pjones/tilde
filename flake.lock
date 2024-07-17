@@ -55,11 +55,11 @@
         "telega": "telega"
       },
       "locked": {
-        "lastModified": 1720715186,
-        "narHash": "sha256-NKIVNImL+dOMrJGA/KMPLfsD1xozHibw86WrHxiiM5M=",
+        "lastModified": 1721075074,
+        "narHash": "sha256-yX+dwAoT8vWNN9hx3QYCMWk1px4vQ64xl6QcPv0X7qk=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "1a2a9a4439e837cafa5de1f42164559c9ede3381",
+        "rev": "66b2a8248792b09278f2dd3b7719ec012f48b052",
         "type": "github"
       },
       "original": {
@@ -78,11 +78,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1688683856,
-        "narHash": "sha256-LXNrw5Bf22x5NaRpezA2yZB/S3NOOaM3dKvKPH7IT5Y=",
+        "lastModified": 1721088880,
+        "narHash": "sha256-aAkpeZobJ2PSl7cyYrUJTIfMDIc5O5CAf1IdWytfGio=",
         "owner": "pjones",
         "repo": "encryption-utils",
-        "rev": "730829f9dfa71f0dfca24a054f0592aa1c2ab2a6",
+        "rev": "0c54d06fccabb57a33c209d1cef05d31a6c1cade",
         "type": "github"
       },
       "original": {
@@ -512,11 +512,11 @@
         "waybar": "waybar"
       },
       "locked": {
-        "lastModified": 1720823523,
-        "narHash": "sha256-PQGyUxL/WqLk19b0I86VucLlFK/sBJBRPpjywYfoOUE=",
+        "lastModified": 1721250618,
+        "narHash": "sha256-cGtK27kjOOrLzde+BbHw5p5cYIkRd32vlhwP73KT1gw=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "784983f3223aa87fee850371e6e2828e010aa6b3",
+        "rev": "304e606ca04233aefbc60b1d50df2d416484e719",
         "type": "github"
       },
       "original": {
