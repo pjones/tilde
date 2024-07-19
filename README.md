@@ -21,6 +21,8 @@ running in an ephemeral virtual machine (`nix flake check`).
 
   * Monospace Font: [Hermit](https://pcaro.es/p/hermit/)
 
+  * Variable-spaced Font: [Atkinson Hyperlegible][hyperlegible]
+
   * Desktop: [SwayFX on Wayland][superkey]
 
 ## Try It Out
@@ -40,3 +42,4 @@ can be found in my [Wayland configuration][superkey].
 [home-manager]: https://github.com/rycee/home-manager
 [superkey]: https://github.com/pjones/superkey
 [emacs]: https://github.com/pjones/emacsrc
+[hyperlegible]: https://brailleinstitute.org/freefont
