@@ -30,6 +30,8 @@
   und (around lsft -)
   pls (around lsft =)
   tld (around lsft grv)
+  lcbr (around lsft [)
+  rcbr (around lsft ])
 
   ;; Font Resizing:
   cmn (around lctl -)
@@ -43,16 +45,7 @@
   ply playpause
 
   ;; Caps lock or media layer:
-  mcp (tap-hold-next-release 200 caps (layer-toggle media))
-
-  ;; Tap once for X twice for Y:
-  lprn (around lsft 9)
-  rprn (around lsft 0)
-  lcbr (around lsft [)
-  rcbr (around lsft ])
-  prn (multi-tap 200 @lprn @rprn)
-  cbr (multi-tap 200 @lcbr @rcbr)
-  brc (multi-tap 200 [ ]))
+  mcp (tap-hold-next-release 200 caps (layer-toggle media)))
 
 (deflayer qwerty
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
@@ -71,11 +64,11 @@
 )
 
 (deflayer lower
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    esc  _    _    @cpl @cmn @pls @und @sin _    |    _    _    _
-  _    cmp  _    del  @prn @cbr =    @brc _    _    cmp  _    _
-  _    _    _    _    _    grv  @tld -    _    _    \    _
-  _    _    _              _              _    _    _    _
+  stop _    _    _    _    _    _    _    _     [     ]    _    _    _
+  _    esc  _    _    @cpl @cmn _    @und @sin  _     |    _    _    _
+  _    _    _    del  cmp  bspc @pls =    _     _     _    _    _
+  _    _    _    _    _    grv  @tld -    @lcbr @rcbr \    _
+  _    _    _              _              _     _     _    _
 )
 
 (deflayer media
