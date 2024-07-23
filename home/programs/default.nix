@@ -14,7 +14,6 @@
     ./gromit-mpx.nix
     ./haskell.nix
     ./man.nix
-    ./mpd.nix
     ./oled-display.nix
     ./shells.nix
     ./ssh.nix

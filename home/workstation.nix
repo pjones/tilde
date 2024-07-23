@@ -19,7 +19,6 @@ in
   config = lib.mkIf cfg.enable {
     # Active some services/plugins:
     tilde.programs.man.enable = lib.mkDefault true;
-    tilde.programs.mpd.enable = lib.mkDefault true;
     tilde.programs.syncthing.enable = lib.mkDefault true;
 
     # A user service that prepares for suspend:

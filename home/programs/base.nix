@@ -60,12 +60,16 @@
         cdrkit # cdrecord, mkisofs, etc.
         ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video
         lame # A high quality MPEG Audio Layer III (MP3) encoder
-        moc # An ncurses console audio player designed to be powerful and easy to use
-        mpc_cli # A minimalist command line interface to MPD
-        mpg123 # Fast console MPEG Audio Player and decoder library
-        niv # Easy dependency management for Nix projects
         pandoc # Conversion between markup formats
         pass # Stores, retrieves, generates, and synchronizes passwords securely
+
+        # General-purpose media player, fork of MPlayer and mplayer2
+        (mpv.override {
+          scripts = with mpvScripts; [
+            mpris
+            sponsorblock
+          ];
+        })
       ] ++
       lib.optionals pkgs.stdenv.isLinux (with pkgs; [
         nixpkgs-fmt # Nix code formatter for nixpkgs
@@ -82,7 +86,6 @@
     # Packages to install on workstations with a GUI running:
     (lib.mkIf config.tilde.graphical.enable {
       home.packages = with pkgs; [
-        cantata # A graphical client for MPD
         cdparanoia # A tool and library for reading digital audio from CDs
         chromium # A wrapper around chromium:
         darktable # Virtual lighttable and darkroom for photographers
