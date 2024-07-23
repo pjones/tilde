@@ -29,9 +29,10 @@
     };
 
     tilde = {
+      workstation.type = "laptop";
       graphical.enable = true;
       programs.qmk.enable = true;
-      workstation.type = "laptop";
+      programs.android.enable = true;
     };
 
     home-manager.users.pjones = { ... }: {

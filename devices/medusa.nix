@@ -16,6 +16,7 @@
     tilde = {
       graphical.enable = true;
       programs.qmk.enable = true;
+      programs.android.enable = true;
 
       crontab = {
         image-import = {

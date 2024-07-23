@@ -8,6 +8,7 @@ let
 in
 {
   imports = [
+    programs/android.nix
     programs/qmk.nix
   ];
 
