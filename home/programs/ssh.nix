@@ -2,6 +2,11 @@
 let
   cfg = config.tilde.programs.ssh;
 
+
+  askpass = pkgs.writeShellScript "ssh-askpass-wrapper" ''
+    export WAYLAND_DISPLAY="$(systemctl --user show-environment | ${pkgs.gnused}/bin/sed 's/^WAYLAND_DISPLAY=\(.*\)/\1/; t; d')"
+    exec ${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass "$@"
+  '';
 in
 {
   options.tilde.programs.ssh = {
@@ -20,6 +25,10 @@ in
   config = lib.mkMerge [
     (lib.mkIf config.tilde.enable {
       services.ssh-agent.enable = true;
+      systemd.user.services.ssh-agent.Service.Environment = [
+        "SSH_ASKPASS=${askpass}"
+        "DISPLAY=fake" # required to make ssh-agent start $SSH_ASKPASS
+      ];
 
       programs.ssh = {
         enable = true;
