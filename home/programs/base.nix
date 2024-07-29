@@ -6,7 +6,6 @@
     # Packages to install on all systems:
     (lib.mkIf config.tilde.enable {
       home.packages = with pkgs; [
-        # beets (2020-04-24: broken) Music tagger and library organizer
         bc # GNU software calculator
         bind # For dig(1): Domain name server
         binutils # Tools for manipulating binaries (linker, assembler, etc.)
@@ -27,19 +26,15 @@
         openssh # An implementation of the SSH protocol
         openssl # A cryptographic library that implements the SSL and TLS protocols
         pjones.encryption-utils # Scripts for various encryption tasks
-        pjones.image-scripts # Scripts for working with images
         pjones.network-scripts # Scripts related to networking
         pwgen # Password generator which creates passwords which can be easily memorized by a human
         rdiff-backup # Backup system trying to combine best a mirror and an incremental backup system
-        ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
         rsync # A fast incremental file transfer utility
         tmux # Terminal multiplexer
         tree # Command to produce a depth indented directory listing
         unzip # An extraction utility for archives compressed in .zip format
-        vim # The most popular clone of the VI editor
         wget # Tool for retrieving files using HTTP, HTTPS, and FTP
         which # Shows the full path of (shell) commands
-        yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
         zip # Compressor/archiver for creating and modifying zipfiles
       ] ++
       lib.optionals pkgs.stdenv.isLinux (with pkgs; [
@@ -54,6 +49,7 @@
     # Packages to install on workstations:
     (lib.mkIf config.tilde.workstation.enable {
       home.packages = with pkgs; [
+        # beets (2020-04-24: broken) Music tagger and library organizer
         # pjones.vimeta
         abcde # Command-line audio CD ripper
         atomicparsley # A CLI program for reading, parsing and setting metadata into MPEG-4 files
@@ -62,6 +58,9 @@
         lame # A high quality MPEG Audio Layer III (MP3) encoder
         pandoc # Conversion between markup formats
         pass # Stores, retrieves, generates, and synchronizes passwords securely
+        pjones.image-scripts # Scripts for working with images
+        ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
+        yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
 
         # General-purpose media player, fork of MPlayer and mplayer2
         (mpv.override {

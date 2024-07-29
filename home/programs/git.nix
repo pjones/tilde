@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 
 {
-  config = lib.mkIf config.tilde.enable {
+  config = lib.mkIf config.tilde.workstation.enable {
     programs.git = {
       enable = true;
 
