@@ -117,12 +117,16 @@ in
         location.provider = "geoclue2";
         time.timeZone = lib.mkForce null;
 
+        # Sleeping:
+        systemd.sleep.extraConfig = ''
+          HibernateDelaySec=30m
+          SuspendEstimationSec=10m
+          SuspendState=mem
+        '';
+
         services.logind = {
           lidSwitch = "suspend-then-hibernate";
           lidSwitchExternalPower = "suspend-then-hibernate";
-          extraConfig = ''
-            HibernateDelaySec=30m
-          '';
         };
 
         # Useful services:
