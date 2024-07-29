@@ -27,7 +27,7 @@ in
       services.ssh-agent.enable = true;
       systemd.user.services.ssh-agent.Service.Environment = [
         "SSH_ASKPASS=${askpass}"
-        "DISPLAY=fake" # required to make ssh-agent start $SSH_ASKPASS
+        "DISPLAY=:0" # required to make ssh-agent start $SSH_ASKPASS
       ];
 
       programs.ssh = {
@@ -53,15 +53,24 @@ in
         '';
 
         matchBlocks =
-          let pmade = { port = 4; };
+          let
+            hosts = {
+              "kilgrave" = "kilgrave.private.pmade.com";
+              "ursula" = "ursula.private.pmade.com";
+              "medusa" = "medusa.private.pmade.com";
+              "jekyll" = "jekyll.private.pmade.com";
+              "code.devalot.com" = "ursula.private.pmade.com";
+            };
+
+            blocks = lib.mapAttrs
+              (name: value: {
+                hostname = value;
+              })
+              hosts;
           in
-          {
-            "*.pmade.com" = pmade;
-            "*.devalot.com" = pmade;
-          } // lib.optionalAttrs cfg.haveRestrictedKeys {
+          blocks // lib.optionalAttrs cfg.haveRestrictedKeys {
             "webmaster.ursula.pmade.com" = {
-              inherit (pmade) port;
-              hostname = "10.11.12.3";
+              hostname = "ursula.private.pmade.com";
               user = "webmaster";
               identityFile = "${cfg.keysDir}/webmaster.id_ed25519";
             };
