@@ -42,15 +42,16 @@ let
     "widget.gtk.overlay-scrollbars.enabled" = false;
 
     # Privacy:
-    "privacy.donottrackheader.enabled" = true;
-    "privacy.trackingprotection.enabled" = true;
-    "privacy.trackingprotection.socialtracking.enabled" = true;
-    "network.trr.confirmation_telemetry_enabled" = false;
     "browser.newtabpage.activity-stream.feeds.telemetry" = false;
     "browser.newtabpage.activity-stream.telemetry" = false;
     "browser.newtabpage.activity-stream.telemetry.ut.events" = false;
     "browser.ping-centre.telemetry" = false;
     "browser.urlbar.eventTelemetry.enabled" = false;
+    "dom.private-attribution.submission.enabled" = false;
+    "network.trr.confirmation_telemetry_enabled" = false;
+    "privacy.donottrackheader.enabled" = true;
+    "privacy.trackingprotection.enabled" = true;
+    "privacy.trackingprotection.socialtracking.enabled" = true;
 
     # Force FF to use the user chrome CSS file:
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
