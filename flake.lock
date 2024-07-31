@@ -51,15 +51,14 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "passmm": "passmm",
         "telega": "telega"
       },
       "locked": {
-        "lastModified": 1722268436,
-        "narHash": "sha256-4mYsuKBwukUAjaugIxHrpBtxOM2sd5p8w9IS52wwVIc=",
+        "lastModified": 1722441265,
+        "narHash": "sha256-vmKPaNwmnXVkpHdNKSVJl0QH79G0pUoMsMfOghJMb+o=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "8ca252ea4b09e52e115773e01881aad9dedd543d",
+        "rev": "6ec40fea2e5bc99a68b6fdbbe864ebd8250e4369",
         "type": "github"
       },
       "original": {
@@ -428,22 +427,6 @@
         "type": "github"
       }
     },
-    "passmm": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1670182020,
-        "narHash": "sha256-VjRp0Cb8UEJMbxWXKvRW83tanc+O5jOCrnjD2WT2YOY=",
-        "owner": "pjones",
-        "repo": "passmm",
-        "rev": "66691e301dff476eaff7c6e817ed9df96d4404c8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pjones",
-        "repo": "passmm",
-        "type": "github"
-      }
-    },
     "rofirc": {
       "inputs": {
         "desktop-scripts": [
@@ -659,11 +642,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1699561844,
-        "narHash": "sha256-37YBLy/oiYrPuetJSbLd1NvoFFUZsqMwojFrS1efPQw=",
+        "lastModified": 1722357304,
+        "narHash": "sha256-z8p7+szRJAR53iBBATnhkjbHrofP8OxkNDUzPSMY/Ig=",
         "owner": "pjones",
         "repo": "zshrc",
-        "rev": "4722f3bc06502c47eecc700f301acc88f138831b",
+        "rev": "1ea245439a5b8636bdd766f1250c0f2a89bdeb2f",
         "type": "github"
       },
       "original": {
