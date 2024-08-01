@@ -495,11 +495,11 @@
         "waybar": "waybar"
       },
       "locked": {
-        "lastModified": 1722270310,
-        "narHash": "sha256-1waV5APn+jnGmEJa7IWducDHjoyrvIDqxwrtb8yy998=",
+        "lastModified": 1722532549,
+        "narHash": "sha256-L21JxHffYd1FjN0LuDg+QNjslYLTnc1GSzr6dPQDO3E=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "54ddb932d969f5b1888c8ec2a04a318f09507154",
+        "rev": "97821b29ebdd4a3bf2c5c396a348cb744dd87147",
         "type": "github"
       },
       "original": {

@@ -10,6 +10,12 @@ let
 in
 {
   options.tilde.programs.ssh = {
+    askpass = lib.mkOption {
+      type = lib.types.path;
+      default = askpass;
+      description = "Path to a script to use as ssh-askpass";
+    };
+
     keysDir = lib.mkOption {
       type = lib.types.str;
       default = "~/.ssh";
@@ -26,7 +32,7 @@ in
     (lib.mkIf config.tilde.enable {
       services.ssh-agent.enable = true;
       systemd.user.services.ssh-agent.Service.Environment = [
-        "SSH_ASKPASS=${askpass}"
+        "SSH_ASKPASS=${cfg.askpass}"
         "DISPLAY=:0" # required to make ssh-agent start $SSH_ASKPASS
       ];
 
