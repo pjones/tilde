@@ -30,12 +30,21 @@ in
 
   config = lib.mkMerge [
     (lib.mkIf config.tilde.enable {
+
+      # Agent config:
       services.ssh-agent.enable = true;
+
       systemd.user.services.ssh-agent.Service.Environment = [
         "SSH_ASKPASS=${cfg.askpass}"
         "DISPLAY=:0" # required to make ssh-agent start $SSH_ASKPASS
       ];
 
+      home.sessionVariables = {
+        SSH_ASKPASS = cfg.askpass;
+        SSH_ASKPASS_REQUIRE = "prefer";
+      };
+
+      # SSH config:
       programs.ssh = {
         enable = true;
 

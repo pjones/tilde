@@ -15,9 +15,6 @@ in
     # Enabling an graphical also enables workstation settings:
     tilde.workstation.enable = true;
 
-    # Tell superkey to use ssh-askpass:
-    superkey.sway.agents.ssh-askpass = config.tilde.programs.ssh.askpass;
-
     # Enable other graphical modules:
     tilde.programs.browser.enable = lib.mkDefault true;
     tilde.programs.contacts.enable = lib.mkDefault true;
