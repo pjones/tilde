@@ -157,6 +157,12 @@ in
         set hintchars 1234567890
         set hintfiltermode vimperator-reflow
 
+
+        " Org-capture:
+        command org-capture js location.href='org-protocol://capture?' + new URLSearchParams({template: 'p', url: window.location.href, title: document.title, body: window.getSelection()});
+        command org-store-link js location.href='org-protocol://store-link?' + new URLSearchParams({url:location.href, title:document.title});
+
+        unbind q
         unbind g
         unbind l
         unbind w
@@ -166,7 +172,7 @@ in
         unbindurl beeline.com --mode=input <Tab>
 
         bind <C-c><A-w> clipboard yank
-        bind <C-u><C-c><A-w> clipboard yankmd
+        bind <C-u><C-c><A-w> clipboard yankorg
 
         bind <C-c>lc hint -p
         bind <C-c>lw hint -y
@@ -204,6 +210,10 @@ in
         ${bindGlobal "<C-x><C-v> current_url open"}
         ${bindGlobal "<C-x>b fillcmdline buffer"}
         ${bindGlobal "<C-x>k tabclose"}
+
+        " Close the current tab:
+        bind q tabclose
+        bind <A-Backspace> tabclose
 
         set searchurls.az https://smile.amazon.com/s?k=%s&ref=nb_sb_noss
         set searchurls.dd https://duckduckgo.com/?q=%s
