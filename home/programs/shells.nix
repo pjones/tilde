@@ -20,10 +20,15 @@ in
       '';
     };
 
+    programs.bash = {
+      enable = true;
+      bashrcExtra = ''
+        source ${bashrc}/share/bashrc
+      '';
+    };
+
     home.file = {
-      # Bash
-      ".bashrc".source = "${bashrc}/share/bashrc";
-      ".bash_profile".source = "${bashrc}/share/bash_profile";
+      # Line editing:
       ".inputrc".source = "${bashrc}/share/inputrc";
 
       # tmux: (sort of like a shell :)
