@@ -22,7 +22,7 @@ case "$desktop" in
   browser-app "https://messages.google.com/web/conversations" &
   browser-app "https://bsky.app/" &
   browser-app "https://hostux.social/" &
-  browser-app "http://10.11.12.1:8081/unread" &
+  browser-app "https://rss.jonesbunch.com/unread" &
   ;;
 
 *RFA1)
