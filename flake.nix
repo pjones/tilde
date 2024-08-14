@@ -47,9 +47,6 @@
     tmuxrc.url = "github:pjones/tmuxrc";
     tmuxrc.inputs.nixpkgs.follows = "nixpkgs";
 
-    wsl.url = "github:nix-community/NixOS-WSL";
-    wsl.inputs.nixpkgs.follows = "nixpkgs";
-
     zshrc.url = "github:pjones/zshrc";
     zshrc.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -78,9 +75,8 @@
       ];
 
       hosts = [
-        "jekyll"
         "kilgrave"
-        "medusa"
+        "sid"
         "ursula"
       ];
 
@@ -185,16 +181,6 @@
             self.inputs.superkey.nixosModules.autologin
             self.inputs.superkey.nixosModules.qemu-sway
             ./test/demo.nix
-          ];
-        };
-
-        hyde = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            { nixpkgs.pkgs = nixpkgsFor.x86_64-linux; }
-            inputs.wsl.nixosModules.wsl
-            self.nixosModules.tilde
-            ./devices/hyde.nix
           ];
         };
       };

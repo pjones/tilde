@@ -72,8 +72,7 @@ in
             hosts = {
               "kilgrave" = "kilgrave.private.pmade.com";
               "ursula" = "ursula.private.pmade.com";
-              "medusa" = "medusa.private.pmade.com";
-              "jekyll" = "jekyll.private.pmade.com";
+              "sid" = "sid.private.pmade.com";
               "code.devalot.com" = "ursula.private.pmade.com";
             };
 
