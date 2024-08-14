@@ -170,11 +170,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1639591967,
-        "narHash": "sha256-SionL7WLZ4i6JICT+w5G1LjoujDKBoa30VeQE54Y/SI=",
+        "lastModified": 1723669901,
+        "narHash": "sha256-IRdpUvMABtU6h+8DFDo/zRA0kM+Qsgmo7Tacc/+L58w=",
         "owner": "pjones",
         "repo": "image-scripts",
-        "rev": "da72784f3aa86d6058f071af63b6c64d526bf7d0",
+        "rev": "f2dc1b01ae76b18a3003cdcf4118a81dabdf4898",
         "type": "github"
       },
       "original": {
