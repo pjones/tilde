@@ -11,5 +11,9 @@
 
   config = {
     networking.hostName = "ursula";
+
+    home-manager.users.pjones = { ... }: {
+      tilde.programs.syncthing.enable = true;
+    };
   };
 }
