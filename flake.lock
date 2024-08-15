@@ -460,11 +460,11 @@
         "waybar": "waybar"
       },
       "locked": {
-        "lastModified": 1723659506,
-        "narHash": "sha256-FsUXW/xBYynRhZIbjqtQg8HQdgAEGJhj7mpODUldh9M=",
+        "lastModified": 1723751007,
+        "narHash": "sha256-UTV7MQimKSwRkSDvRW07Oo+KDTvjxSFQ1e91O2UbchI=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "0a9c2e3284f12369d1c8644d92f2b47e21f13278",
+        "rev": "85abd92f32ff9d2ad215006702244b4ca9014f4a",
         "type": "github"
       },
       "original": {
