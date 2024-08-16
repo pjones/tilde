@@ -96,11 +96,8 @@ in
           };
         };
 
-        programs.zsh = {
-          enable = true;
-          enableCompletion = true;
-          syntaxHighlighting.enable = true;
-        };
+        # This is needed to use ZSH as a login shell:
+        programs.zsh.enable = true;
 
         # A group just for me:
         users.groups.${cfg.username} = { };
