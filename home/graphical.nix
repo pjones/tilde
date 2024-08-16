@@ -75,13 +75,19 @@ in
         categories = [ "Application" ];
       };
 
-      ssh-add-all = {
-        name = "Add All SSH Keys to the Agent";
-        exec = "${pkgs.pjones.network-scripts}/bin/ssh-add-all-keys";
-        icon = "document-open";
-        terminal = false;
-        categories = [ "Application" ];
-      };
+      add-deploy-key =
+        let
+          script = pkgs.writeShellScript "ssh-add-deploy" ''
+            ${pkgs.openssh}/bin/ssh-add ~/keys/ssh/deploy.id_ed25519
+          '';
+        in
+        {
+          name = "SSH: Add Deployment Key";
+          exec = "${script}";
+          icon = "document-open";
+          terminal = false;
+          categories = [ "Application" ];
+        };
     };
 
     xdg.mimeApps = {
