@@ -21,7 +21,7 @@ case "$desktop" in
   e &
   browser-app "https://messages.google.com/web/conversations" &
   browser-app "https://bsky.app/" &
-  browser-app "https://hostux.social/" &
+  browser-app "https://emacs.ch/" &
   browser-app "https://rss.jonesbunch.com/unread" &
   ;;
 
