@@ -64,4 +64,12 @@ bookmarks_emacs() {
 }
 
 ################################################################################
+personal_dictionary() {
+  local dict=$HOME/.config/enchant/en_US.dic
+  local share=$destination/en_US.dic
+  safe_link_file "$dict" "$share"
+}
+
+################################################################################
 bookmarks_emacs
+personal_dictionary
