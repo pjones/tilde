@@ -6,6 +6,8 @@ let
 
   atuinCfg = pkgs.writers.writeTOML "atuin.toml" {
     style = "compact";
+    enter_accept = true;
+    keymap_cursor.emacs = "blink-bar";
   };
 in
 {
