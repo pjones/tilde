@@ -226,6 +226,26 @@
         "type": "github"
       }
     },
+    "mediarc": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1724280572,
+        "narHash": "sha256-s7sCTp355NZsgJOLI0g4orYW1NRO/tnFFaTTGGl1kvc=",
+        "owner": "pjones",
+        "repo": "mediarc",
+        "rev": "04d49e865b5c713a75a50af4f09507cc6ca10905",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pjones",
+        "repo": "mediarc",
+        "type": "github"
+      }
+    },
     "network-scripts": {
       "inputs": {
         "nixpkgs": [
@@ -509,6 +529,7 @@
         "image-scripts": "image-scripts",
         "kmonad": "kmonad",
         "maintenance-scripts": "maintenance-scripts",
+        "mediarc": "mediarc",
         "network-scripts": "network-scripts",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",

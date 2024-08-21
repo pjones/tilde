@@ -39,6 +39,9 @@
     maintenance-scripts.url = "github:pjones/maintenance-scripts";
     maintenance-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
+    mediarc.url = "github:pjones/mediarc";
+    mediarc.inputs.nixpkgs.follows = "nixpkgs";
+
     network-scripts.url = "github:pjones/network-scripts";
     network-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -103,6 +106,7 @@
         encryption-utils = inputs.encryption-utils.overlay;
         image-scripts = inputs.image-scripts.overlay;
         maintenance-scripts = inputs.maintenance-scripts.overlay;
+        mediarc = inputs.mediarc.overlays.mediarc;
         network-scripts = inputs.network-scripts.overlay;
         nur = inputs.nur.overlay;
         oled-display = inputs.oled-display.overlay;

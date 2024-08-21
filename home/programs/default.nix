@@ -5,6 +5,7 @@
 {
   imports = [
     ./base.nix
+    ./beets.nix
     ./browser.nix
     ./contacts.nix
     ./direnv.nix

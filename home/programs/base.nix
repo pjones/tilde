@@ -49,7 +49,6 @@
     # Packages to install on workstations:
     (lib.mkIf config.tilde.workstation.enable {
       home.packages = with pkgs; [
-        # beets (2020-04-24: broken) Music tagger and library organizer
         # pjones.vimeta
         abcde # Command-line audio CD ripper
         atomicparsley # A CLI program for reading, parsing and setting metadata into MPEG-4 files
