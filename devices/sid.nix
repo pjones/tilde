@@ -38,7 +38,7 @@
         image-import = {
           schedule = "*-*-* 00/4:15:00";
           path = [ pkgs.pjones.image-scripts ];
-          script = "image-import -v";
+          script = "image-import";
         };
       };
     };

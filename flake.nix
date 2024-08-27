@@ -104,7 +104,7 @@
         bashrc = inputs.bashrc.overlay;
         desktop-scripts = self.inputs.desktop-scripts.overlays.desktop-scripts;
         encryption-utils = inputs.encryption-utils.overlay;
-        image-scripts = inputs.image-scripts.overlay;
+        image-scripts = inputs.image-scripts.overlays.default;
         maintenance-scripts = inputs.maintenance-scripts.overlay;
         mediarc = inputs.mediarc.overlays.mediarc;
         network-scripts = inputs.network-scripts.overlay;

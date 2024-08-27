@@ -173,11 +173,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1723669901,
-        "narHash": "sha256-IRdpUvMABtU6h+8DFDo/zRA0kM+Qsgmo7Tacc/+L58w=",
+        "lastModified": 1724789897,
+        "narHash": "sha256-qr5I7KbshsTo1lztlXuR5DKsTGp/WdTlFu/D2OEZ/U0=",
         "owner": "pjones",
         "repo": "image-scripts",
-        "rev": "f2dc1b01ae76b18a3003cdcf4118a81dabdf4898",
+        "rev": "f5fabcf56481a28ebc2a27031e2c3ab22c2716bf",
         "type": "github"
       },
       "original": {
@@ -560,11 +560,11 @@
         "waybar": "waybar"
       },
       "locked": {
-        "lastModified": 1724258925,
-        "narHash": "sha256-tsBVPxPEi5fGOaG1bZL20uuZDADgmgQRV0eEGIawiEg=",
+        "lastModified": 1724784895,
+        "narHash": "sha256-4rf1nhReCKs9uS0ySktgHrZdc3PXqNYRrtTHND9FDNI=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "b10dbe2099223ffe2a3e43cb608fef20f4f380b3",
+        "rev": "b793f10a373b9352589b04a2cd33a731c718be67",
         "type": "github"
       },
       "original": {
