@@ -13,15 +13,12 @@ case "$desktop" in
   e &
   "$(dirname "$0")/memento-mori.sh" &
   browser-app "https://app.fastmail.com/calendar/month" &
-  browser-app "https://home.jonesbunch.com/" &
-  browser-app "https://ground.news/" &
   ;;
 
 *Social)
   e &
   browser-app "https://messages.google.com/web/conversations" &
-  browser-app "https://bsky.app/" &
-  browser-app "https://emacs.ch/" &
+  browser-app "https://fosstodon.org/" &
   browser-app "https://rss.jonesbunch.com/unread" &
   ;;
 
