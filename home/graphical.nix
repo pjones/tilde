@@ -34,7 +34,7 @@ in
       enable = true;
       homedir = "${config.home.homeDirectory}/keys/gpg";
       settings = {
-        default-key = "204284CB";
+        default-key = "4D0CD0756F1B8B9D3DCD0CAAE1CF584F79D0D3DC";
         default-recipient-self = true;
       };
     };

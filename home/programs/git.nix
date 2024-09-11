@@ -9,7 +9,7 @@
       userEmail = "pjones@devalot.com";
 
       signing = {
-        key = "204284CB";
+        key = config.programs.gpg.settings.default-key;
         signByDefault = true;
       };
 
