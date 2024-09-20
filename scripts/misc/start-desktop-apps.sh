@@ -22,16 +22,6 @@ case "$desktop" in
   browser-app "https://rss.jonesbunch.com/unread" &
   ;;
 
-*RFA1)
-  e &
-  browser "https://code.rfa.sc.gov/" &
-  ;;
-
-*RFA2)
-  browser-app "https://chat.rfa.sc.gov" &
-  browser-app "https://outlook.office.com" &
-  ;;
-
 *)
   e &
   ;;

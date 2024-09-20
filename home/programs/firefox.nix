@@ -167,10 +167,6 @@ in
         unbind l
         unbind w
 
-        " Allow the tab key to pass through some sites:
-        unbindurl chat.rfa.sc.gov --mode=input <Tab>
-        unbindurl beeline.com --mode=input <Tab>
-
         bind <C-c><A-w> clipboard yank
         bind <C-u><C-c><A-w> clipboard yankorg
 
