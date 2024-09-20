@@ -159,6 +159,7 @@ in
 
         " Org-capture:
         command org-capture js location.href='org-protocol://capture?' + new URLSearchParams({template: 'p', url: window.location.href, title: document.title, body: window.getSelection()});
+        command org-bibliography js location.href='org-protocol://capture?' + new URLSearchParams({template: 'b', url: window.location.href, title: document.title, force: t});
         command org-store-link js location.href='org-protocol://store-link?' + new URLSearchParams({url:location.href, title:document.title});
 
         unbind q
