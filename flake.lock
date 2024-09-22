@@ -57,11 +57,11 @@
         "telega": "telega"
       },
       "locked": {
-        "lastModified": 1726088260,
-        "narHash": "sha256-pucvV3NA+K/qPeTXKoY+RyQnKGTm/njxpgiTf+Jfh8A=",
+        "lastModified": 1726865482,
+        "narHash": "sha256-jS+zLlZkvTh2fM3EBy4KkmX3ZrH8BJi53gD9avjzjhs=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "7e966bb5c623e5466c9f6a03ab3e94d7eae40fcc",
+        "rev": "ef40a8cef36c6d79bd754f64114ec668b69b2141",
         "type": "github"
       },
       "original": {
@@ -152,11 +152,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1725703823,
-        "narHash": "sha256-tDgM4d8mLK0Hd6YMB2w1BqMto1XBXADOzPEaLl10VI4=",
+        "lastModified": 1726989464,
+        "narHash": "sha256-Vl+WVTJwutXkimwGprnEtXc/s/s8sMuXzqXaspIGlwM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "208df2e558b73b6a1f0faec98493cb59a25f62ba",
+        "rev": "2f23fa308a7c067e52dfcc30a0758f47043ec176",
         "type": "github"
       },
       "original": {
@@ -337,11 +337,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1725930920,
-        "narHash": "sha256-RVhD9hnlTT2nJzPHlAqrWqCkA7T6CYrP41IoVRkciZM=",
+        "lastModified": 1726838390,
+        "narHash": "sha256-NmcVhGElxDbmEWzgXsyAjlRhUus/nEqPC5So7BOJLUM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "44a71ff39c182edaf25a7ace5c9454e7cba2c658",
+        "rev": "944b2aea7f0a2d7c79f72468106bc5510cbf5101",
         "type": "github"
       },
       "original": {
@@ -385,11 +385,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1726086712,
-        "narHash": "sha256-T2H3aPjBBSP/gOr2sNGgD5ZBz68BqIGXLcZgQSyB2h4=",
+        "lastModified": 1727017850,
+        "narHash": "sha256-C361iPL0hyKNbCRpkU4MbaoGCN2Z1Tc3dqfO/0sbnKk=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "3ef0b1308208644aafdaa7ea25efa35a40ef1933",
+        "rev": "d65b8378613424be887a23730febc25a7a06c337",
         "type": "github"
       },
       "original": {
@@ -440,11 +440,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1724256429,
-        "narHash": "sha256-CU8+WzE3z1SM+jHJoNOTJHRt3RRaGeWlYYOVX5Ypgdc=",
+        "lastModified": 1724258487,
+        "narHash": "sha256-zgL0siyTsiyFA+qfcjhjoBPQ97aLPV6181gOyIg22Z0=",
         "owner": "pjones",
         "repo": "org-clock-dbus",
-        "rev": "3b717467e3d0833ab143518dff6b93271592a9e1",
+        "rev": "c9dfddc3f9c730d34150fdd79618b74196a40f00",
         "type": "github"
       },
       "original": {
@@ -560,11 +560,11 @@
         "waybar": "waybar"
       },
       "locked": {
-        "lastModified": 1726088154,
-        "narHash": "sha256-1vE0fNY3Bu8DCgwFkkY5kwMWuf6jt9uLxzCuB6lp60k=",
+        "lastModified": 1726856997,
+        "narHash": "sha256-q4sDAdD0UDs0dcEVvmngTVnJXsxTc09bmKsoRTmwwZQ=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "132f447f8be2a1248c85b0e069c1359662da9d49",
+        "rev": "ada7b3043ea5c183b2bc584bcd61991ecb5674d9",
         "type": "github"
       },
       "original": {
