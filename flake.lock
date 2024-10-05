@@ -27,12 +27,12 @@
         ]
       },
       "locked": {
+        "dirtyRev": "70be24803b3ae94c1bb9db5a9001e2b34d0897c6-dirty",
+        "dirtyShortRev": "70be248-dirty",
         "lastModified": 1723842741,
-        "narHash": "sha256-j2V57wPXZsg/rn3MmT6PmEr+/bILq1uVirJnogo83Gg=",
-        "owner": "pjones",
-        "repo": "desktop-scripts",
-        "rev": "70be24803b3ae94c1bb9db5a9001e2b34d0897c6",
-        "type": "github"
+        "narHash": "sha256-ThqIALaZ89I8+u2wgJjYaf7euV4E46h+yhA9u8j24Bw=",
+        "type": "git",
+        "url": "file:///home/pjones/src/rc/desktop-scripts"
       },
       "original": {
         "owner": "pjones",
@@ -560,11 +560,11 @@
         "waybar": "waybar"
       },
       "locked": {
-        "lastModified": 1726856997,
-        "narHash": "sha256-q4sDAdD0UDs0dcEVvmngTVnJXsxTc09bmKsoRTmwwZQ=",
+        "lastModified": 1728134505,
+        "narHash": "sha256-bp49n5Agn0WbmQaSlhxkgeIvSuE88dwwigFQN/X30Dc=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "ada7b3043ea5c183b2bc584bcd61991ecb5674d9",
+        "rev": "6fd390495778e72b6d26e4cd968f89ef2833e161",
         "type": "github"
       },
       "original": {

@@ -89,6 +89,7 @@
         darktable # Virtual lighttable and darkroom for photographers
         dia # Gnome Diagram drawing software
         digikam # Photo Management Program
+        evince # GNOME's document viewer
         gdal # Translator library for raster geospatial data formats
         gimp # The GNU Image Manipulation Program
         handbrake # A tool for converting video files and ripping DVDs
