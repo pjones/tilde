@@ -53,15 +53,14 @@
         ],
         "org-capture-ref": "org-capture-ref",
         "org-clock-dbus": "org-clock-dbus",
-        "persid": "persid",
-        "telega": "telega"
+        "persid": "persid"
       },
       "locked": {
-        "lastModified": 1726865482,
-        "narHash": "sha256-jS+zLlZkvTh2fM3EBy4KkmX3ZrH8BJi53gD9avjzjhs=",
+        "lastModified": 1728134217,
+        "narHash": "sha256-4I7Zn7t3NFujcQUlpezG95n2cgFo/jv2bhBWx+E7mLo=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "ef40a8cef36c6d79bd754f64114ec668b69b2141",
+        "rev": "c8af494f1fc4a4efc71b0892a9a5fe38759d9237",
         "type": "github"
       },
       "original": {
@@ -560,11 +559,11 @@
         "waybar": "waybar"
       },
       "locked": {
-        "lastModified": 1728134505,
-        "narHash": "sha256-bp49n5Agn0WbmQaSlhxkgeIvSuE88dwwigFQN/X30Dc=",
+        "lastModified": 1728470929,
+        "narHash": "sha256-gL6JLb3Vgfu6KmDSOY+W5TxCnTQ2hdDqCXJKGO8yzEQ=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "6fd390495778e72b6d26e4cd968f89ef2833e161",
+        "rev": "11cb52dc60b5b31301d1570167d5798d8154617e",
         "type": "github"
       },
       "original": {
@@ -587,23 +586,6 @@
         "owner": "pjones",
         "ref": "pjones/swap",
         "repo": "sway-easyfocus",
-        "type": "github"
-      }
-    },
-    "telega": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1715276147,
-        "narHash": "sha256-Fpcta1oyuE95ysHnTRFnoaFBp1bnQkmc9ko92gRhKVs=",
-        "owner": "zevlg",
-        "repo": "telega.el",
-        "rev": "99477b075f4032a49283d730e909a26f11606ee5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zevlg",
-        "repo": "telega.el",
-        "rev": "99477b075f4032a49283d730e909a26f11606ee5",
         "type": "github"
       }
     },
