@@ -17,9 +17,8 @@ case "$desktop" in
 
 *Social)
   e &
-  browser-app "https://messages.google.com/web/conversations" &
+  browser-app "https://discord.com/channels/688750797378682946/689772813481279547" &
   browser-app "https://fosstodon.org/" &
-  browser-app "https://rss.jonesbunch.com/unread" &
   ;;
 
 *)
