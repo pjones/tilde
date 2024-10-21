@@ -88,7 +88,7 @@ in
           drivers =
             lib.optional
               pkgs.stdenv.isx86_64
-              pkgs.canon-cups-ufr2;
+              pkgs.cups-kyodialog;
         };
 
         virtualisation = {
