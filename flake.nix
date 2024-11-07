@@ -45,8 +45,6 @@
     network-scripts.url = "github:pjones/network-scripts";
     network-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
-    oled-display.url = "github:pjones/oled-display";
-
     tmuxrc.url = "github:pjones/tmuxrc";
     tmuxrc.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -109,7 +107,6 @@
         mediarc = inputs.mediarc.overlays.mediarc;
         network-scripts = inputs.network-scripts.overlay;
         nur = inputs.nur.overlay;
-        oled-display = inputs.oled-display.overlay;
         superkey = self.inputs.superkey.overlays.superkey;
         tilde = import pkgs/overlay.nix { inherit inputs; };
         tmuxrc = inputs.tmuxrc.overlay;

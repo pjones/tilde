@@ -46,7 +46,6 @@
     home-manager.users.pjones = { ... }: {
       tilde.programs.emacs.enable = true;
       tilde.programs.haskell.enable = true;
-      tilde.programs.oled-display.enable = false;
       tilde.programs.beets.enable = true;
 
       tilde.programs.ssh = {
