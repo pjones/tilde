@@ -18,8 +18,14 @@ in
 
   config = lib.mkIf cfg.enable {
     # Active some services/plugins:
-    tilde.programs.man.enable = lib.mkDefault true;
     tilde.programs.syncthing.enable = lib.mkDefault true;
+
+    # Install man pages:
+    programs = {
+      man.enable = true;
+      man.generateCaches = true;
+      info.enable = true;
+    };
 
     # A user service that prepares for suspend:
     systemd.user.services.onsuspend = {

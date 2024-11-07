@@ -255,7 +255,6 @@
           config = test test/config.nix;
           cron = test test/cron.nix;
           emacs = inputs.emacsrc.checks.${system}.default;
-          mandb = test test/mandb.nix;
           superkey-sway = inputs.superkey.checks.${system}.sway;
           superkey-greetd = inputs.superkey.checks.${system}.greetd;
         } // hostChecks);

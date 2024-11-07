@@ -46,6 +46,16 @@ in
           wirelesstools
         ];
 
+        # Install documentation and man pages:
+        documentation = {
+          enable = true;
+          man.enable = true;
+          info.enable = true;
+          doc.enable = true;
+          dev.enable = true;
+          man.generateCaches = true;
+        };
+
         # Default time zone:
         time.timeZone = lib.mkDefault "America/Phoenix";
         time.hardwareClockInLocalTime = true;
@@ -62,9 +72,6 @@ in
         # Useful services:
         hardware.bluetooth.enable = true;
         services.blueman.enable = lib.mkDefault true;
-
-        # Index system man pages:
-        documentation.man.generateCaches = true;
 
         # Local service discovery:
         services.avahi = {
