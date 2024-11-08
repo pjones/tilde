@@ -20,9 +20,6 @@ in
     tilde.programs.contacts.enable = lib.mkDefault true;
     tilde.programs.gromit-mpx.enable = lib.mkDefault true;
 
-    # tilde.programs.gtk.enable = lib.mkDefault true;
-    # tilde.programs.qt.enable = lib.mkDefault true;
-
     # Communicate with my phone:
     services.kdeconnect = {
       enable = true;
@@ -46,7 +43,7 @@ in
       defaultCacheTtlSsh = 14400;
       maxCacheTtl = 7200;
       maxCacheTtlSsh = 21600;
-      pinentryPackage = pkgs.pinentry-qt;
+      pinentryPackage = pkgs.pinentry-gtk2;
     };
 
     xdg.desktopEntries = {

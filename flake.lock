@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1730984205,
-        "narHash": "sha256-+ORelp2J5Hn5OmqlloZdl2y6kKeGHr6n/UxG3TlDpCU=",
+        "lastModified": 1731243141,
+        "narHash": "sha256-8mYt9b3bVmCw9XAb8ouao62xvQ5IS2eDEi2Hxtq3sQ4=",
         "owner": "pjones",
         "repo": "desktop-scripts",
-        "rev": "fc0ef4b298dda87cc3f6c6dfbf0462513f3bae97",
+        "rev": "f8c0c41758e4f1635f6f9b33557a1d1b4e9130fb",
         "type": "github"
       },
       "original": {
@@ -56,11 +56,11 @@
         "persid": "persid"
       },
       "locked": {
-        "lastModified": 1730971850,
-        "narHash": "sha256-3d1IzswTb1Plg6yWQwpNwN+YvxiF5lUS9nncksPQ4EY=",
+        "lastModified": 1730987800,
+        "narHash": "sha256-9JXEXQIr0cAqB54tU8gWw6X38qkLemAwpdplzJiDCrU=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "c1b685cfe0d39169b0cab4e7f02f32f7fee4ed90",
+        "rev": "9e6003ae54472933479700a537bb4be5c068d210",
         "type": "github"
       },
       "original": {
@@ -563,11 +563,11 @@
         "wpaperd": "wpaperd"
       },
       "locked": {
-        "lastModified": 1730984262,
-        "narHash": "sha256-sDxI+tdNGAkwIWgjgCWOjtSqgVD7r41EVeS3TDz6+yo=",
+        "lastModified": 1731243563,
+        "narHash": "sha256-pxbEWAXgILpZjeeF2E1RQcb8owi5lQyhE7xnkE4rFbQ=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "e1aac80cdd73f6c15c163d15460652b9fd018a10",
+        "rev": "b79d22f380a4c913cac6011ecbf69575f0bcef71",
         "type": "github"
       },
       "original": {
