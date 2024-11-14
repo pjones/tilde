@@ -43,7 +43,7 @@ in
       defaultCacheTtlSsh = 14400;
       maxCacheTtl = 7200;
       maxCacheTtlSsh = 21600;
-      pinentryPackage = pkgs.pinentry-gtk2;
+      pinentryPackage = pkgs.pinentry-qt;
     };
 
     xdg.desktopEntries = {
