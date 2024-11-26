@@ -76,6 +76,7 @@
       ];
 
       hosts = [
+        "falken"
         "kilgrave"
         "sid"
         "ursula"

@@ -4,6 +4,7 @@ let
 
   sshPubKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEXyxuLeosIPaFgV8M3JJlhk1vF/KTfNMnVrCtqH/aq0 sid"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKwxYPy97lzfVcrkLQ5gm1L7AhrvfUbXYbqiiP4tqNn4 falken"
   ];
 in
 {
