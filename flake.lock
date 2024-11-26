@@ -563,11 +563,11 @@
         "wpaperd": "wpaperd"
       },
       "locked": {
-        "lastModified": 1732107546,
-        "narHash": "sha256-AjGRmY+TCXapMiGk5U7fWgLcRvs8yn8yeyZjHR3ef9g=",
+        "lastModified": 1732633573,
+        "narHash": "sha256-himLmgaX/IVXMI6veufpeAKZIuzX2bfud2nc4347hOE=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "9c017794d219b18e714549415ee8dd1545b3c5b2",
+        "rev": "7db0f3ef67c5839277e486ccdf18ce51def508bf",
         "type": "github"
       },
       "original": {
