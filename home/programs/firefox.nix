@@ -88,14 +88,6 @@ in
         inherit settings extensions;
         name = "default";
         id = 0;
-
-        # https://mrotherguy.github.io/firefox-csshacks/
-        userChrome = ''
-          @import url(${pkgs.firefox-csshacks}/chrome/window_control_placeholder_support.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/icon_only_tabs.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/combined_tabs_and_main_toolbars.css);
-          @import url(${pkgs.firefox-csshacks}/chrome/loading_indicator_bouncing_line.css);
-        '';
       };
 
       # Site-specific browser configuration:
