@@ -27,7 +27,7 @@ pkgs.nixosTest {
         machine.succeed("chown ${user.name}:root ${user.home}/notes/bookmarks")
 
     with subtest("Verify home-manager installed config files"):
-        machine.wait_for_unit("home-manager-${user.name}.service")
+        machine.wait_for_unit("multi-user.target")
         machine.succeed("test -L ${user.home}/.config/emacs/init.el")
 
     with subtest("Verify activation script created some links"):

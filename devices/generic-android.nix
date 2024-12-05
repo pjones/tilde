@@ -3,7 +3,7 @@
 { pkgs, ... }:
 
 {
-  system.stateVersion = "20.03";
+  system.stateVersion = "24.11";
   environment.etcBackupExtension = ".backup";
   user.shell = "${pkgs.zsh}/bin/zsh";
   time.timeZone = "America/Phoenix";

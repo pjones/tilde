@@ -10,7 +10,7 @@ in
   ];
 
   config = {
-    system.stateVersion = "22.11";
+    system.stateVersion = "24.11";
     services.qemuGuest.enable = true;
 
     fileSystems."/" = {

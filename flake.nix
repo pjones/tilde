@@ -2,24 +2,24 @@
   description = "Peter's NixOS and Home Manager Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nur.url = "github:nix-community/NUR"; # https://nur.nix-community.org/
 
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     bashrc.url = "github:pjones/bashrc";
     bashrc.inputs.nixpkgs.follows = "nixpkgs";
 
-    desktop-scripts.url = "github:pjones/desktop-scripts";
+    desktop-scripts.url = "github:pjones/desktop-scripts/nixos-24.11";
     desktop-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
-    emacsrc.url = "github:pjones/emacsrc/nixos-24.05";
+    emacsrc.url = "github:pjones/emacsrc/nixos-24.11";
     emacsrc.inputs.nixpkgs.follows = "nixpkgs";
     emacsrc.inputs.home-manager.follows = "home-manager";
     emacsrc.inputs.desktop-scripts.follows = "desktop-scripts";
 
-    superkey.url = "github:pjones/superkey";
+    superkey.url = "github:pjones/superkey/nixos-24.11";
     superkey.inputs.nixpkgs.follows = "nixpkgs";
     superkey.inputs.home-manager.follows = "home-manager";
     superkey.inputs.emacsrc.follows = "emacsrc";
