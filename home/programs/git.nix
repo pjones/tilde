@@ -1,7 +1,56 @@
 { pkgs, config, lib, ... }:
 
+let
+  cfg = config.tilde.programs.git;
+
+  baseStatusDirectories = [
+    "$HOME/src"
+    "$HOME/notes"
+    "$HOME/.password-store"
+  ];
+
+  mgs = pkgs.writeShellApplication {
+    name = "mgs";
+    runtimeInputs = [ pkgs.mgitstatus ];
+    text = ''
+      directories=()
+    ''
+    + lib.concatMapStringsSep "\n"
+      (dir: ''if [ -d "${dir}" ]; then directories+=("${dir}"); fi'')
+      (baseStatusDirectories ++ cfg.extraStatusDirectories)
+    + "\n"
+    + ''
+      exec mgitstatus \
+        --no-ok \
+        --flatten \
+        "$@" "''${directories[@]}"
+    '';
+  };
+in
 {
-  config = lib.mkIf config.tilde.workstation.enable {
+  options.tilde.programs.git = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = config.tilde.workstation.enable;
+      description = "Enable Git configuration.";
+    };
+
+    extraStatusDirectories = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+      description = ''
+        List of directory to scan for Git repositories when checking
+        global Git status.
+      '';
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
+    home.packages = [
+      mgs
+      pkgs.mgitstatus
+    ];
+
     programs.git = {
       enable = true;
 
