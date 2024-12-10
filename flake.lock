@@ -49,6 +49,7 @@
         "home-manager": [
           "home-manager"
         ],
+        "nextflow-mode": "nextflow-mode",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -57,11 +58,11 @@
         "persid": "persid"
       },
       "locked": {
-        "lastModified": 1733401507,
-        "narHash": "sha256-fGlzGNbcAAsqhXDaJiZPOm1mnNiZo9Lg9UcZjAUHggQ=",
+        "lastModified": 1733819660,
+        "narHash": "sha256-kpcFLgEn8e+riIuS2KQuT/5yJ4PD6CY/02oyND5ya78=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "fc50062faa3f2958f1b7eaafa11439623cf21a21",
+        "rev": "cee9ac17b975fa3d9dc02439b5b5113effe432e9",
         "type": "github"
       },
       "original": {
@@ -263,6 +264,22 @@
       "original": {
         "owner": "pjones",
         "repo": "network-scripts",
+        "type": "github"
+      }
+    },
+    "nextflow-mode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1721759515,
+        "narHash": "sha256-0pifQD7CnCLqOOILhk2EBgAsTL4Tv0rkssDzuAueEDQ=",
+        "owner": "edmundmiller",
+        "repo": "nextflow-mode",
+        "rev": "9fc162fa0fea094a6451570c4380a1268f1921af",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edmundmiller",
+        "repo": "nextflow-mode",
         "type": "github"
       }
     },
