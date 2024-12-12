@@ -53,7 +53,9 @@
         abcde # Command-line audio CD ripper
         atomicparsley # A CLI program for reading, parsing and setting metadata into MPEG-4 files
         cdrkit # cdrecord, mkisofs, etc.
+        duckdb # Embeddable SQL OLAP Database Management System
         ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video
+        gdb # GNU Project debugger (so I have local documentation)
         lame # A high quality MPEG Audio Layer III (MP3) encoder
         pandoc # Conversion between markup formats
         pass # Stores, retrieves, generates, and synchronizes passwords securely
