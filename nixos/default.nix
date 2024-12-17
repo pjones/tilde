@@ -61,6 +61,10 @@ in
         # Basic security:
         networking.firewall.enable = true;
 
+        security.sudo.extraConfig = ''
+          Defaults insults
+        '';
+
         # I want firmware updates:
         hardware.enableRedistributableFirmware = true;
 
