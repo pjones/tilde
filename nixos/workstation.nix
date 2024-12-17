@@ -76,6 +76,7 @@ in
         # Local service discovery:
         services.avahi = {
           enable = true;
+          nssmdns4 = true;
           domainName = config.networking.domain;
         };
 
@@ -92,10 +93,20 @@ in
         # Printing:
         services.printing = {
           enable = true;
+          browsing = true;
+
           drivers =
             lib.optional
               pkgs.stdenv.isx86_64
               pkgs.cups-kyodialog;
+
+          browsedConf = ''
+            BrowseDNSSDSubTypes _cups,_print
+            BrowseLocalProtocols all
+            BrowseRemoteProtocols all
+            CreateIPPPrinterQueues All
+            BrowseProtocols all
+          '';
         };
 
         virtualisation = {
