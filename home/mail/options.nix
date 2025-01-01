@@ -91,6 +91,12 @@ let
         description = "Include this account in the msmtp configuration.";
       };
 
+      mbsync = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Include this account in the mbsync configuration.";
+      };
+
       imapServer = lib.mkOption {
         type = lib.types.submodule serverOptions;
         default = null;

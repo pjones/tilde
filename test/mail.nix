@@ -36,6 +36,14 @@ let
     main "$@"
   '';
 
+  mbsyncTest = pkgs.writeShellScript "mbsync-test" ''
+    set -eux
+    set -o pipefail
+
+    mkdir --parents ~/mail
+    mbsync --list-stores example.com-local
+  '';
+
   testMail = ''
     From: example@example.com
     To: other@example.com
@@ -69,6 +77,7 @@ pkgs.nixosTest {
       home-manager.users.${user.name} = { ... }: {
         tilde.mail = {
           enable = true;
+          mbsync.enable = true;
           msmtp.enable = true;
 
           accounts."example.com" = {
@@ -111,5 +120,8 @@ pkgs.nixosTest {
 
     with subtest("msmtp configuration"):
         machine.succeed("su - ${user.name} -c ${msmtpTest}")
+
+    with subtest("mbsync configuration"):
+        machine.succeed("su - ${user.name} -c ${mbsyncTest}")
   '';
 }

@@ -5,6 +5,7 @@ let
 in
 {
   imports = [
+    ./mbsync.nix
     ./msmtp.nix
   ];
 
