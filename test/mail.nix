@@ -16,6 +16,34 @@ let
 
     test "$domain" = "localhost"
   '';
+
+  msmtpTest = pkgs.writeShellScript "msmtp-test" ''
+    set -eux
+    set -o pipefail
+
+    send_msg() {
+      local from=$1
+      msmtp --pretend --from "$from" < ~/test.mail
+    }
+
+    main() {
+      test -e ~/.config/msmtp/config
+      test -e ~/test.mail
+      send_msg "buddy@example.com" | grep "account chosen by envelope"
+      send_msg "busted@localhost" | grep "falling back to default account"
+    }
+
+    main "$@"
+  '';
+
+  testMail = ''
+    From: example@example.com
+    To: other@example.com
+    Subject: An Email
+    Date: Wed Jan  1 02:00:11 PM CET 2025
+
+    Hey there!
+  '';
 in
 pkgs.nixosTest {
   name = "tilde-mail-test";
@@ -41,8 +69,11 @@ pkgs.nixosTest {
       home-manager.users.${user.name} = { ... }: {
         tilde.mail = {
           enable = true;
+          msmtp.enable = true;
 
           accounts."example.com" = {
+            default = true;
+
             imapServer = {
               hostname = "localhost";
               username = "example";
@@ -55,12 +86,17 @@ pkgs.nixosTest {
               passwordCmd = "echo password";
             };
 
-            domains."example.com".mailboxes = [
-              "example"
-              "other"
-            ];
+            domains."example.com" = {
+              default = true;
+              mailboxes = [
+                "example"
+                "other"
+              ];
+            };
           };
         };
+
+        home.file."test.mail".text = testMail;
       };
     };
   };
@@ -72,5 +108,8 @@ pkgs.nixosTest {
 
     with subtest("Mail configuration"):
         machine.succeed("su - ${user.name} -c ${mailCfgTest}")
+
+    with subtest("msmtp configuration"):
+        machine.succeed("su - ${user.name} -c ${msmtpTest}")
   '';
 }

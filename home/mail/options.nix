@@ -52,6 +52,12 @@ let
         default = name;
       };
 
+      default = lib.mkEnableOption ''
+        Exactly one domain should be marked as the default domain.
+        The first mailbox given will be used with the domain to
+        generate the default email address.
+      '';
+
       mailboxes = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];
@@ -72,6 +78,17 @@ let
       name = lib.mkOption {
         type = lib.types.str;
         default = name;
+      };
+
+      default = lib.mkEnableOption ''
+        Mark this account as the default account.  Exactly one account
+        must be the default.
+      '';
+
+      msmtp = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Include this account in the msmtp configuration.";
       };
 
       imapServer = lib.mkOption {
