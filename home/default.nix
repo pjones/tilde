@@ -7,6 +7,7 @@
 {
   imports = [
     ./graphical.nix
+    ./mail
     ./programs
     ./workstation.nix
   ];
