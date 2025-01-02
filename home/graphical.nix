@@ -18,32 +18,13 @@ in
     # Enable other graphical modules:
     tilde.programs.browser.enable = lib.mkDefault true;
     tilde.programs.contacts.enable = lib.mkDefault true;
+    tilde.programs.gnupg.enable = lib.mkDefault true;
     tilde.programs.gromit-mpx.enable = lib.mkDefault true;
 
     # Communicate with my phone:
     services.kdeconnect = {
       enable = true;
       indicator = true;
-    };
-
-    # Use GnuPG and cache passphrases:
-    programs.gpg = {
-      enable = true;
-      homedir = "${config.home.homeDirectory}/keys/gpg";
-      settings = {
-        default-key = "4D0CD0756F1B8B9D3DCD0CAAE1CF584F79D0D3DC";
-        default-recipient-self = true;
-      };
-    };
-
-    services.gpg-agent = {
-      enable = true;
-      enableSshSupport = false;
-      defaultCacheTtl = 3600;
-      defaultCacheTtlSsh = 14400;
-      maxCacheTtl = 7200;
-      maxCacheTtlSsh = 21600;
-      pinentryPackage = pkgs.pinentry-qt;
     };
 
     xdg.desktopEntries = {

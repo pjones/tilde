@@ -44,6 +44,21 @@ let
     mbsync --list-stores example.com-local
   '';
 
+  imapnotifyTest = pkgs.writeShellScript "imapnotify-test" ''
+    set -eux
+    set -o pipefail
+
+    test -e ~/.config/tilde/mail.json
+
+    host=$(
+      jq --raw-output \
+        '.configurations[] | .host' \
+      <~/.config/goimapnotify/goimapnotify.yaml
+    )
+
+    test "$host" = "localhost"
+  '';
+
   testMail = ''
     From: example@example.com
     To: other@example.com
@@ -77,6 +92,7 @@ pkgs.nixosTest {
       home-manager.users.${user.name} = { ... }: {
         tilde.mail = {
           enable = true;
+          imapnotify.enable = true;
           mbsync.enable = true;
           msmtp.enable = true;
 
@@ -123,5 +139,8 @@ pkgs.nixosTest {
 
     with subtest("mbsync configuration"):
         machine.succeed("su - ${user.name} -c ${mbsyncTest}")
+
+    with subtest("imapnotify configuration"):
+        machine.succeed("su - ${user.name} -c ${imapnotifyTest}")
   '';
 }

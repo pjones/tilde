@@ -29,15 +29,6 @@ let
     '';
   };
 
-  cardIsUnlocked = pkgs.writeShellApplication {
-    name = "card-is-unlocked";
-    runtimeInputs = [ config.programs.gpg.package ];
-    text = ''
-      echo "test" |
-        gpg2 --sign --armor --quiet --batch --no-tty --pinentry-mode error -o /dev/null
-    '';
-  };
-
   vdirsyncerConf = ''
     [general]
     status_path = "${config.xdg.dataHome}/vdirsyncer/status"
@@ -93,7 +84,7 @@ in
       Service = {
         Type = "oneshot";
         Environment = [ "GNUPGHOME=${config.programs.gpg.homedir}" ];
-        ExecCondition = "${cardIsUnlocked}/bin/card-is-unlocked";
+        ExecCondition = "${config.tilde.programs.gnupg.cardIsUnlockedScript}";
         ExecStart =
           let vdirsyncer = "${pkgs.vdirsyncer}/bin/vdirsyncer";
           in [

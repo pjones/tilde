@@ -12,6 +12,7 @@
     ./emacs.nix
     ./firefox.nix
     ./git.nix
+    ./gnupg.nix
     ./gromit-mpx.nix
     ./haskell.nix
     ./shells.nix
