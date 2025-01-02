@@ -59,6 +59,13 @@ let
     test "$host" = "localhost"
   '';
 
+  muTest = pkgs.writeShellScript "mu-test" ''
+    set -eux
+    set -o pipefail
+
+    test -d ~/.cache/mu
+  '';
+
   testMail = ''
     From: example@example.com
     To: other@example.com
@@ -95,6 +102,7 @@ pkgs.nixosTest {
           imapnotify.enable = true;
           mbsync.enable = true;
           msmtp.enable = true;
+          mu.enable = true;
 
           accounts."example.com" = {
             default = true;
@@ -113,7 +121,7 @@ pkgs.nixosTest {
 
             domains."example.com" = {
               default = true;
-              mailboxes = [
+              users = [
                 "example"
                 "other"
               ];
@@ -142,5 +150,8 @@ pkgs.nixosTest {
 
     with subtest("imapnotify configuration"):
         machine.succeed("su - ${user.name} -c ${imapnotifyTest}")
+
+    with subtest("mu configuration"):
+        machine.succeed("su - ${user.name} -c ${muTest}")
   '';
 }

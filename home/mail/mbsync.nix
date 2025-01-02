@@ -45,8 +45,8 @@ let
       };
 
       mailStore = {
-        Path = "${cfg.directory}/${acct.name}";
-        Inbox = "${cfg.directory}/${acct.name}/Inbox";
+        Path = "${mailCfg.directory}/${acct.name}";
+        Inbox = "${mailCfg.directory}/${acct.name}/Inbox";
         AltMap = "yes";
         SubFolders = "Verbatim";
       };
@@ -81,12 +81,6 @@ in
 {
   options.tilde.mail.mbsync = {
     enable = lib.mkEnableOption "Configure mbsync";
-
-    directory = lib.mkOption {
-      type = lib.types.path;
-      default = "${config.home.homeDirectory}/mail";
-      description = "Location to store mail locally.";
-    };
   };
 
   config = lib.mkIf (mailCfg.enable && cfg.enable) {

@@ -58,11 +58,12 @@ let
         generate the default email address.
       '';
 
-      mailboxes = lib.mkOption {
+      users = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];
         description = ''
-          Mailboxes used at this domain (user name portion of the email address).
+          Mailboxes used at this domain (local part portion of the
+          email address).
         '';
       };
     };
@@ -119,4 +120,39 @@ let
     };
   };
 in
-accountOptions
+rec {
+  inherit accountOptions;
+
+  # Return a list containing a single account, the default account.
+  defaultAccount = accounts:
+    builtins.filter (acct: acct.default)
+      (builtins.attrValues accounts);
+
+  # Return a list of accounts that are not the default account.
+  otherAccounts = accounts:
+    builtins.filter (acct: !acct.default)
+      (builtins.attrValues accounts);
+
+  # Return a list containing a single domain, the default domain.
+  defaultDomain = acct:
+    builtins.filter (d: d.default)
+      (builtins.attrValues acct.domains);
+
+  # Return a list of domains that are not the default domain.
+  otherDomains = acct:
+    builtins.filter (d: !d.default)
+      (builtins.attrValues acct.domains);
+
+  # Return a list of all email addresses.  The default email address
+  # will be listed first.
+  allEmailAddresses = accounts:
+    builtins.concatMap
+      (acct:
+        builtins.concatMap
+          (domain:
+            builtins.map (user: "${user}@${domain.name}")
+              domain.users
+          )
+          (defaultDomain acct ++ otherDomains acct))
+      (defaultAccount accounts ++ otherAccounts accounts);
+}

@@ -2,23 +2,29 @@
 
 let
   cfg = config.tilde.mail;
+  options = import ./options.nix { inherit lib; };
 in
 {
   imports = [
     ./imapnotify.nix
     ./mbsync.nix
     ./msmtp.nix
+    ./mu.nix
   ];
 
   options.tilde.mail = {
     enable = lib.mkEnableOption "Generate mail configuration files.";
 
     accounts = lib.mkOption {
-      type = lib.types.attrsOf (
-        lib.types.submodule (import ./options.nix { inherit lib; })
-      );
+      type = lib.types.attrsOf (lib.types.submodule options.accountOptions);
       default = { };
       description = "Set of mail accounts.";
+    };
+
+    directory = lib.mkOption {
+      type = lib.types.path;
+      default = "${config.home.homeDirectory}/mail";
+      description = "Location to store mail locally.";
     };
   };
 
@@ -56,6 +62,12 @@ in
         }
       ];
 
-    xdg.configFile."tilde/mail.json".text = builtins.toJSON cfg.accounts;
+    xdg.configFile = {
+      "tilde/email-addrs.json".text =
+        builtins.toJSON (options.allEmailAddresses cfg.accounts);
+
+      "tilde/mail.json".text =
+        builtins.toJSON cfg.accounts;
+    };
   };
 }

@@ -3,7 +3,6 @@
 let
   mailCfg = config.tilde.mail;
   cfg = mailCfg.imapnotify;
-  mailDir = mailCfg.mbsync.directory;
 
   mbsyncScript = pkgs.writeShellScript "imapnotify-mbsync" ''
     PATH=$PATH:${pkgs.isync}/bin
@@ -13,12 +12,12 @@ let
       exit 1
     fi
 
-    if [ ! -d "${mailDir}" ]; then
-      mkdir --parents --mode=0700 "${mailDir}"
+    if [ ! -d "${mailCfg.directory}" ]; then
+      mkdir --parents --mode=0700 "${mailCfg.directory}"
     fi
 
-    if [ ! -d "${mailDir}/$1" ]; then
-      mkdir --parents --mode=0700 "${mailDir}"
+    if [ ! -d "${mailCfg.directory}/$1" ]; then
+      mkdir --parents --mode=0700 "${mailCfg.directory}/$1"
       mbsync --pull "$1"
     else
       mbsync "$1"
