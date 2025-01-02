@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR"; # https://nur.nix-community.org/
 
     home-manager.url = "github:nix-community/home-manager/release-24.11";
@@ -112,6 +113,14 @@
         tilde = import pkgs/overlay.nix { inherit inputs; };
         tmuxrc = inputs.tmuxrc.overlay;
         zshrc = inputs.zshrc.overlay;
+
+        # We need a newer version of fetchmail:
+        # FIXME: remove after NixOS 25.05
+        fetchmail = final: prev: {
+          fetchmail =
+            let pkgs = import inputs.unstable { inherit (prev) system; };
+            in pkgs.fetchmail;
+        };
       };
 
       # Attribute set of nixpkgs for each system:
@@ -256,6 +265,8 @@
           config = test test/config.nix;
           cron = test test/cron.nix;
           emacs = inputs.emacsrc.checks.${system}.default;
+          mail-imap = test test/mail/imap.nix;
+          mail-fetch = test test/mail/fetch.nix;
           mail = test test/mail.nix;
           superkey-sway = inputs.superkey.checks.${system}.sway;
           superkey-greetd = inputs.superkey.checks.${system}.greetd;

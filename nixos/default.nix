@@ -12,6 +12,7 @@ in
   imports = [
     ./crontab.nix
     ./graphical.nix
+    ./mail
     ./workstation.nix
     ./yubikey.nix
   ];
