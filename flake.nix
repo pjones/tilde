@@ -108,7 +108,7 @@
         maintenance-scripts = inputs.maintenance-scripts.overlay;
         mediarc = inputs.mediarc.overlays.mediarc;
         network-scripts = inputs.network-scripts.overlay;
-        nur = inputs.nur.overlay;
+        nur = inputs.nur.overlays.default;
         superkey = self.inputs.superkey.overlays.superkey;
         tilde = import pkgs/overlay.nix { inherit inputs; };
         tmuxrc = inputs.tmuxrc.overlay;

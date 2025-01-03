@@ -7,11 +7,6 @@ set -e
 set -u
 
 ################################################################################
-# home-manager variables:
-DRY_RUN_CMD=${DRY_RUN_CMD:-}
-VERBOSE_ARG=${VERBOSE_ARG:-}
-
-################################################################################
 destination=$HOME/notes/bookmarks
 
 if [ ! -d "$destination" ]; then
@@ -30,30 +25,30 @@ safe_link_file() {
 
   if [ ! -e "$(dirname "$shared")" ]; then
     # Make sure there's a directory to move files into.
-    $DRY_RUN_CMD mkdir -p $VERBOSE_ARG "$(dirname "$shared")"
+    mkdir -p "$(dirname "$shared")"
   fi
 
   if [ ! -e "$(dirname "$original")" ]; then
     # Ensure the directory where we're placing the link exists:
-    $DRY_RUN_CMD mkdir -p $VERBOSE_ARG "$(dirname "$original")"
+    mkdir -p "$(dirname "$original")"
   fi
 
   if [ -e "$original" ] && [ ! -e "$shared" ]; then
     # No shared file exists, move the original to the shared location:
-    $DRY_RUN_CMD mv $VERBOSE_ARG "$original" "$shared"
+    mv "$original" "$shared"
   elif [ -e "$original" ]; then
     # Shared file exists, move the original out of the way:
-    $DRY_RUN_CMD mv $VERBOSE_ARG "$original" "$original.$(date +%Y%m%m-%H%M%S)"
+    mv "$original" "$original.$(date +%Y%m%m-%H%M%S)"
   fi
 
   if [ ! -e "$shared" ]; then
     # Make sure the shared file exists:
-    $DRY_RUN_CMD touch "$shared"
+    touch "$shared"
   fi
 
   # Link the shared file on top of the original:
-  ($DRY_RUN_CMD cd "$(dirname "$original")" &&
-    $DRY_RUN_CMD ln -s $VERBOSE_ARG "$shared" "$(basename "$original")")
+  (cd "$(dirname "$original")" &&
+    ln -s "$shared" "$(basename "$original")")
 }
 
 ################################################################################

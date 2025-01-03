@@ -13,8 +13,10 @@ pkgs.nixosTest {
       ];
 
       tilde.username = user.name;
+      users.users.${user.name}.password = user.password;
 
       home-manager.users.${config.tilde.username} = { ... }: {
+        tilde.createBookmarksDir = true;
         tilde.programs.emacs.enable = true;
       };
     };
@@ -23,14 +25,13 @@ pkgs.nixosTest {
   testScript = ''
     with subtest("Start machines and prepare directories"):
         start_all()
-        machine.succeed("mkdir -m 0755 -p ${user.home}/notes/bookmarks")
-        machine.succeed("chown ${user.name}:root ${user.home}/notes/bookmarks")
 
     with subtest("Verify home-manager installed config files"):
         machine.wait_for_unit("multi-user.target")
         machine.succeed("test -L ${user.home}/.config/emacs/init.el")
 
     with subtest("Verify activation script created some links"):
+        machine.succeed("test -d ${user.home}/notes/bookmarks")
         machine.succeed("test -L ${user.home}/.cache/emacs/bookmarks")
   '';
 }
