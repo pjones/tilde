@@ -4,53 +4,33 @@ let
   mailCfg = config.tilde.mail;
   cfg = mailCfg.imapnotify;
 
-  mbsyncScript = pkgs.writeShellScript "imapnotify-mbsync" ''
-    PATH=$PATH:${pkgs.isync}/bin
-
-    if [ $# -ne 1 ]; then
-      echo >&2 "ERROR: missing account name"
-      exit 1
-    fi
-
-    if [ ! -d "${mailCfg.directory}" ]; then
-      mkdir --parents --mode=0700 "${mailCfg.directory}"
-    fi
-
-    if [ ! -d "${mailCfg.directory}/$1" ]; then
-      mkdir --parents --mode=0700 "${mailCfg.directory}/$1"
-      mbsync --pull "$1"
-    else
-      mbsync "$1"
-    fi
-  '';
-
   accountConfig = acct:
     let
       server = acct.imapServer;
 
-      mbsync =
-        if cfg.mbsync
-        then "${mbsyncScript} ${acct.name}"
-        else "";
+      service = lib.escapeShellArg "mbsync-${acct.name}";
 
-      mu =
-        if cfg.mu
-        then "${pkgs.mu}/bin/mu index"
-        else "";
+      mbsync = pkgs.writeShellScript "imapnotify-mbsync" ''
+        ${pkgs.systemd}/bin/systemctl --user start ${service}
+      '';
+
+      doCertCheck =
+        if server.serverCertFile != null
+        then false
+        else true;
     in
     {
       host = server.hostname;
       port = if server.port == null then 993 else server.port;
       tls = true;
-      tlsOptions.rejectUnauthorized = true;
+      tlsOptions.rejectUnauthorized = doCertCheck;
       tlsOptions.starttls = server.tls == "starttls";
       username = server.username;
       passwordCMD = server.passwordCmd;
       xoAuth2 = false;
-      onNewMail = mbsync;
-      onNewMailPost = mu;
       onDeletedMail = mbsync;
-      onDeletedMailPost = mu;
+    } // lib.optionalAttrs cfg.mbsync {
+      onNewMail = "${mbsync}";
     };
 
   imapnotifyConfig = builtins.toJSON {
@@ -63,6 +43,17 @@ in
 {
   options.tilde.mail.imapnotify = {
     enable = lib.mkEnableOption "Configure goimapnotify";
+
+    needGnuPG = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = ''
+        Whether or not a loaded GnuPG key is needed in order to access
+        the IMAP server.  If this option is true and a key isn't
+        loaded then the systemd user service will wait for the key to
+        become available.
+      '';
+    };
 
     mbsync = lib.mkOption {
       type = lib.types.bool;
@@ -90,21 +81,26 @@ in
         PartOf = [ "network-online.target" ];
       };
 
-      Service = {
-        Environment = [ "GNUPGHOME=${config.programs.gpg.homedir}" ];
-        ExecCondition = "${config.tilde.programs.gnupg.cardIsUnlockedScript}";
-        ExecStart = "${pkgs.goimapnotify}/bin/goimapnotify";
-        Restart = "on-failure";
+      Service =
+        let
+          flags = lib.optional mailCfg.debug "-debug";
+        in
+        {
+          ExecStart = "${pkgs.goimapnotify}/bin/goimapnotify ${lib.escapeShellArgs flags}";
+          Restart = "on-failure";
 
-        # Sandboxing.
-        LockPersonality = true;
-        MemoryDenyWriteExecute = true;
-        NoNewPrivileges = true;
-        PrivateUsers = true;
-        RestrictNamespaces = true;
-        SystemCallArchitectures = "native";
-        SystemCallFilter = "@system-service";
-      };
+          # Sandboxing.
+          # LockPersonality = true;
+          # MemoryDenyWriteExecute = true;
+          # NoNewPrivileges = true;
+          # PrivateUsers = true;
+          # RestrictNamespaces = true;
+          # SystemCallArchitectures = "native";
+          # SystemCallFilter = "@system-service";
+        } // lib.optionalAttrs (cfg.needGnuPG) {
+          Environment = [ "GNUPGHOME=${config.programs.gpg.homedir}" ];
+          ExecCondition = "${config.tilde.programs.gnupg.cardIsUnlockedScript}";
+        };
 
       Install = { WantedBy = [ "default.target" ]; };
     };

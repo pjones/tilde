@@ -15,6 +15,7 @@ let
   userDefaultFields = lib.concatStringsSep " " [
     "uid=${builtins.toString cfg.virtualUID}"
     "gid=${builtins.toString cfg.virtualUID}"
+    "home=${cfg.homeDir}/%d/%n"
   ];
 in
 {

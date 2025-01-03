@@ -42,6 +42,12 @@ let
         default = null;
         description = "Command used to get the password for this server.";
       };
+
+      serverCertFile = lib.mkOption {
+        type = lib.types.nullOr lib.types.path;
+        default = null;
+        description = "Verify server certificate matches the given file.";
+      };
     };
   };
 

@@ -38,6 +38,8 @@ let
         User = server.username;
         PassCmd = server.passwordCmd;
         TLSType = tls;
+      } // lib.optionalAttrs (server.serverCertFile != null) {
+        CertificateFile = server.serverCertFile;
       };
 
       imapStore = {
@@ -45,9 +47,8 @@ let
       };
 
       mailStore = {
-        Path = "${mailCfg.directory}/${acct.name}";
-        Inbox = "${mailCfg.directory}/${acct.name}/Inbox";
-        AltMap = "yes";
+        Path = "${mailCfg.directory}/${acct.name}/";
+        Inbox = "${mailCfg.directory}/${acct.name}/Inbox/";
         SubFolders = "Verbatim";
       };
 
@@ -55,12 +56,9 @@ let
         Far = ":${acct.name}-remote:";
         Near = ":${acct.name}-local:";
         Pattern = "*";
-        Sync = "Full";
         Create = "Both";
         Remove = "Both";
-        Expunge = "None";
-        ExpungeSolo = "None";
-        CopyArrivalDate = "yes";
+        Expunge = "Both";
         SyncState = "*";
       };
     in
@@ -77,10 +75,83 @@ let
       ${toConfig {Channel = acct.name;}}
       ${toConfig channel}
     '';
+
+  mbsyncScript = pkgs.writeShellApplication {
+    name = "run-mbsync";
+
+    runtimeInputs = [
+      pkgs.coreutils
+      pkgs.isync
+      pkgs.mu
+    ];
+
+    text = ''
+      flags=()
+      maildir="${mailCfg.directory}"
+
+      ${lib.optionalString mailCfg.debug ''
+        set -x
+        flags+=("--verbose")
+      ''}
+
+      if [ $# -ne 1 ]; then
+        echo >&2 "ERROR: missing account name"
+        exit 1
+      fi
+
+      if [ ! -d "$maildir" ]; then
+        # shellcheck disable=SC2174
+        mkdir --parents --mode=0700 "$maildir"
+      fi
+
+      if [ ! -d "$maildir/$1" ]; then
+        echo >&2 "Running mbsync for the first time..."
+        # shellcheck disable=SC2174
+        mkdir --parents --mode=0700 "$maildir/$1"
+        mbsync --pull "''${flags[@]}" "$1"
+      else
+        echo >&2 "Syncing existing store..."
+        mbsync "''${flags[@]}" "$1"
+      fi
+
+      mu index
+    '';
+  };
+
+  toService = acct: {
+    name = "mbsync-${acct.name}";
+    value = {
+      Unit = {
+        Description = "Sync email for ${acct.name}.";
+        After = [ "network.target" ];
+        PartOf = [ "network-online.target" ];
+      };
+
+      Service = {
+        Type = "oneshot";
+        ExecStart = "${mbsyncScript}/bin/run-mbsync ${lib.escapeShellArg acct.name}";
+        Restart = "on-failure";
+      } // lib.optionalAttrs (cfg.needGnuPG) {
+        Environment = [ "GNUPGHOME=${config.programs.gpg.homedir}" ];
+        ExecCondition = "${config.tilde.programs.gnupg.cardIsUnlockedScript}";
+      };
+    };
+  };
 in
 {
   options.tilde.mail.mbsync = {
     enable = lib.mkEnableOption "Configure mbsync";
+
+    needGnuPG = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = ''
+        Whether or not a loaded GnuPG key is needed in order to access
+        the IMAP server.  If this option is true and a key isn't
+        loaded then the systemd user service will wait for the key to
+        become available.
+      '';
+    };
   };
 
   config = lib.mkIf (mailCfg.enable && cfg.enable) {
@@ -91,5 +162,9 @@ in
         mkAccount
         (builtins.filter (a: a.mbsync)
           (builtins.attrValues mailCfg.accounts));
+
+    systemd.user.services =
+      lib.listToAttrs (map toService
+        (lib.attrValues mailCfg.accounts));
   };
 }

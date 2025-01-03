@@ -31,7 +31,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.cardIsUnlockedScript ];
+    home.packages = [ cardIsUnlocked ];
 
     programs.gpg = {
       enable = true;

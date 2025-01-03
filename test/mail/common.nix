@@ -14,6 +14,11 @@ let
 in
 {
   config = lib.mkMerge [
+    {
+      # Only use self-signed certificates:
+      security.acme.defaults.server = lib.mkForce "https://example.com";
+    }
+
     (lib.mkIf config.tilde.mail.imap.enable {
       security.acme = {
         acceptTerms = true;

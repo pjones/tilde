@@ -14,6 +14,7 @@ in
 
   options.tilde.mail = {
     enable = lib.mkEnableOption "Generate mail configuration files.";
+    debug = lib.mkEnableOption "Enable debugging output.";
 
     accounts = lib.mkOption {
       type = lib.types.attrsOf (lib.types.submodule options.accountOptions);

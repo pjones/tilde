@@ -267,7 +267,7 @@
           emacs = inputs.emacsrc.checks.${system}.default;
           mail-imap = test test/mail/imap.nix;
           mail-fetch = test test/mail/fetch.nix;
-          mail = test test/mail.nix;
+          mail-home = test test/mail/home.nix;
           superkey-sway = inputs.superkey.checks.${system}.sway;
           superkey-greetd = inputs.superkey.checks.${system}.greetd;
         } // hostChecks);
