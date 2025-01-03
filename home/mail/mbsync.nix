@@ -131,6 +131,18 @@ let
         Type = "oneshot";
         ExecStart = "${mbsyncScript}/bin/run-mbsync ${lib.escapeShellArg acct.name}";
         Restart = "on-failure";
+        RestartSec = 30;
+        RestartMaxDelaySec = 900;
+        RestartSteps = 10;
+
+        # Sandboxing.
+        LockPersonality = true;
+        MemoryDenyWriteExecute = true;
+        NoNewPrivileges = true;
+        PrivateUsers = true;
+        RestrictNamespaces = true;
+        SystemCallArchitectures = "native";
+        SystemCallFilter = "@system-service";
       } // lib.optionalAttrs (cfg.needGnuPG) {
         Environment = [ "GNUPGHOME=${config.programs.gpg.homedir}" ];
         ExecCondition = "${config.tilde.programs.gnupg.cardIsUnlockedScript}";
