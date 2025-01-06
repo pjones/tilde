@@ -24,10 +24,11 @@ in
       MAILDIR = mailCfg.directory;
     };
 
+    # It's safe to run this more than once.  In fact, we want to run
+    # it more than once so we can update user email addresses when
+    # they change.
     home.activation.runMuInit = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      if [ ! -d "${dbDir}" ]; then
-        run ${lib.getExe pkgs.mu} init ${lib.escapeShellArgs initFlags}
-      fi
+      run ${lib.getExe pkgs.mu} init ${lib.escapeShellArgs initFlags}
     '';
   };
 }
