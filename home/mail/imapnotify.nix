@@ -28,9 +28,9 @@ let
       username = server.username;
       passwordCMD = server.passwordCmd;
       xoAuth2 = false;
-      onDeletedMail = mbsync;
     } // lib.optionalAttrs cfg.mbsync {
-      onNewMail = "${mbsync}";
+      onNewMail = mbsync;
+      onDeletedMail = mbsync;
     };
 
   imapnotifyConfig = builtins.toJSON {

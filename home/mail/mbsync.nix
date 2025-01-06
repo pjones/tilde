@@ -83,6 +83,7 @@ let
       pkgs.coreutils
       pkgs.isync
       pkgs.mu
+      pkgs.systemd
     ];
 
     text = ''
@@ -118,13 +119,14 @@ let
     '';
   };
 
-  toService = acct: {
+  mbsyncService = acct: {
     name = "mbsync-${acct.name}";
     value = {
       Unit = {
         Description = "Sync email for ${acct.name}.";
         After = [ "network.target" ];
         PartOf = [ "network-online.target" ];
+        OnSuccess = [ "maildir-${acct.name}.service" ];
       };
 
       Service = {
@@ -149,6 +151,53 @@ let
       };
     };
   };
+
+  watchService = acct:
+    let
+      script = pkgs.writeShellApplication {
+        name = "watch-maildir-${acct.name}";
+        runtimeInputs = [
+          pkgs.coreutils
+          pkgs.inotify-tools
+          pkgs.systemd
+        ];
+        text = ''
+          while :; do
+            inotifywait \
+              --no-dereference \
+              --recursive \
+              --event modify \
+              --event move \
+              --event create \
+              --event delete \
+              ${lib.escapeShellArg "${mailCfg.directory}/${acct.name}"}
+            ${pkgs.systemd}/bin/systemctl --user start mbsync-${acct.name}.service
+          done
+        '';
+      };
+    in
+    {
+      name = "maildir-${acct.name}";
+      value = {
+        Unit = {
+          Description = "Sync mail with maildir ${acct.name} changes.";
+          After = [ "network.target" ];
+          PartOf = [ "network-online.target" ];
+          Conflicts = [ "mbsync-${acct.name}.service" ];
+          ConditionPathIsDirectory = "|${mailCfg.directory}/${acct.name}";
+        };
+
+        Service = {
+          ExecStart = "${script}/bin/watch-maildir-${acct.name}";
+          Restart = "on-failure";
+          RestartSec = 30;
+          RestartMaxDelaySec = 900;
+          RestartSteps = 10;
+        };
+
+        Install.WantedBy = [ "default.target" ];
+      };
+    };
 in
 {
   options.tilde.mail.mbsync = {
@@ -176,7 +225,10 @@ in
           (builtins.attrValues mailCfg.accounts));
 
     systemd.user.services =
-      lib.listToAttrs (map toService
-        (lib.attrValues mailCfg.accounts));
+      let accts = lib.attrValues mailCfg.accounts;
+      in lib.listToAttrs (
+        (map mbsyncService accts)
+        ++ (map watchService accts)
+      );
   };
 }
