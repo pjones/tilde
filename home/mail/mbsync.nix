@@ -83,7 +83,7 @@ let
       pkgs.coreutils
       pkgs.isync
       pkgs.mu
-      pkgs.systemd
+      pkgs.procps
     ];
 
     text = ''
@@ -115,7 +115,9 @@ let
         mbsync "''${flags[@]}" "$1"
       fi
 
-      mu index
+      if ! pgrep -u "$USER" mu; then
+        mu index
+      fi
     '';
   };
 
