@@ -51,10 +51,7 @@ pkgs.nixosTest {
         tilde.mail = {
           enable = true;
           debug = true;
-          imapnotify.enable = true;
-          imapnotify.needGnuPG = false;
           mbsync.enable = true;
-          mbsync.needGnuPG = false;
           msmtp.enable = true;
           mu.enable = true;
 

@@ -6,10 +6,8 @@ set -o pipefail
 ################################################################################
 function mail_config_test() {
   local mailjson=~/.config/tilde/mail.json
-  local imapyml=~/.config/goimapnotify/goimapnotify.yaml
 
   test -e "$mailjson"
-  test -e "$imapyml"
   test -d ~/.cache/mu
 
   domain=$(
@@ -19,14 +17,6 @@ function mail_config_test() {
   )
 
   test "$domain" = "localhost"
-
-  host=$(
-    jq --raw-output \
-      '.configurations[] | .host' \
-      <"$imapyml"
-  )
-
-  test "$host" = "localhost"
 }
 
 ################################################################################
@@ -45,9 +35,8 @@ function msmtp_test() {
 ################################################################################
 function mail_workflow_test() {
   send_mail
-  wait_for_file ~/mail/example.com/Inbox/new
-  wait_until_fails pgrep -u "$USER" mbsync
-  wait_until_fails pgrep -u "$USER" mu
+  mbsync --all
+  mu index
 
   # Find the new email:
   file_orig=$(mu find "from:other@example.com" --fields="l")
@@ -64,7 +53,7 @@ function mail_workflow_test() {
   test ! -e "$file_orig"
   test -e "$file_trash"
 
-  systemctl --user start --wait mbsync-example.com.service
+  mbsync --all
   test "$(count_msgs Trash)" -eq 1
   test "$(count_msgs INBOX)" -eq 0
 }

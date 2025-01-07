@@ -6,7 +6,6 @@ let
 in
 {
   imports = [
-    ./imapnotify.nix
     ./mbsync.nix
     ./msmtp.nix
     ./mu.nix
