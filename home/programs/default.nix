@@ -15,6 +15,7 @@
     ./gnupg.nix
     ./gromit-mpx.nix
     ./haskell.nix
+    ./recoll.nix
     ./shells.nix
     ./ssh.nix
     ./syncthing.nix
