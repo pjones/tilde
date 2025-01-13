@@ -48,6 +48,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [
       mgs
+      pkgs.git-annex
       pkgs.mgitstatus
     ];
 
