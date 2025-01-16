@@ -1,5 +1,15 @@
 { self, module, pkgs }:
-pkgs.nixosTest {
+
+let
+  withXwininfo = pkgs.appendOverlays [
+    (final: prev: {
+      xorg = prev.xorg // {
+        xwininfo = self.inputs.superkey.packages.${prev.system}.xwininfo-tests;
+      };
+    })
+  ];
+in
+withXwininfo.nixosTest {
   name = "tilde-screenshot";
 
   nodes = {
@@ -37,6 +47,7 @@ pkgs.nixosTest {
         machine.wait_for_file("/run/user/1000/wayland-1")
         machine.wait_for_file("/tmp/sway-ipc.sock")
         machine.wait_until_succeeds("pgrep waybar")
+        machine.wait_for_unit("emacs", "pjones")
 
     with subtest("Prepare for a screenshot"):
         machine.copy_from_host(
@@ -46,10 +57,10 @@ pkgs.nixosTest {
         machine.succeed(
             "su - pjones -c 'swaymsg -t command exec bash /tmp/stage.sh'"
         )
-        machine.wait_for_file("/run/user/1000/emacs/1:Hacking")
 
     with subtest("Wait to get a screenshot"):
-        machine.sleep(10)
+        machine.wait_for_window("fastfetch")
+        machine.sleep(1)
         machine.screenshot("screen")
 
     with subtest("Exit sway"):
