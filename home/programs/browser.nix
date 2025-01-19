@@ -35,14 +35,6 @@ in
         categories = [ "Network" "WebBrowser" ];
         mimeType = mimeTypes;
       };
-
-      facebook = {
-        name = "Facebook";
-        icon = "firefox";
-        exec = "${pkgs.tilde-scripts-browser}/bin/facebook";
-        terminal = false;
-        comment = "Firefox wrapper for Facebook";
-      };
     };
 
     xdg.mimeApps = {

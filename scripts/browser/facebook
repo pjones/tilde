@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-set -eu
-set -o pipefail
-
-exec firefox -P facebook --new-window "https://facebook.com"

@@ -103,14 +103,6 @@ in
           @import url(${pkgs.firefox-csshacks}/chrome/autohide_toolbox.css);
         '';
       };
-
-      # Just for Facebook :(
-      profiles.facebook = {
-        inherit settings extensions;
-        name = "facebook";
-        id = 2;
-        userChrome = config.programs.firefox.profiles.app.userChrome;
-      };
     };
 
     home.file.".mozilla/native-messaging-hosts/tridactyl.json".source =
