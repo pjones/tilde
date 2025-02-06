@@ -8,6 +8,9 @@ let
 
   homepage = "https://notes.jonesbunch.com/";
 
+  # FIXME: Replace with:
+  # https://mastodon.social/@telomerai/113909268729350091
+  # ?
   extensions = with pkgs.nur.repos.rycee.firefox-addons; [
     darkreader
     privacy-badger
@@ -43,10 +46,16 @@ let
 
     # Privacy:
     "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+    "browser.newtabpage.activity-stream.feeds.weatherfeed" = false;
+    "browser.newtabpage.activity-stream.showWeather" = false;
+    "browser.newtabpage.activity-stream.system.showWeather" = false;
     "browser.newtabpage.activity-stream.telemetry" = false;
     "browser.newtabpage.activity-stream.telemetry.ut.events" = false;
+    "browser.newtabpage.activity-stream.weather.locationSearchEnabled" = false;
     "browser.ping-centre.telemetry" = false;
     "browser.urlbar.eventTelemetry.enabled" = false;
+    "browser.urlbar.suggest.weather" = false;
+    "browser.urlbar.weather.featureGate" = false;
     "dom.private-attribution.submission.enabled" = false;
     "network.trr.confirmation_telemetry_enabled" = false;
     "privacy.donottrackheader.enabled" = true;
