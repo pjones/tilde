@@ -104,6 +104,7 @@
         openscad # 3D parametric model compiler
         pamixer # Pulseaudio command line mixer
         pavucontrol # PulseAudio Volume Control
+        peaclock # Clock, timer, and stopwatch for the terminal
         pjones.desktop-scripts # Personal scripts for desktop environments.
         prusa-slicer # G-code generator for 3D printer
         qcad # 2D CAD package based on Qt
@@ -111,6 +112,7 @@
         remmina # Remote desktop client written in GTK
         tilde-scripts-browser # Browser scripts
         vlc # Cross-platform media player and streaming server
+        wl-mirror # Simple Wayland output mirror client
         xournalpp # Xournal++ is a handwriting Notetaking software with PDF annotation support
       ] ++
       # Packages that don't build on aarch64:
