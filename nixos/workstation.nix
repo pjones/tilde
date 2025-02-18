@@ -40,7 +40,7 @@ in
         environment.systemPackages = with pkgs; [
           lm_sensors
           man-pages # Developer man pages.
-          OVMF # For EFI booting.
+          OVMFFull # For EFI booting.
           spice-gtk
           virt-manager
           wirelesstools
@@ -114,6 +114,11 @@ in
             enable = true;
             onShutdown = "suspend";
             onBoot = "ignore";
+
+            qemu = {
+              swtpm.enable = true;
+              ovmf.packages = [ pkgs.OVMFFull.fd ];
+            };
           };
 
           docker = {
