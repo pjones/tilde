@@ -49,9 +49,9 @@
     # Packages to install on workstations:
     (lib.mkIf config.tilde.workstation.enable {
       home.packages = with pkgs; [
-        # pjones.vimeta
         abcde # Command-line audio CD ripper
         atomicparsley # A CLI program for reading, parsing and setting metadata into MPEG-4 files
+        cdparanoia # A tool and library for reading digital audio from CDs
         cdrkit # cdrecord, mkisofs, etc.
         duckdb # Embeddable SQL OLAP Database Management System
         ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video
@@ -86,29 +86,19 @@
     # Packages to install on workstations with a GUI running:
     (lib.mkIf config.tilde.graphical.enable {
       home.packages = with pkgs; [
-        cdparanoia # A tool and library for reading digital audio from CDs
         chromium # A wrapper around chromium:
-        darktable # Virtual lighttable and darkroom for photographers
-        dia # Gnome Diagram drawing software
-        digikam # Photo Management Program
         evince # GNOME's document viewer
-        gdal # Translator library for raster geospatial data formats
         gimp # The GNU Image Manipulation Program
         handbrake # A tool for converting video files and ripping DVDs
         imagemagick # A software suite to create, edit, compose, or convert bitmap images
         imv # A command line image viewer for tiling window managers
         inkscape # Vector graphics editor
-        kicad # Open Source Electronics Design Automation suite
         libnotify # A library that sends desktop notifications to a notification daemon
         libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
-        openscad # 3D parametric model compiler
         pamixer # Pulseaudio command line mixer
         pavucontrol # PulseAudio Volume Control
         peaclock # Clock, timer, and stopwatch for the terminal
         pjones.desktop-scripts # Personal scripts for desktop environments.
-        prusa-slicer # G-code generator for 3D printer
-        qcad # 2D CAD package based on Qt
-        qmapshack # Consumer grade GIS software
         remmina # Remote desktop client written in GTK
         tilde-scripts-browser # Browser scripts
         vlc # Cross-platform media player and streaming server
@@ -120,6 +110,22 @@
         makemkv # Convert blu-ray and dvd to mkv
         signal-desktop # Private, simple, and secure messenger
         spotify # Play music from the Spotify music service
+      ]) ++
+      lib.optionals config.tilde.graphical.design (with pkgs; [
+        openscad # 3D parametric model compiler
+        prusa-slicer # G-code generator for 3D printer
+        qcad # 2D CAD package based on Qt
+      ]) ++
+      lib.optionals config.tilde.graphical.ee (with pkgs; [
+        kicad # Open Source Electronics Design Automation suite
+      ]) ++
+      lib.optionals config.tilde.graphical.gis (with pkgs; [
+        gdal # Translator library for raster geospatial data formats
+        qmapshack # Consumer grade GIS software
+      ]) ++
+      lib.optionals config.tilde.graphical.photography (with pkgs; [
+        darktable # Virtual lighttable and darkroom for photographers
+        digikam # Photo Management Program
       ]);
     })
   ];

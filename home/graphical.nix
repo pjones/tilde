@@ -9,6 +9,11 @@ in
 {
   options.tilde.graphical = {
     enable = lib.mkEnableOption "Enable a graphical session";
+
+    design = lib.mkEnableOption "Configure for 3D printing";
+    ee = lib.mkEnableOption "Configure for Electrical Engineering";
+    gis = lib.mkEnableOption "Configure for mapping and GIS";
+    photography = lib.mkEnableOption "Configure for photography";
   };
 
   config = lib.mkIf cfg.enable {
