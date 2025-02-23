@@ -223,8 +223,8 @@
             let
               script = pkgs.writeShellScript "screenshot" ''
                 cp --force \
-                  ${self.packages.${system}.screenshot}/screen.png \
-                  support/screenshot.png
+                  ${self.packages.${system}.screenshot}/screenshot-*.png \
+                  support/
               '';
             in
             {

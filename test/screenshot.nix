@@ -36,36 +36,11 @@ withXwininfo.nixosTest {
   };
 
   testScript = ''
-    with subtest("Start machines and prepare"):
-        start_all()
-        machine.wait_for_unit("multi-user.target")
-
-    with subtest("Verify home-manager installed config files"):
-        machine.succeed("test -L /home/pjones/.config/sway/config")
-
-    with subtest("Wait for sway to start"):
-        machine.wait_for_file("/run/user/1000/wayland-1")
-        machine.wait_for_file("/tmp/sway-ipc.sock")
-        machine.wait_until_succeeds("pgrep waybar")
-        machine.wait_for_unit("emacs", "pjones")
-
-    with subtest("Prepare for a screenshot"):
-        machine.copy_from_host(
-            "${self.inputs.superkey}/test/stage-for-screenshot.sh",
-            "/tmp/stage.sh",
-        )
-        machine.succeed(
-            "su - pjones -c 'swaymsg -t command exec bash /tmp/stage.sh'"
-        )
-
-    with subtest("Wait to get a screenshot"):
-        machine.wait_for_window("fastfetch")
-        machine.sleep(1)
-        machine.screenshot("screen")
-
-    with subtest("Exit sway"):
-        machine.execute("su - pjones -c 'swaymsg -t command exit'")
-        machine.wait_until_fails("pgrep -x sway")
-        machine.wait_for_file("/tmp/sway-exit-ok")
+    ${self.inputs.superkey.checks.x86_64-linux.sway.testHelpers}
+    superkey_start()
+    superkey_screenshot("dark")
+    superkey_switch_to_light_theme()
+    superkey_screenshot("light")
+    superkey_exit()
   '';
 }

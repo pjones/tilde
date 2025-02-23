@@ -1,7 +1,7 @@
 # There's No Place Like `~/`
 
 <p align="center">
-  <img src="./support/screenshot.png"/>
+  <img src="./support/screenshot-dark.png"/>
 </p>
 
 ## Reproducible Configuration
