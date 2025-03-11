@@ -36,7 +36,7 @@ in
 
       Service = {
         Type = "oneshot";
-        ExecStart = "${pkgs.pjones.desktop-scripts}/bin/desktop-pre-suspend";
+        ExecStart = "${pkgs.pjones.superkey-scripts}/bin/superkey-pre-suspend.sh";
       };
 
       Install = {

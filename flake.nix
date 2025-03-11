@@ -12,19 +12,14 @@
     bashrc.url = "github:pjones/bashrc";
     bashrc.inputs.nixpkgs.follows = "nixpkgs";
 
-    desktop-scripts.url = "github:pjones/desktop-scripts/nixos-24.11";
-    desktop-scripts.inputs.nixpkgs.follows = "nixpkgs";
-
     emacsrc.url = "github:pjones/emacsrc/nixos-24.11";
     emacsrc.inputs.nixpkgs.follows = "nixpkgs";
     emacsrc.inputs.home-manager.follows = "home-manager";
-    emacsrc.inputs.desktop-scripts.follows = "desktop-scripts";
 
-    superkey.url = "github:pjones/superkey/nixos-24.11";
+    superkey.url = "github:pjones/superkey/niri";
     superkey.inputs.nixpkgs.follows = "nixpkgs";
     superkey.inputs.home-manager.follows = "home-manager";
     superkey.inputs.emacsrc.follows = "emacsrc";
-    superkey.inputs.desktop-scripts.follows = "desktop-scripts";
 
     encryption-utils.url = "github:pjones/encryption-utils";
     encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
@@ -102,7 +97,6 @@
       # Package overlay:
       overlays = {
         bashrc = inputs.bashrc.overlay;
-        desktop-scripts = self.inputs.desktop-scripts.overlays.desktop-scripts;
         encryption-utils = inputs.encryption-utils.overlays.default;
         image-scripts = inputs.image-scripts.overlays.default;
         maintenance-scripts = inputs.maintenance-scripts.overlay;
@@ -190,7 +184,7 @@
             { nixpkgs.pkgs = nixpkgsFor.x86_64-linux; }
             self.nixosModules.tilde
             self.inputs.superkey.nixosModules.autologin
-            self.inputs.superkey.nixosModules.qemu-sway
+            self.inputs.superkey.nixosModules.qemu-wayland
             ./test/demo.nix
           ];
         };

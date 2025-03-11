@@ -6,17 +6,17 @@ set -eu
 set -o pipefail
 
 ################################################################################
-desktop=$(desktop-workspace -n)
+desktop=$(superkey-workspace.sh -n)
 
 case "$desktop" in
 *GTD)
+  e &
   e &
   "$(dirname "$0")/memento-mori.sh" &
   browser-app "https://app.fastmail.com/calendar/month" &
   ;;
 
 *Social)
-  e &
   browser-app "https://discord.com/channels/688750797378682946/689772813481279547" &
   browser-app "https://fosstodon.org/" &
   ;;

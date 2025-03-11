@@ -16,7 +16,7 @@ withXwininfo.nixosTest {
     machine = { config, pkgs, lib, ... }: {
       imports = [
         self.inputs.superkey.nixosModules.autologin
-        self.inputs.superkey.nixosModules.qemu-sway
+        self.inputs.superkey.nixosModules.qemu-wayland
         module
         ../devices/generic-nixos.nix
       ];
@@ -31,6 +31,7 @@ withXwininfo.nixosTest {
 
       home-manager.users.${config.tilde.username} = { ... }: {
         tilde.programs.emacs.enable = true;
+        superkey.primaryOutput = "Virtual-1";
       };
     };
   };

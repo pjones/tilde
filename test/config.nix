@@ -18,6 +18,7 @@ pkgs.nixosTest {
       home-manager.users.${config.tilde.username} = { ... }: {
         tilde.createBookmarksDir = true;
         tilde.programs.emacs.enable = true;
+        superkey.primaryOutput = "Virtual-1";
       };
     };
   };

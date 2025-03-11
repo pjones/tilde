@@ -98,9 +98,9 @@
         pamixer # Pulseaudio command line mixer
         pavucontrol # PulseAudio Volume Control
         peaclock # Clock, timer, and stopwatch for the terminal
-        pjones.desktop-scripts # Personal scripts for desktop environments.
         remmina # Remote desktop client written in GTK
         tilde-scripts-browser # Browser scripts
+        virt-viewer # Viewer for remote virtual machines
         vlc # Cross-platform media player and streaming server
         wl-mirror # Simple Wayland output mirror client
         xournalpp # Xournal++ is a handwriting Notetaking software with PDF annotation support

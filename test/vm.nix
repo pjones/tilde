@@ -56,5 +56,9 @@ in
     services.openssh.settings.PermitRootLogin = "yes";
 
     tilde.username = user.name;
+
+    home-manager.users.${config.tilde.username} = { ... }: {
+      superkey.primaryOutput = lib.mkForce "Virtual-1";
+    };
   };
 }
