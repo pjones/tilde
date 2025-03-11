@@ -74,11 +74,11 @@
         "persid": "persid"
       },
       "locked": {
-        "lastModified": 1741686444,
-        "narHash": "sha256-BJ27/YGc/yyeD8QOFxTInNZzbp9DeBKC1LWPTGxrP80=",
+        "lastModified": 1741767736,
+        "narHash": "sha256-XINlFHPEUT0d2TQB7lNq0lpHrhnBwUksaQS59bHXN9U=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "1a02779041801f17341a83cc7ec502b40b888b38",
+        "rev": "f61a08db977fe14f7e6df267395711159f5c6b87",
         "type": "github"
       },
       "original": {
@@ -650,11 +650,11 @@
         "wpaperd": "wpaperd"
       },
       "locked": {
-        "lastModified": 1741688202,
-        "narHash": "sha256-pbbP8fZ4DWJAtIM7177nid3aFF4xUpvV2yBfKkh/OT0=",
+        "lastModified": 1741797000,
+        "narHash": "sha256-04F0tCmiR9W9g/iRLJ15RN5L6Gn/4ZPHASNWAdXBvfk=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "fd454d5bd82bd76d8b613ce5dbc1cadd9844bd45",
+        "rev": "6bde9a6fe142419a29a4f8ea9cd865951d75b56d",
         "type": "github"
       },
       "original": {
