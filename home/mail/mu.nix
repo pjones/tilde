@@ -28,7 +28,7 @@ in
     # it more than once so we can update user email addresses when
     # they change.
     home.activation.runMuInit = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      if ! ${pkgs.procps}/bin/pgrep -u "$USER" mu; then
+      if ! ${pkgs.procps}/bin/pgrep -u "$USER" mu && [ ! -d "${dbDir}" ]; then
         run ${lib.getExe pkgs.mu} init ${lib.escapeShellArgs initFlags}
       fi
     '';
