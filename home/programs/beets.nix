@@ -8,7 +8,8 @@ in
     enable = lib.mkEnableOption "Beets";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf false {
+    # cfg.enable {
     home.packages = with pkgs; [
       beets # Music tagger and library organizer
       mp3gain # Lossless mp3 normalizer with statistical analysis
