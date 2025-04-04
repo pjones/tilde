@@ -5,9 +5,14 @@ let
   tmuxrc = pkgs.pjones.tmuxrc;
 
   atuinCfg = pkgs.writers.writeTOML "atuin.toml" {
-    style = "compact";
     enter_accept = true;
+    filter_mode = "directory";
+    inline_height = 7;
     keymap_cursor.emacs = "blink-bar";
+    prefers_reduced_motion = true;
+    show_help = false;
+    show_tabs = false;
+    style = "compact";
   };
 in
 {
@@ -25,7 +30,7 @@ in
 
       initExtra = ''
         source ${zshrc}/share/zshrc/zshrc
-        eval "$(atuin init zsh)"
+        eval "$(atuin init zsh --disable-up-arrow)"
       '';
 
       envExtra = ''
@@ -37,7 +42,7 @@ in
       enable = true;
       bashrcExtra = ''
         source ${bashrc}/share/bashrc
-        eval "$(atuin init bash)"
+        eval "$(atuin init bash --disable-up-arrow)"
       '';
     };
 
