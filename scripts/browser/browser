@@ -1,14 +1,26 @@
 #!/usr/bin/env bash
 
-set -eu
-set -o pipefail
-
+################################################################################
+#
 # Call the configured browser.  Maybe one day this will map arguments
 # so if I'm not using a chromium-based browser I can still use
 # chromium-like arguments.
+#
+################################################################################
+set -eu
+set -o pipefail
 
+################################################################################
 if [ -n "${BROWSER:-}" ]; then
   "$BROWSER" "$@"
 else
-  firefox -P default "$@"
+  # Focus an existing browser, or start a new one:
+  if ! superkey-find-window.sh -cfa firefox; then
+    firefox --browser
+  fi
+
+  # If we have arguments, pass them to the browser:
+  if [ $# -ne 0 ]; then
+    firefox "$@"
+  fi
 fi
