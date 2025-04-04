@@ -33,46 +33,61 @@ in
       indicator = true;
     };
 
-    xdg.desktopEntries = {
-      image-view = {
-        name = "IMV";
-        genericName = "Image Viewer";
-        exec = "${pkgs.imv}/bin/imv %U";
-        terminal = false;
-        categories = [ "Application" ];
-        mimeType = [ "image/jpeg" "image/png" ];
-      };
+    xdg.desktopEntries =
+      let
+        url = name: url: {
+          inherit name;
+          exec = "browser ${url}";
+          icon = "user-bookmarks";
+          terminal = false;
+        };
+      in
+      {
+        image-view = {
+          name = "IMV";
+          genericName = "Image Viewer";
+          exec = "${pkgs.imv}/bin/imv %U";
+          terminal = false;
+          categories = [ "Application" ];
+          mimeType = [ "image/jpeg" "image/png" ];
+        };
 
-      memento-mori = {
-        name = "Memento Mori";
-        exec = "${pkgs.tilde-scripts-misc}/bin/memento-mori.sh";
-        icon = "document-open";
-        terminal = false;
-        categories = [ "Application" ];
-      };
-
-      start-desktop-apps = {
-        name = "Start Desktop Apps";
-        exec = "${pkgs.tilde-scripts-misc}/bin/start-desktop-apps.sh";
-        icon = "document-open";
-        terminal = false;
-        categories = [ "Application" ];
-      };
-
-      add-deploy-key =
-        let
-          script = pkgs.writeShellScript "ssh-add-deploy" ''
-            ${pkgs.openssh}/bin/ssh-add ~/keys/ssh/deploy.id_ed25519
-          '';
-        in
-        {
-          name = "SSH: Add Deployment Key";
-          exec = "${script}";
-          icon = "document-open";
+        memento-mori = {
+          name = "Memento Mori";
+          exec = "${pkgs.tilde-scripts-misc}/bin/memento-mori.sh";
+          icon = "image-x-generic";
           terminal = false;
           categories = [ "Application" ];
         };
-    };
+
+        start-desktop-apps = {
+          name = "Start Desktop Apps";
+          exec = "${pkgs.tilde-scripts-misc}/bin/start-desktop-apps.sh";
+          icon = "text-x-script";
+          terminal = false;
+          categories = [ "Application" ];
+        };
+
+        add-deploy-key =
+          let
+            script = pkgs.writeShellScript "ssh-add-deploy" ''
+              ${pkgs.openssh}/bin/ssh-add ~/keys/ssh/deploy.id_ed25519
+            '';
+          in
+          {
+            name = "SSH: Add Deployment Key";
+            exec = "${script}";
+            icon = "text-x-script";
+            terminal = false;
+            categories = [ "Application" ];
+          };
+
+        calendar = url "Calendar" "https://app.fastmail.com/calendar/month";
+        discord = url "Discord" "https://discord.com/channels/688750797378682946/689772813481279547";
+        google-voice = url "Google Voice" "https://voice.google.com/u/0/messages";
+        mastodon = url "Mastodon" "https://fosstodon.org/";
+        whatsapp = url "WhatsApp" "https://web.whatsapp.com/";
+      };
 
     xdg.mimeApps = {
       enable = true;
