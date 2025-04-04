@@ -45,6 +45,7 @@ let
     "widget.gtk.overlay-scrollbars.enabled" = false;
 
     # Privacy:
+    "browser.ml.chat.enabled" = false;
     "browser.newtabpage.activity-stream.feeds.telemetry" = false;
     "browser.newtabpage.activity-stream.feeds.weatherfeed" = false;
     "browser.newtabpage.activity-stream.showWeather" = false;
