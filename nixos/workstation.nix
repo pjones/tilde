@@ -156,16 +156,18 @@ in
         time.timeZone = lib.mkForce null;
 
         # Sleeping (see sleep.conf.d(5)):
+        #
+        # Only set these if you want to force hibernation earlier:
+        #  HibernateDelaySec=2h
+        #  SuspendEstimationSec=10m
         systemd.sleep.extraConfig = ''
-          HibernateDelaySec=2h
-          SuspendEstimationSec=10m
           SuspendState=mem
         '';
 
         services.logind = {
           lidSwitch = "suspend-then-hibernate";
-          lidSwitchDocked = "suspend";
-          lidSwitchExternalPower = "suspend";
+          lidSwitchDocked = "suspend-then-hibernate";
+          lidSwitchExternalPower = "suspend-then-hibernate";
         };
 
         # Useful services:
