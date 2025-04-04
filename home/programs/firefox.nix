@@ -208,9 +208,11 @@ in
         set searchurls.az https://smile.amazon.com/s?k=%s&ref=nb_sb_noss
         set searchurls.dd https://duckduckgo.com/?q=%s
         set searchurls.go https://www.google.com/search?q=%s
+        set searchurls.ge https://translate.google.com/?sl=de&tl=en&op=translate&text=%s
         set searchurls.ha https://hackage.haskell.org/packages/search?terms=%s
         set searchurls.ho https://hoogle.haskell.org/?hoogle=%s&scope=set%3Astackage
         set searchurls.md https://www.themoviedb.org/search?query=%s
+        set searchurls.mp https://maps.google.com/?q=%s
         set searchurls.no https://search.nixos.org/options?query=%s
         set searchurls.np https://search.nixos.org/packages?query=%s
         set searchurls.wd https://en.wiktionary.org/w/index.php?search=%s
