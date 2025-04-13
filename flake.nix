@@ -75,6 +75,7 @@
         "falken"
         "kilgrave"
         "sid"
+        "slugworth"
         "ursula"
       ];
 
