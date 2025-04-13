@@ -10,6 +10,7 @@ in
 {
   #### Additional Files:
   imports = [
+    ./boot.nix
     ./crontab.nix
     ./graphical.nix
     ./mail
