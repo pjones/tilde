@@ -67,28 +67,12 @@ in
           IdentityFile ${cfg.keysDir}/deploy.id_ed25519
         '';
 
-        matchBlocks =
-          let
-            hosts = {
-              "kilgrave" = "kilgrave.private.pmade.com";
-              "ursula" = "ursula.private.pmade.com";
-              "sid" = "sid.private.pmade.com";
-              "code.devalot.com" = "ursula.private.pmade.com";
-            };
-
-            blocks = lib.mapAttrs
-              (name: value: {
-                hostname = value;
-              })
-              hosts;
-          in
-          blocks // lib.optionalAttrs cfg.haveRestrictedKeys {
-            "webmaster.ursula.pmade.com" = {
-              hostname = "ursula.private.pmade.com";
-              user = "webmaster";
-              identityFile = "${cfg.keysDir}/webmaster.id_ed25519";
-            };
+        matchBlocks = lib.optionalAttrs cfg.haveRestrictedKeys {
+          "webmaster.jonesbunch.com" = {
+            user = "webmaster";
+            identityFile = "${cfg.keysDir}/webmaster.id_ed25519";
           };
+        };
       };
     })
     (lib.mkIf config.tilde.enable {
