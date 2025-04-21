@@ -174,19 +174,6 @@ in
         hardware.acpilight.enable = true;
         services.thermald.enable = pkgs.stdenv.isx86_64;
         services.upower.enable = true;
-
-        # This is enabled by desktop environments like Plasma, so we
-        # need to turn it off manually here:
-        services.power-profiles-daemon.enable = lib.mkForce false;
-
-        # And we'll use TLP to deal with power management:
-        services.tlp = {
-          enable = true;
-          settings = {
-            CPU_SCALING_GOVERNOR_ON_AC = "performance";
-            CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-          };
-        };
       })
     ];
 }
