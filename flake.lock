@@ -621,11 +621,11 @@
         "wpaperd": "wpaperd"
       },
       "locked": {
-        "lastModified": 1745241063,
-        "narHash": "sha256-AxA28UGX6UErJoZfuUu1V+2ylILceg6bNrzzId4Qam4=",
+        "lastModified": 1745582414,
+        "narHash": "sha256-EJQyzeXT0IpixPKCW3QNQv3YzfTpivK3C/qNTyDR+AQ=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "3eaf478fbf6834e82b297cd49eafe4fff040e765",
+        "rev": "8142795432e43e4e019b7e41ce53f483774a42f7",
         "type": "github"
       },
       "original": {
