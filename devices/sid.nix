@@ -7,7 +7,6 @@
 {
   imports = [
     ./generic-nixos.nix
-    self.inputs.superkey.nixosModules.sid
   ];
 
   config = {
@@ -28,12 +27,14 @@
       };
     };
 
-    tilde = {
-      workstation.type = "laptop";
-      graphical.enable = true;
-      programs.qmk.enable = true;
-      programs.android.enable = true;
+    services.logind =
+      let ignore = lib.mkForce "ignore"; in {
+        lidSwitch = ignore;
+        lidSwitchDocked = ignore;
+        lidSwitchExternalPower = ignore;
+      };
 
+    tilde = {
       crontab = {
         image-import = {
           schedule = "*-*-* 00/4:15:00";
@@ -45,7 +46,6 @@
 
     home-manager.users.pjones = { ... }: {
       tilde.programs.emacs.enable = true;
-      tilde.programs.haskell.enable = true;
       tilde.programs.beets.enable = true;
 
       tilde.programs.ssh = {
