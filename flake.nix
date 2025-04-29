@@ -127,7 +127,7 @@
         });
 
       # A NixOS module that bootstraps the tilde home manager modules:
-      nixosBootstrapHomeManager = { config, pkgs, ... }: {
+      nixosBootstrapHomeManager = { config, ... }: {
         home-manager = {
           backupFileExtension = "backup";
           useGlobalPkgs = true;
@@ -165,7 +165,7 @@
         in
         {
           # Base module:
-          tilde = { pkgs, ... }: {
+          tilde = { ... }: {
             imports = [
               ./nixos
               home-manager.nixosModules.home-manager
@@ -278,6 +278,7 @@
               inputs.home-manager.outputs.defaultPackage.${system}
               pkgs.neofetch
               pkgs.nixpkgs-fmt
+              pkgs.nixd
             ];
           };
         });

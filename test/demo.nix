@@ -1,6 +1,5 @@
-{ config, lib, ... }:
-let user = import ./user.nix;
-in
+{ config, ... }:
+
 {
   imports = [
     ./vm.nix

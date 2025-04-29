@@ -1,4 +1,4 @@
-{ lib, config, pkgs, modulesPath, ... }:
+{ lib, config, modulesPath, ... }:
 
 let
   user = import ./user.nix;
