@@ -16,11 +16,16 @@ if [ -n "${BROWSER:-}" ]; then
 else
   # Focus an existing browser, or start a new one:
   if ! superkey-find-window.sh -cfa firefox; then
-    firefox --browser
-  fi
-
-  # If we have arguments, pass them to the browser:
-  if [ $# -ne 0 ]; then
-    firefox "$@"
+    if [ $# -eq 0 ]; then
+      firefox --browser
+    else
+      firefox --new-window "$@"
+    fi
+  else
+    if [ $# -gt 0 ]; then
+      # If there are arguments then we should pass them on.  Otherwise
+      # assume we were called simply to focus the browser window.
+      firefox "$@"
+    fi
   fi
 fi
