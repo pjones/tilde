@@ -1,7 +1,5 @@
-{ config
-, lib
-, ...
-}:
+{ ... }:
+
 {
   imports = [
     ./base.nix
@@ -15,6 +13,7 @@
     ./gnupg.nix
     ./gromit-mpx.nix
     ./haskell.nix
+    ./peaclock.nix
     ./recoll.nix
     ./shells.nix
     ./ssh.nix

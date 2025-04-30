@@ -25,6 +25,7 @@ in
     tilde.programs.contacts.enable = lib.mkDefault true;
     tilde.programs.gnupg.enable = lib.mkDefault true;
     tilde.programs.gromit-mpx.enable = lib.mkDefault true;
+    tilde.programs.peaclock.enable = lib.mkDefault true;
     tilde.programs.recoll.enable = lib.mkDefault true;
 
     # Communicate with my phone:

@@ -97,7 +97,6 @@
         libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
         pamixer # Pulseaudio command line mixer
         pavucontrol # PulseAudio Volume Control
-        peaclock # Clock, timer, and stopwatch for the terminal
         remmina # Remote desktop client written in GTK
         tilde-scripts-browser # Browser scripts
         virt-viewer # Viewer for remote virtual machines
