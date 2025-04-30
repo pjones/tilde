@@ -101,7 +101,6 @@
         tilde-scripts-browser # Browser scripts
         virt-viewer # Viewer for remote virtual machines
         vlc # Cross-platform media player and streaming server
-        wl-mirror # Simple Wayland output mirror client
         xournalpp # Xournal++ is a handwriting Notetaking software with PDF annotation support
       ] ++
       # Packages that don't build on aarch64:
