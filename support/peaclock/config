@@ -15,7 +15,10 @@ padding 0 0
 margin 0 0
 ratio 2 1
 date-padding 1
+
 set date on
+set hours off
+set minutes on
 set seconds on
 set hour-24 on
 set auto-size on

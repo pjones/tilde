@@ -20,6 +20,11 @@ final: prev: {
   # A gpg-agent/ssh-agent for Android:
   okc-agents = prev.callPackage ./okc-agents.nix { };
 
+  # My fork of peaclock:
+  peaclock = prev.peaclock.overrideAttrs (_orig: {
+    src = inputs.peaclock;
+  });
+
   # Custom hooks:
   tildeInstallScripts = prev.makeSetupHook
     {

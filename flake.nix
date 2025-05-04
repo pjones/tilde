@@ -53,6 +53,11 @@
       flake = false;
     };
 
+    peaclock = {
+      url = "github:pjones/peaclock/pjones/hours";
+      flake = false;
+    };
+
     tridactyl_emacs_config = {
       url = "github:jumper047/tridactyl_emacs_config/5674d6bb38abbe639dd8caaf3d81f33fc06f59fd";
       flake = false;
