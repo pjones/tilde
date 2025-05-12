@@ -86,6 +86,7 @@
     # Packages to install on workstations with a GUI running:
     (lib.mkIf config.tilde.graphical.enable {
       home.packages = with pkgs; [
+        anki-bin # Spaced repetition flashcard program
         chromium # A wrapper around chromium:
         evince # GNOME's document viewer
         gimp # The GNU Image Manipulation Program
