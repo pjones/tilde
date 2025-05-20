@@ -24,6 +24,7 @@ case "$(superkey-workspace.sh -n)" in
     discord \
     google-voice \
     mastodon \
+    slack \
     whatsapp
   ;;
 

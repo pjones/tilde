@@ -87,6 +87,7 @@ in
         discord = url "Discord" "https://discord.com/channels/688750797378682946/689772813481279547";
         google-voice = url "Google Voice" "https://voice.google.com/u/0/messages";
         mastodon = url "Mastodon" "https://fosstodon.org/";
+        slack = url "Slack" "https://app.slack.com/client/T0304H0EMPS/C08T7QXJX0A";
         whatsapp = url "WhatsApp" "https://web.whatsapp.com/";
       };
 
