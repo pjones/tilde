@@ -109,7 +109,6 @@
       lib.optionals pkgs.stdenv.isx86_64 (with pkgs; [
         makemkv # Convert blu-ray and dvd to mkv
         signal-desktop # Private, simple, and secure messenger
-        spotify # Play music from the Spotify music service
       ]) ++
       lib.optionals config.tilde.graphical.design (with pkgs; [
         openscad # 3D parametric model compiler
