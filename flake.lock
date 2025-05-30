@@ -59,6 +59,7 @@
         "home-manager": [
           "home-manager"
         ],
+        "meow-edit": "meow-edit",
         "nextflow-mode": "nextflow-mode",
         "nixpkgs": [
           "nixpkgs"
@@ -70,11 +71,11 @@
         "persid": "persid"
       },
       "locked": {
-        "lastModified": 1748247728,
-        "narHash": "sha256-gZ0TafyQFEHpo0Xp6cEWM+bplhlbBIYf2BCpKwv8CuA=",
+        "lastModified": 1748604360,
+        "narHash": "sha256-qubOtLLcoNqnxBsO2oikASF1OZk/Hv40207lh7w+m8U=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "c3dafadd4ef29f16bfada862472a8ce5aa0bd4ee",
+        "rev": "cee5340208b6795a97c025036935b1412bd10bbd",
         "type": "github"
       },
       "original": {
@@ -261,6 +262,22 @@
       "original": {
         "owner": "pjones",
         "repo": "mediarc",
+        "type": "github"
+      }
+    },
+    "meow-edit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743777156,
+        "narHash": "sha256-3YzEpgXhftN3g1p84aTfSd31XHbwkmySMUWQArZg0ZY=",
+        "owner": "meow-edit",
+        "repo": "meow",
+        "rev": "e5817f3b5ef82cbcf8a729af205191dc6b142282",
+        "type": "github"
+      },
+      "original": {
+        "owner": "meow-edit",
+        "repo": "meow",
         "type": "github"
       }
     },
