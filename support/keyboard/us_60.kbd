@@ -44,8 +44,8 @@
   prv previoussong
   ply playpause
 
-  ;; Caps lock or media layer:
-  mcp (tap-hold-next-release 200 caps (layer-toggle media)))
+  ;; Escape or media layer:
+  mcp (tap-hold-next-release 200 esc (layer-toggle media)))
 
 (deflayer qwerty
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
@@ -65,7 +65,7 @@
 
 (deflayer lower
   stop _    _    _    _    _    _    _    _     [     ]    _    _    _
-  _    esc  _    _    @cpl @cmn _    @und @sin  _     |    _    _    _
+  _    caps _    _    @cpl @cmn _    @und @sin  _     |    _    _    _
   _    _    _    del  cmp  bspc @pls =    _     _     _    _    _
   _    _    _    _    _    grv  @tld -    @lcbr @rcbr \    _
   _    _    _              _              _     _     _    _
