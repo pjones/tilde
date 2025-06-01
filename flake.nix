@@ -16,7 +16,7 @@
     emacsrc.inputs.nixpkgs.follows = "nixpkgs";
     emacsrc.inputs.home-manager.follows = "home-manager";
 
-    superkey.url = "github:pjones/superkey/niri";
+    superkey.url = "github:pjones/superkey/nixos-24.11";
     superkey.inputs.nixpkgs.follows = "nixpkgs";
     superkey.inputs.home-manager.follows = "home-manager";
     superkey.inputs.emacsrc.follows = "emacsrc";

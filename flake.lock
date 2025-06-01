@@ -619,16 +619,16 @@
         "sway-easyfocus": "sway-easyfocus"
       },
       "locked": {
-        "lastModified": 1748249155,
-        "narHash": "sha256-Umk5ePqciiSdVZ3kyfn4g/yH8KSy1zvZb5W/WG2L4Ik=",
+        "lastModified": 1748784485,
+        "narHash": "sha256-vjNiePgOX9FvXO+yRUjDfKtMnRjtmnpbKH/1vdlgwwE=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "d984bee4a70bda2e1c6301b6156dc5974ad8d143",
+        "rev": "a0e9ee15ffaefe69d4c4106e33e138c45bbc482d",
         "type": "github"
       },
       "original": {
         "owner": "pjones",
-        "ref": "niri",
+        "ref": "nixos-24.11",
         "repo": "superkey",
         "type": "github"
       }
