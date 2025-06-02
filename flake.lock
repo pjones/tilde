@@ -67,15 +67,16 @@
         "org-capture-ref": "org-capture-ref",
         "org-clock-dbus": "org-clock-dbus",
         "org-grader": "org-grader",
+        "org-roam": "org-roam",
         "ox-ipynb": "ox-ipynb",
         "persid": "persid"
       },
       "locked": {
-        "lastModified": 1748785450,
-        "narHash": "sha256-ih6jVqLTUGknJpkrUrL+imSar2mtk5W8qjVs1U6mjQk=",
+        "lastModified": 1748857823,
+        "narHash": "sha256-EEBuggprGSCK+CT7VxkRP/QzRfbxuKHJz0hAoE955HI=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "ba429866331eb1b0ca1f5375880d82079a04bd42",
+        "rev": "d33349c5fa8ea8322b301523c190b4cc2d21e8e6",
         "type": "github"
       },
       "original": {
@@ -554,6 +555,23 @@
       "original": {
         "owner": "pjones",
         "repo": "org-grader",
+        "type": "github"
+      }
+    },
+    "org-roam": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1748153192,
+        "narHash": "sha256-qjWN/+p7z44q0C1iYYDk0S6np/L2DXBuamUq+PS+MgI=",
+        "owner": "org-roam",
+        "repo": "org-roam",
+        "rev": "2ff616fbd8277bd797254befe34d5036b35a7dbf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "org-roam",
+        "ref": "v2.3.0",
+        "repo": "org-roam",
         "type": "github"
       }
     },
