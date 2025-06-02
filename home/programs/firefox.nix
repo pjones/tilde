@@ -95,14 +95,16 @@ in
 
       # General browsing:
       profiles.default = {
-        inherit settings extensions;
+        inherit settings;
+        extensions.packages = extensions;
         name = "default";
         id = 0;
       };
 
       # Site-specific browser configuration:
       profiles.app = {
-        inherit settings extensions;
+        inherit settings;
+        extensions.packages = extensions;
         name = "app";
         id = 1;
 

@@ -49,7 +49,7 @@ in
       defaultCacheTtlSsh = 14400;
       maxCacheTtl = 7200;
       maxCacheTtlSsh = 21600;
-      pinentryPackage = pkgs.pinentry-qt;
+      pinentry.package = pkgs.pinentry-qt;
     };
   };
 }

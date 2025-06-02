@@ -17,6 +17,7 @@ let
 in
 {
   config = lib.mkIf config.tilde.enable {
+    home.shell.enableShellIntegration = true;
     home.packages = [ pkgs.atuin ];
 
     programs.zsh = {
@@ -28,7 +29,7 @@ in
         highlighters = [ "main" "brackets" ];
       };
 
-      initExtra = ''
+      initContent = ''
         source ${zshrc}/share/zshrc/zshrc
         eval "$(atuin init zsh --disable-up-arrow)"
       '';

@@ -2,27 +2,26 @@
   description = "Peter's NixOS and Home Manager Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nur.url = "github:nix-community/NUR"; # https://nur.nix-community.org/
 
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     bashrc.url = "github:pjones/bashrc";
     bashrc.inputs.nixpkgs.follows = "nixpkgs";
 
-    emacsrc.url = "github:pjones/emacsrc/nixos-24.11";
+    emacsrc.url = "github:pjones/emacsrc/nixos-25.05";
     emacsrc.inputs.nixpkgs.follows = "nixpkgs";
     emacsrc.inputs.home-manager.follows = "home-manager";
 
-    superkey.url = "github:pjones/superkey/nixos-24.11";
+    superkey.url = "github:pjones/superkey/nixos-25.05";
     superkey.inputs.nixpkgs.follows = "nixpkgs";
     superkey.inputs.home-manager.follows = "home-manager";
     superkey.inputs.emacsrc.follows = "emacsrc";
 
     encryption-utils.url = "github:pjones/encryption-utils";
-    encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
+    # encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
 
     haskellrc.url = "github:pjones/haskellrc";
     haskellrc.inputs.nixpkgs.follows = "nixpkgs";
@@ -113,14 +112,6 @@
         tilde = import pkgs/overlay.nix { inherit inputs; };
         tmuxrc = inputs.tmuxrc.overlay;
         zshrc = inputs.zshrc.overlay;
-
-        # We need a newer version of fetchmail:
-        # FIXME: remove after NixOS 25.05
-        fetchmail = final: prev: {
-          fetchmail =
-            let pkgs = import inputs.unstable { inherit (prev) system; };
-            in pkgs.fetchmail;
-        };
       };
 
       # Attribute set of nixpkgs for each system:
@@ -128,6 +119,7 @@
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
+          config.android_sdk.accept_license = true;
           overlays = builtins.attrValues overlays;
         });
 
@@ -280,7 +272,7 @@
             NIX_PATH = "nixpkgs=${pkgs.path}";
 
             buildInputs = [
-              inputs.home-manager.outputs.defaultPackage.${system}
+              inputs.home-manager.packages.${system}.home-manager
               pkgs.neofetch
               pkgs.nixpkgs-fmt
               pkgs.nixd

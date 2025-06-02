@@ -152,7 +152,6 @@ in
           "UTF-8"
         ];
 
-      modules = [ pkgs.dovecot_pigeonhole ];
       protocols = [ "sieve" ];
 
       mailboxes = {
