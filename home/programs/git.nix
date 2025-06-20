@@ -55,8 +55,8 @@ in
     programs.git = {
       enable = true;
 
-      userName = "Peter Jones";
-      userEmail = "pjones@devalot.com";
+      userName = "Peter J. Jones";
+      userEmail = "peter@jonesbunch.com";
 
       signing = {
         key = config.programs.gpg.settings.default-key;
@@ -95,18 +95,42 @@ in
         init.defaultBranch = "trunk";
         core.pager = "less -SRiJMWF";
         color.ui = "auto";
+        column.ui = "auto";
         color.pager = true;
         branch.autoSetupRebase = "always";
-        push.default = "simple";
-        rerere.enable = true;
+        branch.sort = "-committerdate";
         gc.reflogExpire = "1 year";
         gc.rerereResolved = "1 year";
         log.date = "short";
         github.user = "pjones";
 
-        diff."lisp".xfuncname = "^\\((def\\S+\\s+\\S+)";
-        diff."gpg".textconv = "${pkgs.gnupg}/bin/gpg2 --no-tty --decrypt --use-agent";
-        diff."org".xfuncname = "^\\*+ +(.*)$";
+        diff = {
+          algorithm = "histogram";
+          colorMoved = "plain";
+          mnemonicPrefix = true;
+          renames = true;
+
+          "lisp".xfuncname = "^\\((def\\S+\\s+\\S+)";
+          "gpg".textconv = "${pkgs.gnupg}/bin/gpg2 --no-tty --decrypt --use-agent";
+          "org".xfuncname = "^\\*+ +(.*)$";
+        };
+
+        fetch = {
+          all = true;
+          prune = true;
+          pruneTags = true;
+        };
+
+        push = {
+          autoSetupRemote = true;
+          default = "simple";
+          followTags = true;
+        };
+
+        rerere = {
+          enable = true;
+          autoupdate = true;
+        };
 
         url."git@github.com:".pushInsteadOf = "https://github.com/";
       };
