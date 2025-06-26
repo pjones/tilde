@@ -29,8 +29,6 @@
     image-scripts.url = "github:pjones/image-scripts";
     image-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
-    kmonad.url = "github:kmonad/kmonad?dir=nix";
-
     maintenance-scripts.url = "github:pjones/maintenance-scripts";
     maintenance-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -167,7 +165,6 @@
               ./nixos
               home-manager.nixosModules.home-manager
               nixosBootstrapHomeManager
-              inputs.kmonad.nixosModules.default
               inputs.superkey.nixosModules.default
             ];
           };
