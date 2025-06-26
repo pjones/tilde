@@ -45,8 +45,9 @@
     };
 
     home-manager.users.pjones = { ... }: {
-      tilde.programs.emacs.enable = true;
       tilde.programs.beets.enable = true;
+      tilde.programs.emacs.enable = true;
+      tilde.programs.syncthing.enable = true;
 
       tilde.programs.ssh = {
         keysDir = "~/keys/ssh";
