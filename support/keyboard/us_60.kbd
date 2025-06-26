@@ -65,8 +65,8 @@
 
 (deflayer lower
   stop _    _    _    _    _    _    _    _     [     ]    _    _    _
-  _    caps _    _    @cpl @cmn _    @und @sin  _     |    _    _    _
-  _    _    _    del  cmp  bspc @pls =    _     _     _    _    _
+  _    esc  _    _    @cpl @cmn _    @und @sin  _     |    _    _    _
+  caps _    _    del  cmp  bspc @pls =    _     _     _    _    _
   _    _    _    _    _    grv  @tld -    @lcbr @rcbr \    _
   _    _    _              _              _     _     _    _
 )
