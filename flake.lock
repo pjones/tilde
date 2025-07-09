@@ -625,11 +625,11 @@
         "sway-easyfocus": "sway-easyfocus"
       },
       "locked": {
-        "lastModified": 1752049119,
-        "narHash": "sha256-lqrGL/eNXCaTCGo+vRMJ4MQ7NSAuuwiWU/qUhniJzQI=",
+        "lastModified": 1752068263,
+        "narHash": "sha256-Rz5ovRuI4ia6mYECCa+sffRyvkorl91+ijVd2pwls+8=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "8020ff255edd445def868c428cb8510aefcb20c4",
+        "rev": "ca7466fb17be5e12419a17e475bef3d29da4b7a5",
         "type": "github"
       },
       "original": {
