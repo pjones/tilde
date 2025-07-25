@@ -209,6 +209,7 @@ in
 
         set searchurls.az https://smile.amazon.com/s?k=%s&ref=nb_sb_noss
         set searchurls.dd https://duckduckgo.com/?q=%s
+        set searchurls.dp https://www.deepl.com/en/translator#en/de/%s
         set searchurls.go https://www.google.com/search?q=%s
         set searchurls.ge https://translate.google.com/?sl=de&tl=en&op=translate&text=%s
         set searchurls.ha https://hackage.haskell.org/packages/search?terms=%s
