@@ -204,7 +204,8 @@ in
         ${bindGlobal "<C-x>k tabclose"}
 
         " Close the current tab:
-        bind q tabclose
+        bind --mode=normal q tabclose
+        bind --mode=visual q tabclose
         bind <A-Backspace> tabclose
 
         set searchurls.az https://smile.amazon.com/s?k=%s&ref=nb_sb_noss
