@@ -3,11 +3,11 @@
     "anki-editor": {
       "flake": false,
       "locked": {
-        "lastModified": 1759248572,
-        "narHash": "sha256-i4D+KHYj4BpggROTHdIhZx1AVPCwQNLwfwNaHta180Y=",
+        "lastModified": 1760426428,
+        "narHash": "sha256-khofnsMG6Mt2CRcRdLzIm7noq+t89sTKpvjCHnr0iYo=",
         "owner": "anki-editor",
         "repo": "anki-editor",
-        "rev": "17d56b130e7422054a84e4d286b315801d9cc4f0",
+        "rev": "b7d35bacddbe19964709480a796fc4d7f758a4b0",
         "type": "github"
       },
       "original": {
@@ -70,11 +70,11 @@
         "ox-ipynb": "ox-ipynb"
       },
       "locked": {
-        "lastModified": 1759740260,
-        "narHash": "sha256-cqdCgmqR8lTZX8Sh6vso0PRbhorKN4BJ18BfH2F40T4=",
+        "lastModified": 1761557591,
+        "narHash": "sha256-jqfPvD7OmhWxEblFfbxS1dDClMM8HpTukDvukn5mOAc=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "0bfe5367354a5600ca500f03d3ee8319ae75eda0",
+        "rev": "0a22c464be4cf049dfc649b2fb9fa8fd9310c1f9",
         "type": "github"
       },
       "original": {
@@ -107,11 +107,11 @@
     "firefox-csshacks": {
       "flake": false,
       "locked": {
-        "lastModified": 1759498310,
-        "narHash": "sha256-0ycJ+BRUfZiowl2JzcpqJYcJYTXCgpzswwibzh6tUuQ=",
+        "lastModified": 1761274912,
+        "narHash": "sha256-IJRSaERM2yben3OMbCkOtATOdPTN4cdxBCakRqhQg+A=",
         "owner": "MrOtherGuy",
         "repo": "firefox-csshacks",
-        "rev": "7782493221773b643a2a45bc906f007bbe94e41f",
+        "rev": "73d183120b00ac4205db04e83840ea288513e549",
         "type": "github"
       },
       "original": {
@@ -366,11 +366,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1759580034,
-        "narHash": "sha256-YWo57PL7mGZU7D4WeKFMiW4ex/O6ZolUS6UNBHTZfkI=",
+        "lastModified": 1761468971,
+        "narHash": "sha256-vY2OLVg5ZTobdroQKQQSipSIkHlxOTrIF1fsMzPh8w8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3bcc93c5f7a4b30335d31f21e2f1281cba68c318",
+        "rev": "78e34d1667d32d8a0ffc3eba4591ff256e80576e",
         "type": "github"
       },
       "original": {
@@ -382,11 +382,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1759381078,
-        "narHash": "sha256-gTrEEp5gEspIcCOx9PD8kMaF1iEmfBcTbO0Jag2QhQs=",
+        "lastModified": 1761373498,
+        "narHash": "sha256-Q/uhWNvd7V7k1H1ZPMy/vkx3F8C13ZcdrKjO7Jv7v0c=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7df7ff7d8e00218376575f0acdcc5d66741351ee",
+        "rev": "6a08e6bb4e46ff7fcbb53d409b253f6bad8a28ce",
         "type": "github"
       },
       "original": {
@@ -418,11 +418,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1759724112,
-        "narHash": "sha256-42DBBV0eLlIHwu+xNX0xNcoFCX7hqkKjAs5kgxZZi/w=",
+        "lastModified": 1761555288,
+        "narHash": "sha256-hI7GQ1yX8klp2JSo75GjlZItlZAqEqVDjQ2hLmKkD74=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "af3cd64344dd497054e393e288bdb32cc9621e7f",
+        "rev": "535a06c466208c0300bf26b30c6b177afd31e2dd",
         "type": "github"
       },
       "original": {
@@ -439,11 +439,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744028889,
-        "narHash": "sha256-/xKRfFxiNQUpui/rU9vS5rufihe81JLUSahUUVfUeLk=",
+        "lastModified": 1761557150,
+        "narHash": "sha256-fG6svMEwJkCJkTN1RVq2jUrRT5SmaiVXFUmmHn/IHK4=",
         "owner": "pjones",
         "repo": "org-clock-dbus",
-        "rev": "b678980fa0c81334b2d072e37a498b9e2211e654",
+        "rev": "2ebfd243078f6749cf57524a9f677c0e6b5203ad",
         "type": "github"
       },
       "original": {
@@ -506,11 +506,11 @@
     "ox-ipynb": {
       "flake": false,
       "locked": {
-        "lastModified": 1725579910,
-        "narHash": "sha256-hLhTm9Y7e2ayJpCt6OvbxcuMYQucbZfA+jjlAPxlIbg=",
+        "lastModified": 1760734353,
+        "narHash": "sha256-2/0czBu5C83e1uU8PZ84rTZtMAqVb00ggA4UMZz0rcY=",
         "owner": "jkitchin",
         "repo": "ox-ipynb",
-        "rev": "ef9ba544230f9a30c17b172b566d9756cb74b608",
+        "rev": "1f60d4e13fc7f19c804666cd7c020c439bc86c33",
         "type": "github"
       },
       "original": {
