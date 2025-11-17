@@ -57,6 +57,7 @@ in
         extraConfig = ''
           User pjones
           TCPKeepAlive no
+          ConnectionAttempts 120
         ''
         + lib.optionalString
           (cfg.keysDir != options.tilde.programs.ssh.keysDir.default) ''
