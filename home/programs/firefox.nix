@@ -109,6 +109,11 @@ in
         name = "app";
         id = 1;
 
+        search = {
+          force = true;
+          default = "ddg";
+        };
+
         # https://mrotherguy.github.io/firefox-csshacks/
         userChrome = ''
           @import url(${pkgs.firefox-csshacks}/chrome/window_control_placeholder_support.css);
