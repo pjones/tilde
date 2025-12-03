@@ -46,7 +46,17 @@ let
     "widget.gtk.overlay-scrollbars.enabled" = false;
 
     # Privacy:
+    #
+    # Thanks to:
+    #   - https://circumstances.run/@davidgerard/115649931911132896
     "browser.ml.chat.enabled" = false;
+    "browser.ml.chat.menu" = false;
+    "browser.ml.chat.page" = false;
+    "browser.ml.chat.page.footerBadge" = false;
+    "browser.ml.chat.page.menuBadge" = false;
+    "browser.ml.enable" = false;
+    "browser.ml.linkPreview.enabled" = false;
+    "browser.ml.pageAssist.enabled" = false;
     "browser.newtabpage.activity-stream.feeds.telemetry" = false;
     "browser.newtabpage.activity-stream.feeds.weatherfeed" = false;
     "browser.newtabpage.activity-stream.showWeather" = false;
@@ -55,10 +65,14 @@ let
     "browser.newtabpage.activity-stream.telemetry.ut.events" = false;
     "browser.newtabpage.activity-stream.weather.locationSearchEnabled" = false;
     "browser.ping-centre.telemetry" = false;
+    "browser.search.visualSearch.featureGate" = false;
+    "browser.tabs.groups.smart.enabled" = false;
+    "browser.tabs.groups.smart.userEnabled" = false;
     "browser.urlbar.eventTelemetry.enabled" = false;
     "browser.urlbar.suggest.weather" = false;
     "browser.urlbar.weather.featureGate" = false;
     "dom.private-attribution.submission.enabled" = false;
+    "extensions.ml.enabled" = false;
     "network.trr.confirmation_telemetry_enabled" = false;
     "privacy.donottrackheader.enabled" = true;
     "privacy.trackingprotection.enabled" = true;
