@@ -55,25 +55,9 @@ in
     programs.git = {
       enable = true;
 
-      userName = "Peter J. Jones";
-      userEmail = "peter@jonesbunch.com";
-
       signing = {
         key = config.programs.gpg.settings.default-key;
         signByDefault = true;
-      };
-
-      aliases = {
-        b = "branch -vv";
-        s = "status --short";
-        ci = "commit";
-        co = "checkout";
-        ds = "describe --long --tags --dirty --always";
-        lg = "log --pretty=format:'%Cgreen%h%Creset %Cred%cd%Creset %Cblue%ae%Creset %s %d'";
-        sb = "submodule";
-        sbu = "submodule update --init --recursive";
-        sbp = "submodule update --remote --checkout";
-        unstage = "reset head --";
       };
 
       attributes = [
@@ -91,18 +75,33 @@ in
         ".direnv/"
       ];
 
-      extraConfig = {
-        init.defaultBranch = "trunk";
-        core.pager = "less -SRiJMWF";
-        color.ui = "auto";
-        column.ui = "auto";
-        color.pager = true;
+      settings = {
         branch.autoSetupRebase = "always";
         branch.sort = "-committerdate";
+        color.pager = true;
+        color.ui = "auto";
+        column.ui = "auto";
+        core.pager = "less -SRiJMWF";
         gc.reflogExpire = "1 year";
         gc.rerereResolved = "1 year";
-        log.date = "short";
         github.user = "pjones";
+        init.defaultBranch = "trunk";
+        log.date = "short";
+        user.email = "peter@jonesbunch.com";
+        user.name = "Peter J. Jones";
+
+        aliases = {
+          b = "branch -vv";
+          s = "status --short";
+          ci = "commit";
+          co = "checkout";
+          ds = "describe --long --tags --dirty --always";
+          lg = "log --pretty=format:'%Cgreen%h%Creset %Cred%cd%Creset %Cblue%ae%Creset %s %d'";
+          sb = "submodule";
+          sbu = "submodule update --init --recursive";
+          sbp = "submodule update --remote --checkout";
+          unstage = "reset head --";
+        };
 
         diff = {
           algorithm = "histogram";
@@ -134,13 +133,6 @@ in
 
         url."git@github.com:".pushInsteadOf = "https://github.com/";
       };
-    };
-
-    home.activation = {
-      remote-obsolete-git-config = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        [ -e "$HOME/.gitconfig" ] && rm -f "$HOME/.gitconfig"
-        [ -e "$HOME/.gitignore" ] && rm -f "$HOME/.gitignore"
-      '';
     };
   };
 }

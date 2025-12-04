@@ -17,6 +17,13 @@ let
     "gid=${builtins.toString cfg.virtualUID}"
     "home=${cfg.homeDir}/%d/%n"
   ];
+
+  sslCertDomain =
+    if cfg.useACMEHost != null then cfg.useACMEHost
+    else cfg.domain;
+
+  sslCertDir =
+    config.security.acme.certs.${sslCertDomain}.directory;
 in
 {
   options.tilde.mail.imap = {
@@ -26,6 +33,24 @@ in
     domain = lib.mkOption {
       type = lib.types.str;
       description = "The domain name to use.";
+    };
+
+    enableACME = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = ''
+        Whether to ask Let's Encrypt to sign a certificate for this
+        server.  Alternately, you can use an existing certificate
+        through {option}`useACMEHost`.
+      '';
+    };
+
+    useACMEHost = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+      description = ''
+        A host of an existing Let's Encrypt certificate to use.
+      '';
     };
 
     homeDir = lib.mkOption {
@@ -87,15 +112,6 @@ in
       group = cfg.virtualGroup;
     };
 
-    # Run a web server so we can get a certificate:
-    services.httpd = {
-      enable = lib.mkDefault true;
-      virtualHosts.${cfg.domain} = {
-        forceSSL = true;
-        enableACME = true;
-      };
-    };
-
     # Create system-level accounts for virtual mail:
     users = {
       users = {
@@ -137,8 +153,8 @@ in
       enablePAM = false;
       enableQuota = false;
 
-      sslServerCert = "${config.security.acme.certs.${cfg.domain}.directory}/fullchain.pem";
-      sslServerKey = "${config.security.acme.certs.${cfg.domain}.directory}/key.pem";
+      sslServerCert = "${sslCertDir}/fullchain.pem";
+      sslServerKey = "${sslCertDir}/key.pem";
 
       mailUser = cfg.virtualUser;
       mailGroup = cfg.virtualGroup;
@@ -249,9 +265,25 @@ in
       # TODO: Configure the sieve plugin
     };
 
-    # Make sure dovecot is restarted when the TLS cert is changed:
-    security.acme.certs."${cfg.domain}".reloadServices = [
-      "dovecot2.service"
-    ];
+    # Request a certificate or add our domain to an existing certificate:
+    #
+    # NOTE: dovecot runs as root so we don't need to worry about
+    # certificate permissions here.
+    security.acme.certs =
+      let
+        allCerts = {
+          reloadServices = [ "dovecot.service" ];
+        };
+        ownCert = allCerts // {
+          group = lib.mkDefault config.services.dovecot2.group;
+          webroot = lib.mkDefault "/var/lib/acme/acme-challenge";
+        };
+        otherCert = allCerts // {
+          extraDomainNames = [ cfg.domain ];
+        };
+      in
+      if cfg.useACMEHost != null then { ${sslCertDomain} = otherCert; }
+      else if cfg.enableACME then { ${sslCertDomain} = ownCert; }
+      else { };
   };
 }

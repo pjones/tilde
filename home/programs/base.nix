@@ -6,6 +6,7 @@
     # Packages to install on all systems:
     (lib.mkIf config.tilde.enable {
       home.packages = with pkgs; [
+        acl # Library and tools for manipulating access control lists
         bc # GNU software calculator
         bind # For dig(1): Domain name server
         binutils # Tools for manipulating binaries (linker, assembler, etc.)
@@ -72,7 +73,7 @@
         })
       ] ++
       lib.optionals pkgs.stdenv.isLinux (with pkgs; [
-        nixpkgs-fmt # Nix code formatter for nixpkgs
+        nixfmt # Official formatter for Nix code
         shellcheck # Shell script analysis tool
         shfmt # A shell parser and formatter
       ]) ++
@@ -89,6 +90,7 @@
         anki-bin # Spaced repetition flashcard program
         chromium # A wrapper around chromium:
         evince # GNOME's document viewer
+        geteduroam # GUI client to configure eduroam
         gimp # The GNU Image Manipulation Program
         handbrake # A tool for converting video files and ripping DVDs
         imagemagick # A software suite to create, edit, compose, or convert bitmap images

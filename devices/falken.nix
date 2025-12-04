@@ -2,7 +2,7 @@
 }:
 
 # This is a NixOS module:
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   imports = [
@@ -13,7 +13,7 @@
   config = {
     networking.hostName = "falken";
 
-    services.kmonad = lib.mkIf (pkgs.system == "x86_64-linux") {
+    services.kmonad = {
       enable = true;
 
       keyboards.internal = {
@@ -35,13 +35,9 @@
     };
 
     home-manager.users.pjones = { ... }: {
-      tilde.programs.emacs.enable = true;
       tilde.programs.beets.enable = true;
-
-      tilde.programs.ssh = {
-        keysDir = "~/keys/ssh";
-        haveRestrictedKeys = true;
-      };
+      tilde.programs.emacs.enable = true;
+      tilde.programs.ssh.keysDir = "~/keys/ssh";
     };
   };
 }

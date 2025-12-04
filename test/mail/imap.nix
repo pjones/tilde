@@ -12,11 +12,11 @@ let
 
 in
 
-pkgs.nixosTest {
+pkgs.testers.nixosTest {
   name = "imap-server-test";
 
   nodes = {
-    machine = { config, lib, ... }: {
+    machine = { ... }: {
       imports = [
         module
         ../../devices/generic-nixos.nix

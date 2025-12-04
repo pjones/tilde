@@ -12,7 +12,6 @@ in
     # Helpful packages:
     users.users.${config.tilde.username}.packages = with pkgs; [
       yubikey-personalization
-      yubikey-personalization-gui
     ];
 
     services.udev.extraRules = ''

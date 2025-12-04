@@ -2,29 +2,26 @@
   description = "Peter's NixOS and Home Manager Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nur.url = "github:nix-community/NUR"; # https://nur.nix-community.org/
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     bashrc.url = "github:pjones/bashrc";
     bashrc.inputs.nixpkgs.follows = "nixpkgs";
 
-    emacsrc.url = "github:pjones/emacsrc/nixos-25.05";
+    emacsrc.url = "github:pjones/emacsrc/nixos-25.11";
     emacsrc.inputs.nixpkgs.follows = "nixpkgs";
     emacsrc.inputs.home-manager.follows = "home-manager";
 
-    superkey.url = "github:pjones/superkey/nixos-25.05";
+    superkey.url = "github:pjones/superkey/nixos-25.11";
     superkey.inputs.nixpkgs.follows = "nixpkgs";
     superkey.inputs.home-manager.follows = "home-manager";
     superkey.inputs.emacsrc.follows = "emacsrc";
 
     encryption-utils.url = "github:pjones/encryption-utils";
-    # encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
-
-    haskellrc.url = "github:pjones/haskellrc";
-    haskellrc.inputs.nixpkgs.follows = "nixpkgs";
+    encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
 
     image-scripts.url = "github:pjones/image-scripts";
     image-scripts.inputs.nixpkgs.follows = "nixpkgs";
@@ -99,17 +96,17 @@
 
       # Package overlay:
       overlays = {
-        bashrc = inputs.bashrc.overlay;
+        bashrc = inputs.bashrc.overlays.default;
         encryption-utils = inputs.encryption-utils.overlays.default;
         image-scripts = inputs.image-scripts.overlays.default;
-        maintenance-scripts = inputs.maintenance-scripts.overlay;
+        maintenance-scripts = inputs.maintenance-scripts.overlays.default;
         mediarc = inputs.mediarc.overlays.mediarc;
-        network-scripts = inputs.network-scripts.overlay;
+        network-scripts = inputs.network-scripts.overlays.default;
         nur = inputs.nur.overlays.default;
         superkey = self.inputs.superkey.overlays.superkey;
         tilde = import pkgs/overlay.nix { inherit inputs; };
-        tmuxrc = inputs.tmuxrc.overlay;
-        zshrc = inputs.zshrc.overlay;
+        tmuxrc = inputs.tmuxrc.overlays.default;
+        zshrc = inputs.zshrc.overlays.default;
       };
 
       # Attribute set of nixpkgs for each system:
@@ -131,7 +128,6 @@
             imports = [
               ./home
               inputs.emacsrc.homeManagerModules.default
-              inputs.haskellrc.homeManagerModules.default
               inputs.superkey.homeManagerModules.default
             ];
           };
@@ -204,6 +200,7 @@
           # Launch a VM running Peter's configuration:
           default = {
             type = "app";
+            meta.description = "Run tilde in a VM";
             program = "${self.packages.${system}.default}/bin/run-tilde-demo-vm";
           };
 
@@ -218,6 +215,7 @@
             in
             {
               type = "app";
+              meta.description = "Run the VM and take a screenshot";
               program = "${script}";
             };
         });

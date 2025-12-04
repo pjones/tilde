@@ -32,7 +32,7 @@ in
       };
 
       # Put the fake password file in the right place:
-      systemd.services.dovecot2.preStart = ''
+      systemd.services.dovecot.preStart = ''
         mkdir --parents "$(dirname "${passwordFile}")"
         install --mode=0440 --owner=vmail --group=vmail ${authDb} ${passwordFile}
       '';

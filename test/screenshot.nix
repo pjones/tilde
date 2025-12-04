@@ -4,16 +4,16 @@ let
   withXwininfo = pkgs.appendOverlays [
     (final: prev: {
       xorg = prev.xorg // {
-        xwininfo = self.inputs.superkey.packages.${prev.system}.xwininfo-tests;
+        xwininfo = self.inputs.superkey.packages.${prev.stdenv.hostPlatform.system}.xwininfo-tests;
       };
     })
   ];
 in
-withXwininfo.nixosTest {
+withXwininfo.testers.nixosTest {
   name = "tilde-screenshot";
 
   nodes = {
-    machine = { config, pkgs, lib, ... }: {
+    machine = { config, pkgs, ... }: {
       imports = [
         self.inputs.superkey.nixosModules.autologin
         self.inputs.superkey.nixosModules.qemu-wayland

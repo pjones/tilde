@@ -2,7 +2,7 @@
 }:
 
 # This is a NixOS module:
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -12,7 +12,7 @@
   config = {
     networking.hostName = "sid";
 
-    services.kmonad = lib.mkIf (pkgs.system == "x86_64-linux") {
+    services.kmonad = {
       enable = true;
 
       keyboards.internal = {
@@ -27,12 +27,23 @@
       };
     };
 
-    services.logind =
-      let ignore = lib.mkForce "ignore"; in {
-        lidSwitch = ignore;
-        lidSwitchDocked = ignore;
-        lidSwitchExternalPower = ignore;
-      };
+    # Ignore all lid switch events:
+    services.logind.settings.Login =
+      let
+        ignore = lib.mkForce "ignore";
+        keys = [
+          "HandleLidSwitch"
+          "HandleLidSwitchDocked"
+          "HandleLidSwitchExternalPower"
+        ];
+      in
+      builtins.listToAttrs
+        (map
+          (key: {
+            name = key;
+            value = ignore;
+          })
+          keys);
 
     tilde = {
       crontab = {
@@ -47,12 +58,8 @@
     home-manager.users.pjones = { ... }: {
       tilde.programs.beets.enable = true;
       tilde.programs.emacs.enable = true;
+      tilde.programs.ssh.keysDir = "~/keys/ssh";
       tilde.programs.syncthing.enable = true;
-
-      tilde.programs.ssh = {
-        keysDir = "~/keys/ssh";
-        haveRestrictedKeys = true;
-      };
     };
   };
 }

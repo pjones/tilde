@@ -84,10 +84,18 @@ in
         networking = {
           nat.enable = true;
           nat.internalInterfaces = [ "ve-+" ];
-          networkmanager.enable = true;
-          networkmanager.unmanaged = [ "interface-name:ve-*" ];
           useDHCP = false;
           wireless.enable = false;
+
+          networkmanager = {
+            enable = true;
+            unmanaged = [ "interface-name:ve-*" ];
+            plugins = with pkgs; [
+              networkmanager-l2tp
+              networkmanager-sstp
+              networkmanager-vpnc
+            ];
+          };
         };
 
         # Printing:
@@ -117,7 +125,6 @@ in
 
             qemu = {
               swtpm.enable = true;
-              ovmf.packages = [ pkgs.OVMFFull.fd ];
               vhostUserPackages = [ pkgs.virtiofsd ];
             };
           };
@@ -165,10 +172,10 @@ in
           SuspendState=mem
         '';
 
-        services.logind = {
-          lidSwitch = "suspend-then-hibernate";
-          lidSwitchDocked = "suspend-then-hibernate";
-          lidSwitchExternalPower = "suspend-then-hibernate";
+        services.logind.settings.Login = {
+          HandleLidSwitch = "suspend-then-hibernate";
+          HandleLidSwitchDocked = "suspend-then-hibernate";
+          HandleLidSwitchExternalPower = "suspend-then-hibernate";
         };
 
         # Useful services:

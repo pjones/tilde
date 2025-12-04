@@ -1,4 +1,8 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 
 let
   cfg = config.tilde.programs.syncthing;
@@ -26,7 +30,6 @@ in
 
       extraOptions = [
         "--gui-address=${cfg.gui.ip}:${toString cfg.gui.port}"
-        "--no-default-folder"
       ];
     };
   };

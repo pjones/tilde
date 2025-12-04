@@ -2,7 +2,7 @@
 let
   user = import ./user.nix;
 in
-pkgs.nixosTest {
+pkgs.testers.nixosTest {
   name = "tilde-cron-test";
 
   nodes = {

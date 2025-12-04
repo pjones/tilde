@@ -23,11 +23,11 @@ let
     cat > /var/lib/lmtp/last-msg.txt
   '';
 in
-pkgs.nixosTest {
+pkgs.testers.nixosTest {
   name = "fetchmail-test";
 
   nodes = {
-    machine = { config, lib, ... }: {
+    machine = { ... }: {
       imports = [
         module
         ../../devices/generic-nixos.nix
@@ -59,7 +59,7 @@ pkgs.nixosTest {
     with subtest("Start machines"):
         start_all()
         machine.wait_for_unit("multi-user.target")
-        machine.wait_for_unit("dovecot2.service")
+        machine.wait_for_unit("dovecot.service")
         machine.wait_for_unit("fetchmail-example.service")
 
     with subtest("Run test script"):

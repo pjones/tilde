@@ -1,6 +1,5 @@
 { pkgs, module }:
 let
-  lib = pkgs.lib;
   user = import ../user.nix;
 
   testPackage = pkgs.writeShellApplication {
@@ -11,7 +10,7 @@ let
     ];
   };
 in
-pkgs.nixosTest {
+pkgs.testers.nixosTest {
   name = "tilde-mail-test";
 
   nodes = {
@@ -30,13 +29,6 @@ pkgs.nixosTest {
         pkgs.jq
         testPackage
       ];
-
-      systemd.services.dovecot2.preStart = ''
-        ${pkgs.coreutils}/bin/install \
-          --owner=${user.name} \
-          --mode=0400 \
-          /var/lib/acme/example.com/cert.pem /tmp/cert.pem
-      '';
 
       security.sudo.wheelNeedsPassword = false;
 
@@ -62,7 +54,7 @@ pkgs.nixosTest {
               hostname = "localhost";
               username = "example@example.com";
               passwordCmd = "echo password";
-              serverCertFile = "/tmp/cert.pem";
+              serverCertFile = "/var/lib/acme/example.com/cert.pem";
             };
 
             smtpServer = {
@@ -88,8 +80,10 @@ pkgs.nixosTest {
     with subtest("Start machines"):
         start_all()
         machine.wait_for_unit("multi-user.target")
-        machine.wait_for_unit("dovecot2.service")
-        machine.wait_for_file("/tmp/cert.pem")
+        machine.wait_for_unit("dovecot.service")
+
+        # Ensure tests can access the certificate:
+        machine.succeed("${pkgs.acl}/bin/setfacl -R -m u:${user.name}:rX /var/lib/acme/example.com")
 
     with subtest("Log in"):
         machine.wait_until_tty_matches("1", "login: ")
