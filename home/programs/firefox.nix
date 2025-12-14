@@ -112,6 +112,18 @@ in
         extensions.packages = extensions;
         name = "default";
         id = 0;
+
+        search = {
+          force = true;
+          default = "ddg";
+        };
+
+        userChrome = ''
+          /* Hide the sidebar in fullscreen */
+          #main-window[inFullscreen="true"] #sidebar-main {
+            display: none !important;
+          }
+        '';
       };
 
       # Site-specific browser configuration:
@@ -120,11 +132,6 @@ in
         extensions.packages = extensions;
         name = "app";
         id = 1;
-
-        search = {
-          force = true;
-          default = "ddg";
-        };
 
         # https://mrotherguy.github.io/firefox-csshacks/
         userChrome = ''
@@ -170,11 +177,11 @@ in
         set newtab ${homepage}
         set searchengine dd
         set modeindicatorshowkeys true
+        set modeindicator.normal false
 
         set hintautoselect false
         set hintchars 1234567890
         set hintfiltermode vimperator-reflow
-
 
         " Org-capture:
         command org-capture js location.href='org-protocol://capture?' + new URLSearchParams({template: 'p', url: window.location.href, title: document.title, body: window.getSelection()});
@@ -182,11 +189,16 @@ in
 
         unbind q
         unbind g
-        unbind l
         unbind w
 
-        bind <C-c><A-w> clipboard yank
-        bind <C-u><C-c><A-w> clipboard yankorg
+        " History (like info pages)
+        bind l back
+        bind r forward
+        bind u urlparent
+
+        bind w clipboard yank
+        bind <C-u>w clipboard yankorg
+        bind --mode=visual w composite js document.getSelection().toString() | clipboard yank
 
         bind <C-c>lc hint -p
         bind <C-c>lw hint -y
@@ -196,9 +208,7 @@ in
         bind <C-u>f hint -t
 
         bind g reload
-        bind r reload
         bind <C-u>g reloadhard
-        bind <C-u>r reloadhard
 
         bind n scrollline 10
         bind p scrollline -10
@@ -206,6 +216,11 @@ in
         bind <A-b> followpage prev
         bind <C-+> zoom 0.1 true
         bind <C--> zoom -0.1 true
+
+        " The find feature in Tridactyl sucks, so use
+        " wtype to send the correct key to FF to show the
+        " 'Find in page' popup.
+        bind <C-s> ! wtype -M win -k f -m win
 
         " Ignore next key:
         ${bindGlobal "<C-q> nmode ignore 1 mode normal"}
@@ -231,6 +246,7 @@ in
         bind <A-Backspace> tabclose
 
         set searchurls.az https://smile.amazon.com/s?k=%s&ref=nb_sb_noss
+        set searchurls.bk https://books.google.com?q=%s
         set searchurls.dd https://duckduckgo.com/?q=%s
         set searchurls.dp https://www.deepl.com/en/translator#en/de/%s
         set searchurls.go https://www.google.com/search?q=%s
@@ -241,6 +257,7 @@ in
         set searchurls.mp https://maps.google.com/?q=%s
         set searchurls.no https://search.nixos.org/options?query=%s
         set searchurls.np https://search.nixos.org/packages?query=%s
+        set searchurls.sc https://scholar.google.com/scholar?q=%s
         set searchurls.wd https://en.wiktionary.org/w/index.php?search=%s
         set searchurls.wp https://en.wikipedia.org/w/index.php?search=%s
       '';
