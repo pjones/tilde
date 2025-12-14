@@ -5,75 +5,77 @@ let
   testPackage = pkgs.writeShellApplication {
     name = "mail-test-script";
     text = builtins.readFile ./common.sh + builtins.readFile ./home.sh;
-    runtimeInputs = with pkgs; [
-      coreutils
-    ];
+    runtimeInputs = with pkgs; [ coreutils ];
   };
 in
 pkgs.testers.nixosTest {
   name = "tilde-mail-test";
 
   nodes = {
-    machine = { ... }: {
-      imports = [
-        module
-        ../../devices/generic-nixos.nix
-        ./common.nix
-      ];
+    machine =
+      { ... }:
+      {
+        imports = [
+          module
+          ../../devices/generic-nixos.nix
+          ./common.nix
+        ];
 
-      users.users.${user.name} = {
-        password = user.password;
-      };
+        users.users.${user.name} = {
+          password = user.password;
+        };
 
-      environment.systemPackages = [
-        pkgs.jq
-        testPackage
-      ];
+        environment.systemPackages = [
+          pkgs.jq
+          testPackage
+        ];
 
-      security.sudo.wheelNeedsPassword = false;
+        security.sudo.wheelNeedsPassword = false;
 
-      tilde = {
-        enable = true;
-        username = user.name;
-        putInWheel = true;
-        mail.imap.enable = true;
-      };
-
-      home-manager.users.${user.name} = { ... }: {
-        tilde.mail = {
+        tilde = {
           enable = true;
-          debug = true;
-          mbsync.enable = true;
-          msmtp.enable = true;
-          mu.enable = true;
+          username = user.name;
+          putInWheel = true;
+          mail.imap.enable = true;
+        };
 
-          accounts."example.com" = {
-            default = true;
+        home-manager.users.${user.name} =
+          { ... }:
+          {
+            tilde.mail = {
+              enable = true;
+              debug = true;
+              mbsync.enable = true;
+              msmtp.enable = true;
+              mu.enable = true;
 
-            imapServer = {
-              hostname = "localhost";
-              username = "example@example.com";
-              passwordCmd = "echo password";
-              serverCertFile = "/var/lib/acme/example.com/cert.pem";
-            };
+              accounts."example.com" = {
+                default = true;
 
-            smtpServer = {
-              hostname = "localhost";
-              username = "example";
-              passwordCmd = "echo password";
-            };
+                imapServer = {
+                  hostname = "localhost";
+                  username = "example@example.com";
+                  passwordCmd = "echo password";
+                  serverCertFile = "/var/lib/acme/example.com/cert.pem";
+                };
 
-            domains."example.com" = {
-              default = true;
-              users = [
-                "example"
-                "other"
-              ];
+                smtpServer = {
+                  hostname = "localhost";
+                  username = "example";
+                  passwordCmd = "echo password";
+                };
+
+                domains."example.com" = {
+                  default = true;
+                  users = [
+                    "example"
+                    "other"
+                  ];
+                };
+              };
             };
           };
-        };
       };
-    };
   };
 
   testScript = ''

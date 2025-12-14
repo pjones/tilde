@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 
 let
   cfg = config.tilde.programs.syncthing;
@@ -28,9 +24,7 @@ in
     services.syncthing = {
       enable = true;
 
-      extraOptions = [
-        "--gui-address=${cfg.gui.ip}:${toString cfg.gui.port}"
-      ];
+      extraOptions = [ "--gui-address=${cfg.gui.ip}:${toString cfg.gui.port}" ];
     };
   };
 }

@@ -1,8 +1,7 @@
 # A shell environment that includes adb and a script to debloat
 # Samsung devices.
-{ pkgs ? import <nixpkgs> {
-    config.android_sdk.accept_license = true;
-  }
+{
+  pkgs ? import <nixpkgs> { config.android_sdk.accept_license = true; },
 }:
 let
   inherit (pkgs) lib;
@@ -24,14 +23,13 @@ let
         "com.facebook.appmanager"
       ];
     in
-    pkgs.writeScriptBin "samsung-debloat"
-      ((lib.concatMapStringsSep "\n"
-        (pkg: "adb shell pm uninstall -k --user 0 ${pkg}")
-        uninstall)
+    pkgs.writeScriptBin "samsung-debloat" (
+      (lib.concatMapStringsSep "\n" (pkg: "adb shell pm uninstall -k --user 0 ${pkg}") uninstall)
       + ''
         # Clean up:
         adb kill-server
-      '');
+      ''
+    );
 in
 pkgs.mkShell {
   name = "android-env";
@@ -41,4 +39,3 @@ pkgs.mkShell {
     pkgs.android-tools
   ];
 }
-

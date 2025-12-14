@@ -1,8 +1,6 @@
 let
   drv =
-    { vscode-with-extensions
-    , vscode-extensions
-    }:
+    { vscode-with-extensions, vscode-extensions }:
 
     vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
@@ -16,9 +14,9 @@ let
   commit = "fd0daed2e8d590418fc565de70ea6ca47a6d2dcb";
   nixpkgs = fetchTarball "https://github.com/NixOS/nixpkgs/archive/${commit}.tar.gz";
 in
-with import nixpkgs
-{
+with import nixpkgs {
   config = {
     allowUnfree = true;
   };
-}; callPackage drv { }
+};
+callPackage drv { }

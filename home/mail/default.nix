@@ -34,14 +34,11 @@ in
         accounts = builtins.attrValues cfg.accounts;
         defaultAccounts = builtins.filter (a: a.default) accounts;
 
-        defaultDomains = builtins.listToAttrs (map
-          (acct: {
+        defaultDomains = builtins.listToAttrs (
+          map (acct: {
             name = acct.name;
-            value = builtins.length
-              (builtins.filter (d: d.default)
-                (builtins.attrValues acct.domains));
-          })
-          accounts
+            value = builtins.length (builtins.filter (d: d.default) (builtins.attrValues acct.domains));
+          }) accounts
         );
       in
       [
@@ -52,9 +49,7 @@ in
           '';
         }
         {
-          assertion =
-            builtins.all (num: num == 1)
-              (builtins.attrValues defaultDomains);
+          assertion = builtins.all (num: num == 1) (builtins.attrValues defaultDomains);
           message = ''
             Each mail account should have exactly one default domain:
             ${builtins.toJSON defaultDomains}
@@ -63,11 +58,9 @@ in
       ];
 
     xdg.configFile = {
-      "tilde/email-addrs.json".text =
-        builtins.toJSON (options.allEmailAddresses cfg.accounts);
+      "tilde/email-addrs.json".text = builtins.toJSON (options.allEmailAddresses cfg.accounts);
 
-      "tilde/mail.json".text =
-        builtins.toJSON cfg.accounts;
+      "tilde/mail.json".text = builtins.toJSON cfg.accounts;
     };
   };
 }

@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   cfg = config.tilde.workstation.yubikey;
 
@@ -10,9 +15,7 @@ in
 
   config = lib.mkIf cfg.enable {
     # Helpful packages:
-    users.users.${config.tilde.username}.packages = with pkgs; [
-      yubikey-personalization
-    ];
+    users.users.${config.tilde.username}.packages = with pkgs; [ yubikey-personalization ];
 
     services.udev.extraRules = ''
       ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0111", MODE="0660", GROUP="wheel", SYMLINK+="yubikey"

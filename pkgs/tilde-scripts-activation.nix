@@ -1,11 +1,12 @@
-{ stdenvNoCC
-, lib
-, tildeInstallScripts
-, coreutils
-, findutils
-, gnugrep
-, gnused
-, man-db
+{
+  stdenvNoCC,
+  lib,
+  tildeInstallScripts,
+  coreutils,
+  findutils,
+  gnugrep,
+  gnused,
+  man-db,
 }:
 let
   path = lib.makeBinPath [
@@ -18,11 +19,12 @@ let
 in
 stdenvNoCC.mkDerivation {
   name = "tilde-scripts-activation";
-  phases = [ "installPhase" "fixupPhase" ];
-
-  nativeBuildInputs = [
-    tildeInstallScripts
+  phases = [
+    "installPhase"
+    "fixupPhase"
   ];
+
+  nativeBuildInputs = [ tildeInstallScripts ];
 
   installPhase = ''
     installScripts "$out" "${../scripts/activation}" "${path}"

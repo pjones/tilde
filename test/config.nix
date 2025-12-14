@@ -6,21 +6,25 @@ pkgs.testers.nixosTest {
   name = "tilde-config-test";
 
   nodes = {
-    machine = { config, ... }: {
-      imports = [
-        module
-        ../devices/generic-nixos.nix
-      ];
+    machine =
+      { config, ... }:
+      {
+        imports = [
+          module
+          ../devices/generic-nixos.nix
+        ];
 
-      tilde.username = user.name;
-      users.users.${user.name}.password = user.password;
+        tilde.username = user.name;
+        users.users.${user.name}.password = user.password;
 
-      home-manager.users.${config.tilde.username} = { ... }: {
-        tilde.createBookmarksDir = true;
-        tilde.programs.emacs.enable = true;
-        superkey.primaryOutput = "Virtual-1";
+        home-manager.users.${config.tilde.username} =
+          { ... }:
+          {
+            tilde.createBookmarksDir = true;
+            tilde.programs.emacs.enable = true;
+            superkey.primaryOutput = "Virtual-1";
+          };
       };
-    };
   };
 
   testScript = ''

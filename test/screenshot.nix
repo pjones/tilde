@@ -1,4 +1,8 @@
-{ self, module, pkgs }:
+{
+  self,
+  module,
+  pkgs,
+}:
 
 let
   withXwininfo = pkgs.appendOverlays [
@@ -13,27 +17,31 @@ withXwininfo.testers.nixosTest {
   name = "tilde-screenshot";
 
   nodes = {
-    machine = { config, pkgs, ... }: {
-      imports = [
-        self.inputs.superkey.nixosModules.autologin
-        self.inputs.superkey.nixosModules.qemu-wayland
-        module
-        ../devices/generic-nixos.nix
-      ];
+    machine =
+      { config, pkgs, ... }:
+      {
+        imports = [
+          self.inputs.superkey.nixosModules.autologin
+          self.inputs.superkey.nixosModules.qemu-wayland
+          module
+          ../devices/generic-nixos.nix
+        ];
 
-      networking.hostName = "tilde";
-      environment.systemPackages = [ pkgs.fastfetch ];
+        networking.hostName = "tilde";
+        environment.systemPackages = [ pkgs.fastfetch ];
 
-      tilde = {
-        enable = true;
-        graphical.enable = true;
+        tilde = {
+          enable = true;
+          graphical.enable = true;
+        };
+
+        home-manager.users.${config.tilde.username} =
+          { ... }:
+          {
+            tilde.programs.emacs.enable = true;
+            superkey.primaryOutput = "Virtual-1";
+          };
       };
-
-      home-manager.users.${config.tilde.username} = { ... }: {
-        tilde.programs.emacs.enable = true;
-        superkey.primaryOutput = "Virtual-1";
-      };
-    };
   };
 
   testScript = ''

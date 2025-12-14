@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.tilde.programs.recoll;
@@ -25,8 +30,7 @@ in
       configDir = "${config.xdg.configHome}/recoll";
 
       settings = {
-        topdirs =
-          map (dir: "${config.home.homeDirectory}/${dir}") defaultDirectories;
+        topdirs = map (dir: "${config.home.homeDirectory}/${dir}") defaultDirectories;
 
         "skippedNames+" = [
           "*.iso"

@@ -1,6 +1,7 @@
-{ stdenvNoCC
-, lib
-, inputs
+{
+  stdenvNoCC,
+  lib,
+  inputs,
 }:
 
 stdenvNoCC.mkDerivation {
@@ -8,7 +9,11 @@ stdenvNoCC.mkDerivation {
   version = builtins.substring 0 7 inputs.tridactyl_emacs_config.rev;
 
   src = inputs.tridactyl_emacs_config;
-  phases = [ "unpackPhase" "installPhase" "fixupPhase" ];
+  phases = [
+    "unpackPhase"
+    "installPhase"
+    "fixupPhase"
+  ];
 
   installPhase = ''
     mkdir -p $out/etc

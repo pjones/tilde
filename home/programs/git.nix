@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   cfg = config.tilde.programs.git;
@@ -15,9 +20,9 @@ let
     text = ''
       directories=()
     ''
-    + lib.concatMapStringsSep "\n"
-      (dir: ''if [ -d "${dir}" ]; then directories+=("${dir}"); fi'')
-      (baseStatusDirectories ++ cfg.extraStatusDirectories)
+    + lib.concatMapStringsSep "\n" (dir: ''if [ -d "${dir}" ]; then directories+=("${dir}"); fi'') (
+      baseStatusDirectories ++ cfg.extraStatusDirectories
+    )
     + "\n"
     + ''
       exec mgitstatus \

@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.tilde.graphical;
@@ -53,7 +54,10 @@ in
           exec = "${pkgs.imv}/bin/imv %U";
           terminal = false;
           categories = [ "Application" ];
-          mimeType = [ "image/jpeg" "image/png" ];
+          mimeType = [
+            "image/jpeg"
+            "image/png"
+          ];
         };
 
         memento-mori = {

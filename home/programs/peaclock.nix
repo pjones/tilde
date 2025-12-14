@@ -1,11 +1,18 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.tilde.programs.peaclock;
 
-  runPeaclock = name: pkgs.writeShellScript "peaclock-${name}" ''
-    eterm -e 'peaclock --config-dir ${config.xdg.configHome}/peaclock/${name}'
-  '';
+  runPeaclock =
+    name:
+    pkgs.writeShellScript "peaclock-${name}" ''
+      eterm -e 'peaclock --config-dir ${config.xdg.configHome}/peaclock/${name}'
+    '';
 in
 {
   options.tilde.programs.peaclock = {

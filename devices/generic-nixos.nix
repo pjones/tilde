@@ -1,5 +1,10 @@
 # This is a NixOS module:
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   networking.domain = lib.mkDefault "pmade.com";
 

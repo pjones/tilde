@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.tilde.mail.fetch;
@@ -12,86 +17,106 @@ let
     "--idle"
     "--ssl"
     "--verbose"
-  ] ++ [
+  ]
+  ++ [
     # Separated to emphasize that these must stay together:
     "--protocol"
     "imap"
   ];
 
-  accountOptions = { name, ... }: {
-    options = {
-      name = lib.mkOption {
-        type = lib.types.str;
-        default = name;
-        description = "Name for the systemd service and files.";
-      };
+  accountOptions =
+    { name, ... }:
+    {
+      options = {
+        name = lib.mkOption {
+          type = lib.types.str;
+          default = name;
+          description = "Name for the systemd service and files.";
+        };
 
-      localUserName = lib.mkOption {
-        type = lib.types.str;
-        default = null;
-        description = ''
-          The local IMAP user name to use when handing mail over to
-          Dovecot.
-        '';
-      };
+        localUserName = lib.mkOption {
+          type = lib.types.str;
+          default = null;
+          description = ''
+            The local IMAP user name to use when handing mail over to
+            Dovecot.
+          '';
+        };
 
-      commandFile = lib.mkOption {
-        type = lib.types.path;
-        description = ''
-          Path to a fetchmail run command file.  It should contain the
-          following contents:
+        commandFile = lib.mkOption {
+          type = lib.types.path;
+          description = ''
+            Path to a fetchmail run command file.  It should contain the
+            following contents:
 
-          poll SERVERNAME username NAME password PASSWORD
+            poll SERVERNAME username NAME password PASSWORD
 
-          Note: This file must only be readable by the LMTP user
-          account specified in the IMAP configuration.
-        '';
-      };
+            Note: This file must only be readable by the LMTP user
+            account specified in the IMAP configuration.
+          '';
+        };
 
-      moveTo = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
-        default = null;
-        description = ''
-          Don't delete messages, instead move them to a specific
-          folder.  Settting this option passes the --moveto FOLDER
-          command-line option to fetchmail.
-        '';
-      };
+        moveTo = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
+          default = null;
+          description = ''
+            Don't delete messages, instead move them to a specific
+            folder.  Settting this option passes the --moveto FOLDER
+            command-line option to fetchmail.
+          '';
+        };
 
-      lda = lib.mkOption {
-        type = lib.types.nullOr lib.types.path;
-        default = null;
-        description = ''
-          Path to a script that can deliver a mail message from
-          standard input.  Leave as null to use the correct invocation
-          of dovecot-lda.
-        '';
-      };
+        lda = lib.mkOption {
+          type = lib.types.nullOr lib.types.path;
+          default = null;
+          description = ''
+            Path to a script that can deliver a mail message from
+            standard input.  Leave as null to use the correct invocation
+            of dovecot-lda.
+          '';
+        };
 
-      extraFetchmailFlags = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [ ];
-        description = "Extra flags to pass to fetchmail.";
+        extraFetchmailFlags = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [ ];
+          description = "Extra flags to pass to fetchmail.";
+        };
       };
     };
-  };
 
-  ldaScript = acct:
-    if acct.lda != null
-    then acct.lda
+  ldaScript =
+    acct:
+    if acct.lda != null then
+      acct.lda
     else
       pkgs.writeShellScript "lda-${acct.name}" ''
         PATH=$PATH:/run/wrappers/bin
         exec dovecot-lda -e -d ${lib.escapeShellArg acct.localUserName}
       '';
 
-  mkFetchmailFlags = acct:
+  mkFetchmailFlags =
+    acct:
     fetchmailFlags
-    ++ lib.optionals (acct.moveTo != null) [ "--moveto" acct.moveTo ]
-    ++ [ "--fetchmailrc" acct.commandFile ]
-    ++ [ "--idfile" "/var/lib/${lmtpUser}/fetchmail.${acct.name}.ids" ]
-    ++ [ "--pidfile" "/var/lib/${lmtpUser}/fetchmail.${acct.name}.pid" ]
-    ++ [ "--mda" "${ldaScript acct}" ]
+    ++ lib.optionals (acct.moveTo != null) [
+      "--moveto"
+      acct.moveTo
+    ]
+    ++ [
+      "--fetchmailrc"
+      acct.commandFile
+    ]
+    ++ [
+      "--idfile"
+      "/var/lib/${lmtpUser}/fetchmail.${acct.name}.ids"
+    ]
+    ++ [
+      "--pidfile"
+      "/var/lib/${lmtpUser}/fetchmail.${acct.name}.pid"
+    ]
+    ++ [
+      "--mda"
+      "${ldaScript acct}"
+    ]
     ++ acct.extraFetchmailFlags;
 
   mkService = acct: {
@@ -127,8 +152,6 @@ in
   };
 
   config = lib.mkIf (cfg.enable && imapCfg.enable) {
-    systemd.services =
-      builtins.listToAttrs (map mkService
-        (builtins.attrValues cfg.accounts));
+    systemd.services = builtins.listToAttrs (map mkService (builtins.attrValues cfg.accounts));
   };
 }

@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   cfg = config.tilde;
 
@@ -57,74 +62,74 @@ in
   };
 
   #### Implementation:
-  config = lib.mkMerge
-    [
-      (lib.mkIf cfg.enable {
-        # Basic security:
-        networking.firewall.enable = true;
+  config = lib.mkMerge [
+    (lib.mkIf cfg.enable {
+      # Basic security:
+      networking.firewall.enable = true;
 
-        security.sudo.extraConfig = ''
-          Defaults insults
+      security.sudo.extraConfig = ''
+        Defaults insults
+      '';
+
+      # I want firmware updates:
+      hardware.enableRedistributableFirmware = true;
+
+      # Basic setup for nix and nixpkgs:
+      nix = {
+        nixPath = [ "nixpkgs=${pkgs.path}" ];
+        extraOptions = ''
+          experimental-features = nix-command flakes
         '';
+      };
 
-        # I want firmware updates:
-        hardware.enableRedistributableFirmware = true;
+      # Packages to install on all machines for all users:
+      environment.systemPackages = with pkgs; [
+        lsscsi
+        parted
+        pciutils
+        smartmontools
+        usbutils
+      ];
 
-        # Basic setup for nix and nixpkgs:
-        nix = {
-          nixPath = [ "nixpkgs=${pkgs.path}" ];
-          extraOptions = ''
-            experimental-features = nix-command flakes
-          '';
-        };
+      # Monitor the SMART status on compatible drives:
+      # See: smartd.conf(5)
+      services.smartd = {
+        enable = true;
+        autodetect = true;
+        defaults.autodetected = "-a -o on -s (S/../.././02|L/../../7/04)";
 
-        # Packages to install on all machines for all users:
-        environment.systemPackages = with pkgs; [
-          lsscsi
-          parted
-          pciutils
-          smartmontools
-          usbutils
-        ];
-
-        # Monitor the SMART status on compatible drives:
-        # See: smartd.conf(5)
-        services.smartd = {
-          enable = true;
-          autodetect = true;
-          defaults.autodetected = "-a -o on -s (S/../.././02|L/../../7/04)";
-
-          notifications = {
-            mail = {
-              enable = cfg.email != null;
-              sender = cfg.email;
-              recipient = cfg.email;
-            };
+        notifications = {
+          mail = {
+            enable = cfg.email != null;
+            sender = cfg.email;
+            recipient = cfg.email;
           };
         };
+      };
 
-        # This is needed to use ZSH as a login shell:
-        programs.zsh.enable = true;
+      # This is needed to use ZSH as a login shell:
+      programs.zsh.enable = true;
 
-        # A group just for me:
-        users.groups.${cfg.username} = { };
+      # A group just for me:
+      users.groups.${cfg.username} = { };
 
-        # And my user account:
-        users.users.${cfg.username} = {
-          isNormalUser = true;
-          description = "Peter J. Jones";
-          group = cfg.username;
-          createHome = true;
-          home = "/home/${cfg.username}";
-          shell = pkgs.zsh;
-          openssh.authorizedKeys.keys = sshPubKeys;
-          extraGroups = cfg.extraGroups ++
-            lib.optional cfg.putInWheel "wheel";
-        };
-      })
+      # And my user account:
+      users.users.${cfg.username} = {
+        isNormalUser = true;
+        description = "Peter J. Jones";
+        group = cfg.username;
+        createHome = true;
+        home = "/home/${cfg.username}";
+        shell = pkgs.zsh;
+        openssh.authorizedKeys.keys = sshPubKeys;
+        extraGroups = cfg.extraGroups ++ lib.optional cfg.putInWheel "wheel";
+      };
+    })
 
-      ({
-        home-manager.users.${cfg.username} = { ... }: {
+    ({
+      home-manager.users.${cfg.username} =
+        { ... }:
+        {
           config = lib.mkIf cfg.enable {
             # Propagate some settings into home-manager:
             home.username = cfg.username;
@@ -133,6 +138,6 @@ in
             tilde.workstation.enable = cfg.workstation.enable;
           };
         };
-      })
-    ];
+    })
+  ];
 }

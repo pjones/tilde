@@ -6,21 +6,23 @@ pkgs.testers.nixosTest {
   name = "tilde-cron-test";
 
   nodes = {
-    machine = { ... }: {
-      imports = [
-        module
-        ../devices/generic-nixos.nix
-      ];
+    machine =
+      { ... }:
+      {
+        imports = [
+          module
+          ../devices/generic-nixos.nix
+        ];
 
-      tilde = {
-        username = user.name;
+        tilde = {
+          username = user.name;
 
-        crontab.test-job = {
-          schedule = "minutely";
-          script = "touch /tmp/crontab-test-job";
+          crontab.test-job = {
+            schedule = "minutely";
+            script = "touch /tmp/crontab-test-job";
+          };
         };
       };
-    };
   };
 
   testScript = ''

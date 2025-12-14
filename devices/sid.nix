@@ -1,13 +1,12 @@
-{ self # Flake reference.
+{
+  self, # Flake reference.
 }:
 
 # This is a NixOS module:
 { lib, pkgs, ... }:
 
 {
-  imports = [
-    ./generic-nixos.nix
-  ];
+  imports = [ ./generic-nixos.nix ];
 
   config = {
     networking.hostName = "sid";
@@ -37,13 +36,12 @@
           "HandleLidSwitchExternalPower"
         ];
       in
-      builtins.listToAttrs
-        (map
-          (key: {
-            name = key;
-            value = ignore;
-          })
-          keys);
+      builtins.listToAttrs (
+        map (key: {
+          name = key;
+          value = ignore;
+        }) keys
+      );
 
     tilde = {
       crontab = {
@@ -55,11 +53,13 @@
       };
     };
 
-    home-manager.users.pjones = { ... }: {
-      tilde.programs.beets.enable = true;
-      tilde.programs.emacs.enable = true;
-      tilde.programs.ssh.keysDir = "~/keys/ssh";
-      tilde.programs.syncthing.enable = true;
-    };
+    home-manager.users.pjones =
+      { ... }:
+      {
+        tilde.programs.beets.enable = true;
+        tilde.programs.emacs.enable = true;
+        tilde.programs.ssh.keysDir = "~/keys/ssh";
+        tilde.programs.syncthing.enable = true;
+      };
   };
 }

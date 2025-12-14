@@ -58,7 +58,13 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }:
     let
       supportedSystems = [
         "x86_64-linux"
@@ -79,20 +85,25 @@
       ];
 
       # Function to generate a set based on supported systems:
-      forAllSystems = f:
-        nixpkgs.lib.genAttrs supportedSystems (system: f system);
+      forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
 
       # Like `forAllSystems` except just those that are Linux:
-      forLinuxSystems = f: builtins.listToAttrs
-        (builtins.filter (set: set ? name)
-          (builtins.map
-            (system:
-              let pkgs = nixpkgsFor.${system}; in
+      forLinuxSystems =
+        f:
+        builtins.listToAttrs (
+          builtins.filter (set: set ? name) (
+            builtins.map (
+              system:
+              let
+                pkgs = nixpkgsFor.${system};
+              in
               nixpkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
                 name = system;
                 value = f system;
-              })
-            supportedSystems));
+              }
+            ) supportedSystems
+          )
+        );
 
       # Package overlay:
       overlays = {
@@ -110,29 +121,35 @@
       };
 
       # Attribute set of nixpkgs for each system:
-      nixpkgsFor = forAllSystems (system:
+      nixpkgsFor = forAllSystems (
+        system:
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
           config.android_sdk.accept_license = true;
           overlays = builtins.attrValues overlays;
-        });
+        }
+      );
 
       # A NixOS module that bootstraps the tilde home manager modules:
-      nixosBootstrapHomeManager = { config, ... }: {
-        home-manager = {
-          backupFileExtension = "backup";
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.${config.tilde.username} = { ... }: {
-            imports = [
-              ./home
-              inputs.emacsrc.homeManagerModules.default
-              inputs.superkey.homeManagerModules.default
-            ];
+      nixosBootstrapHomeManager =
+        { config, ... }:
+        {
+          home-manager = {
+            backupFileExtension = "backup";
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.${config.tilde.username} =
+              { ... }:
+              {
+                imports = [
+                  ./home
+                  inputs.emacsrc.homeManagerModules.default
+                  inputs.superkey.homeManagerModules.default
+                ];
+              };
           };
         };
-      };
     in
     {
       inherit overlays;
@@ -141,30 +158,36 @@
       # NixOS module for importing into your system flake:
       nixosModules =
         let
-          hostFrom = path: { ... }: {
-            imports = [
-              self.nixosModules.tilde
-              (import path { inherit self; })
-            ];
-          };
-          hostModules = builtins.listToAttrs (map
-            (host: {
+          hostFrom =
+            path:
+            { ... }:
+            {
+              imports = [
+                self.nixosModules.tilde
+                (import path { inherit self; })
+              ];
+            };
+          hostModules = builtins.listToAttrs (
+            map (host: {
               name = host;
               value = hostFrom ./devices/${host}.nix;
-            })
-            hosts);
+            }) hosts
+          );
         in
         {
           # Base module:
-          tilde = { ... }: {
-            imports = [
-              ./nixos
-              home-manager.nixosModules.home-manager
-              nixosBootstrapHomeManager
-              inputs.superkey.nixosModules.default
-            ];
-          };
-        } // hostModules;
+          tilde =
+            { ... }:
+            {
+              imports = [
+                ./nixos
+                home-manager.nixosModules.home-manager
+                nixosBootstrapHomeManager
+                inputs.superkey.nixosModules.default
+              ];
+            };
+        }
+        // hostModules;
 
       ##########################################################################
       # A generic NixOS configuration that can be used as a demo:
@@ -182,21 +205,29 @@
       };
 
       ##########################################################################
-      packages = forLinuxSystems (system:
-        let pkgs = nixpkgsFor.${system};
-        in {
+      packages = forLinuxSystems (
+        system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
+        {
           default = self.nixosConfigurations.demo.config.system.build.vm;
 
           screenshot = import test/screenshot.nix {
             inherit self pkgs;
             module = self.nixosModules.tilde;
           };
-        } // self.overlays.tilde pkgs pkgs);
+        }
+        // self.overlays.tilde pkgs pkgs
+      );
 
       ##########################################################################
-      apps = forLinuxSystems (system:
-        let pkgs = nixpkgsFor.${system};
-        in {
+      apps = forLinuxSystems (
+        system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
+        {
           # Launch a VM running Peter's configuration:
           default = {
             type = "app";
@@ -218,16 +249,19 @@
               meta.description = "Run the VM and take a screenshot";
               program = "${script}";
             };
-        });
+        }
+      );
 
       ##########################################################################
-      checks = forLinuxSystems (system:
+      checks = forLinuxSystems (
+        system:
         let
           pkgs = nixpkgsFor.${system};
           module = self.nixosModules.tilde;
           test = path: import path { inherit pkgs module; };
 
-          machine = module:
+          machine =
+            module:
             let
               machine = nixpkgs.lib.nixosSystem {
                 inherit system;
@@ -240,12 +274,12 @@
             in
             machine.config.system.build.vm;
 
-          hostChecks = builtins.listToAttrs (map
-            (host: {
+          hostChecks = builtins.listToAttrs (
+            map (host: {
               name = host;
               value = machine self.nixosModules.${host};
-            })
-            hosts);
+            }) hosts
+          );
         in
         {
           # Tests:
@@ -257,11 +291,16 @@
           mail-home = test test/mail/home.nix;
           superkey-sway = inputs.superkey.checks.${system}.sway;
           superkey-greetd = inputs.superkey.checks.${system}.greetd;
-        } // hostChecks);
+        }
+        // hostChecks
+      );
 
       ##########################################################################
-      devShells = forAllSystems (system:
-        let pkgs = nixpkgsFor.${system}; in
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
         {
           default = pkgs.mkShell {
             NIX_PATH = "nixpkgs=${pkgs.path}";
@@ -273,6 +312,7 @@
               pkgs.nixd
             ];
           };
-        });
+        }
+      );
     };
 }

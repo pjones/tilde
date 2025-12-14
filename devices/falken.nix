@@ -1,4 +1,5 @@
-{ self # Flake reference.
+{
+  self, # Flake reference.
 }:
 
 # This is a NixOS module:
@@ -34,10 +35,12 @@
       programs.qmk.enable = true;
     };
 
-    home-manager.users.pjones = { ... }: {
-      tilde.programs.beets.enable = true;
-      tilde.programs.emacs.enable = true;
-      tilde.programs.ssh.keysDir = "~/keys/ssh";
-    };
+    home-manager.users.pjones =
+      { ... }:
+      {
+        tilde.programs.beets.enable = true;
+        tilde.programs.emacs.enable = true;
+        tilde.programs.ssh.keysDir = "~/keys/ssh";
+      };
   };
 }

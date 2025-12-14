@@ -1,4 +1,10 @@
-{ pkgs, config, options, lib, ... }:
+{
+  pkgs,
+  config,
+  options,
+  lib,
+  ...
+}:
 let
   cfg = config.tilde.programs.contacts;
 
@@ -13,21 +19,25 @@ let
     pass
   ];
 
-  readUserName = entry: pkgs.writeShellApplication {
-    name = "read-fm-user";
-    runtimeInputs = passDeps;
-    text = ''
-      pass show ${entry} | grep -iE ^user: | sed -E 's/^user: +//i' | head -1
-    '';
-  };
+  readUserName =
+    entry:
+    pkgs.writeShellApplication {
+      name = "read-fm-user";
+      runtimeInputs = passDeps;
+      text = ''
+        pass show ${entry} | grep -iE ^user: | sed -E 's/^user: +//i' | head -1
+      '';
+    };
 
-  readPassword = entry: pkgs.writeShellApplication {
-    name = "read-fm-pass";
-    runtimeInputs = passDeps;
-    text = ''
-      pass show ${entry} | head -1
-    '';
-  };
+  readPassword =
+    entry:
+    pkgs.writeShellApplication {
+      name = "read-fm-pass";
+      runtimeInputs = passDeps;
+      text = ''
+        pass show ${entry} | head -1
+      '';
+    };
 
   vdirsyncerConf =
     let
@@ -39,26 +49,70 @@ let
       # Side A: Local Storage
       # Side B: Remote Storage (CalDAV)
       fmCalCollections = [
-        [ "arizona" "arizona" "f89d3c83-6ac0-4d12-9d90-6065d0b8a76d" ]
-        [ "fam" "fam" "a7503614-9257-41ac-8de6-67192f006233" ]
-        [ "germany" "germany" "9e766a84-37c4-4076-8e42-02c7520dee4c" ]
-        [ "peter" "peter" "9AC84BAA-0DF0-11ED-8E05-BBF12FD9EBDA" ]
-        [ "shanna" "shanna" "shanna@jonesbunch.com.9F658776-0DF6-11ED-86FE-38DD605BB2E4" ]
+        [
+          "arizona"
+          "arizona"
+          "f89d3c83-6ac0-4d12-9d90-6065d0b8a76d"
+        ]
+        [
+          "fam"
+          "fam"
+          "a7503614-9257-41ac-8de6-67192f006233"
+        ]
+        [
+          "germany"
+          "germany"
+          "9e766a84-37c4-4076-8e42-02c7520dee4c"
+        ]
+        [
+          "peter"
+          "peter"
+          "9AC84BAA-0DF0-11ED-8E05-BBF12FD9EBDA"
+        ]
+        [
+          "shanna"
+          "shanna"
+          "shanna@jonesbunch.com.9F658776-0DF6-11ED-86FE-38DD605BB2E4"
+        ]
       ];
 
       fmCardCollections = [
-        [ "peter" "peter" "Default" ]
-        [ "global" "global" "masteruser_autohwyrel2@fastmail.com.Shared" ]
+        [
+          "peter"
+          "peter"
+          "Default"
+        ]
+        [
+          "global"
+          "global"
+          "masteruser_autohwyrel2@fastmail.com.Shared"
+        ]
       ];
 
       tuCalCollections = [
-        [ "personal" "personal" "personal" ]
-        [ "kohlbacher" "kohlbacher" "kohlbacher-lab_shared_by_47d6ff10-55dd-11ed-b23a-901b0ec6eb8c" ]
+        [
+          "personal"
+          "personal"
+          "personal"
+        ]
+        [
+          "kohlbacher"
+          "kohlbacher"
+          "kohlbacher-lab_shared_by_47d6ff10-55dd-11ed-b23a-901b0ec6eb8c"
+        ]
       ];
 
       tuCardCollections = [
-        [ "contacts" "contacts" "contacts" ]
-        [ "apps" "apps" "z-app-generated--contactsinteraction--recent" ]
+        [
+          "contacts"
+          "contacts"
+          "contacts"
+        ]
+        [
+          "apps"
+          "apps"
+          "z-app-generated--contactsinteraction--recent"
+        ]
       ];
     in
     ''

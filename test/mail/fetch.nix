@@ -27,32 +27,34 @@ pkgs.testers.nixosTest {
   name = "fetchmail-test";
 
   nodes = {
-    machine = { ... }: {
-      imports = [
-        module
-        ../../devices/generic-nixos.nix
-        (import ./common.nix)
-      ];
+    machine =
+      { ... }:
+      {
+        imports = [
+          module
+          ../../devices/generic-nixos.nix
+          (import ./common.nix)
+        ];
 
-      environment.systemPackages = [ testPackage ];
-      tilde.mail.imap.enable = true;
+        environment.systemPackages = [ testPackage ];
+        tilde.mail.imap.enable = true;
 
-      tilde.mail.fetch = {
-        enable = true;
-        accounts.example = {
-          inherit commandFile lda;
-          localUserName = "not-used";
-          moveTo = "Trash";
-          extraFetchmailFlags = [ "--nosslcertck" ];
+        tilde.mail.fetch = {
+          enable = true;
+          accounts.example = {
+            inherit commandFile lda;
+            localUserName = "not-used";
+            moveTo = "Trash";
+            extraFetchmailFlags = [ "--nosslcertck" ];
+          };
         };
-      };
 
-      systemd.services.fetchmail-example.preStart = ''
-        install \
-          --owner=lmtp --group=lmtp \
-          --mode=0400 ${commandFilePublic} ${commandFile}
-      '';
-    };
+        systemd.services.fetchmail-example.preStart = ''
+          install \
+            --owner=lmtp --group=lmtp \
+            --mode=0400 ${commandFilePublic} ${commandFile}
+        '';
+      };
   };
 
   testScript = ''

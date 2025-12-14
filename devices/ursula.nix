@@ -1,19 +1,25 @@
-{ self # Flake reference.
+{
+  self, # Flake reference.
 }:
 
 # This is a NixOS module:
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [
-    ./generic-nixos.nix
-  ];
+  imports = [ ./generic-nixos.nix ];
 
   config = {
     networking.hostName = "ursula";
 
-    home-manager.users.pjones = { ... }: {
-      tilde.programs.syncthing.enable = true;
-    };
+    home-manager.users.pjones =
+      { ... }:
+      {
+        tilde.programs.syncthing.enable = true;
+      };
   };
 }

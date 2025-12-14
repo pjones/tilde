@@ -1,24 +1,23 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   mailCfg = config.tilde.mail;
   cfg = mailCfg.msmtp;
 
-  smtpPort = acct:
-    if acct.smtpServer.port != null
-    then acct.smtpServer.port
-    else 465;
+  smtpPort = acct: if acct.smtpServer.port != null then acct.smtpServer.port else 465;
 
-  startTLS = acct:
-    if acct.smtpServer.tls == "starttls" || smtpPort acct == 587
-    then "on"
-    else "off";
+  startTLS = acct: if acct.smtpServer.tls == "starttls" || smtpPort acct == 587 then "on" else "off";
 
   # A simple way to name accounts:
-  accountName = acct:
-    builtins.hashString "md5" acct.name;
+  accountName = acct: builtins.hashString "md5" acct.name;
 
-  mkAccount = acct:
+  mkAccount =
+    acct:
     let
       name = accountName acct;
     in
@@ -32,18 +31,19 @@ let
       passwordeval ${acct.smtpServer.passwordCmd}
       tls on
       tls_starttls ${startTLS acct}
-    '' + lib.concatMapStringsSep "\n"
-      (domain: ''
-        account ${domain.name} : ${name}
-        from *@${domain.name}
-      '')
-      (builtins.attrValues acct.domains);
+    ''
+    + lib.concatMapStringsSep "\n" (domain: ''
+      account ${domain.name} : ${name}
+      from *@${domain.name}
+    '') (builtins.attrValues acct.domains);
 
-  mkConfig = accounts:
-    let default = builtins.head (builtins.filter (a: a.default) accounts);
-    in ''
-      ${lib.concatMapStringsSep "\n"
-        mkAccount (builtins.filter (a: a.msmtp) accounts)}
+  mkConfig =
+    accounts:
+    let
+      default = builtins.head (builtins.filter (a: a.default) accounts);
+    in
+    ''
+      ${lib.concatMapStringsSep "\n" mkAccount (builtins.filter (a: a.msmtp) accounts)}
       account default : ${accountName default}
     '';
 in
@@ -57,11 +57,9 @@ in
       {
         assertion =
           let
-            defaults = builtins.filter (a: a.default)
-              (builtins.attrValues mailCfg.accounts);
+            defaults = builtins.filter (a: a.default) (builtins.attrValues mailCfg.accounts);
           in
-          builtins.length defaults == 1 &&
-          (builtins.head defaults).msmtp;
+          builtins.length defaults == 1 && (builtins.head defaults).msmtp;
         message = ''
           The default mail account must have msmtp enabled if you also
           enable msmtp configuration generation.
@@ -71,8 +69,7 @@ in
 
     home.packages = [ pkgs.msmtp ];
 
-    xdg.configFile."msmtp/config".text =
-      mkConfig (builtins.attrValues mailCfg.accounts);
+    xdg.configFile."msmtp/config".text = mkConfig (builtins.attrValues mailCfg.accounts);
 
     home.sessionVariables = {
       # FIXME: Are these used?  They aren't documented in the manual.

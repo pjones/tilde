@@ -16,19 +16,19 @@ pkgs.testers.nixosTest {
   name = "imap-server-test";
 
   nodes = {
-    machine = { ... }: {
-      imports = [
-        module
-        ../../devices/generic-nixos.nix
-        (import ./common.nix)
-      ];
+    machine =
+      { ... }:
+      {
+        imports = [
+          module
+          ../../devices/generic-nixos.nix
+          (import ./common.nix)
+        ];
 
-      environment.systemPackages = [
-        testPackage
-      ];
+        environment.systemPackages = [ testPackage ];
 
-      tilde.mail.imap.enable = true;
-    };
+        tilde.mail.imap.enable = true;
+      };
   };
 
   testScript = ''

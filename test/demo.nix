@@ -1,9 +1,7 @@
 { config, ... }:
 
 {
-  imports = [
-    ./vm.nix
-  ];
+  imports = [ ./vm.nix ];
 
   config = {
     networking.hostName = "tilde-demo";
@@ -14,9 +12,11 @@
       putInWheel = true;
     };
 
-    home-manager.users.${config.tilde.username} = { ... }: {
-      tilde.programs.emacs.enable = true;
-      tilde.programs.gromit-mpx.enable = true;
-    };
+    home-manager.users.${config.tilde.username} =
+      { ... }:
+      {
+        tilde.programs.emacs.enable = true;
+        tilde.programs.gromit-mpx.enable = true;
+      };
   };
 }

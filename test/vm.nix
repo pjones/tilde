@@ -1,4 +1,9 @@
-{ lib, config, modulesPath, ... }:
+{
+  lib,
+  config,
+  modulesPath,
+  ...
+}:
 
 let
   user = import ./user.nix;
@@ -32,11 +37,13 @@ in
       diskSize = lib.mkDefault 8000; # MB
       memorySize = lib.mkDefault 2048; # MB
 
-      forwardPorts = [{
-        from = "host";
-        host.port = 2222;
-        guest.port = 22;
-      }];
+      forwardPorts = [
+        {
+          from = "host";
+          host.port = 2222;
+          guest.port = 22;
+        }
+      ];
 
       sharedDirectories.home = {
         source = "$HOME";
@@ -57,8 +64,10 @@ in
 
     tilde.username = user.name;
 
-    home-manager.users.${config.tilde.username} = { ... }: {
-      superkey.primaryOutput = lib.mkForce "Virtual-1";
-    };
+    home-manager.users.${config.tilde.username} =
+      { ... }:
+      {
+        superkey.primaryOutput = lib.mkForce "Virtual-1";
+      };
   };
 }

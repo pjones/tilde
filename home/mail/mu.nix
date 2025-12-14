@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   mailCfg = config.tilde.mail;
@@ -9,8 +14,8 @@ let
 
   initFlags = [
     "--maildir=${mailCfg.directory}"
-  ] ++ builtins.map (addr: "--my-address=${addr}")
-    (util.allEmailAddresses mailCfg.accounts);
+  ]
+  ++ builtins.map (addr: "--my-address=${addr}") (util.allEmailAddresses mailCfg.accounts);
 in
 {
   options.tilde.mail.mu = {

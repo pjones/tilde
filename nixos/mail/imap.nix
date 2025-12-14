@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 # This file configures a private IMAP server that acts as a mail hub.
 # Other tools are used to fetch mail from various sources and place
@@ -18,12 +23,9 @@ let
     "home=${cfg.homeDir}/%d/%n"
   ];
 
-  sslCertDomain =
-    if cfg.useACMEHost != null then cfg.useACMEHost
-    else cfg.domain;
+  sslCertDomain = if cfg.useACMEHost != null then cfg.useACMEHost else cfg.domain;
 
-  sslCertDir =
-    config.security.acme.certs.${sslCertDomain}.directory;
+  sslCertDir = config.security.acme.certs.${sslCertDomain}.directory;
 in
 {
   options.tilde.mail.imap = {
@@ -99,9 +101,7 @@ in
 
   config = lib.mkIf cfg.enable {
     # Tools that need to be in the system environment:
-    environment.systemPackages = [
-      pkgs.dovecot_pigeonhole
-    ];
+    environment.systemPackages = [ pkgs.dovecot_pigeonhole ];
 
     # Allow system scripts to insert mail into the IMAP process.
     security.wrappers.dovecot-lda = {
@@ -122,7 +122,8 @@ in
           createHome = true;
           group = cfg.virtualGroup;
         };
-      } // lib.optionalAttrs (cfg.lmtpUser == lmtpUser) {
+      }
+      // lib.optionalAttrs (cfg.lmtpUser == lmtpUser) {
         ${cfg.lmtpUser} = {
           isSystemUser = true;
           uid = cfg.lmtpUID;
@@ -136,7 +137,8 @@ in
         ${cfg.virtualGroup} = {
           gid = cfg.virtualUID;
         };
-      } // lib.optionalAttrs (cfg.lmtpGroup == lmtpUser) {
+      }
+      // lib.optionalAttrs (cfg.lmtpGroup == lmtpUser) {
         ${cfg.lmtpGroup} = {
           gid = cfg.lmtpUID;
         };
@@ -160,8 +162,10 @@ in
       mailGroup = cfg.virtualGroup;
 
       mailLocation =
-        let path = "${cfg.homeDir}/%d/%n";
-        in lib.concatStringsSep ":" [
+        let
+          path = "${cfg.homeDir}/%d/%n";
+        in
+        lib.concatStringsSep ":" [
           "maildir:${path}"
           "INBOX=${path}/Inbox"
           "LAYOUT=fs"
@@ -282,8 +286,11 @@ in
           extraDomainNames = [ cfg.domain ];
         };
       in
-      if cfg.useACMEHost != null then { ${sslCertDomain} = otherCert; }
-      else if cfg.enableACME then { ${sslCertDomain} = ownCert; }
-      else { };
+      if cfg.useACMEHost != null then
+        { ${sslCertDomain} = otherCert; }
+      else if cfg.enableACME then
+        { ${sslCertDomain} = ownCert; }
+      else
+        { };
   };
 }

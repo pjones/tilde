@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.tilde.programs.firefox;
@@ -102,10 +103,7 @@ in
       enable = true;
 
       package = pkgs.firefox.override (orig: {
-        nativeMessagingHosts =
-          (orig.nativeMessagingHosts or [ ]) ++ [
-            pkgs.tridactyl-native
-          ];
+        nativeMessagingHosts = (orig.nativeMessagingHosts or [ ]) ++ [ pkgs.tridactyl-native ];
       });
 
       # General browsing:
@@ -143,17 +141,22 @@ in
     home.file.".config/tridactyl/tridactylrc".text =
       let
         # Helper function to generate bind commands:
-        bindIn = modes: str:
-          lib.concatMapStringsSep "\n"
-            (mode: "bind --mode=${mode} ${str}")
-            modes;
+        bindIn = modes: str: lib.concatMapStringsSep "\n" (mode: "bind --mode=${mode} ${str}") modes;
 
         # Bind a key in modes where you should be able to use global
         # modifiers like M-x:
-        bindGlobal = bindIn [ "normal" "input" "insert" ];
+        bindGlobal = bindIn [
+          "normal"
+          "input"
+          "insert"
+        ];
 
         # Bind a key in modes where you can edit text:
-        bindEdit = bindIn [ "ex" "input" "insert" ];
+        bindEdit = bindIn [
+          "ex"
+          "input"
+          "insert"
+        ];
       in
       ''
         sanitize tridactyllocal tridactylsync

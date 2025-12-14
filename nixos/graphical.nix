@@ -22,9 +22,11 @@ in
       tilde.workstation.enable = true;
 
       # Propagate some settings into home-manager:
-      home-manager.users.${cfg.username} = { ... }: {
-        tilde.graphical.enable = true;
-      };
+      home-manager.users.${cfg.username} =
+        { ... }:
+        {
+          tilde.graphical.enable = true;
+        };
     })
 
     ############################################################################
@@ -33,9 +35,11 @@ in
       superkey.enable = true;
 
       # Propagate some settings into home-manager:
-      home-manager.users.${cfg.username} = { ... }: {
-        superkey.enable = true;
-      };
+      home-manager.users.${cfg.username} =
+        { ... }:
+        {
+          superkey.enable = true;
+        };
     })
   ];
 }

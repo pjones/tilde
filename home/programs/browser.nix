@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.tilde.programs.browser;
@@ -32,7 +33,10 @@ in
         exec = "${pkgs.tilde-scripts-browser}/bin/browser %U";
         terminal = false;
         comment = "Wrapper around Firefox";
-        categories = [ "Network" "WebBrowser" ];
+        categories = [
+          "Network"
+          "WebBrowser"
+        ];
         mimeType = mimeTypes;
       };
     };
@@ -40,13 +44,12 @@ in
     xdg.mimeApps = {
       enable = lib.mkDefault true;
 
-      defaultApplications = builtins.listToAttrs
-        (map
-          (name: {
-            inherit name;
-            value = "browser.desktop";
-          })
-          mimeTypes);
+      defaultApplications = builtins.listToAttrs (
+        map (name: {
+          inherit name;
+          value = "browser.desktop";
+        }) mimeTypes
+      );
     };
   };
 }

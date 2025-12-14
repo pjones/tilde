@@ -1,44 +1,53 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.tilde.boot;
 
-  staticIpOptions = { ... }: {
-    options = {
-      address = lib.mkOption {
-        type = lib.types.str;
-        description = "IPv4 address to listen on";
-      };
+  staticIpOptions =
+    { ... }:
+    {
+      options = {
+        address = lib.mkOption {
+          type = lib.types.str;
+          description = "IPv4 address to listen on";
+        };
 
-      gateway = lib.mkOption {
-        type = lib.types.str;
-        description = "IPv4 gateway";
-      };
+        gateway = lib.mkOption {
+          type = lib.types.str;
+          description = "IPv4 gateway";
+        };
 
-      netmask = lib.mkOption {
-        type = lib.types.str;
-        description = "IPv4 netmask";
+        netmask = lib.mkOption {
+          type = lib.types.str;
+          description = "IPv4 netmask";
+        };
       };
     };
-  };
 
   # https://www.kernel.org/doc/Documentation/filesystems/nfs/nfsroot.txt
   kernelNetworkingOptions =
     let
       options =
-        if cfg.network != null
-        then {
-          inherit (cfg.network) address gateway netmask;
-          dhcp = "none";
-        }
-        else {
-          address = "";
-          gateway = "";
-          netmask = "";
-          dhcp = "dhcp";
-        };
+        if cfg.network != null then
+          {
+            inherit (cfg.network) address gateway netmask;
+            dhcp = "none";
+          }
+        else
+          {
+            address = "";
+            gateway = "";
+            netmask = "";
+            dhcp = "dhcp";
+          };
     in
-    "ip=" + lib.concatStringsSep ":" [
+    "ip="
+    + lib.concatStringsSep ":" [
       options.address
       "" # NFS server address
       options.gateway

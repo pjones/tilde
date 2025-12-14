@@ -26,12 +26,13 @@ final: prev: {
   });
 
   # Custom hooks:
-  tildeInstallScripts = prev.makeSetupHook
-    {
-      name = "tildeInstallScripts";
-      propagatedBuildInputs = [ prev.makeWrapper ];
-      substitutions = { shell = prev.runtimeShell; };
-    } ../support/setup-hooks/install-scripts.sh;
+  tildeInstallScripts = prev.makeSetupHook {
+    name = "tildeInstallScripts";
+    propagatedBuildInputs = [ prev.makeWrapper ];
+    substitutions = {
+      shell = prev.runtimeShell;
+    };
+  } ../support/setup-hooks/install-scripts.sh;
 
   # Various scripts needed inside tilde:
   tilde-scripts-activation = prev.callPackage ./tilde-scripts-activation.nix { };

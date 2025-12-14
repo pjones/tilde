@@ -1,8 +1,9 @@
-{ stdenvNoCC
-, lib
-, tildeInstallScripts
-, chromium
-, coreutils
+{
+  stdenvNoCC,
+  lib,
+  tildeInstallScripts,
+  chromium,
+  coreutils,
 }:
 let
   path = lib.makeBinPath [
@@ -12,11 +13,12 @@ let
 in
 stdenvNoCC.mkDerivation {
   name = "tilde-scripts-browser";
-  phases = [ "installPhase" "fixupPhase" ];
-
-  nativeBuildInputs = [
-    tildeInstallScripts
+  phases = [
+    "installPhase"
+    "fixupPhase"
   ];
+
+  nativeBuildInputs = [ tildeInstallScripts ];
 
   installPhase = ''
     installScripts "$out" "${../scripts/browser}" "${path}"

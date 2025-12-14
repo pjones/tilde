@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.tilde.workstation;
@@ -22,7 +23,10 @@ in
     '';
 
     type = lib.mkOption {
-      type = lib.types.enum [ "desktop" "laptop" ];
+      type = lib.types.enum [
+        "desktop"
+        "laptop"
+      ];
       default = "desktop";
       description = ''
         Control the type of workstation.
@@ -30,158 +34,154 @@ in
     };
   };
 
-  config = lib.mkMerge
-    [
-      (lib.mkIf cfg.enable {
-        # Some other modules to enable by default:
-        tilde.workstation.yubikey.enable = lib.mkDefault true;
+  config = lib.mkMerge [
+    (lib.mkIf cfg.enable {
+      # Some other modules to enable by default:
+      tilde.workstation.yubikey.enable = lib.mkDefault true;
 
-        # Extra system pacakges:
-        environment.systemPackages = with pkgs; [
-          lm_sensors
-          man-pages # Developer man pages.
-          OVMFFull # For EFI booting.
-          spice-gtk
-          virt-manager
-          wirelesstools
-        ];
+      # Extra system pacakges:
+      environment.systemPackages = with pkgs; [
+        lm_sensors
+        man-pages # Developer man pages.
+        OVMFFull # For EFI booting.
+        spice-gtk
+        virt-manager
+        wirelesstools
+      ];
 
-        # Install documentation and man pages:
-        documentation = {
+      # Install documentation and man pages:
+      documentation = {
+        enable = true;
+        man.enable = true;
+        info.enable = true;
+        doc.enable = true;
+        dev.enable = true;
+        man.generateCaches = true;
+      };
+
+      # Default time zone:
+      time.timeZone = lib.mkDefault "America/Phoenix";
+      time.hardwareClockInLocalTime = true;
+
+      # For using different Nix caches:
+      nix.settings.trusted-users = [ "@wheel" ];
+
+      # For improved experience developing with Nix:
+      nix.extraOptions = ''
+        keep-outputs = true
+        keep-derivations = true
+      '';
+
+      # Useful services:
+      hardware.bluetooth.enable = true;
+      services.blueman.enable = lib.mkDefault true;
+
+      # Local service discovery:
+      services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+        domainName = config.networking.domain;
+      };
+
+      # Networking:
+      networking = {
+        nat.enable = true;
+        nat.internalInterfaces = [ "ve-+" ];
+        useDHCP = false;
+        wireless.enable = false;
+
+        networkmanager = {
           enable = true;
-          man.enable = true;
-          info.enable = true;
-          doc.enable = true;
-          dev.enable = true;
-          man.generateCaches = true;
+          unmanaged = [ "interface-name:ve-*" ];
+          plugins = with pkgs; [
+            networkmanager-l2tp
+            networkmanager-sstp
+            networkmanager-vpnc
+          ];
         };
+      };
 
-        # Default time zone:
-        time.timeZone = lib.mkDefault "America/Phoenix";
-        time.hardwareClockInLocalTime = true;
+      # Printing:
+      services.printing = {
+        enable = true;
+        browsing = true;
 
-        # For using different Nix caches:
-        nix.settings.trusted-users = [ "@wheel" ];
+        drivers = lib.optional pkgs.stdenv.isx86_64 pkgs.cups-kyodialog;
 
-        # For improved experience developing with Nix:
-        nix.extraOptions = ''
-          keep-outputs = true
-          keep-derivations = true
+        browsedConf = ''
+          BrowseDNSSDSubTypes _cups,_print
+          BrowseLocalProtocols all
+          BrowseRemoteProtocols all
+          CreateIPPPrinterQueues All
+          BrowseProtocols all
         '';
+      };
 
-        # Useful services:
-        hardware.bluetooth.enable = true;
-        services.blueman.enable = lib.mkDefault true;
-
-        # Local service discovery:
-        services.avahi = {
+      virtualisation = {
+        libvirtd = {
           enable = true;
-          nssmdns4 = true;
-          domainName = config.networking.domain;
-        };
+          onShutdown = "suspend";
+          onBoot = "ignore";
 
-        # Networking:
-        networking = {
-          nat.enable = true;
-          nat.internalInterfaces = [ "ve-+" ];
-          useDHCP = false;
-          wireless.enable = false;
-
-          networkmanager = {
-            enable = true;
-            unmanaged = [ "interface-name:ve-*" ];
-            plugins = with pkgs; [
-              networkmanager-l2tp
-              networkmanager-sstp
-              networkmanager-vpnc
-            ];
+          qemu = {
+            swtpm.enable = true;
+            vhostUserPackages = [ pkgs.virtiofsd ];
           };
         };
 
-        # Printing:
-        services.printing = {
+        docker = {
           enable = true;
-          browsing = true;
-
-          drivers =
-            lib.optional
-              pkgs.stdenv.isx86_64
-              pkgs.cups-kyodialog;
-
-          browsedConf = ''
-            BrowseDNSSDSubTypes _cups,_print
-            BrowseLocalProtocols all
-            BrowseRemoteProtocols all
-            CreateIPPPrinterQueues All
-            BrowseProtocols all
-          '';
+          enableOnBoot = cfg.type != "laptop";
+          autoPrune.enable = true;
         };
+      };
 
-        virtualisation = {
-          libvirtd = {
-            enable = true;
-            onShutdown = "suspend";
-            onBoot = "ignore";
-
-            qemu = {
-              swtpm.enable = true;
-              vhostUserPackages = [ pkgs.virtiofsd ];
-            };
-          };
-
-          docker = {
-            enable = true;
-            enableOnBoot = cfg.type != "laptop";
-            autoPrune.enable = true;
-          };
-        };
-
-        # Flatpak:
-        #
-        # https://wiki.nixos.org/wiki/Flatpak
-        services.flatpak.enable = true;
-        systemd.services.flatpak-repo = {
-          after = [ "network-online.target" ];
-          wantedBy = [ "multi-user.target" ];
-          wants = [ "network-online.target" ];
-          path = [ pkgs.flatpak ];
-          script = ''
-            flatpak remote-add --if-not-exists \
-              flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-          '';
-        };
-      })
-      (lib.mkIf (cfg.enable && cfg.type == "laptop") {
-        environment.systemPackages = with pkgs; [
-          acpi
-          powertop
-        ];
-
-        # Use the local time zone:
-        services.geoclue2.enable = true;
-        services.localtimed.enable = true;
-        location.provider = "geoclue2";
-        time.timeZone = lib.mkForce null;
-
-        # Sleeping (see sleep.conf.d(5)):
-        #
-        # Only set these if you want to force hibernation earlier:
-        #  HibernateDelaySec=2h
-        #  SuspendEstimationSec=10m
-        systemd.sleep.extraConfig = ''
-          SuspendState=mem
+      # Flatpak:
+      #
+      # https://wiki.nixos.org/wiki/Flatpak
+      services.flatpak.enable = true;
+      systemd.services.flatpak-repo = {
+        after = [ "network-online.target" ];
+        wantedBy = [ "multi-user.target" ];
+        wants = [ "network-online.target" ];
+        path = [ pkgs.flatpak ];
+        script = ''
+          flatpak remote-add --if-not-exists \
+            flathub https://dl.flathub.org/repo/flathub.flatpakrepo
         '';
+      };
+    })
+    (lib.mkIf (cfg.enable && cfg.type == "laptop") {
+      environment.systemPackages = with pkgs; [
+        acpi
+        powertop
+      ];
 
-        services.logind.settings.Login = {
-          HandleLidSwitch = "suspend-then-hibernate";
-          HandleLidSwitchDocked = "suspend-then-hibernate";
-          HandleLidSwitchExternalPower = "suspend-then-hibernate";
-        };
+      # Use the local time zone:
+      services.geoclue2.enable = true;
+      services.localtimed.enable = true;
+      location.provider = "geoclue2";
+      time.timeZone = lib.mkForce null;
 
-        # Useful services:
-        hardware.acpilight.enable = true;
-        services.thermald.enable = pkgs.stdenv.isx86_64;
-        services.upower.enable = true;
-      })
-    ];
+      # Sleeping (see sleep.conf.d(5)):
+      #
+      # Only set these if you want to force hibernation earlier:
+      #  HibernateDelaySec=2h
+      #  SuspendEstimationSec=10m
+      systemd.sleep.extraConfig = ''
+        SuspendState=mem
+      '';
+
+      services.logind.settings.Login = {
+        HandleLidSwitch = "suspend-then-hibernate";
+        HandleLidSwitchDocked = "suspend-then-hibernate";
+        HandleLidSwitchExternalPower = "suspend-then-hibernate";
+      };
+
+      # Useful services:
+      hardware.acpilight.enable = true;
+      services.thermald.enable = pkgs.stdenv.isx86_64;
+      services.upower.enable = true;
+    })
+  ];
 }

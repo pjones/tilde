@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   bashrc = pkgs.pjones.bashrc;
   zshrc = pkgs.pjones.zshrc;
@@ -14,7 +19,10 @@ in
 
       syntaxHighlighting = {
         enable = true;
-        highlighters = [ "main" "brackets" ];
+        highlighters = [
+          "main"
+          "brackets"
+        ];
       };
 
       initContent = ''

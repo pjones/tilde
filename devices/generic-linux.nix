@@ -1,9 +1,7 @@
 # This is a home-manager module:
 { ... }:
 {
-  imports = [
-    ../home
-  ];
+  imports = [ ../home ];
 
   config = {
     home.username = "pjones";
