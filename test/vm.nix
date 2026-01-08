@@ -50,6 +50,12 @@ in
         target = "/mnt";
       };
 
+      qemu.options = [
+        "-spice port=0,disable-ticketing=on,image-compression=off,gl=on,rendernode=/dev/dri/by-path/pci-0000:c1:00.0-render,seamless-migration=on"
+        "-device virtio-vga-gl,max_outputs=1"
+        "-display spice-app,gl=on"
+      ];
+
       # These probably won't work:
       libvirtd.enable = lib.mkForce false;
       docker.enable = lib.mkForce false;

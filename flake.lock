@@ -532,38 +532,20 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "org-clock-dbus": "org-clock-dbus_2",
-        "sway-easyfocus": "sway-easyfocus"
+        "org-clock-dbus": "org-clock-dbus_2"
       },
       "locked": {
-        "lastModified": 1765719899,
-        "narHash": "sha256-tkhO3NUUz/OQyJHUmNfnHVP75fc3ILojdMJ912aHx2k=",
+        "lastModified": 1767882867,
+        "narHash": "sha256-1a07hoSJaX1XM0s/xU/PUx7ZwbnkT4ZLBV0R4bBKaE0=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "f0f590fa59edc19b6a6536589671814c9765cafa",
+        "rev": "e98abeed250df00fe3a11dcc6f59171d004f16de",
         "type": "github"
       },
       "original": {
         "owner": "pjones",
         "ref": "nixos-25.11",
         "repo": "superkey",
-        "type": "github"
-      }
-    },
-    "sway-easyfocus": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1720731909,
-        "narHash": "sha256-7bdW7t9xQRJ1/Wb451TMzfsl5QPIDTM90bemnN+WNwQ=",
-        "owner": "pjones",
-        "repo": "sway-easyfocus",
-        "rev": "eca80954060279107f3700cab7f2e36749adbc0e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pjones",
-        "ref": "pjones/swap",
-        "repo": "sway-easyfocus",
         "type": "github"
       }
     },

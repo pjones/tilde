@@ -23,7 +23,7 @@ running in an ephemeral virtual machine (`nix flake check`).
 
   * Variable-spaced Font: [Atkinson Hyperlegible][hyperlegible]
 
-  * Desktop: [SwayFX on Wayland][superkey]
+  * Desktop: [Niri][superkey]
 
 ## Try It Out
 

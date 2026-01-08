@@ -213,44 +213,38 @@
         {
           default = self.nixosConfigurations.demo.config.system.build.vm;
 
-          screenshot = import test/screenshot.nix {
-            inherit self pkgs;
-            module = self.nixosModules.tilde;
-          };
+          # screenshot = import test/screenshot.nix {
+          #   inherit self pkgs;
+          #   module = self.nixosModules.tilde;
+          # };
         }
         // self.overlays.tilde pkgs pkgs
       );
 
       ##########################################################################
-      apps = forLinuxSystems (
-        system:
-        let
-          pkgs = nixpkgsFor.${system};
-        in
-        {
-          # Launch a VM running Peter's configuration:
-          default = {
-            type = "app";
-            meta.description = "Run tilde in a VM";
-            program = "${self.packages.${system}.default}/bin/run-tilde-demo-vm";
-          };
+      apps = forLinuxSystems (system: {
+        # Launch a VM running Peter's configuration:
+        default = {
+          type = "app";
+          meta.description = "Run tilde in a VM";
+          program = "${self.packages.${system}.default}/bin/run-tilde-demo-vm";
+        };
 
-          # Run a VM then take a screenshot and store it locally:
-          screenshot =
-            let
-              script = pkgs.writeShellScript "screenshot" ''
-                cp --force \
-                  ${self.packages.${system}.screenshot}/screenshot-*.png \
-                  support/
-              '';
-            in
-            {
-              type = "app";
-              meta.description = "Run the VM and take a screenshot";
-              program = "${script}";
-            };
-        }
-      );
+        # Run a VM then take a screenshot and store it locally:
+        # screenshot =
+        #   let
+        #     script = pkgs.writeShellScript "screenshot" ''
+        #       cp --force \
+        #         ${self.packages.${system}.screenshot}/screenshot-*.png \
+        #         support/
+        #     '';
+        #   in
+        #   {
+        #     type = "app";
+        #     meta.description = "Run the VM and take a screenshot";
+        #     program = "${script}";
+        #   };
+      });
 
       ##########################################################################
       checks = forLinuxSystems (
@@ -289,7 +283,6 @@
           mail-imap = test test/mail/imap.nix;
           mail-fetch = test test/mail/fetch.nix;
           mail-home = test test/mail/home.nix;
-          superkey-sway = inputs.superkey.checks.${system}.sway;
           superkey-greetd = inputs.superkey.checks.${system}.greetd;
         }
         // hostChecks
