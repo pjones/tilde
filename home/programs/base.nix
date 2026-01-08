@@ -109,8 +109,8 @@
         [
           anki-bin # Spaced repetition flashcard program
           chromium # A wrapper around chromium:
+          eduvpn-client # Linux client for eduVPN
           evince # GNOME's document viewer
-          geteduroam # GUI client to configure eduroam
           gimp # The GNU Image Manipulation Program
           handbrake # A tool for converting video files and ripping DVDs
           imagemagick # A software suite to create, edit, compose, or convert bitmap images
