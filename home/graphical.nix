@@ -29,6 +29,9 @@ in
     tilde.programs.peaclock.enable = lib.mkDefault true;
     tilde.programs.recoll.enable = lib.mkDefault true;
 
+    # Manually allow applications access to the network:
+    services.opensnitch-ui.enable = true;
+
     # Password management:
     services.pass-secret-service.enable = true;
 

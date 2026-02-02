@@ -126,7 +126,7 @@ in
       };
     })
 
-    ({
+    {
       home-manager.users.${cfg.username} =
         { ... }:
         {
@@ -138,6 +138,6 @@ in
             tilde.workstation.enable = cfg.workstation.enable;
           };
         };
-    })
+    }
   ];
 }
