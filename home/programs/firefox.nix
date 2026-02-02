@@ -45,6 +45,7 @@ let
     "media.gmp-widevinecdm.visible" = false;
     "mousewheel.system_scroll_override.horizontal.factor" = 1000;
     "signon.rememberSignons" = true;
+    "ui.key.menuAccessKeyFocuses" = false;
     "widget.gtk.overlay-scrollbars.enabled" = false;
 
     # Privacy:
@@ -82,16 +83,6 @@ let
 
     # Force FF to use the user chrome CSS file:
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-
-    # Disable keyboard shortcuts in FF by hiding them behind the
-    # "Super" key.  This is the only key I can get to work so FF
-    # doesn't use the control or alt keys.  Also keep FF from focusing
-    # the menu bar.
-    #
-    # https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
-    "ui.key.accelKey" = 91;
-    "ui.key.menuAccessKey" = 91;
-    "ui.key.menuAccessKeyFocuses" = false;
   };
 in
 {
@@ -218,14 +209,10 @@ in
         bind <C-+> zoom 0.1 true
         bind <C--> zoom -0.1 true
 
-        " The find feature in Tridactyl sucks, so use
-        " wtype to send the correct key to FF to show the
-        " 'Find in page' popup.
-        bind <C-s> ! wtype -M win -k f -m win
-
         " Ignore next key:
         ${bindGlobal "<C-q> nmode ignore 1 mode normal"}
 
+        ${bindEdit "<A-w> composite js document.getSelection().toString() | clipboard yank"}
         ${bindEdit "<C-w> text.backward_kill_word"}
         ${bindEdit "<C-y> composite getclip clipboard | text.insert_text"}
 
@@ -239,7 +226,6 @@ in
         ${bindGlobal "<C-x><C-f> fillcmdline tabopen"}
         ${bindGlobal "<C-x><C-v> current_url open"}
         ${bindGlobal "<C-x>b fillcmdline buffer"}
-        ${bindGlobal "<C-x>k tabclose"}
 
         " Close the current tab:
         bind --mode=normal q tabclose
