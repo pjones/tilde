@@ -127,7 +127,6 @@
           vlc # Cross-platform media player and streaming server
           wlvncc # Wayland Native VNC Client
           xournalpp # Xournal++ is a handwriting Notetaking software with PDF annotation support
-          zotero # Collect, organize, cite, and share your research sources
         ]
         ++
           # Packages that don't build on aarch64:
