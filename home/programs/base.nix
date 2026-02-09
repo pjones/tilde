@@ -121,7 +121,6 @@
           pamixer # Pulseaudio command line mixer
           pavucontrol # PulseAudio Volume Control
           remmina # Remote desktop client written in GTK
-          rnote # Simple drawing application to create handwritten notes
           tilde-scripts-browser # Browser scripts
           virt-viewer # Viewer for remote virtual machines
           vlc # Cross-platform media player and streaming server
