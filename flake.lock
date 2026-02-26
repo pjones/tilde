@@ -552,11 +552,11 @@
         "org-clock-dbus": "org-clock-dbus_2"
       },
       "locked": {
-        "lastModified": 1770031520,
-        "narHash": "sha256-9QPIPIgriciAKNsmrXUtN1Z6UEID+r9PYlzV3ngJfF8=",
+        "lastModified": 1772124450,
+        "narHash": "sha256-jaxNF4VhvG/W5pKgeMLeaBw+Xi1o64INCvwgHD8tvZQ=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "4fdfc97d6c934c10cf3758fd74c5234f50f20c92",
+        "rev": "32d842eba2e5004094ad0d06d81695265b3cbc4e",
         "type": "github"
       },
       "original": {
