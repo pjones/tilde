@@ -3,6 +3,7 @@
 {
   imports = [
     ./base.nix
+    ./beamerpresenter.nix
     ./beets.nix
     ./browser.nix
     ./contacts.nix

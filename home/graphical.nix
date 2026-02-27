@@ -22,6 +22,7 @@ in
     tilde.workstation.enable = true;
 
     # Enable other graphical modules:
+    tilde.programs.beamerpresenter.enable = lib.mkDefault true;
     tilde.programs.browser.enable = lib.mkDefault true;
     tilde.programs.contacts.enable = lib.mkDefault true;
     tilde.programs.gnupg.enable = lib.mkDefault true;
