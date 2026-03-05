@@ -285,6 +285,7 @@
           mail-home = test test/mail/home.nix;
           superkey-greetd = inputs.superkey.checks.${system}.greetd;
         }
+        // inputs.encryption-utils.checks.${system}
         // hostChecks
       );
 
