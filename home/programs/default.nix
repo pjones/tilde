@@ -14,6 +14,7 @@
     ./gnupg.nix
     ./gromit-mpx.nix
     ./peaclock.nix
+    ./rbw.nix
     ./recoll.nix
     ./shells.nix
     ./ssh.nix

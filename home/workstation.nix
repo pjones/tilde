@@ -19,6 +19,7 @@ in
 
   config = lib.mkIf cfg.enable {
     # Active some services/plugins:
+    tilde.programs.rbw.enable = lib.mkDefault true;
     tilde.programs.syncthing.enable = lib.mkDefault true;
 
     # Install man pages:

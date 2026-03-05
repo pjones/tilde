@@ -13,6 +13,7 @@ let
   # https://mastodon.social/@telomerai/113909268729350091
   # ?
   extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    bitwarden
     darkreader
     privacy-badger
     tridactyl
