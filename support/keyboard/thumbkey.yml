@@ -1,0 +1,24 @@
+ENHyper:
+  shifted:
+    key0_1:
+      left:
+        text: Ü
+    key0_2:
+      right:
+        text: Ä
+    key1_1:
+      left:
+        text: Ö
+  main:
+    key0_1:
+      left:
+        text: ü
+    key0_2:
+      right:
+        text: ä
+    key1_1:
+      left:
+        text: ö
+    key1_4:
+      right:
+        text: ß
