@@ -193,6 +193,9 @@ in
         bind <C-u>w clipboard yankorg
         bind --mode=visual w composite js document.getSelection().toString() | clipboard yank
 
+        bindurl wiktionary W hint -y -c [class="internal"][title$=".ogg"]
+        bindurl wiktionary F hint -c [class="mw-tmh-play"][role="button"],[class*="mw-info-button"]
+
         bind <C-c>lc hint -p
         bind <C-c>lw hint -y
         bind <C-c>lo hint
