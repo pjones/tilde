@@ -23,7 +23,6 @@ case "$(superkey-workspace.sh -n)" in
   open_desktop_items \
     discord \
     google-voice \
-    mastodon \
     slack \
     whatsapp
   ;;
