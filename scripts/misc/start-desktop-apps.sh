@@ -15,11 +15,11 @@ function open_desktop_items() {
 
 ################################################################################
 case "$(superkey-workspace.sh -n)" in
-*Tasks)
+*[Tt]asks)
   open_desktop_items calendar
   ;;
 
-*Social)
+*[Ss]ocial)
   open_desktop_items \
     discord \
     google-voice \

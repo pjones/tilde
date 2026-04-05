@@ -588,11 +588,11 @@
         "org-clock-dbus": "org-clock-dbus_2"
       },
       "locked": {
-        "lastModified": 1774806475,
-        "narHash": "sha256-JcFGrV+ZZ0RJ4/1FgpvmLiXpuTDoaRvGZDby/CZeGew=",
+        "lastModified": 1775223133,
+        "narHash": "sha256-241ghFn6DxBw51Qgm0wW34DAH8zL53wlpLyiSLZPYgM=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "91fa549213c50ebd2db33113861317de691b2ecd",
+        "rev": "2fc1bb598e698b7eb63ca394751b746b144d95d2",
         "type": "github"
       },
       "original": {
