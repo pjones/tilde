@@ -30,9 +30,6 @@ in
     tilde.programs.peaclock.enable = lib.mkDefault true;
     tilde.programs.recoll.enable = lib.mkDefault true;
 
-    # Password management:
-    services.pass-secret-service.enable = true;
-
     # Communicate with my phone:
     services.kdeconnect = {
       enable = true;

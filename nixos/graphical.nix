@@ -27,6 +27,9 @@ in
       # Graphics implies workstation:
       tilde.workstation.enable = true;
 
+      # Password management:
+      services.gnome.gnome-keyring.enable = true;
+
       # Propagate some settings into home-manager:
       home-manager.users.${cfg.username} =
         { ... }:
