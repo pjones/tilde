@@ -38,7 +38,6 @@ let
     "browser.tabs.closeWindowWithLastTab" = false;
     "browser.tabs.inTitlebar" = 0;
     "browser.urlbar.trimURLs" = false;
-    "dom.event.contextmenu.enabled" = false;
     "dom.forms.autocomplete.formautofill" = false;
     "extensions.formautofill.addresses.enabled" = false;
     "extensions.formautofill.creditCards.enabled" = false;
