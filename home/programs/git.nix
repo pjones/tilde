@@ -95,7 +95,7 @@ in
         user.email = "peter@jonesbunch.com";
         user.name = "Peter J. Jones";
 
-        aliases = {
+        alias = {
           b = "branch -vv";
           s = "status --short";
           ci = "commit";
