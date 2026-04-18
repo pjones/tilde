@@ -74,11 +74,11 @@
         "xref-project-history": "xref-project-history"
       },
       "locked": {
-        "lastModified": 1775472732,
-        "narHash": "sha256-ymOc2pE9t4p/KUOzUoRAkodBu7i3Pp+ohhHPzmDwrkw=",
+        "lastModified": 1776595228,
+        "narHash": "sha256-Xt3HNPGfVhhjEP1XR+ZtcKGPdj55VgulsUiGvNQwKd8=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "590f79bc71e8f8811638df4de165d79980e3192d",
+        "rev": "38927effeb4b883080c34544bc6ca7b15ff7b21a",
         "type": "github"
       },
       "original": {
@@ -588,11 +588,11 @@
         "org-clock-dbus": "org-clock-dbus_2"
       },
       "locked": {
-        "lastModified": 1775223133,
-        "narHash": "sha256-241ghFn6DxBw51Qgm0wW34DAH8zL53wlpLyiSLZPYgM=",
+        "lastModified": 1776699833,
+        "narHash": "sha256-W4AG9NBxO0+CRbKJ2omvyLA+/NP+BRM9722816IpgRA=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "2fc1bb598e698b7eb63ca394751b746b144d95d2",
+        "rev": "b17e7540974903730ce75aa3a9f339f6a6240fe5",
         "type": "github"
       },
       "original": {
