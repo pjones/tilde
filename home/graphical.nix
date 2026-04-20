@@ -36,6 +36,11 @@ in
       indicator = true;
     };
 
+    home.sessionVariables = {
+      # Anki in xwayland is *buggy*:
+      ANKI_WAYLAND = 1;
+    };
+
     xdg.desktopEntries =
       let
         url = name: url: {
