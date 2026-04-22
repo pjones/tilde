@@ -105,9 +105,7 @@ in
       services.printing = {
         enable = true;
         browsing = true;
-
-        # FIXME: https://github.com/NixOS/nixpkgs/pull/506381
-        # drivers = lib.optional pkgs.stdenv.isx86_64 pkgs.cups-kyodialog;
+        drivers = lib.optional pkgs.stdenv.isx86_64 pkgs.cups-kyodialog;
 
         browsedConf = ''
           BrowseDNSSDSubTypes _cups,_print

@@ -127,6 +127,7 @@
           inherit system;
           config.allowUnfree = true;
           config.android_sdk.accept_license = true;
+          config.permittedInsecurePackages = [ "python3.13-pypdf3-1.0.6" ];
           overlays = builtins.attrValues overlays;
         }
       );
