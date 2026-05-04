@@ -64,6 +64,7 @@
         [
           abcde # Command-line audio CD ripper
           atomicparsley # A CLI program for reading, parsing and setting metadata into MPEG-4 files
+          avfs # Virtual filesystem that allows browsing of compressed files
           cdparanoia # A tool and library for reading digital audio from CDs
           cdrkit # cdrecord, mkisofs, etc.
           duckdb # Embeddable SQL OLAP Database Management System
