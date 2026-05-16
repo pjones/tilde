@@ -23,6 +23,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    tilde.programs.chromium.enable = true;
     tilde.programs.firefox.enable = true;
 
     xdg.desktopEntries = {

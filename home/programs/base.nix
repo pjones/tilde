@@ -108,7 +108,6 @@
         with pkgs;
         [
           anki-bin # Spaced repetition flashcard program
-          chromium # A wrapper around chromium:
           eduvpn-client # Linux client for eduVPN
           evince # GNOME's document viewer
           gimp # The GNU Image Manipulation Program

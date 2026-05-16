@@ -2,12 +2,10 @@
   stdenvNoCC,
   lib,
   tildeInstallScripts,
-  chromium,
   coreutils,
 }:
 let
   path = lib.makeBinPath [
-    chromium
     coreutils
   ];
 in

@@ -6,6 +6,7 @@
     ./beamerpresenter.nix
     ./beets.nix
     ./browser.nix
+    ./chromium.nix
     ./contacts.nix
     ./direnv.nix
     ./emacs.nix
