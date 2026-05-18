@@ -1,6 +1,6 @@
-{ pkgs, module }:
+{ pkgs, self }:
 let
-  user = import ../user.nix;
+  user = self.lib.test.user;
 
   testPackage = pkgs.writeShellApplication {
     name = "mail-test-script";
@@ -9,68 +9,67 @@ let
   };
 in
 pkgs.testers.nixosTest {
-  name = "tilde-mail-test";
+  name = "tilde-mail-home-test";
 
   nodes = {
     machine =
       { ... }:
       {
         imports = [
-          module
-          ../../devices/generic-nixos.nix
+          self.nixosModules.test
+          self.nixosModules.imapd
           ./common.nix
         ];
-
-        users.users.${user.name} = {
-          password = user.password;
-        };
 
         environment.systemPackages = [
           pkgs.jq
           testPackage
         ];
 
-        security.sudo.wheelNeedsPassword = false;
-
-        tilde = {
-          enable = true;
-          username = user.name;
-          putInWheel = true;
-          mail.imap.enable = true;
-        };
+        tilde.programs.imapd.enable = true;
 
         home-manager.users.${user.name} =
           { ... }:
           {
-            tilde.mail = {
-              enable = true;
-              debug = true;
-              mbsync.enable = true;
-              msmtp.enable = true;
-              mu.enable = true;
+            imports = [
+              self.homeModules.mail
+              self.homeModules.mbsync
+              self.homeModules.msmtp
+              self.homeModules.mu
+            ];
 
-              accounts."example.com" = {
-                default = true;
+            tilde = {
+              programs.mbsync.enable = true;
+              programs.msmtp.enable = true;
+              programs.mu.enable = true;
 
-                imapServer = {
-                  hostname = "localhost";
-                  username = "example@example.com";
-                  passwordCmd = "echo password";
-                  serverCertFile = "/var/lib/acme/example.com/cert.pem";
-                };
+              mail = {
+                enable = true;
+                debug = true;
 
-                smtpServer = {
-                  hostname = "localhost";
-                  username = "example";
-                  passwordCmd = "echo password";
-                };
-
-                domains."example.com" = {
+                accounts."example.com" = {
                   default = true;
-                  users = [
-                    "example"
-                    "other"
-                  ];
+
+                  imapServer = {
+                    hostname = "localhost";
+                    username = "example@example.com";
+                    passwordCmd = "echo password";
+                    serverCertFile = "/var/lib/acme/example.com/cert.pem";
+                  };
+
+                  smtpServer = {
+                    hostname = "localhost";
+                    username = "example";
+                    passwordCmd = "echo password";
+                  };
+
+                  domains."example.com" = {
+                    default = true;
+                    users = [
+                      "example"
+                      "other"
+                    ];
+                  };
                 };
               };
             };

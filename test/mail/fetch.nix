@@ -1,4 +1,4 @@
-{ pkgs, module }:
+{ pkgs, self }:
 
 let
   testPackage = pkgs.writeShellApplication {
@@ -31,15 +31,17 @@ pkgs.testers.nixosTest {
       { ... }:
       {
         imports = [
-          module
-          ../../devices/generic-nixos.nix
+          self.nixosModules.test
+          self.nixosModules.fetchmail
+          self.nixosModules.imapd
           (import ./common.nix)
         ];
 
         environment.systemPackages = [ testPackage ];
-        tilde.mail.imap.enable = true;
 
-        tilde.mail.fetch = {
+        tilde.programs.imapd.enable = true;
+
+        tilde.programs.fetchmail = {
           enable = true;
           accounts.example = {
             inherit commandFile lda;

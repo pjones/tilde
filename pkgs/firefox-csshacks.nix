@@ -1,14 +1,14 @@
 {
   stdenvNoCC,
-  lib,
-  inputs,
+  src,
 }:
 
 stdenvNoCC.mkDerivation {
-  pname = "firefox-csshacks";
-  version = builtins.substring 0 7 inputs.firefox-csshacks.rev;
+  inherit src;
 
-  src = inputs.firefox-csshacks;
+  pname = "firefox-csshacks";
+  version = builtins.substring 0 7 src.rev;
+
   phases = [
     "unpackPhase"
     "installPhase"

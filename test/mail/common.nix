@@ -24,13 +24,13 @@ in
       security.acme.defaults.server = lib.mkForce "https://example.com";
     }
 
-    (lib.mkIf config.tilde.mail.imap.enable {
+    (lib.mkIf config.tilde.programs.imapd.enable {
       security.acme = {
         acceptTerms = true;
         defaults.email = "example@example.com";
       };
 
-      tilde.mail.imap = {
+      tilde.programs.imapd = {
         inherit passwordFile;
         debug = true;
         domain = "example.com";

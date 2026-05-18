@@ -1,4 +1,4 @@
-{ pkgs, module }:
+{ pkgs, self }:
 
 let
   testPackage = pkgs.writeShellApplication {
@@ -20,14 +20,13 @@ pkgs.testers.nixosTest {
       { ... }:
       {
         imports = [
-          module
-          ../../devices/generic-nixos.nix
+          self.nixosModules.test
+          self.nixosModules.imapd
           (import ./common.nix)
         ];
 
         environment.systemPackages = [ testPackage ];
-
-        tilde.mail.imap.enable = true;
+        tilde.programs.imapd.enable = true;
       };
   };
 

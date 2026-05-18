@@ -1,14 +1,14 @@
 {
   stdenvNoCC,
-  lib,
-  inputs,
+  src,
 }:
 
 stdenvNoCC.mkDerivation {
-  pname = "tridactyl_emacs_config";
-  version = builtins.substring 0 7 inputs.tridactyl_emacs_config.rev;
+  inherit src;
 
-  src = inputs.tridactyl_emacs_config;
+  pname = "tridactyl_emacs_config";
+  version = builtins.substring 0 7 src.rev;
+
   phases = [
     "unpackPhase"
     "installPhase"

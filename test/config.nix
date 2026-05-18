@@ -1,8 +1,8 @@
-{ pkgs, module }:
+{ pkgs, self }:
 let
-  user = import ./user.nix;
+  user = self.lib.test.user;
 in
-pkgs.testers.nixosTest {
+pkgs.testers.runNixOSTest {
   name = "tilde-config-test";
 
   nodes = {
@@ -10,20 +10,15 @@ pkgs.testers.nixosTest {
       { config, ... }:
       {
         imports = [
-          module
-          ../devices/generic-nixos.nix
+          self.nixosModules.test
         ];
 
-        tilde.username = user.name;
-        users.users.${user.name}.password = user.password;
-
-        home-manager.users.${config.tilde.username} =
-          { ... }:
-          {
-            tilde.createBookmarksDir = true;
-            tilde.programs.emacs.enable = true;
-            superkey.primaryOutput = "Virtual-1";
-          };
+        home-manager.users.${config.tilde.username} = {
+          imports = with self.homeModules; [
+            bookmarks
+            emacs
+          ];
+        };
       };
   };
 

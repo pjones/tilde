@@ -1,0 +1,89 @@
+{
+  inputs,
+  self,
+  withSystem,
+  moduleWithSystem,
+  ...
+}:
+{
+  flake.nixosModules.tilde = moduleWithSystem (
+    { pkgs, ... }:
+    { config, ... }:
+    {
+      imports = [
+        inputs.home-manager.nixosModules.home-manager
+        self.nixosModules.boot-ssh
+        self.nixosModules.crontab
+        self.nixosModules.nix
+        self.nixosModules.pjones
+        self.nixosModules.sudo
+      ];
+
+      config = {
+        system.stateVersion = "25.11";
+        networking.firewall.enable = true;
+
+        #time.timeZone = lib.mkDefault "America/Phoenix";
+        time.hardwareClockInLocalTime = true;
+        hardware.enableRedistributableFirmware = true;
+
+        tilde.putInWheel = true;
+
+        tilde.crontab = {
+          # All machines should have their download directory cleaned
+          # periodically:
+          clean-download-directory = {
+            user = config.tilde.username;
+            schedule = "daily";
+            path = [ pkgs.pjones.maintenance-scripts ];
+            script = ''
+              if [ -d "$HOME/download" ]; then
+                delete-older-files.sh "$HOME/download"
+              fi
+            '';
+          };
+        };
+
+        home-manager = {
+          backupFileExtension = "backup";
+          useGlobalPkgs = true;
+          useUserPackages = true;
+        };
+      };
+    }
+  );
+
+  flake.lib.nixos = {
+    # Return a list of NixOS modules for the given host.
+    modulesForHost = host: system: [
+      # The host module:
+      self.nixosModules.${host}
+
+      # Set nixpkgs:
+      (
+        { ... }:
+        {
+          nixpkgs.pkgs = withSystem system ({ pkgs, ... }: pkgs);
+        }
+      )
+
+      # Don't allow changing nixpkgs after this:
+      inputs.nixpkgs.nixosModules.readOnlyPkgs
+    ];
+
+    # Create a NixOS test to ensure each host configuration works
+    # correctly. For now I just build a VM but don't run it.
+    checkHost =
+      host:
+      { system, ... }:
+      {
+        checks.${host} =
+          let
+            machine = inputs.nixpkgs.lib.nixosSystem {
+              modules = self.lib.nixos.modulesForHost host system;
+            };
+          in
+          machine.config.system.build.vm;
+      };
+  };
+}

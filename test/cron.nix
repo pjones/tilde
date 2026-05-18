@@ -1,6 +1,6 @@
-{ pkgs, module }:
+{ pkgs, self }:
 let
-  user = import ./user.nix;
+  user = self.lib.test.user;
 in
 pkgs.testers.nixosTest {
   name = "tilde-cron-test";
@@ -10,14 +10,12 @@ pkgs.testers.nixosTest {
       { ... }:
       {
         imports = [
-          module
-          ../devices/generic-nixos.nix
+          self.nixosModules.test
         ];
 
         tilde = {
-          username = user.name;
-
           crontab.test-job = {
+            user = user.name;
             schedule = "minutely";
             script = "touch /tmp/crontab-test-job";
           };
