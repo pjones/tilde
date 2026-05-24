@@ -35,7 +35,7 @@ pkgs.testers.nixosTest {
 
     with subtest("All NixOS machines should get a download dir clean job"):
         machine.succeed("mkdir -p ${user.home}/download")
-        machine.succeed("touch --date '3 weeks ago' ${user.home}/download/should-be-removed")
+        machine.succeed("touch --date '4 weeks ago' ${user.home}/download/should-be-removed")
         machine.succeed("touch --date '1 week ago' ${user.home}/download/should-be-kept")
         machine.succeed("chown -R ${user.name}:root ${user.home}/download")
         machine.require_unit_state("crontab-${user.name}-clean-download-directory.timer", "active")
