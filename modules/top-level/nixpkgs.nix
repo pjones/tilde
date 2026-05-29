@@ -1,6 +1,9 @@
 {
   self,
   inputs,
+  config,
+  lib,
+  withSystem,
   ...
 }:
 {
@@ -16,4 +19,9 @@
         overlays = builtins.attrValues self.overlays;
       };
     };
+
+  # Export the configured nixpkgs from above:
+  flake.pkgs = lib.mapAttrs (
+    system: config: withSystem system ({ pkgs, ... }: pkgs)
+  ) config.allSystems;
 }
