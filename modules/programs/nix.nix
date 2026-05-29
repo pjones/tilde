@@ -10,6 +10,11 @@
 
           settings.trusted-users = [ "@wheel" ];
 
+          optimise = {
+            automatic = true;
+            persistent = true;
+          };
+
           extraOptions = ''
             experimental-features = nix-command flakes
             keep-outputs = true

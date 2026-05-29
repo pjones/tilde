@@ -1,5 +1,6 @@
 {
   self,
+  inputs,
   moduleWithSystem,
   ...
 }:
@@ -8,13 +9,46 @@
     { pkgs, ... }:
     { lib, ... }:
     {
-      imports = with self.nixosModules; [
-        basic
-        tilde
-      ];
+      imports =
+        with self.nixosModules;
+        [
+          basic
+          single-disk
+          tilde
+        ]
+        ++ [
+          inputs.nixos-hardware.nixosModules.framework-12th-gen-intel
+        ];
 
       config = {
+        # Host name:
         networking.hostName = "sid";
+
+        # Hardware configuration:
+        services.fwupd.enable = true;
+        hardware.cpu.intel.updateMicrocode = true;
+
+        boot.loader.systemd-boot.enable = true;
+        boot.loader.efi.canTouchEfiVariables = true;
+
+        boot.initrd.kernelModules = [ "dm-snapshot" ];
+        boot.kernelModules = [ "kvm-intel" ];
+        boot.extraModulePackages = [ ];
+        boot.initrd.availableKernelModules = [
+          "xhci_pci"
+          "thunderbolt"
+          "nvme"
+          "usb_storage"
+          "sd_mod"
+        ];
+
+        # Disk configuration:
+        tilde.hardware.disks.single = {
+          enable = true;
+          device = "/dev/disk/by-id/nvme-eui.0025385b1190134c";
+          swap.enable = true;
+          swap.size = 72;
+        };
 
         services.kmonad = {
           enable = true;

@@ -34,6 +34,8 @@
       imports = [
         self.nixosModules.tilde
         self.nixosModules.basic
+        self.nixosModules.tailscale
+        self.nixosModules.www
       ];
 
       tilde.putInWheel = true;

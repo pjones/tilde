@@ -1,4 +1,4 @@
-{ moduleWithSystem, ... }:
+{ lib, moduleWithSystem, ... }:
 {
   flake.homeModules.ssh = moduleWithSystem (
     { pkgs, ... }:
@@ -81,4 +81,41 @@
       };
     }
   );
+
+  flake.lib.ssh = {
+    # Return a public SSH key that can be added to authorized keys.
+    # It has the requested restrictions added it.
+    mkRestrictedKey =
+      {
+        # The public key.
+        key,
+
+        # List of network masks.  The returned key will only allow
+        # connections from the listed networks.
+        netmasks ? [ ],
+
+        # Other restrictions to add.  See the "AUTHORIZED_KEYS FILE
+        # FORMAT" section in sshd(8).
+        restrictions ? [ ],
+      }:
+      let
+        parts = lib.splitString " " key;
+        fingerprint = builtins.elemAt parts 1;
+        keyType = builtins.elemAt parts 0;
+        description = builtins.elemAt parts 2;
+        from = lib.concatStringsSep "," netmasks;
+      in
+      (lib.concatStringsSep " " [
+        (lib.concatStringsSep "," (
+          [
+            "restrict"
+            ''from="${from}"''
+          ]
+          ++ restrictions
+        ))
+        keyType
+        fingerprint
+        description
+      ]);
+  };
 }

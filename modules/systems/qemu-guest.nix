@@ -64,7 +64,7 @@
         #users.users.${config.tilde.user}.password = user.password;
 
         services.openssh.enable = true;
-        services.openssh.settings.PermitRootLogin = "yes";
+        services.openssh.settings.PermitRootLogin = lib.mkForce "yes";
 
         home-manager.users.${config.tilde.username} =
           { ... }:

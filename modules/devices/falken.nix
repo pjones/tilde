@@ -12,21 +12,51 @@
       imports =
         with self.nixosModules;
         [
-          tilde
           android
           laptop
           qmk
+          single-disk
           smartd
+          tilde
           workstation
           yubikey
         ]
         ++ [
+          inputs.nixos-hardware.nixosModules.framework-13-7040-amd
           inputs.superkey.nixosModules.falken
         ];
 
       config = {
+        # Host name:
         networking.hostName = "falken";
 
+        # Hardware configuration:
+        services.fwupd.enable = true;
+        hardware.cpu.amd.updateMicrocode = true;
+
+        boot.loader.systemd-boot.enable = true;
+        boot.loader.efi.canTouchEfiVariables = true;
+
+        boot.kernelModules = [ "kvm-amd" ];
+        boot.extraModulePackages = [ ];
+        boot.initrd.kernelModules = [ "dm-snapshot" ];
+        boot.initrd.availableKernelModules = [
+          "xhci_pci"
+          "thunderbolt"
+          "nvme"
+          "usb_storage"
+          "sd_mod"
+        ];
+
+        # Disk configuration:
+        tilde.hardware.disks.single = {
+          enable = true;
+          device = "/dev/disk/by-id/nvme-eui.e8238fa6bf530001001b448b4a5375fd";
+          swap.enable = true;
+          swap.size = 72;
+        };
+
+        # Keyboard:
         services.kmonad = {
           enable = true;
 
