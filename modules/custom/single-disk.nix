@@ -25,7 +25,7 @@
           };
 
           size = lib.mkOption {
-            type = lib.types.ints.unsign;
+            type = lib.types.ints.unsigned;
             default = 72;
             description = "Size in GB";
           };
@@ -78,7 +78,10 @@
                       type = "filesystem";
                       format = "ext4";
                       mountpoint = "/";
-                      mountOptions = [ "defaults" ];
+                      mountOptions = [
+                        "defaults"
+                        "x-systemd.device-timeout=infinity"
+                      ];
                     };
                   };
                 };

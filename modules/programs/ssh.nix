@@ -48,33 +48,30 @@
           enable = true;
           enableDefaultConfig = false;
 
-          matchBlocks = {
-            "webmaster.jonesbunch.com" = {
-              user = "webmaster";
-              identityFile = "${cfg.keysDir}/webmaster.id_ed25519";
+          settings = {
+            "Host webmaster.jonesbunch.com" = {
+              User = "webmaster";
+              IdentityFile = "${cfg.keysDir}/webmaster.id_ed25519";
             };
 
-            "*" = {
-              hashKnownHosts = false;
-              userKnownHostsFile = "~/.ssh/known_hosts";
-              forwardAgent = false;
-              controlMaster = "auto";
-              controlPath = "~/.ssh/master-%r@%h:%p";
-              controlPersist = "no";
-              addKeysToAgent = "yes";
-              serverAliveInterval = 300;
-              serverAliveCountMax = 5;
-              identitiesOnly = true;
+            "Host *" = {
+              HashKnownHosts = false;
+              UserKnownHostsFile = "~/.ssh/known_hosts";
+              ForwardAgent = false;
+              ControlMaster = "auto";
+              ControlPath = "~/.ssh/master-%r@%h:%p";
+              ControlPersist = "no";
+              AddKeysToAgent = "yes";
+              ServerAliveInterval = 300;
+              ServerAliveCountMax = 5;
+              IdentitiesOnly = true;
+              ConnectionAttempts = "120";
+              TCPKeepAlive = "no";
 
-              identityFile = [
+              IdentityFile = [
                 "${cfg.keysDir}/%l.id_ed25519"
                 "${cfg.keysDir}/deploy.id_ed25519"
               ];
-
-              extraOptions = {
-                ConnectionAttempts = "120";
-                TCPKeepAlive = "no";
-              };
             };
           };
         };

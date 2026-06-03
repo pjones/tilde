@@ -2,7 +2,7 @@
 {
   flake.homeModules.shells = moduleWithSystem (
     { pkgs, ... }:
-    { ... }:
+    { config, ... }:
     let
       bashrc = pkgs.pjones.bashrc;
       zshrc = pkgs.pjones.zshrc;
@@ -15,6 +15,9 @@
         programs.zsh = {
           enable = true;
           enableCompletion = true;
+
+          # I'm old and this is where I'm keeping my zshrc for now:
+          dotDir = config.home.homeDirectory;
 
           syntaxHighlighting = {
             enable = true;

@@ -122,8 +122,15 @@
         value = {
           enable = true;
           description = "Fetchmail from remote IMAP server.";
-          wantedBy = [ "dovecot.service" ];
-          after = [ "dovecot.service" ];
+          wantedBy = [ "multi-user.target" ];
+          wants = [
+            "dovecot.service"
+            "network-online.target"
+          ];
+          after = [
+            "dovecot.service"
+            "network-online.target"
+          ];
           path = [ pkgs.fetchmail ];
           script = "fetchmail ${lib.escapeShellArgs (mkFetchmailFlags acct)}";
           serviceConfig.User = imapCfg.lmtpUser;

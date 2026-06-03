@@ -5,7 +5,6 @@
     { ... }:
     {
       config = {
-        programs.adb.enable = true;
         tilde.extraGroups = [ "adbusers" ];
       };
     }

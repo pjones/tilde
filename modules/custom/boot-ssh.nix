@@ -1,59 +1,17 @@
 { moduleWithSystem, ... }:
 {
   flake.nixosModules.boot-ssh = moduleWithSystem (
-    { ... }:
+    { pkgs, ... }:
     { config, lib, ... }:
     let
       cfg = config.tilde.boot-ssh;
 
-      staticIpOptions =
-        { ... }:
-        {
-          options = {
-            address = lib.mkOption {
-              type = lib.types.str;
-              description = "IPv4 address to listen on";
-            };
-
-            gateway = lib.mkOption {
-              type = lib.types.str;
-              description = "IPv4 gateway";
-            };
-
-            netmask = lib.mkOption {
-              type = lib.types.str;
-              description = "IPv4 netmask";
-            };
-          };
-        };
-
-      # https://www.kernel.org/doc/Documentation/filesystems/nfs/nfsroot.txt
-      kernelNetworkingOptions =
-        let
-          options =
-            if cfg.network != null then
-              {
-                inherit (cfg.network) address gateway netmask;
-                dhcp = "none";
-              }
-            else
-              {
-                address = "";
-                gateway = "";
-                netmask = "";
-                dhcp = "dhcp";
-              };
-        in
-        "ip="
-        + lib.concatStringsSep ":" [
-          options.address
-          "" # NFS server address
-          options.gateway
-          options.netmask
-          config.networking.hostName
-          cfg.interface
-          options.dhcp
-        ];
+      hostKey = {
+        initrdPath = "/secrets/boot/ssh/ssh_host_ed25519_key";
+        pkg = pkgs.runCommand "initrd-ssh" { } ''
+          cp ${cfg.ssh.hostKey} "$out"
+        '';
+      };
     in
     {
       options.tilde.boot-ssh = {
@@ -66,15 +24,6 @@
           store.
         '';
 
-        interface = lib.mkOption {
-          type = lib.types.str;
-          default = "";
-          description = ''
-            The interface device to configure.  Leave blank to let the
-            kernel decide.
-          '';
-        };
-
         kernelModules = lib.mkOption {
           type = with lib.types; listOf str;
           default = [ ];
@@ -86,14 +35,6 @@
             ```sh
             lspci -v | grep -iA8 'network\|ethernet'
             ```
-          '';
-        };
-
-        network = lib.mkOption {
-          type = with lib.types; nullOr (submodule staticIpOptions);
-          default = null;
-          description = ''
-            Network configuration.  By default DHCP is used.
           '';
         };
 
@@ -121,22 +62,19 @@
         ssh.hostKey = lib.mkOption {
           type = lib.types.path;
           description = ''
-            Path to a SSH host key that will be copied into initrd at
-            build time.  That means the key will be in the Nix store on
-            the build machine :(
-
-            WARNING: you should generate a separate SSH host key for
-            initrd.  DO NOT use the system's host key in `/etc`!
+            A Nix path to the SSH host key.  This path will be copied
+            to the Nix store to work around issues with the initrd SSH
+            module.
           '';
         };
       };
 
       config = lib.mkIf cfg.enable {
-        boot.loader.systemd-boot.enable = lib.mkDefault true;
-        boot.kernelParams = [ kernelNetworkingOptions ];
+        boot.loader.systemd-boot.enable = true;
 
         boot.initrd = {
-          inherit (cfg) kernelModules;
+          availableKernelModules = cfg.kernelModules;
+          secrets.${hostKey.initrdPath} = toString hostKey.pkg;
 
           network = {
             enable = true;
@@ -145,14 +83,26 @@
               enable = true;
               port = cfg.ssh.port;
               authorizedKeys = cfg.ssh.authorizedKeys;
-              hostKeys = [ cfg.ssh.hostKey ];
+              ignoreEmptyHostKeys = true;
+              extraConfig = "HostKey ${hostKey.initrdPath}";
             };
+          };
 
-            postCommands = ''
-              cat <<EOT > /root/.profile
-              cryptsetup-askpass
-              EOT
-            '';
+          systemd = {
+            enable = true;
+            users.root.shell = "/bin/systemd-tty-ask-password-agent";
+            services.sshd.preStart = "/bin/chmod 0600 ${hostKey.initrdPath}";
+
+            network = {
+              enable = true;
+              wait-online.anyInterface = true;
+
+              networks."10-any" = {
+                matchConfig.Name = "*";
+                networkConfig.DHCP = "ipv4";
+                linkConfig.RequiredForOnline = "routable";
+              };
+            };
           };
         };
       };

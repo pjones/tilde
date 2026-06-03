@@ -2,7 +2,7 @@
   description = "Peter's NixOS and Home Manager Configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
@@ -14,7 +14,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-on-droid.url = "github:nix-community/nix-on-droid/release-24.05";
@@ -27,11 +27,11 @@
     bashrc.url = "github:pjones/bashrc";
     bashrc.inputs.nixpkgs.follows = "nixpkgs";
 
-    emacsrc.url = "github:pjones/emacsrc/nixos-25.11";
+    emacsrc.url = "github:pjones/emacsrc/nixos-26.05";
     emacsrc.inputs.nixpkgs.follows = "nixpkgs";
     emacsrc.inputs.home-manager.follows = "home-manager";
 
-    superkey.url = "github:pjones/superkey/nixos-25.11";
+    superkey.url = "github:pjones/superkey/nixos-26.05";
     superkey.inputs.nixpkgs.follows = "nixpkgs";
     superkey.inputs.home-manager.follows = "home-manager";
     superkey.inputs.emacsrc.follows = "emacsrc";

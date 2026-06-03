@@ -1,6 +1,7 @@
 {
   inputs,
   self,
+  lib,
   withSystem,
   moduleWithSystem,
   ...
@@ -80,9 +81,12 @@
 
   flake.lib.nixos = {
     # Return a list of NixOS modules for the given host.
-    modulesForHost = host: system: [
+    hostModules = host: system: [
       # The host module:
       self.nixosModules.${host}
+
+      # Don't allow changing nixpkgs after this:
+      inputs.nixpkgs.nixosModules.readOnlyPkgs
 
       # Set nixpkgs:
       (
@@ -91,24 +95,20 @@
           nixpkgs.pkgs = withSystem system ({ pkgs, ... }: pkgs);
         }
       )
-
-      # Don't allow changing nixpkgs after this:
-      inputs.nixpkgs.nixosModules.readOnlyPkgs
     ];
 
     # Create a NixOS test to ensure each host configuration works
     # correctly. For now I just build a VM but don't run it.
-    checkHost =
-      host:
-      { system, ... }:
+    mkCheck =
       {
-        checks.${host} =
-          let
-            machine = inputs.nixpkgs.lib.nixosSystem {
-              modules = self.lib.nixos.modulesForHost host system;
-            };
-          in
-          machine.config.system.build.vm;
+        host,
+        withDisko ? true,
+      }:
+      {
+        ${host} = self.nixosConfigurations.${host}.config.system.build.vm;
+      }
+      // lib.optionalAttrs withDisko {
+        "disko-${host}" = self.nixosConfigurations.${host}.config.system.build.diskoScript;
       };
   };
 }

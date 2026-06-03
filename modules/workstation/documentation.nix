@@ -11,7 +11,7 @@
           info.enable = true;
           doc.enable = true;
           dev.enable = true;
-          man.generateCaches = true;
+          man.cache.enable = true;
         };
       };
     }

@@ -8,7 +8,6 @@
         networking = {
           nat.enable = true;
           useDHCP = false;
-          wireless.enable = false;
 
           networkmanager = {
             enable = true;

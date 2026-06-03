@@ -27,6 +27,7 @@ pkgs.testers.nixosTest {
 
         environment.systemPackages = [ testPackage ];
         tilde.programs.imapd.enable = true;
+        tilde.programs.imapd.debug = true;
       };
   };
 
@@ -36,6 +37,6 @@ pkgs.testers.nixosTest {
         machine.wait_for_unit("multi-user.target")
 
     with subtest("Run test script"):
-        machine.succeed("${testPackage}/bin/imap-test-script")
+        machine.succeed("imap-test-script")
   '';
 }

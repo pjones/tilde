@@ -1,11 +1,15 @@
 {
   self,
+  inputs,
   moduleWithSystem,
   ...
 }:
-
+let
+  host = "slugworth";
+  system = "x86_64-linux";
+in
 {
-  flake.nixosModules.slugworth = moduleWithSystem (
+  flake.nixosModules.${host} = moduleWithSystem (
     { ... }:
     { modulesPath, ... }:
     {
@@ -23,7 +27,7 @@
         ];
 
       config = {
-        networking.hostName = "slugworth";
+        networking.hostName = host;
 
         # Hardware:
         boot.initrd.availableKernelModules = [
@@ -33,6 +37,9 @@
           "sr_mod"
           "virtio_blk"
         ];
+
+        # Boot:
+        boot.loader.systemd-boot.enable = true;
 
         # Disk configuration:
         tilde.hardware.disks.single = {
@@ -53,5 +60,9 @@
     }
   );
 
-  perSystem = self.lib.nixos.checkHost "slugworth";
+  flake.nixosConfigurations.${host} = inputs.nixpkgs.lib.nixosSystem {
+    modules = self.lib.nixos.hostModules host system;
+  };
+
+  flake.checks.${system} = self.lib.nixos.mkCheck { inherit host; };
 }

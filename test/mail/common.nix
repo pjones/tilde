@@ -37,10 +37,15 @@ in
       };
 
       # Put the fake password file in the right place:
-      systemd.services.dovecot.preStart = ''
-        mkdir --parents "$(dirname "${passwordFile}")"
-        install --mode=0440 --owner=vmail --group=vmail ${authDb} ${passwordFile}
-      '';
+      systemd.services.dovecot.preStart =
+        let
+          user = config.services.dovecot2.settings.default_internal_user;
+          group = config.services.dovecot2.settings.default_internal_group;
+        in
+        ''
+          mkdir --parents "$(dirname "${passwordFile}")"
+          install --mode=0440 --owner=${user} --group=${group} ${authDb} ${passwordFile}
+        '';
     })
   ];
 }

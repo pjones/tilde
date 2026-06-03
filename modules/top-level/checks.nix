@@ -13,6 +13,7 @@
           test = path: import path { inherit pkgs self; };
         in
         {
+          boot-ssh = test ../../test/boot-ssh.nix;
           config = test ../../test/config.nix;
           cron = test ../../test/cron.nix;
           mail-imap = test ../../test/mail/imap.nix;

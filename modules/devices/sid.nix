@@ -4,8 +4,12 @@
   moduleWithSystem,
   ...
 }:
+let
+  host = "sid";
+  system = "x86_64-linux";
+in
 {
-  flake.nixosModules.sid = moduleWithSystem (
+  flake.nixosModules.${host} = moduleWithSystem (
     { pkgs, ... }:
     { lib, ... }:
     {
@@ -22,7 +26,7 @@
 
       config = {
         # Host name:
-        networking.hostName = "sid";
+        networking.hostName = host;
 
         # Hardware configuration:
         services.fwupd.enable = true;
@@ -103,5 +107,9 @@
     }
   );
 
-  perSystem = self.lib.nixos.checkHost "sid";
+  flake.nixosConfigurations.${host} = inputs.nixpkgs.lib.nixosSystem {
+    modules = self.lib.nixos.hostModules host system;
+  };
+
+  flake.checks.${system} = self.lib.nixos.mkCheck { inherit host; };
 }

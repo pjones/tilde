@@ -89,6 +89,7 @@
       config = {
         programs.firefox = {
           enable = true;
+          configPath = ".mozilla/firefox"; # FIXME: Change this at some point.
 
           package = pkgs.firefox.override (orig: {
             nativeMessagingHosts = (orig.nativeMessagingHosts or [ ]) ++ [ pkgs.tridactyl-native ];

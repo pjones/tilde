@@ -23,7 +23,6 @@
       ];
 
       sslCertDomain = if cfg.useACMEHost != null then cfg.useACMEHost else cfg.domain;
-
       sslCertDir = config.security.acme.certs.${sslCertDomain}.directory;
     in
     {
@@ -94,17 +93,16 @@
 
         passwordFile = lib.mkOption {
           type = lib.types.path;
-          default = config.sops.secrets.mail-dovecot-passwd.path;
         };
       };
 
       config = lib.mkIf cfg.enable {
         # Tools that need to be in the system environment:
-        environment.systemPackages = [ pkgs.dovecot_pigeonhole ];
+        environment.systemPackages = [ pkgs.dovecot_pigeonhole_0_5 ];
 
         # Allow system scripts to insert mail into the IMAP process.
         security.wrappers.dovecot-lda = {
-          source = "${pkgs.dovecot}/libexec/dovecot/dovecot-lda";
+          source = "${pkgs.dovecot_2_3}/libexec/dovecot/dovecot-lda";
           setuid = true;
           setgid = true;
           owner = cfg.virtualUser;
@@ -147,123 +145,123 @@
         # Use dovecot as the IMAP server:
         services.dovecot2 = {
           enable = true;
-          enableImap = true;
-          enableLmtp = true;
+          package = pkgs.dovecot_2_3;
+          createMailUser = false;
 
-          enablePop3 = false;
-          enablePAM = false;
-          enableQuota = false;
+          settings = {
+            mail_debug = cfg.debug;
+            auth_debug = cfg.debug;
+            verbose_ssl = cfg.debug;
 
-          sslServerCert = "${sslCertDir}/fullchain.pem";
-          sslServerKey = "${sslCertDir}/key.pem";
+            ssl_cert = "<${sslCertDir}/fullchain.pem";
+            ssl_key = "<${sslCertDir}/key.pem";
 
-          mailUser = cfg.virtualUser;
-          mailGroup = cfg.virtualGroup;
-
-          mailLocation =
-            let
-              path = "${cfg.homeDir}/%d/%n";
-            in
-            lib.concatStringsSep ":" [
-              "maildir:${path}"
-              "INBOX=${path}/Inbox"
-              "LAYOUT=fs"
-              "UTF-8"
+            protocols = [
+              "imap"
+              "lmtp"
+              "sieve"
             ];
 
-          protocols = [ "sieve" ];
+            mail_uid = cfg.virtualUser;
+            mail_gid = cfg.virtualGroup;
 
-          mailboxes = {
-            Trash = {
-              auto = "subscribe";
-              specialUse = "Trash";
-              autoexpunge = "90d";
+            mail_location =
+              let
+                path = "${cfg.homeDir}/%d/%n";
+              in
+              lib.concatStringsSep ":" [
+                "maildir:${path}"
+                "INBOX=${path}/Inbox"
+                "LAYOUT=fs"
+                "UTF-8"
+              ];
+
+            "namespace inbox" = {
+              inbox = "yes";
+              separator = "/";
+
+              "mailbox Trash" = {
+                auto = "subscribe";
+                special_use = "\\Trash";
+                autoexpunge = "90d";
+              };
+
+              "mailbox Spam" = {
+                auto = "subscribe";
+                special_use = "\\Junk";
+                autoexpunge = "90d";
+              };
+
+              "mailbox Drafts" = {
+                auto = "subscribe";
+                special_use = "\\Drafts";
+              };
+
+              "mailbox Sent" = {
+                auto = "subscribe";
+                special_use = "\\Sent";
+              };
             };
 
-            Spam = {
-              auto = "subscribe";
-              specialUse = "Junk";
-              autoexpunge = "90d";
+            passdb = {
+              driver = "passwd-file";
+              args = cfg.passwordFile;
             };
 
-            Drafts = {
-              auto = "subscribe";
-              specialUse = "Drafts";
+            userdb = {
+              driver = "passwd-file";
+              args = cfg.passwordFile;
+              default_fields = userDefaultFields;
             };
 
-            Sent = {
-              auto = "subscribe";
-              specialUse = "Sent";
+            auth_mechanisms = [
+              "plain"
+              "login"
+            ];
+
+            mail_access_groups = cfg.virtualGroup;
+            ssl = "required";
+            ssl_min_protocol = "TLSv1.2";
+            ssl_prefer_server_ciphers = "yes";
+
+            "service imap-login" = {
+              "inet_listener imap" = {
+                port = 0;
+              };
+              "inet_listener imaps" = {
+                port = 993;
+                ssl = "yes";
+              };
+            };
+
+            "protocol imap" = {
+              mail_plugins = "$mail_plugins imap_sieve";
+            };
+
+            "service auth" = {
+              "unix_listener auth" = {
+                user = cfg.lmtpUser;
+                group = cfg.lmtpGroup;
+                mode = "0600";
+              };
+            };
+
+            recipient_delimiter = "+";
+            lda_mailbox_autosubscribe = "yes";
+            lda_mailbox_autocreate = "yes";
+
+            "service lmtp" = {
+              "unix_listener dovecot-lmtp" = {
+                user = cfg.lmtpUser;
+                group = cfg.lmtpGroup;
+                mode = "0600";
+              };
+            };
+
+            "protocol lmtp" = {
+              mail_plugins = "$mail_plugins sieve";
             };
           };
-
-          extraConfig = ''
-            ${lib.optionalString cfg.debug ''
-              mail_debug = yes
-              auth_debug = yes
-              verbose_ssl = yes
-            ''}
-
-            namespace inbox {
-              separator = /
-              inbox = yes
-            }
-
-            passdb {
-              driver = passwd-file
-              args = ${cfg.passwordFile}
-            }
-
-            userdb {
-              driver = passwd-file
-              args = ${cfg.passwordFile}
-              default_fields = ${userDefaultFields}
-            }
-
-            mail_access_groups = ${cfg.virtualGroup}
-            auth_mechanisms = plain login
-            ssl = required
-            ssl_min_protocol = TLSv1.2
-            ssl_prefer_server_ciphers = yes
-
-            service imap-login {
-              inet_listener imap {
-                port = 0
-              }
-              inet_listener imaps {
-                port = 993
-                ssl = yes
-              }
-            }
-
-            protocol imap {
-              mail_plugins = $mail_plugins imap_sieve
-            }
-
-            service auth {
-              unix_listener auth {
-                user = ${cfg.lmtpUser}
-                group = ${cfg.lmtpGroup}
-                mode = 0600
-              }
-            }
-
-            recipient_delimiter = +
-            lda_mailbox_autosubscribe = yes
-            lda_mailbox_autocreate = yes
-
-            service lmtp {
-              unix_listener dovecot-lmtp {
-                user = ${cfg.lmtpUser}
-                group = ${cfg.lmtpGroup}
-                mode = 0600
-              }
-            }
-
-            protocol lmtp {
-              mail_plugins = $mail_plugins sieve
-            }
-          '';
 
           # TODO: Configure the sieve plugin
         };
@@ -278,7 +276,7 @@
               reloadServices = [ "dovecot.service" ];
             };
             ownCert = allCerts // {
-              group = lib.mkDefault config.services.dovecot2.group;
+              group = lib.mkDefault config.services.dovecot2.settings.default_internal_group;
               webroot = lib.mkDefault "/var/lib/acme/acme-challenge";
             };
             otherCert = allCerts // {

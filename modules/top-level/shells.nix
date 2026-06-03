@@ -8,7 +8,7 @@
 
         nativeBuildInputs = [
           inputs.home-manager.packages.${system}.home-manager
-          pkgs.neofetch
+          pkgs.fastfetch
           pkgs.nixpkgs-fmt
           pkgs.nixd
         ];

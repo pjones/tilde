@@ -5,6 +5,9 @@
       peaclock = prev.peaclock.overrideAttrs (_orig: {
         src = inputs.peaclock;
       });
+
+      # https://github.com/NixOS/nixpkgs/pull/526756
+      cups-kyodialog = prev.callPackage ../../pkgs/cups-kyodialog.nix { };
     };
 
     bashrc = inputs.bashrc.overlays.default;

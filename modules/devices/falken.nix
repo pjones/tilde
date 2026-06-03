@@ -4,6 +4,10 @@
   moduleWithSystem,
   ...
 }:
+let
+  host = "falken";
+  system = "x86_64-linux";
+in
 {
   flake.nixosModules.falken = moduleWithSystem (
     { ... }:
@@ -88,12 +92,9 @@
     }
   );
 
-  # flake.nixosConfigurations.falken = inputs.nixpkgs.lib.nixosSystem {
-  #   modules = self.lib.nixos.modulesForHost "falken" "x86_64-linux";
-  # };
+  flake.nixosConfigurations.${host} = inputs.nixpkgs.lib.nixosSystem {
+    modules = self.lib.nixos.hostModules host system;
+  };
 
-  perSystem = self.lib.nixos.checkHost "falken";
-
-  # TODO: Bring in NixOS hardware
-  # What else from Cassini can be brought into here?
+  flake.checks.${system} = self.lib.nixos.mkCheck { inherit host; };
 }

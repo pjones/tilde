@@ -25,9 +25,9 @@
         # Only set these if you want to force hibernation earlier:
         #  HibernateDelaySec=2h
         #  SuspendEstimationSec=10m
-        systemd.sleep.extraConfig = ''
-          SuspendState=mem
-        '';
+        systemd.sleep.settings.Sleep = {
+          SuspendState = "mem";
+        };
 
         services.logind.settings.Login = {
           HandleLidSwitch = "suspend-then-hibernate";

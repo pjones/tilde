@@ -4,8 +4,12 @@
   moduleWithSystem,
   ...
 }:
+let
+  host = "kilgrave";
+  system = "x86_64-linux";
+in
 {
-  flake.nixosModules.kilgrave = moduleWithSystem (
+  flake.nixosModules.${host} = moduleWithSystem (
     { pkgs, ... }:
     { ... }:
     {
@@ -21,7 +25,7 @@
         ];
 
       config = {
-        networking.hostName = "kilgrave";
+        networking.hostName = host;
 
         # Use the GRUB boot loader (on the root disk).
         boot.loader.grub.enable = true;
@@ -44,6 +48,28 @@
           "sd_mod"
         ];
 
+        swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+
+        fileSystems = {
+          # Root disk: /dev/nvme0n1p2
+          "/" = {
+            device = "/dev/disk/by-label/root";
+            fsType = "ext4";
+          };
+
+          # /var/lib RAID:
+          "/var/lib" = {
+            device = "/dev/md/var-lib";
+            fsType = "ext4";
+          };
+
+          # Home RAID:
+          "/home" = {
+            device = "/dev/md/home";
+            fsType = "ext4";
+          };
+        };
+
         home-manager.users.pjones = {
           imports = with self.homeModules; [
             basic
@@ -54,5 +80,12 @@
     }
   );
 
-  perSystem = self.lib.nixos.checkHost "kilgrave";
+  flake.nixosConfigurations.${host} = inputs.nixpkgs.lib.nixosSystem {
+    modules = self.lib.nixos.hostModules host system;
+  };
+
+  flake.checks.${system} = self.lib.nixos.mkCheck {
+    inherit host;
+    withDisko = false;
+  };
 }

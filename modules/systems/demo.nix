@@ -31,6 +31,6 @@
   );
 
   flake.nixosConfigurations.demo = inputs.nixpkgs.lib.nixosSystem {
-    modules = self.lib.nixos.modulesForHost "demo" "x86_64-linux";
+    modules = self.lib.nixos.hostModules "demo" "x86_64-linux";
   };
 }
