@@ -46,20 +46,6 @@
               categories = [ "Application" ];
             };
 
-            add-deploy-key =
-              let
-                script = pkgs.writeShellScript "ssh-add-deploy" ''
-                  ${pkgs.openssh}/bin/ssh-add ~/keys/ssh/deploy.id_ed25519
-                '';
-              in
-              {
-                name = "SSH: Add Deployment Key";
-                exec = "${script}";
-                icon = "text-x-script";
-                terminal = false;
-                categories = [ "Application" ];
-              };
-
             calendar = url "Calendar" "https://app.fastmail.com/calendar/month";
             discord = url "Discord" "https://discord.com/channels/688750797378682946/689772813481279547";
             google-voice = url "Google Voice" "https://voice.google.com/u/0/messages";
