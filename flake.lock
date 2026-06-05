@@ -946,11 +946,11 @@
         "org-clock-dbus": "org-clock-dbus_2"
       },
       "locked": {
-        "lastModified": 1780664060,
-        "narHash": "sha256-RgrqyxtHEiHLE0oq60KazA6QqxTNCweu4VbCS5Klzjo=",
+        "lastModified": 1780672766,
+        "narHash": "sha256-uGXW2IRbIQIRYvMC/LmNJnno9x5cv5boJCGlGjDJSC8=",
         "owner": "pjones",
         "repo": "superkey",
-        "rev": "a844a02124f773468422b9afc1a47c37a44f01c8",
+        "rev": "40e2cd39cff98b11a5813b374e29a53e33591214",
         "type": "github"
       },
       "original": {
