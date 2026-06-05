@@ -36,6 +36,11 @@
 
     in
     {
+      # Set a default package for CI
+      #
+      # FIXME: Come up with something better though:
+      packages.default = pkgs.peaclock;
+
       # Various scripts needed inside tilde:
       packages.tilde-scripts-activation = pkgs.callPackage ../../pkgs/tilde-scripts-activation.nix {
         inherit tildeInstallScripts;
