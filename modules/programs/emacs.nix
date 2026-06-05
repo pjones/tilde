@@ -4,11 +4,7 @@
     { ... }:
     {
       imports = [
-        inputs.emacsrc.homeManagerModules.default
+        inputs.emacsrc.homeModules.emacsrc
       ];
-
-      config = {
-        programs.pjones.emacsrc.enable = true;
-      };
     };
 }

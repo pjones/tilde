@@ -20,7 +20,7 @@
           mail-fetch = test ../../test/mail/fetch.nix;
           mail-home = test ../../test/mail/home.nix;
 
-          emacs = inputs.emacsrc.checks.${system}.default;
+          emacs = inputs.emacsrc.checks.${system}.emacsrc;
           superkey-greetd = inputs.superkey.checks.${system}.greetd;
         };
     };
