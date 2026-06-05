@@ -104,7 +104,7 @@
 
             search = {
               force = true;
-              default = "ddg";
+              default = "ecosia";
             };
 
             userChrome = ''
@@ -164,7 +164,7 @@
 
             set homepages ["${homepage}"]
             set newtab ${homepage}
-            set searchengine dd
+            set searchengine ec
             set modeindicatorshowkeys true
             set modeindicator.normal false
 
@@ -236,6 +236,7 @@
             set searchurls.bk https://books.google.com?q=%s
             set searchurls.dd https://duckduckgo.com/?q=%s
             set searchurls.dp https://www.deepl.com/en/translator#en/de/%s
+            set searchurls.ec https://www.ecosia.org/search?method=index&q=%s
             set searchurls.go https://www.google.com/search?q=%s
             set searchurls.ge https://translate.google.com/?sl=de&tl=en&op=translate&text=%s
             set searchurls.ha https://hackage.haskell.org/packages/search?terms=%s
