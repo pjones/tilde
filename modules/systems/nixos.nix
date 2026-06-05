@@ -25,7 +25,7 @@
       ];
 
       config = {
-        system.stateVersion = "25.11";
+        system.stateVersion = self.lib.state.version;
 
         # Basic firewall settings:
         networking.firewall = {

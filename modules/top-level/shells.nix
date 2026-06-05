@@ -8,9 +8,8 @@
 
         nativeBuildInputs = [
           inputs.home-manager.packages.${system}.home-manager
-          pkgs.fastfetch
-          pkgs.nixpkgs-fmt
-          pkgs.nixd
+          pkgs.fastfetch # Screenshots
+          pkgs.gitMinimal # For nix-on-droid
         ];
       };
     };

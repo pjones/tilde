@@ -5,12 +5,13 @@
     { pkgs, ... }:
     { ... }:
     {
-      system.stateVersion = "25.11";
+      system.stateVersion = self.lib.state.version;
       environment.etcBackupExtension = ".backup";
       user.shell = "${pkgs.zsh}/bin/zsh";
       #time.timeZone = "America/Phoenix";
 
       home-manager.config = {
+        home.stateVersion = self.lib.state.version;
         imports = with self.homeModules; [
           basic
         ];

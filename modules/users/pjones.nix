@@ -1,4 +1,4 @@
-{ moduleWithSystem, ... }:
+{ self, moduleWithSystem, ... }:
 {
   flake.nixosModules.pjones = moduleWithSystem (
     { pkgs, ... }:
@@ -69,7 +69,7 @@
 
         home-manager.users.pjones = {
           home = {
-            stateVersion = lib.mkDefault "24.11";
+            stateVersion = lib.mkDefault self.lib.state.version;
             username = cfg.username;
             homeDirectory = config.users.users.${cfg.username}.home;
           };

@@ -90,6 +90,7 @@
             mkpasswd # Overfeatured front-end to crypt, from the Debian whois package
             netcat # Arbitrary TCP and UDP connections and listens
             nix-prefetch-scripts # Collection of all the nix-prefetch-* scripts which may be used to obtain source hashes
+            nixd # Feature-rich Nix language server interoperating with C++ nix
             nixfmt # Official formatter for Nix code
             openssl # A cryptographic library that implements the SSL and TLS protocols
             pamixer # Pulseaudio command line mixer
