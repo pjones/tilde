@@ -1,0 +1,27 @@
+name: "Nightly"
+
+on:
+  schedule:
+    - cron: "0 2 * * *"  # 02:00 UTC daily
+
+jobs:
+  openms-next-nightly:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: nixbuild/nix-quick-install-action@v34
+
+      - name: Update All Dependencies
+        run: nix flake update
+
+      - name: macOS Package Only
+        if: runner.os == 'macOS'
+        run: nix build --print-build-logs
+
+      - name: Linux Full Check
+        if: runner.os == 'Linux'
+        run: nix flake check --print-build-logs
