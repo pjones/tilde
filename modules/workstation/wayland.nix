@@ -25,14 +25,15 @@
           fontDir.enable = true;
           enableGhostscriptFonts = true;
           packages = with pkgs; [
-            atkinson-hyperlegible
-            dejavu_fonts
-            hermit
-            ibm-plex
-            iosevka
-            overpass
+            atkinson-hyperlegible # Typeface designed to offer greater legibility and readability for low vision readers
+            dejavu_fonts # Typeface family based on the Bitstream Vera fonts
+            fira # Font family including Fira Sans and Fira Mono
+            hermit # Monospace font designed to be clear, pragmatic and very readable
+            ibm-plex # IBM Plex Typeface
+            mononoki # Font for programming and code review
+            overpass # Font heavily inspired by Highway Gothic
             self.packages.${system}.nerd-hyperlegible
-            tt2020
+            tt2020 # Advanced, open source, hyperrealistic, multilingual typewriter font for a new decade
           ];
         };
       };
