@@ -49,8 +49,10 @@
 
                 poll SERVERNAME username NAME password PASSWORD
 
-                Note: This file must only be readable by the LMTP user
-                account specified in the IMAP configuration.
+                Note: This file must be readable by the LMTP user
+                account specified in the IMAP configuration.  It will
+                be sent to the standard input of the fetchmail program
+                to workaround its strict permission requirements.
               '';
             };
 
@@ -101,7 +103,7 @@
         ]
         ++ [
           "--fetchmailrc"
-          acct.commandFile
+          "-"
         ]
         ++ [
           "--idfile"
@@ -132,11 +134,16 @@
             "network-online.target"
           ];
           path = [ pkgs.fetchmail ];
-          script = "fetchmail ${lib.escapeShellArgs (mkFetchmailFlags acct)}";
           serviceConfig.User = imapCfg.lmtpUser;
           serviceConfig.Group = imapCfg.lmtpGroup;
           serviceConfig.WorkingDirectory = "/var/lib/${lmtpUser}";
           serviceConfig.Restart = "always";
+
+          script = ''
+            fetchmail \
+              ${lib.escapeShellArgs (mkFetchmailFlags acct)} \
+              <"${acct.commandFile}"
+          '';
         };
       };
     in
