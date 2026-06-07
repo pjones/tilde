@@ -1,0 +1,34 @@
+configuration {
+  modes: "workspace:@out@/bin/rofi-desktop.sh,window,drun,pass:@out@/bin/rofi-pass.sh";
+
+  drun-show-actions: true;
+  matching: "normal";
+  show-icons: true;
+  sort: true;
+  terminal: "eterm";
+  window-format: "{t}";
+
+  kb-mode-next: "Control+i";
+
+  drun {
+    display-name: " ";
+    fallback-icon: "application-x-executable";
+    parse-user:   true;
+    parse-system: true;
+  }
+
+  window {
+    display-name: " ";
+    hide-active-window: true;
+  }
+
+  workspace {
+    display-name: "󰍹 ";
+  }
+
+  pass {
+    display-name: " ";
+  }
+}
+
+@theme "@out@/themes/launcher.rasi"

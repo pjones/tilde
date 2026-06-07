@@ -15,6 +15,7 @@
 
       config = {
         services.qemuGuest.enable = true;
+        hardware.graphics.enable = true;
 
         fileSystems."/" = {
           device = "/dev/disk/by-label/nixos";
@@ -69,7 +70,7 @@
         home-manager.users.${config.tilde.username} =
           { ... }:
           {
-            #superkey.primaryOutput = lib.mkForce "Virtual-1";
+            tilde.wayland.primaryOutput = lib.mkForce "Virtual-1";
           };
       };
     };

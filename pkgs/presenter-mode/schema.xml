@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="gsettings-desktop-schemas">
+  <schema id="com.freerangebits.desktop.presenter-mode" path="/com/freerangebits/desktop/presenter-mode/">
+    <key name="enabled" type="b">
+      <default>false</default>
+      <summary>Presenter Mode</summary>
+      <description>Whether presenter mode is turned on.</description>
+    </key>
+  </schema>
+</schemalist>

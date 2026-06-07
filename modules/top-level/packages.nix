@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
   flake.overlays = {
     default = final: prev: {
@@ -8,6 +8,8 @@
 
       # https://github.com/NixOS/nixpkgs/pull/526756
       cups-kyodialog = prev.callPackage ../../pkgs/cups-kyodialog.nix { };
+
+      org-clock-dbus = self.inputs.org-clock-dbus.packages.${prev.stdenv.hostPlatform.system}.monitor;
     };
 
     bashrc = inputs.bashrc.overlays.default;
@@ -17,13 +19,12 @@
     mediarc = inputs.mediarc.overlays.mediarc;
     network-scripts = inputs.network-scripts.overlays.default;
     nur = inputs.nur.overlays.default;
-    superkey = inputs.superkey.overlays.superkey;
     tmuxrc = inputs.tmuxrc.overlays.default;
     zshrc = inputs.zshrc.overlays.default;
   };
 
   perSystem =
-    { pkgs, ... }:
+    { pkgs, system, ... }:
     let
       # Custom hooks:
       tildeInstallScripts = pkgs.makeSetupHook {
@@ -36,34 +37,67 @@
 
     in
     {
-      # Set a default package for CI
-      #
-      # FIXME: Come up with something better though:
-      packages.default = pkgs.peaclock;
+      packages = {
+        # Set a default package for CI
+        #
+        # FIXME: Come up with something better though:
+        default = pkgs.peaclock;
 
-      # Various scripts needed inside tilde:
-      packages.tilde-scripts-activation = pkgs.callPackage ../../pkgs/tilde-scripts-activation.nix {
-        inherit tildeInstallScripts;
-      };
+        # Various scripts needed inside tilde:
+        tilde-scripts-activation = pkgs.callPackage ../../pkgs/tilde-scripts-activation.nix {
+          inherit tildeInstallScripts;
+        };
 
-      packages.tilde-scripts-browser = pkgs.callPackage ../../pkgs/tilde-scripts-browser.nix {
-        inherit tildeInstallScripts;
-      };
+        tilde-scripts-browser = pkgs.callPackage ../../pkgs/tilde-scripts-browser.nix {
+          inherit tildeInstallScripts;
+        };
 
-      packages.tilde-scripts-misc = pkgs.callPackage ../../pkgs/tilde-scripts-misc.nix {
-        inherit tildeInstallScripts;
-      };
+        tilde-scripts-misc = pkgs.callPackage ../../pkgs/tilde-scripts-misc.nix {
+          inherit tildeInstallScripts;
+        };
 
-      # Firefox CSS Hacks:
-      #
-      # https://mrotherguy.github.io/firefox-csshacks/
-      packages.firefox-csshacks = pkgs.callPackage ../../pkgs/firefox-csshacks.nix {
-        src = inputs.firefox-csshacks;
-      };
+        # Firefox CSS Hacks:
+        #
+        # https://mrotherguy.github.io/firefox-csshacks/
+        firefox-csshacks = pkgs.callPackage ../../pkgs/firefox-csshacks.nix {
+          src = inputs.firefox-csshacks;
+        };
 
-      # Emacs configuration for tridactyl:
-      packages.tridactyl_emacs_config = pkgs.callPackage ../../pkgs/tridactyl_emacs_config.nix {
-        src = inputs.tridactyl_emacs_config;
+        # Emacs configuration for tridactyl:
+        tridactyl_emacs_config = pkgs.callPackage ../../pkgs/tridactyl_emacs_config.nix {
+          src = inputs.tridactyl_emacs_config;
+        };
+
+        # Scripts to force the wayland compositor to lock the screen
+        # now (even if a lock is inhibited).
+        force-lock = pkgs.callPackage ../../pkgs/force-lock { };
+
+        nerd-hyperlegible = pkgs.callPackage ../../pkgs/nerd-hyperlegible.nix { };
+
+        pjones-avatar = pkgs.callPackage ../../pkgs/pjones-avatar.nix { };
+        presenter-mode = pkgs.callPackage ../../pkgs/presenter-mode { };
+
+        rofirc = pkgs.callPackage ../../pkgs/rofirc {
+          superkey = self.packages.${system}.superkey;
+        };
+
+        superkey = pkgs.callPackage ../../pkgs/superkey { };
+
+        theme-dracula = pkgs.callPackage ../../pkgs/theme {
+          colors = ../../pkgs/theme/dracula.json;
+        };
+
+        theme-outrun = pkgs.callPackage ../../pkgs/theme { colors = ../../pkgs/theme/outrun.json; };
+
+        wayland-test-helpers = pkgs.callPackage ../../pkgs/wayland-test-helpers { };
+
+        xwininfo-tests = pkgs.writeShellApplication {
+          name = "xwininfo";
+          runtimeInputs = with pkgs; [
+            jq
+          ];
+          text = builtins.readFile ../../support/scripts/xwininfo-tests;
+        };
       };
     };
 }

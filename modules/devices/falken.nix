@@ -27,7 +27,6 @@ in
         ]
         ++ [
           inputs.nixos-hardware.nixosModules.framework-13-7040-amd
-          inputs.superkey.nixosModules.falken
         ];
 
       config = {
@@ -76,18 +75,53 @@ in
           };
         };
 
-        home-manager.users.pjones = {
-          imports = with self.homeModules; [
-            mail
-            mbsync
-            msmtp
-            mu
-          ];
+        home-manager.users.pjones =
+          { config, ... }:
+          {
+            imports = with self.homeModules; [
+              mail
+              mbsync
+              msmtp
+              mu
+            ];
 
-          config = {
-            tilde.programs.ssh.keysDir = "~/keys/ssh";
+            config =
+              let
+                # wayland-info | grep wl_output -A2
+                # niri msg outputs|grep Output
+                monitors = {
+                  builtin = "eDP-1";
+                  external = "DP-3";
+                };
+              in
+              {
+                tilde.programs.ssh.keysDir = "~/keys/ssh";
+                tilde.wayland.primaryOutput = monitors.builtin;
+
+                wayland.windowManager.niri.settings = {
+                  output = [
+                    {
+                      _args = [ monitors.builtin ];
+                      mode = "2256x1504";
+                      scale = 1.4;
+
+                      layout = {
+                        # Smaller windows are hard to use:
+                        default-column-width.proportion = 0.5;
+                      };
+                    }
+                  ];
+                };
+
+                programs.waybar.settings.main = {
+                  output = [ monitors.external ];
+                };
+
+                services.wpaperd.settings = {
+                  ${monitors.external}.path = config.tilde.programs.wpaperd.primaryWallpaperDirectory;
+                };
+              };
           };
-        };
       };
     }
   );

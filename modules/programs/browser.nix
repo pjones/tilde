@@ -1,7 +1,7 @@
 { self, moduleWithSystem, ... }:
 {
   flake.homeModules.browser = moduleWithSystem (
-    { pkgs, ... }:
+    { pkgs, system, ... }:
     { lib, ... }:
     let
       # MIME types that should be associated with a web browser:
@@ -13,7 +13,7 @@
         "text/html"
       ];
 
-      tilde-scripts-browser = self.packages.${pkgs.pkgs.stdenv.hostPlatform.system}.tilde-scripts-browser;
+      tilde-scripts-browser = self.packages.${system}.tilde-scripts-browser;
     in
     {
       config = {

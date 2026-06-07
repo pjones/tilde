@@ -1,13 +1,13 @@
 { self, moduleWithSystem, ... }:
 {
   flake.homeModules.firefox = moduleWithSystem (
-    { pkgs, ... }:
+    { pkgs, system, ... }:
     { lib, ... }:
     let
       homepage = "https://notes.jonesbunch.com/";
 
-      firefox-csshacks = self.packages.${pkgs.stdenv.hostPlatform.system}.firefox-csshacks;
-      tridactyl_emacs_config = self.packages.${pkgs.stdenv.hostPlatform.system}.tridactyl_emacs_config;
+      firefox-csshacks = self.packages.${system}.firefox-csshacks;
+      tridactyl_emacs_config = self.packages.${system}.tridactyl_emacs_config;
 
       # FIXME: Replace with:
       # https://mastodon.social/@telomerai/113909268729350091

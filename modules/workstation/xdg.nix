@@ -1,13 +1,30 @@
 { self, moduleWithSystem, ... }:
 {
   flake.homeModules.xdg = moduleWithSystem (
-    { pkgs, ... }:
-    { ... }:
+    { pkgs, system, ... }:
+    { config, ... }:
     let
-      tilde-scripts-misc = self.packages.${pkgs.pkgs.stdenv.hostPlatform.system}.tilde-scripts-misc;
+      tilde-scripts-misc = self.packages.${system}.tilde-scripts-misc;
     in
     {
       config = {
+        # Set XDG user directories:
+        xdg.userDirs = {
+          enable = true;
+          createDirectories = false;
+          setSessionVariables = true;
+
+          desktop = "$HOME/desktop";
+          documents = "$HOME/documents";
+          download = "$HOME/download";
+          music = "$HOME/documents/music";
+          pictures = "$HOME/documents/pictures";
+          publicShare = "$HOME/public";
+          templates = "$HOME/documents/templates";
+          videos = "$HOME/documents/videos";
+        };
+
+        # Application menu items:
         xdg.desktopEntries =
           let
             url = name: url: {
@@ -18,6 +35,30 @@
             };
           in
           {
+            sleep-system = {
+              name = "Sleep";
+              exec = "systemctl suspend-then-hibernate";
+              icon = "emblem-system";
+              terminal = false;
+              categories = [ "System" ];
+            };
+
+            lock-screen = {
+              name = "Force Lock Session";
+              exec = "${config.tilde.wayland.lock.forceLockCmd}";
+              icon = "emblem-system";
+              terminal = false;
+              categories = [ "System" ];
+            };
+
+            mirror-output = {
+              name = "Mirror Next Output";
+              exec = "tilde.programs-mirror.sh";
+              icon = "emblem-system";
+              terminal = false;
+              categories = [ "System" ];
+            };
+
             image-view = {
               name = "IMV";
               genericName = "Image Viewer";

@@ -1,11 +1,10 @@
 { self, moduleWithSystem, ... }:
 {
   flake.homeModules.bookmarks = moduleWithSystem (
-    { pkgs, ... }:
+    { system, ... }:
     { config, lib, ... }:
     let
-      tilde-scripts-activation =
-        self.packages.${pkgs.stdenv.hostPlatform.system}.tilde-scripts-activation;
+      tilde-scripts-activation = self.packages.${system}.tilde-scripts-activation;
     in
     {
       config = {

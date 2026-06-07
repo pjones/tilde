@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+################################################################################
+# Pretend to be xwininfo.
+set -eu
+set -o pipefail
+
+################################################################################
+function get_windows() {
+  niri msg --json windows |
+    jq --raw-output 'map(.title) | join("\u0000")'
+}
+
+################################################################################
+function main() {
+  if [ -z "${NIRI_SOCKET:-}" ] || [ ! -e "$NIRI_SOCKET" ]; then
+    export NIRI_SOCKET=/home/pjones/niri-socket
+  fi
+
+  while IFS= read -r -d '' window; do
+    echo "0x00 \"$window\""
+  done < <(get_windows | tr --delete '"' | tr "\n" "\0")
+}
+
+################################################################################
+main "$@"

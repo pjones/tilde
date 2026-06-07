@@ -21,6 +21,8 @@
     nix-on-droid.inputs.nixpkgs.follows = "nixpkgs";
     nix-on-droid.inputs.home-manager.follows = "home-manager";
 
+    niri-autoselect-portal.url = "git+https://codeberg.org/debugloop/niri-autoselect-portal.git";
+
     backup-scripts.url = "github:pjones/backup-scripts";
     backup-scripts.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -30,11 +32,6 @@
     emacsrc.url = "github:pjones/emacsrc/nixos-26.05";
     emacsrc.inputs.nixpkgs.follows = "nixpkgs";
     emacsrc.inputs.home-manager.follows = "home-manager";
-
-    superkey.url = "github:pjones/superkey/nixos-26.05";
-    superkey.inputs.nixpkgs.follows = "nixpkgs";
-    superkey.inputs.home-manager.follows = "home-manager";
-    superkey.inputs.emacsrc.follows = "emacsrc";
 
     encryption-utils.url = "github:pjones/encryption-utils";
     encryption-utils.inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +47,8 @@
 
     network-scripts.url = "github:pjones/network-scripts";
     network-scripts.inputs.nixpkgs.follows = "nixpkgs";
+
+    org-clock-dbus.url = "github:pjones/org-clock-dbus";
 
     tmuxrc.url = "github:pjones/tmuxrc";
     tmuxrc.inputs.nixpkgs.follows = "nixpkgs";

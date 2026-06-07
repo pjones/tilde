@@ -1,7 +1,7 @@
-{ moduleWithSystem, ... }:
+{ self, moduleWithSystem, ... }:
 {
   flake.homeModules.suspend = moduleWithSystem (
-    { pkgs, ... }:
+    { system, ... }:
     { ... }:
     {
       config = {
@@ -14,7 +14,7 @@
 
           Service = {
             Type = "oneshot";
-            ExecStart = "${pkgs.pjones.superkey-scripts}/bin/superkey-pre-suspend.sh";
+            ExecStart = "${self.packages.${system}.superkey}/bin/superkey-pre-suspend.sh";
           };
 
           Install = {

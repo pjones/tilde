@@ -10,9 +10,8 @@
     { ... }:
     {
       imports = [
-        self.inputs.superkey.nixosModules.autologin
-        self.inputs.superkey.nixosModules.qemu-wayland
         self.nixosModules.qemu-guest
+        self.nixosModules.test-autologin
         self.nixosModules.tilde
         self.nixosModules.workstation
       ];
@@ -24,7 +23,7 @@
         security.sudo.wheelNeedsPassword = false;
 
         home-manager.users.${self.lib.test.user.name} = {
-          superkey.primaryOutput = "Virtual-1";
+          tilde.wayland.primaryOutput = "Virtual-1";
         };
       };
     }

@@ -19,27 +19,35 @@ running in an ephemeral virtual machine (`nix flake check`).
 
   * Terminal: [Emacs][] w/ libvterm
 
+  * Compositor: [Niri][]
+
+  * Status Bar: [waybar][]
+
+  * Notifications: [Sway Notification Center][swaync]
+
+  * Screen Lock: [swayidle][] and [hyprlock][]
+
+  * Wallpaper Daemon: [wpaperd][]
+
   * Monospace Font: [Hermit](https://pcaro.es/p/hermit/)
 
   * Variable-spaced Font: [Atkinson Hyperlegible][hyperlegible]
 
-  * Desktop: [Niri][superkey]
-
 ## Try It Out
 
 If you have [Nix][] installed and configured with flake support you
-can run my configuration in a virtual machine:
+can run my configuration in a virtual machine on any Linux distro:
 
 ```sh
 nix run github:pjones/tilde
 ```
 
 Use the key binding `Super+Space` to start `rofi`.  Other key bindings
-can be found in my [Wayland configuration][superkey].
+can be found in my [Wayland configuration][niricfg].
 
 [nix]: https://nixos.org/
 [nixpkgs]: https://github.com/NixOS/nixpkgs
 [home-manager]: https://github.com/rycee/home-manager
-[superkey]: https://github.com/pjones/superkey
 [emacs]: https://github.com/pjones/emacsrc
 [hyperlegible]: https://brailleinstitute.org/freefont
+[niricfg]: modules/programs/niri.nix
