@@ -294,7 +294,7 @@
 
                 # Other window and column controls:
                 "Mod+Equal".spawn = [
-                  "tilde.programs-reset-column.sh"
+                  "superkey-reset-column.sh"
                   "-a"
                 ];
 
@@ -332,7 +332,7 @@
 
                 # Monitors:
                 "Mod+Comma".focus-monitor-previous = { };
-                "Mod+Shift+D".spawn = [ "tilde.programs-bring-workspaces.sh" ];
+                "Mod+Shift+D".spawn = [ "superkey-bring-workspaces.sh" ];
                 "Mod+D".move-window-to-monitor-next = { };
                 "Mod+Period".focus-monitor-next = { };
                 "Mod+Shift+Comma".move-workspace-to-monitor-previous = { };
@@ -397,7 +397,7 @@
                   "--increase"
                   "5"
                 ];
-                XF86Launch6 = audio [ "tilde.programs-paswitch.sh" ];
+                XF86Launch6 = audio [ "superkey-paswitch.sh" ];
               };
           };
 

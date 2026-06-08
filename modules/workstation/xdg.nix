@@ -53,7 +53,7 @@
 
             mirror-output = {
               name = "Mirror Next Output";
-              exec = "tilde.programs-mirror.sh";
+              exec = "superkey-mirror.sh";
               icon = "emblem-system";
               terminal = false;
               categories = [ "System" ];
