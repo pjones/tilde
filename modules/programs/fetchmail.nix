@@ -113,7 +113,7 @@
             exec dovecot-lda -e -d ${lib.escapeShellArg acct.localUserName}
           '';
 
-      baseHome = "/var/lib/${imapCfg.lmtpUser}/fetchmail/";
+      baseHome = "/var/lib/${imapCfg.lmtpUser}/fetchmail";
       accountHome = acct: "${baseHome}/${acct.name}";
 
       mkFetchmailFlags =
@@ -143,6 +143,7 @@
         ++ lib.optionals (!acct.useIDLE) [
           "--daemon"
           (toString acct.pollInterval)
+          "--nodetach"
         ]
         ++ acct.extraFetchmailFlags;
 
