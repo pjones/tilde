@@ -6,13 +6,11 @@
     let
       cfg = config.tilde.programs.fetchmail;
       imapCfg = config.tilde.programs.imapd;
-      lmtpUser = imapCfg.lmtpUser;
 
       fetchmailFlags = [
         "--softbounce"
         "--fetchall"
         "--nokeep"
-        "--idle"
         "--ssl"
         "--verbose"
       ]
@@ -76,6 +74,27 @@
               '';
             };
 
+            useIDLE = lib.mkOption {
+              type = lib.types.bool;
+              default = true;
+              description = ''
+                Use IMAP IDLE instead of polling.
+
+                Not all servers support this, even if they say they
+                do.
+              '';
+            };
+
+            pollInterval = lib.mkOption {
+              type = lib.types.ints.positive;
+              default = 300;
+              description = ''
+                Number of seconds to sleep in between polls.  Only
+                used when IDLE has been disabled by the `useIDLE`
+                option.
+              '';
+            };
+
             extraFetchmailFlags = lib.mkOption {
               type = lib.types.listOf lib.types.str;
               default = [ ];
@@ -94,9 +113,13 @@
             exec dovecot-lda -e -d ${lib.escapeShellArg acct.localUserName}
           '';
 
+      baseHome = "/var/lib/${imapCfg.lmtpUser}/fetchmail/";
+      accountHome = acct: "${baseHome}/${acct.name}";
+
       mkFetchmailFlags =
         acct:
         fetchmailFlags
+        ++ lib.optional acct.useIDLE "--idle"
         ++ lib.optionals (acct.moveTo != null) [
           "--moveto"
           acct.moveTo
@@ -107,15 +130,19 @@
         ]
         ++ [
           "--idfile"
-          "/var/lib/${lmtpUser}/fetchmail.${acct.name}.ids"
+          "${accountHome acct}/ids"
         ]
         ++ [
           "--pidfile"
-          "/var/lib/${lmtpUser}/fetchmail.${acct.name}.pid"
+          "${accountHome acct}/pid"
         ]
         ++ [
           "--mda"
           "${ldaScript acct}"
+        ]
+        ++ lib.optionals (!acct.useIDLE) [
+          "--daemon"
+          (toString acct.pollInterval)
         ]
         ++ acct.extraFetchmailFlags;
 
@@ -134,9 +161,10 @@
             "network-online.target"
           ];
           path = [ pkgs.fetchmail ];
+          environment.FETCHMAILHOME = accountHome acct;
           serviceConfig.User = imapCfg.lmtpUser;
           serviceConfig.Group = imapCfg.lmtpGroup;
-          serviceConfig.WorkingDirectory = "/var/lib/${lmtpUser}";
+          serviceConfig.WorkingDirectory = accountHome acct;
           serviceConfig.Restart = "always";
 
           script = ''
@@ -165,6 +193,13 @@
 
       config = lib.mkIf (cfg.enable && imapCfg.enable) {
         systemd.services = builtins.listToAttrs (map mkService (builtins.attrValues cfg.accounts));
+
+        systemd.tmpfiles.rules = [
+          "d ${baseHome} 0750 ${imapCfg.lmtpUser} ${imapCfg.lmtpGroup} - -"
+        ]
+        ++ map (acct: "d ${accountHome acct} 0750 ${imapCfg.lmtpUser} ${imapCfg.lmtpGroup} - -") (
+          builtins.attrValues cfg.accounts
+        );
       };
     }
   );
