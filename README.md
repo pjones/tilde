@@ -25,7 +25,7 @@ running in an ephemeral virtual machine (`nix flake check`).
 
   * Notifications: [Sway Notification Center][swaync]
 
-  * Screen Lock: [swayidle][] and [hyprlock][]
+  * Screen Lock: [swayidle][] and [gtklock][]
 
   * Wallpaper Daemon: [wpaperd][]
 
@@ -45,9 +45,14 @@ nix run github:pjones/tilde
 Use the key binding `Super+Space` to start `rofi`.  Other key bindings
 can be found in my [Wayland configuration][niricfg].
 
-[nix]: https://nixos.org/
-[nixpkgs]: https://github.com/NixOS/nixpkgs
-[home-manager]: https://github.com/rycee/home-manager
 [emacs]: https://github.com/pjones/emacsrc
+[gtklock]: https://github.com/jovanlanik/gtklock
+[home-manager]: https://github.com/rycee/home-manager
 [hyperlegible]: https://brailleinstitute.org/freefont
 [niricfg]: modules/programs/niri.nix
+[nix]: https://nixos.org/
+[nixpkgs]: https://github.com/NixOS/nixpkgs
+[swayidle]: https://github.com/swaywm/swayidle
+[swaync]: https://github.com/ErikReider/SwayNotificationCenter
+[waybar]: https://github.com/Alexays/Waybar
+[wpaperd]: https://github.com/danyspin97/wpaperd

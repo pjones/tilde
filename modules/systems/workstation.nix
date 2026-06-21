@@ -12,7 +12,7 @@
         flatpack
         greetd
         gtk
-        hyprlock
+        gtklock
         libvirt
         networking
         podman
@@ -56,7 +56,7 @@
         emacs
         firefox
         gtk
-        hyprlock
+        gtklock
         kdeconnect
         network-manager-applet
         niri

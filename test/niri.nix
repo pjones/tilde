@@ -42,12 +42,12 @@ let
     def superkey_lock():
         with subtest("Test screen locking"):
             machine.send_key("f3")
-            machine.wait_until_succeeds("pgrep hyprlock")
+            machine.wait_until_succeeds("pgrep gtklock")
             machine.sleep(1)
             screenshot("lock")
             machine.send_chars("password")
             machine.send_key("ret")
-            machine.wait_until_fails("pgrep hyprlock")
+            machine.wait_until_fails("pgrep gtklock")
 
     def superkey_switch_to_light_theme():
         with subtest("Switching to light theme"):
