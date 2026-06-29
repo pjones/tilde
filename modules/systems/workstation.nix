@@ -170,7 +170,6 @@
               with pkgs;
               [
                 makemkv # Convert blu-ray and dvd to mkv
-                signal-desktop # Private, simple, and secure messenger
               ]
             )
           ++ lib.optionals config.tilde.workstation.design (

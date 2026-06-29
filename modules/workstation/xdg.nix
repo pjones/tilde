@@ -100,8 +100,6 @@
           defaultApplications = {
             "image/jpeg" = "image-view.desktop";
             "image/png" = "image-view.desktop";
-            "x-scheme-handler/sgnl" = "signal-desktop.desktop";
-            "x-scheme-handler/signalcaptcha" = "signal-desktop.desktop";
           };
         };
 
