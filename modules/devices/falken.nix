@@ -91,7 +91,9 @@ in
                 # niri msg outputs|grep Output
                 monitors = {
                   builtin = "eDP-1";
-                  external = "DP-3";
+                  external = "DP-3"; # Left side of laptop.
+                  home = "17ZP7HA000040";
+                  work = "S8LMQS000351";
                 };
               in
               {
@@ -104,11 +106,29 @@ in
                       _args = [ monitors.builtin ];
                       mode = "2256x1504";
                       scale = 1.4;
+                      position._props.x = 2560;
+                      position._props.y = 489;
 
                       layout = {
                         # Smaller windows are hard to use:
                         default-column-width.proportion = 0.5;
                       };
+                    }
+
+                    {
+                      _args = [ monitors.work ];
+                      mode = "2560x1440";
+                      scale = 1.0;
+                      position._props.x = 0;
+                      position._props.y = 123;
+                    }
+
+                    {
+                      _args = [ monitors.home ];
+                      mode = "2560x1440";
+                      scale = 1.0;
+                      position._props.x = 0;
+                      position._props.y = 123;
                     }
                   ];
                 };
