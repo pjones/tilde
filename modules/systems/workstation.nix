@@ -55,6 +55,7 @@
         documentation
         emacs
         firefox
+        gnupg
         gtk
         gtklock
         kdeconnect

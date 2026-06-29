@@ -49,17 +49,12 @@
           pkgs.mgitstatus
         ];
 
+        # NOTE: Encryption settings are in gnupg.nix.
         programs.git = {
           enable = true;
 
-          signing = {
-            key = config.programs.gpg.settings.default-key;
-            signByDefault = true;
-          };
-
           attributes = [
             "*.el diff=lisp"
-            "*.gpg diff=gpg"
             "*.lisp diff=lisp"
             "*.org diff=org"
           ];
@@ -107,7 +102,6 @@
               renames = true;
 
               "lisp".xfuncname = "^\\((def\\S+\\s+\\S+)";
-              "gpg".textconv = "${pkgs.gnupg}/bin/gpg2 --no-tty --decrypt --use-agent";
               "org".xfuncname = "^\\*+ +(.*)$";
             };
 

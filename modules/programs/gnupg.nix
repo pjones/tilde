@@ -23,6 +23,22 @@
           maxCacheTtlSsh = 21600;
           pinentry.package = pkgs.pinentry-qt;
         };
+
+        # Settings needed for Git:
+        programs.git = {
+          signing = {
+            key = config.programs.gpg.settings.default-key;
+            signByDefault = true;
+          };
+
+          attributes = [
+            "*.gpg diff=gpg"
+          ];
+
+          settings.diff = {
+            "gpg".textconv = "${pkgs.gnupg}/bin/gpg2 --no-tty --decrypt --use-agent";
+          };
+        };
       };
     }
   );

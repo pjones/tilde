@@ -14,7 +14,6 @@
     {
       imports = with self.homeModules; [
         git
-        gnupg
         shells
       ];
 
