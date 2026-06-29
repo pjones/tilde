@@ -11,7 +11,7 @@
           info.enable = true;
           doc.enable = true;
           dev.enable = true;
-          man.cache.enable = true;
+          man.cache.enable = false; # Slow and broken.
         };
       };
     }
@@ -24,7 +24,7 @@
       config = {
         programs = {
           man.enable = true;
-          man.generateCaches = true;
+          man.generateCaches = false; # Slow and broken
           info.enable = true;
         };
       };
