@@ -11,7 +11,12 @@
           info.enable = true;
           doc.enable = true;
           dev.enable = true;
-          man.cache.enable = false; # Slow and broken.
+
+          # Needed for tools like Emacs to list installed man pages.
+          man.cache = {
+            enable = true;
+            generateAtRuntime = true;
+          };
         };
       };
     }
@@ -24,7 +29,7 @@
       config = {
         programs = {
           man.enable = true;
-          man.generateCaches = false; # Slow and broken
+          man.generateCaches = true;
           info.enable = true;
         };
       };
