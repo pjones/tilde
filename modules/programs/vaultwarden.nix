@@ -104,4 +104,24 @@
     }
   );
 
+  perSystem = { pkgs, ... }: {
+    packages.vaultwarden-logo = pkgs.stdenvNoCC.mkDerivation (finalAttrs: {
+      name = "vaultwarden-logo";
+
+      phases = [
+        "installPhase"
+        "fixupPhase"
+      ];
+
+      src = pkgs.fetchurl {
+        url = "https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/resources/vaultwarden-logo-auto.svg";
+        hash = "sha256-5rCoCSrqnuD8t32zIut4VMDs7N/TlBuJQAP7HSP6tZU=";
+      };
+
+      installPhase = ''
+        mkdir -p "$out/share"
+        cp "${finalAttrs.src}" "$out/share/logo.svg"
+      '';
+    });
+  };
 }

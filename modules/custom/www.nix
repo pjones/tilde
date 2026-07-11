@@ -44,6 +44,7 @@
           # proxy it.
           ProxyPass /error !
 
+          ${lib.optionalString (lib.hasPrefix "https" f.to) "SSLProxyEngine on"}
           ProxyPass / ${f.to}/ upgrade=websocket
         '';
       };
