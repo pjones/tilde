@@ -105,6 +105,11 @@
 
           reloadServices = [ "kanidm.service" ];
         };
+
+        scripts.backup.snapshot.kanidm = {
+          directory = home;
+          destination = "${config.scripts.backup.directory}/kanidm";
+        };
       };
     }
   );
