@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1782556037,
-        "narHash": "sha256-c7JGKGoFB4ZVbVGlq6bX7MtizFVZ6gy5nu9Fp9N+lOM=",
+        "lastModified": 1783943162,
+        "narHash": "sha256-icDhH8RQlkDnpGlROgmfd8ioxHM2KmNf9VuwLDsTVcw=",
         "owner": "pjones",
         "repo": "backup-scripts",
-        "rev": "5d92305764959b5e8b3c551c6ab4b72db147fe05",
+        "rev": "6fb17482cc97e4c6b2fd6bed596640a321b2f0fe",
         "type": "github"
       },
       "original": {
