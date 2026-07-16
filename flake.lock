@@ -78,11 +78,11 @@
         "xref-project-history": "xref-project-history"
       },
       "locked": {
-        "lastModified": 1783931699,
-        "narHash": "sha256-ctoXmDqzLlA7bRWeqUW9LdSdN4/vEXgsN/GUR9g4Ukw=",
+        "lastModified": 1784200439,
+        "narHash": "sha256-J96hd2800YlVOPZTcgAcHLAPBsWv2bLarteErkW8AyM=",
         "owner": "pjones",
         "repo": "emacsrc",
-        "rev": "b1cdaa077321c8bb71f5248fd09d77e499bef52d",
+        "rev": "f1469645560028f7ef21373e2effdfc329453b09",
         "type": "github"
       },
       "original": {
