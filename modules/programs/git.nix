@@ -60,11 +60,9 @@
           ];
 
           ignores = [
-            "dist/"
-            "dist-newstyle/"
             "/result"
             "TAGS"
-            ".direnv/"
+            "/.direnv/"
           ];
 
           settings = {
