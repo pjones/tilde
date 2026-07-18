@@ -21,6 +21,8 @@
           mail-fetch = test ../../test/mail/fetch.nix;
           mail-home = test ../../test/mail/home.nix;
           mail-imap = test ../../test/mail/imap.nix;
+          wireguard = test ../../test/wireguard.nix;
+
           # niri = test ../../test/niri.nix;
         };
     };
@@ -34,7 +36,6 @@
     {
       imports = [
         self.nixosModules.tilde
-        self.nixosModules.tailscale
         self.nixosModules.www
       ];
 
