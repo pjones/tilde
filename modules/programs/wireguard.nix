@@ -208,6 +208,22 @@
           };
         })
 
+        # Configure private names in the AdGuard Home DNS server:
+        (lib.mkIf config.services.adguardhome.enable {
+          services.adguardhome.settings.filtering.rewrites = builtins.concatMap (peer: [
+            {
+              domain = "${peer.name}.private.${config.networking.domain}";
+              answer = peerIP peer;
+              enabled = true;
+            }
+            {
+              domain = peer.name;
+              answer = peerIP peer;
+              enabled = true;
+            }
+          ]) cfg.peers;
+        })
+
         # Configure special WireGuard interfaces on leafs so they can
         # access exit nodes.
         (lib.mkIf (builtins.length exits > 0 && me.type == "leaf") {

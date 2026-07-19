@@ -53,6 +53,16 @@ let
       key = keys.fever_ray.pub;
     }
   ];
+
+  extraConfig = {
+    public_enemy = { ... }: {
+      imports = [ self.nixosModules.adguardhome ];
+    };
+
+    depeche_mode = { };
+    nirvana = { };
+    fever_ray = { };
+  };
 in
 pkgs.testers.nixosTest {
   name = "tilde-wireguard-test";
@@ -64,6 +74,7 @@ pkgs.testers.nixosTest {
         imports = [
           self.nixosModules.test
           self.nixosModules.wireguard
+          extraConfig.${name}
         ];
 
         networking.domain = "freerangebits.com";
@@ -106,11 +117,18 @@ pkgs.testers.nixosTest {
     nirvana.succeed("ping -c1 10.11.12.1")
     nirvana.succeed("ping -c1 10.11.12.2")
     nirvana.succeed("ping -c1 10.11.12.4")
+    nirvana.succeed("ping -c1 public_enemy.private.freerangebits.com")
+    nirvana.succeed("ping -c1 depeche_mode.private.freerangebits.com")
 
-    public_enemy.succeed("ping -c5 10.11.12.2")
-    public_enemy.succeed("ping -c5 10.11.12.3")
+    nirvana.succeed("host fever_ray | grep --fixed-strings 10.11.12.4")
+    nirvana.succeed("host fever_ray.private.freerangebits.com | grep --fixed-strings 10.11.12.4")
 
-    depeche_mode.succeed("ping -c5 10.11.12.1")
-    depeche_mode.succeed("ping -c5 10.11.12.3")
+    depeche_mode.succeed("ping -c1 10.11.12.1")
+    depeche_mode.succeed("ping -c1 10.11.12.3")
+    depeche_mode.succeed("ping -c1 public_enemy.private.freerangebits.com")
+    depeche_mode.succeed("ping -c1 nirvana.private.freerangebits.com")
+
+    public_enemy.succeed("ping -c1 10.11.12.2")
+    public_enemy.succeed("ping -c1 10.11.12.3")
   '';
 }
