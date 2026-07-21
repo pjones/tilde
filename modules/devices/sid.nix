@@ -17,6 +17,7 @@ in
         with self.nixosModules;
         [
           basic
+          prometheus-node
           single-disk
           tilde
         ]

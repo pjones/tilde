@@ -10,6 +10,8 @@
     syncthing = 8384;
     tailscale = 8443;
     kanidm = 8445;
+    prometheus-node = 9100;
+    prometheus-systemd = 9558;
     wireguard = 51820;
   };
 }

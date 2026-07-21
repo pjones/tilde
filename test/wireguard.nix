@@ -61,8 +61,13 @@ let
 
     depeche_mode = { };
     nirvana = { };
-    fever_ray = { };
+
+    fever_ray = { ... }: {
+      imports = [ self.nixosModules.prometheus-node ];
+    };
   };
+
+  prometheusURL = "http://fever_ray.private.freerangebits.com:${toString self.lib.services.prometheus-node}/metrics";
 in
 pkgs.testers.nixosTest {
   name = "tilde-wireguard-test";
@@ -130,5 +135,7 @@ pkgs.testers.nixosTest {
 
     public_enemy.succeed("ping -c1 10.11.12.2")
     public_enemy.succeed("ping -c1 10.11.12.3")
+
+    nirvana.succeed("curl --verbose ${prometheusURL} | grep 'nodename=\"feverray\"'")
   '';
 }

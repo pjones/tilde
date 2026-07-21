@@ -19,6 +19,7 @@ in
           basic
           fetchmail
           imapd
+          prometheus-node
           single-disk
           tilde
         ]
