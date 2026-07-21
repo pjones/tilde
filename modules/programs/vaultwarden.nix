@@ -1,4 +1,4 @@
-{ moduleWithSystem, ... }:
+{ self, moduleWithSystem, ... }:
 {
   flake.nixosModules.vaultwarden = moduleWithSystem (
     { ... }:
@@ -16,8 +16,8 @@
         };
 
         port = lib.mkOption {
-          type = lib.types.ints.positive;
-          default = 8222;
+          type = lib.types.port;
+          default = self.lib.services.vaultwarden;
           description = "The port VaultWarden listens on";
         };
 

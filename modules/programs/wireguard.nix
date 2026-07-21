@@ -1,4 +1,4 @@
-{ moduleWithSystem, ... }:
+{ self, moduleWithSystem, ... }:
 {
   flake.nixosModules.wireguard = moduleWithSystem (
     { pkgs, ... }:
@@ -141,7 +141,7 @@
 
         port = lib.mkOption {
           type = lib.types.port;
-          default = 51820;
+          default = self.lib.services.wireguard;
           description = "The port number to listen on";
         };
 

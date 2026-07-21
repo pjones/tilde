@@ -15,8 +15,8 @@
         };
 
         port = lib.mkOption {
-          type = lib.types.ints.positive;
-          default = 8445;
+          type = lib.types.port;
+          default = self.lib.services.kanidm;
           description = "Port that Kanidm listens on";
         };
 

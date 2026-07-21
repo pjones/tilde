@@ -1,4 +1,4 @@
-{ moduleWithSystem, ... }:
+{ self, moduleWithSystem, ... }:
 {
   flake.nixosModules.adguardhome = moduleWithSystem (
     { ... }:
@@ -60,7 +60,7 @@
         services.adguardhome = {
           enable = true;
           allowDHCP = false;
-          port = 8082;
+          port = self.lib.services.adguardhome;
           settings = {
             dns.bind_hosts = [ "0.0.0.0" ];
             dns.upstream_dns = cfg.nameservers;

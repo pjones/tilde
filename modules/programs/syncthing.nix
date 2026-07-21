@@ -1,4 +1,4 @@
-{ moduleWithSystem, ... }:
+{ self, moduleWithSystem, ... }:
 {
   flake.homeModules.syncthing = moduleWithSystem (
     { ... }:
@@ -15,8 +15,8 @@
         };
 
         gui.port = lib.mkOption {
-          type = lib.types.ints.positive;
-          default = 8384;
+          type = lib.types.port;
+          default = self.lib.services.syncthing;
           description = "The port the GUI will listen on";
         };
       };

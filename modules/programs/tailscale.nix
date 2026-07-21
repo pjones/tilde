@@ -1,10 +1,10 @@
-{ ... }:
+{ self, ... }:
 {
   flake.nixosModules.tailscale =
     { config, lib, ... }:
     let
       cfg = config.tilde.programs.tailscale;
-      stunPort = 3478;
+      stunPort = self.lib.services.stun;
       serverURL = "https://${cfg.server.domain}:${toString cfg.server.port}";
 
       sslCertDomain =
@@ -41,7 +41,7 @@
 
           port = lib.mkOption {
             type = lib.types.port;
-            default = 8443;
+            default = self.lib.services.tailscale;
             description = "Internal VPN port number";
           };
 
