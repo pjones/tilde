@@ -9,20 +9,17 @@
       jsonFile = pkgs.writeText "wg.json" (builtins.toJSON cfg);
 
       configFile = pkgs.runCommand "wg.conf" { } ''
-        ${self.packages.${system}.wg-gen} \
-          --load-key \
-          --host ${config.networking.hostName} \
+        ${self.packages.${system}.wg-gen}/bin/wg-gen-wg0.sh \
+          "${config.networking.hostName}" \
           "${jsonFile}" > $out
       '';
 
       exitFile =
         peer:
         pkgs.runCommand "${peer.name}.conf" { } ''
-          ${self.packages.${system}.wg-gen} \
-            --load-key \
-            --name ${peer.name} \
-            --exit ${peer.name} \
-            --host ${config.networking.hostName} \
+          ${self.packages.${system}.wg-gen}/bin/wg-gen-exit.sh \
+            "${config.networking.hostName}" \
+            "${peer.name}" \
             "${jsonFile}" > $out
         '';
 

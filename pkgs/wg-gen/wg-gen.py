@@ -14,15 +14,16 @@ class Gen:
         self.load_key = load_key
         self.config = json.loads(config)
         self.interface = self.config["name"]
+        self.peers = self.config["peers"]
         self.host_peer = None
         self.primary_router = None
 
-        for peer in self.config["peers"]:
+        for peer in self.peers:
             if peer["name"] == host:
                 self.host_peer = peer
                 break
 
-        for peer in self.config["peers"]:
+        for peer in self.peers:
             if peer["type"] == "router":
                 self.primary_router = peer
                 break
@@ -74,8 +75,7 @@ class Gen:
 
         if self.private_key is not None:
             io.write(f"PrivateKey = {self.private_key}\n")
-
-        if self.load_key and self.config["privateKeyFile"]:
+        elif self.load_key and self.config["privateKeyFile"]:
             keyFile = self.config["privateKeyFile"]
             io.write(f"PostUp = wg set {self.interface} private-key <(cat {keyFile})\n")
 
@@ -83,7 +83,7 @@ class Gen:
         """Write the configuration file for the primary network."""
         self.write_interface(io, self.dns_servers())
 
-        for peer in self.config["peers"]:
+        for peer in self.peers:
             if peer["name"] == self.host_peer["name"]:
                 continue
 
@@ -112,7 +112,7 @@ class Gen:
         """Write a configuration file for sending all traffic to the given exit node"""
         peer = None
 
-        for cfg in self.config["peers"]:
+        for cfg in self.peers:
             if cfg["name"] == peer_name:
                 peer = cfg
                 break
@@ -157,6 +157,13 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
+        "-p",
+        "--read-private-key",
+        help="Read the private key from STDIN",
+        action="store_true",
+    )
+
+    parser.add_argument(
         "-k",
         "--load-key",
         help="Use a PostUp section to load a private key file",
@@ -171,17 +178,39 @@ if __name__ == "__main__":
         "-n", "--name", help="Overwrite the interface name", metavar="NAME"
     )
 
+    parser.add_argument(
+        "-a",
+        "--all",
+        help="Generate all configuration files and write them to disk",
+        action="store_true",
+    )
+
     parser.add_argument("file", help="JSON configuration file")
+
     args = parser.parse_args()
-
     input = Path(args.file)
-
     generator = Gen(args.host, input.read_text(), load_key=args.load_key)
 
     if args.name is not None:
         generator.interface = args.name
 
-    if args.exit is not None:
-        generator.write_exit(io=sys.stdout, peer_name=args.exit)
+    if args.read_private_key:
+        generator.private_key = sys.stdin.read().strip()
+
+    if args.all:
+        name = generator.host_peer["name"]
+
+        with open(f"{name}-{generator.interface}.cfg", mode="w") as f:
+            generator.write_primary(io=f)
+
+        for peer in generator.peers:
+            if peer["name"] != args.host and (
+                peer["type"] == "router" or peer["type"] == "exit"
+            ):
+                with open(f"{name}-{peer['name']}.cfg", mode="w") as f:
+                    generator.write_exit(io=f, peer_name=peer["name"])
     else:
-        generator.write_primary(io=sys.stdout)
+        if args.exit is not None:
+            generator.write_exit(io=sys.stdout, peer_name=args.exit)
+        else:
+            generator.write_primary(io=sys.stdout)

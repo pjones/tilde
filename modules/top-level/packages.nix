@@ -91,7 +91,9 @@
 
         wayland-test-helpers = pkgs.callPackage ../../pkgs/wayland-test-helpers { };
 
-        wg-gen = pkgs.callPackage ../../pkgs/wg-gen { };
+        wg-gen = pkgs.callPackage ../../pkgs/wg-gen {
+          encryption-utils = pkgs.pjones.encryption-utils;
+        };
 
         xwininfo-tests = pkgs.writeShellApplication {
           name = "xwininfo";
