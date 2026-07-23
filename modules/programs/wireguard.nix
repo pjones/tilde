@@ -1,10 +1,30 @@
 { self, moduleWithSystem, ... }:
 {
   flake.nixosModules.wireguard = moduleWithSystem (
-    { pkgs, ... }:
+    { pkgs, system, ... }:
     { config, lib, ... }:
     let
       cfg = config.tilde.programs.wireguard;
+
+      jsonFile = pkgs.writeText "wg.json" (builtins.toJSON cfg);
+
+      configFile = pkgs.runCommand "wg.conf" { } ''
+        ${self.packages.${system}.wg-gen} \
+          --load-key \
+          --host ${config.networking.hostName} \
+          "${jsonFile}" > $out
+      '';
+
+      exitFile =
+        peer:
+        pkgs.runCommand "${peer.name}.conf" { } ''
+          ${self.packages.${system}.wg-gen} \
+            --load-key \
+            --name ${peer.name} \
+            --exit ${peer.name} \
+            --host ${config.networking.hostName} \
+            "${jsonFile}" > $out
+        '';
 
       peerOptions = { ... }: {
         options = {
@@ -88,66 +108,13 @@
       # Return the peer record for the named host.
       getPeer = host: peers: builtins.head (builtins.filter (peer: peer.name == host) peers);
 
-      # Return all peers except the named host.
-      otherPeers = host: peers: builtins.filter (peer: peer.name != host) peers;
-
       # All exit peers that are not the current peer.
       exitPeers =
         host: peers:
         builtins.filter (peer: (peer.type == "router" || peer.type == "exit") && peer.name != host) peers;
 
-      # Create a Peer IP address.
       peerIP = peer: "${cfg.prefix}.${toString peer.octet}";
-
-      # Create a WireGuard peer record.
-      mkPeer = me: peer: {
-        publicKey = peer.key;
-        endpoint = if peer.hostname != null then "${peer.hostname}:${toString cfg.port}" else null;
-        allowedIPs =
-          (
-            if peer.type == "router" then
-              [ mask ]
-            else if me.hostname != null || peer.hostname != null then
-              [ "${peerIP peer}/32" ]
-            else
-              [ ]
-          )
-          ++ peer.networks;
-      };
-
-      # Create the primary interface configuration.
-      primaryNetwork =
-        me: others:
-        let
-          keepAlive = lib.optionalString (me.type == "leaf" && me.hostname == null) (
-            lib.concatMapStringsSep "\n" (router: ''
-              wg set ${cfg.name} peer ${router.key} persistent-keepalive 25
-            '') (builtins.filter (peer: peer.type == "router") others)
-          );
-
-          routers = builtins.filter (peer: peer.type == "router") others;
-        in
-        {
-          address = [ "${peerIP me}/24" ];
-          autostart = true;
-          listenPort = cfg.port;
-          privateKeyFile = cfg.privateKeyFile;
-          peers = map (mkPeer me) others;
-
-          dns = lib.optionals (cfg.dnsFromRouter && me.type != "router") (
-            if builtins.length routers > 0 && (builtins.head routers).nameservers != null then
-              (builtins.head routers).nameservers
-            else
-              map peerIP routers
-          );
-
-          postUp = ''
-            ${keepAlive}
-          '';
-        };
-
       me = getPeer config.networking.hostName cfg.peers;
-      others = otherPeers config.networking.hostName cfg.peers;
       exits = exitPeers config.networking.hostName cfg.peers;
       externalInterface = config.networking.nat.externalInterface;
       mask = "${cfg.prefix}.0/24";
@@ -196,7 +163,10 @@
         (lib.mkIf (builtins.length cfg.peers > 0) {
           networking.firewall.allowedUDPPorts = [ cfg.port ];
           networking.firewall.trustedInterfaces = [ cfg.name ];
-          networking.wg-quick.interfaces.${cfg.name} = primaryNetwork me others;
+
+          networking.wg-quick.interfaces.${cfg.name} = {
+            configFile = toString configFile;
+          };
 
           # On hosts using NetworkManager, wait for the network to be
           # available so I don't have to restart WireGuard.
@@ -258,17 +228,8 @@
             map (peer: {
               name = peer.name;
               value = {
-                address = [ "${peerIP me}/24" ];
                 autostart = false;
-                listenPort = cfg.port;
-                privateKeyFile = cfg.privateKeyFile;
-                dns = if peer.nameservers != null then peer.nameservers else [ (peerIP peer) ];
-
-                peers = lib.singleton {
-                  endpoint = "${peer.hostname}:${toString cfg.port}";
-                  allowedIPs = [ "0.0.0.0/0" ];
-                  publicKey = peer.key;
-                };
+                configFile = toString (exitFile peer);
               };
             }) exits
           );

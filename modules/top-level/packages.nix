@@ -91,6 +91,8 @@
 
         wayland-test-helpers = pkgs.callPackage ../../pkgs/wayland-test-helpers { };
 
+        wg-gen = pkgs.callPackage ../../pkgs/wg-gen { };
+
         xwininfo-tests = pkgs.writeShellApplication {
           name = "xwininfo";
           runtimeInputs = with pkgs; [

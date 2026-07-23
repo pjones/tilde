@@ -112,19 +112,18 @@ pkgs.testers.nixosTest {
   );
 
   testScript = ''
-    peers = [public_enemy, depeche_mode, nirvana]
-
     start_all()
 
-    for peer in peers:
+    for peer in [public_enemy, depeche_mode, nirvana, fever_ray]:
       peer.wait_for_unit("wg-quick-wg0.service")
 
     nirvana.succeed("ping -c1 10.11.12.1")
     nirvana.succeed("ping -c1 10.11.12.2")
-    nirvana.succeed("ping -c1 10.11.12.4")
     nirvana.succeed("ping -c1 public_enemy.private.freerangebits.com")
     nirvana.succeed("ping -c1 depeche_mode.private.freerangebits.com")
 
+    # This last host takes a second to come online:
+    nirvana.succeed("ping -c5 10.11.12.4")
     nirvana.succeed("host fever_ray | grep --fixed-strings 10.11.12.4")
     nirvana.succeed("host fever_ray.private.freerangebits.com | grep --fixed-strings 10.11.12.4")
 
