@@ -32,18 +32,18 @@
 
                 Normal peer that may or may not be running network services.  By
                 default can only be reached from a router.  However, if it has a
-                routable IP address then setting `dnsName` will allow peers to
+                routable IP address then setting `hostname` will allow peers to
                 connect directly.
 
               - `exit`:
 
                 A peer that serve as an exit node, thus all network traffic can be
-                routed through this node.  Must have a `dnsName`.
+                routed through this node.  Must have a `hostname`.
 
               - `router`:
 
                 A peer that runs a DNS server and can route traffic for other peers
-                when they cannot reach one another.  Must have a `dnsName`.
+                when they cannot reach one another.  Must have a `hostname`.
             '';
           };
 
@@ -52,13 +52,34 @@
             description = "The public key for this peer";
           };
 
-          dnsName = lib.mkOption {
+          hostname = lib.mkOption {
             type = with lib.types; nullOr str;
             default = null;
             description = ''
               A DNS name that can be used to find this peer.  When
               this option is `null` this peer can only be found
               through one of the router nodes.
+            '';
+          };
+
+          nameservers = lib.mkOption {
+            type = with lib.types; nullOr (listOf str);
+            default = null;
+            description = ''
+              When `dnsFromRouter` is `true` and traffic is going through this
+              router or exit node, use the given DNS servers.
+
+              If this setting is `null` (the default) set the router's address as
+              the DNS server.
+            '';
+          };
+
+          networks = lib.mkOption {
+            type = with lib.types; listOf str;
+            default = [ ];
+            description = ''
+              Additional network masks for networks that should be
+              routed through this peer.
             '';
           };
         };
@@ -81,42 +102,48 @@
       # Create a WireGuard peer record.
       mkPeer = me: peer: {
         publicKey = peer.key;
-        endpoint = if peer.dnsName != null then "${peer.dnsName}:${toString cfg.port}" else null;
+        endpoint = if peer.hostname != null then "${peer.hostname}:${toString cfg.port}" else null;
         allowedIPs =
-          if peer.type == "router" then
-            [ mask ]
-          else if me.dnsName != null || peer.dnsName != null then
-            [ "${peerIP peer}/32" ]
-          else
-            [ ];
+          (
+            if peer.type == "router" then
+              [ mask ]
+            else if me.hostname != null || peer.hostname != null then
+              [ "${peerIP peer}/32" ]
+            else
+              [ ]
+          )
+          ++ peer.networks;
       };
 
       # Create the primary interface configuration.
       primaryNetwork =
         me: others:
         let
-          keepAlive = lib.optionalString (me.type == "leaf" && me.dnsName == null) (
+          keepAlive = lib.optionalString (me.type == "leaf" && me.hostname == null) (
             lib.concatMapStringsSep "\n" (router: ''
               wg set ${cfg.name} peer ${router.key} persistent-keepalive 25
             '') (builtins.filter (peer: peer.type == "router") others)
           );
+
+          routers = builtins.filter (peer: peer.type == "router") others;
         in
         {
           address = [ "${peerIP me}/24" ];
           autostart = true;
           listenPort = cfg.port;
           privateKeyFile = cfg.privateKeyFile;
+          peers = map (mkPeer me) others;
 
-          # All of the routers in the network run DNS servers.
           dns = lib.optionals (cfg.dnsFromRouter && me.type != "router") (
-            map peerIP (builtins.filter (peer: peer.type == "router") others)
+            if builtins.length routers > 0 && (builtins.head routers).nameservers != null then
+              (builtins.head routers).nameservers
+            else
+              map peerIP routers
           );
 
           postUp = ''
             ${keepAlive}
           '';
-
-          peers = map (mkPeer me) others;
         };
 
       me = getPeer config.networking.hostName cfg.peers;
@@ -235,10 +262,10 @@
                 autostart = false;
                 listenPort = cfg.port;
                 privateKeyFile = cfg.privateKeyFile;
-                dns = [ (peerIP peer) ];
+                dns = if peer.nameservers != null then peer.nameservers else [ (peerIP peer) ];
 
                 peers = lib.singleton {
-                  endpoint = "${peer.dnsName}:${toString cfg.port}";
+                  endpoint = "${peer.hostname}:${toString cfg.port}";
                   allowedIPs = [ "0.0.0.0/0" ];
                   publicKey = peer.key;
                 };

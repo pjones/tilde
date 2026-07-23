@@ -28,7 +28,7 @@ let
       octet = 1;
       type = "router";
       key = keys.public_enemy.pub;
-      dnsName = ips.public_enemy;
+      hostname = ips.public_enemy;
     }
 
     {
@@ -36,7 +36,7 @@ let
       octet = 2;
       type = "exit";
       key = keys.depeche_mode.pub;
-      dnsName = ips.depeche_mode;
+      hostname = ips.depeche_mode;
     }
 
     {
