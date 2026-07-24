@@ -1,12 +1,22 @@
 { self, ... }:
 {
   perSystem =
-    { ... }:
+    { system, ... }:
     {
       apps.default = {
         type = "app";
         meta.description = "Run tilde in a VM";
         program = "${self.nixosConfigurations.demo.config.system.build.vm}/bin/run-tilde-demo-vm";
+      };
+
+      apps.wg-gen = {
+        type = "app";
+        program = "${self.packages.${system}.wg-gen}/bin/wg-gen-all.sh";
+        meta.description = ''
+          Generate WireGuard configuration files and QR codes.
+
+          Use the -h command line option to learn more.
+        '';
       };
 
       # Run a VM then take a screenshot and store it locally:

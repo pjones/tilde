@@ -45,7 +45,7 @@ Arguments:
     configuration using the 'nix eval' command.  For example, for the
     host 'falken' use:
 
-      nix eval --json \
+      nix eval --json \\
         .#nixosConfigurations.falken.config.tilde.programs.wireguard
 EOF
 }
