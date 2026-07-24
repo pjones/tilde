@@ -5,6 +5,7 @@
     http = 80;
     https = 443;
     stun = 3478;
+    znc = 6667;
     adguardhome = 8082;
     vaultwarden = 8222;
     syncthing = 8384;
