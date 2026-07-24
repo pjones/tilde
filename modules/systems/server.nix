@@ -12,6 +12,7 @@
     tailscale = 8443;
     kanidm = 8445;
     prometheus-collector = 9090;
+    prometheus-alertmanager = 9093;
     prometheus-node = 9100;
     prometheus-systemd = 9558;
     wireguard = 51820;

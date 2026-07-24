@@ -31,7 +31,7 @@
 
   # A NixOS module to collect metrics from other hosts.
   flake.nixosModules.prometheus-collector = moduleWithSystem (
-    { ... }:
+    { system, ... }:
     { config, lib, ... }:
     let
       cfg = config.tilde.programs.prometheus-collector;
@@ -42,22 +42,31 @@
       # Return the port number for the given service as a string.
       getPort = key: toString self.lib.services."prometheus-${key}";
 
+      # Add a port number to the given host name.
+      addPort = key: host: "${host}:${getPort key}";
+
+      # Generate the repetitive static_configs craziness.
+      mkStaticConfigs =
+        outside: inside:
+        outside
+        // {
+          static_configs = [ inside ];
+        };
+
+      # Create a static_configs with a targets value.
+      mkTargets = outside: targets: mkStaticConfigs outside { inherit targets; };
+
       # Return a scrape config for the given service containing all
       # nodes that have that service enabled.
       optionalScrape =
         key: nodes:
         if builtins.any (node: node.scrape.${key}) nodes then
           [
-            {
-              job_name = key;
-              static_configs = [
-                {
-                  targets = map (node: "${node.host}:${getPort key}") (
-                    builtins.filter (node: node.scrape.${key}) nodes
-                  );
-                }
-              ];
-            }
+            (mkStaticConfigs { job_name = key; } {
+              targets = map (node: "${node.host}:${getPort key}") (
+                builtins.filter (node: node.scrape.${key}) nodes
+              );
+            })
           ]
         else
           [ ];
@@ -90,6 +99,12 @@
           default = [ ];
           description = "List of nodes to monitor";
         };
+
+        alertmanagers = lib.mkOption {
+          type = with lib.types; listOf str;
+          default = [ ];
+          description = "List of host names that are alert managers";
+        };
       };
 
       config = {
@@ -97,6 +112,57 @@
           enable = true;
           port = self.lib.services.prometheus-collector;
           scrapeConfigs = toScrapeConfigs (builtins.attrValues cfg.nodes);
+          ruleFiles = lib.singleton "${self.packages.${system}.prometheus-extra}/alerts.yml";
+          alertmanagers = lib.optional (builtins.length cfg.alertmanagers > 0) (
+            mkTargets { } (map (addPort "alertmanager") cfg.alertmanagers)
+          );
+        };
+      };
+    }
+  );
+
+  # https://prometheus.io/docs/alerting/latest/configuration/
+  flake.nixosModules.prometheus-alertmanager = moduleWithSystem (
+    { ... }:
+    { config, lib, ... }:
+    let
+      cfg = config.tilde.programs.prometheus-alertmanager;
+    in
+    {
+      options.tilde.programs.prometheus-alertmanager = {
+        receivers = lib.mkOption {
+          type = with lib.types; nonEmptyListOf (attrsOf anything);
+          default = [ ];
+          description = ''
+            List of receiver configuration options.
+            See the following URL for more details:
+
+            https://prometheus.io/docs/alerting/latest/configuration/#receiver
+          '';
+        };
+      };
+
+      config = {
+        services.prometheus.alertmanager = {
+          enable = true;
+          port = self.lib.services.prometheus-alertmanager;
+
+          configuration = {
+            route = {
+              receiver = "default";
+
+              group_by = [
+                "alertname"
+                "instance"
+              ];
+
+              group_wait = "30s";
+              group_interval = "5m";
+              repeat_interval = "2h";
+            };
+
+            receivers = cfg.receivers;
+          };
         };
       };
     }

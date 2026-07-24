@@ -19,8 +19,9 @@ pkgs.testers.nixosTest {
       ];
     };
 
-    numan = { ... }: {
+    numan = { lib, ... }: {
       imports = [
+        self.nixosModules.prometheus-alertmanager
         self.nixosModules.prometheus-collector
       ];
 
@@ -29,8 +30,16 @@ pkgs.testers.nixosTest {
       ];
 
       tilde.programs.prometheus-collector = {
-        nodes = {
-          "kraftwerk" = { };
+        nodes.kraftwerk = { };
+        alertmanagers = [ "localhost" ];
+      };
+
+      tilde.programs.prometheus-alertmanager.receivers = lib.singleton {
+        name = "default";
+        email_configs = lib.singleton {
+          to = "example@example.com";
+          from = "example@example.com";
+          smarthost = "localhost:587";
         };
       };
     };

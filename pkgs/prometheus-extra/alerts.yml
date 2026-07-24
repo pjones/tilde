@@ -1,0 +1,24 @@
+groups:
+  - name: system-alerts
+    rules:
+
+      - alert: systemd_unit_failed
+        expr: systemd_unit_state{state="failed"} == 1
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "systemd unit failed on {{ $labels.instance }}"
+          description: "Unit {{ $labels.name }} is in failed state."
+
+      - alert: root_disk_space_low
+        expr: |
+          ( node_filesystem_avail_bytes{mountpoint="/"} /
+            node_filesystem_size_bytes{mountpoint="/"}
+          ) < 0.10
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Disk space on {{ $labels.instance }} is low"
+          description: "Root filesystem free space is below 10%."
