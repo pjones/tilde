@@ -12,6 +12,7 @@ option_disk_image_size=25M
 option_private_key_cmd=
 option_tmp_file=
 option_umount=0
+option_router_only=0
 
 ################################################################################
 function usage() {
@@ -20,6 +21,7 @@ Usage: $(basename "$0") [options] name json-file
 
   -h      This message
   -p CMD  Command to run to get the WireGuard private key
+  -r      Only add router peers in the primary configuration
   -s DIR  Use DIR as a secure directory for writing sensitive files
   -u      Unmount the directory created in another run
 
@@ -81,7 +83,7 @@ function create_secure_directory() {
 function main() {
   local private_key
 
-  while getopts "hp:s:u" o; do
+  while getopts "hp:rs:u" o; do
     case "${o}" in
     h)
       usage
@@ -90,6 +92,10 @@ function main() {
 
     p)
       option_private_key_cmd=$OPTARG
+      ;;
+
+    r)
+      option_router_only=1
       ;;
 
     s)
@@ -129,6 +135,11 @@ function main() {
   option_sec_dir=$(realpath "$option_sec_dir")
   option_json_file=$(realpath "$option_json_file")
   private_key=$("$SHELL" -c "$option_private_key_cmd")
+  wg_gen_options=()
+
+  if [[ "$option_router_only" -eq 1 ]]; then
+    wg_gen_options+=("--router-only-peers")
+  fi
 
   create_secure_directory
 
@@ -136,6 +147,7 @@ function main() {
     cd "$option_sec_dir" || exit 1
 
     "$bin/wg-gen.py" \
+      "${wg_gen_options[@]}" \
       --read-private-key \
       --host "$option_host" \
       --all "$option_json_file" \

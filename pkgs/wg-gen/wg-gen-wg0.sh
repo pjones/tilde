@@ -48,6 +48,7 @@ function main() {
 
   "$bin/wg-gen.py" \
     --load-key \
+    --remove-empty-peers \
     --host "$1" \
     "$2"
 }

@@ -17,6 +17,8 @@ class Gen:
         self.peers = self.config["peers"]
         self.host_peer = None
         self.primary_router = None
+        self.only_router_peers = False
+        self.keep_empty_peers = True
 
         for peer in self.peers:
             if peer["name"] == host:
@@ -87,6 +89,13 @@ class Gen:
             if peer["name"] == self.host_peer["name"]:
                 continue
 
+            if self.only_router_peers and peer["type"] != "router":
+                continue
+
+            allowed = self.peer_allowed_ips(peer)
+            if len(allowed) == 0 and not self.keep_empty_peers:
+                continue
+
             io.writelines(
                 [
                     "\n[Peer]\n",
@@ -94,7 +103,6 @@ class Gen:
                 ]
             )
 
-            allowed = self.peer_allowed_ips(peer)
             if len(allowed) > 0:
                 io.write(f"AllowedIPs = {allowed}\n")
 
@@ -185,11 +193,28 @@ if __name__ == "__main__":
         action="store_true",
     )
 
+    parser.add_argument(
+        "-r",
+        "--router-only-peers",
+        help="Only add peers that are routers",
+        action="store_true",
+    )
+
+    parser.add_argument(
+        "-R",
+        "--remove-empty-peers",
+        help="Don't generate peers that don't have allowed IP addresses",
+        action="store_true",
+    )
+
     parser.add_argument("file", help="JSON configuration file")
 
     args = parser.parse_args()
     input = Path(args.file)
     generator = Gen(args.host, input.read_text(), load_key=args.load_key)
+
+    generator.only_router_peers = args.router_only_peers
+    generator.keep_empty_peers = not args.remove_empty_peers
 
     if args.name is not None:
         generator.interface = args.name
