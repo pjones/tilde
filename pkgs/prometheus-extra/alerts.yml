@@ -2,15 +2,24 @@ groups:
   - name: system-alerts
     rules:
 
+      ##########################################################################
+      # Watch for failing systemd jobs.
+      #
+      # The `keep_firing_for` is important because jobs that restart
+      # will clear the alert and then fire the alert again.  Meaning I
+      # get paged over and over until I throw my phone out the window.
       - alert: systemd_unit_failed
         expr: systemd_unit_state{state="failed"} == 1
         for: 2m
+        keep_firing_for: 5m
         labels:
           severity: warning
         annotations:
           summary: "systemd unit failed on {{ $labels.instance }}"
           description: "Unit {{ $labels.name }} is in failed state."
 
+      ##########################################################################
+      # Keep an eye on the root file system.
       - alert: root_disk_space_low
         expr: |
           ( node_filesystem_avail_bytes{mountpoint="/"} /
@@ -21,4 +30,4 @@ groups:
           severity: critical
         annotations:
           summary: "Disk space on {{ $labels.instance }} is low"
-          description: "Root filesystem free space is below 10%."
+          description: "Root file system free space is below 10%."
