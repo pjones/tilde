@@ -143,7 +143,7 @@ class Gen:
             [
                 "\n[Peer]\n",
                 f"PublicKey = {peer['key']}\n",
-                "AllowedIPs = 0.0.0.0/0\n"
+                "AllowedIPs = 0.0.0.0/0, ::/0\n"
                 f"Endpoint = {peer['hostname']}:{self.config['port']}\n",
             ]
         )
