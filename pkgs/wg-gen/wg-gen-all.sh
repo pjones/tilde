@@ -156,7 +156,7 @@ function main() {
     find . \
       \( -type d -name 'lost+found' -prune \) -o \
       -type f \
-      -name '*.cfg' \
+      -name '*.conf' \
       -exec qrencode -r '{}' -o '{}.png' ';'
   )
 }

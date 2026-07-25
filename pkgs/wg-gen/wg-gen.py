@@ -225,14 +225,14 @@ if __name__ == "__main__":
     if args.all:
         name = generator.host_peer["name"]
 
-        with open(f"{name}-{generator.interface}.cfg", mode="w") as f:
+        with open(f"{name}-{generator.interface}.conf", mode="w") as f:
             generator.write_primary(io=f)
 
         for peer in generator.peers:
             if peer["name"] != args.host and (
                 peer["type"] == "router" or peer["type"] == "exit"
             ):
-                with open(f"{name}-{peer['name']}.cfg", mode="w") as f:
+                with open(f"{name}-{peer['name']}.conf", mode="w") as f:
                     generator.write_exit(io=f, peer_name=peer["name"])
     else:
         if args.exit is not None:
