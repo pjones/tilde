@@ -43,7 +43,12 @@
       getPort = key: toString self.lib.services."prometheus-${key}";
 
       # Add a port number to the given host name.
-      addPort = key: host: "${host}:${getPort key}";
+      addPort =
+        key: host:
+        let
+          name = if builtins.isAttrs host then host.host else host;
+        in
+        "${name}:${getPort key}";
 
       # Generate the repetitive static_configs craziness.
       mkStaticConfigs =
@@ -53,6 +58,14 @@
           static_configs = [ inside ];
         };
 
+      # Relabel an instance so it no longer has the port number in it.
+      relabelInstance = {
+        source_labels = [ "__address__" ];
+        regex = "([^:]+):[0-9]+";
+        target_label = "instance";
+        replacement = "$1";
+      };
+
       # Create a static_configs with a targets value.
       mkTargets = outside: targets: mkStaticConfigs outside { inherit targets; };
 
@@ -61,13 +74,12 @@
       optionalScrape =
         key: nodes:
         if builtins.any (node: node.scrape.${key}) nodes then
-          [
-            (mkStaticConfigs { job_name = key; } {
-              targets = map (node: "${node.host}:${getPort key}") (
-                builtins.filter (node: node.scrape.${key}) nodes
-              );
-            })
-          ]
+          lib.singleton (
+            mkTargets {
+              job_name = key;
+              relabel_configs = lib.singleton relabelInstance;
+            } (map (addPort key) (builtins.filter (node: node.scrape.${key}) nodes))
+          )
         else
           [ ];
 

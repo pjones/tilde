@@ -25,6 +25,10 @@ pkgs.testers.nixosTest {
         self.nixosModules.prometheus-collector
       ];
 
+      environment.systemPackages = [
+        pkgs.jq
+      ];
+
       networking.firewall.allowedTCPPorts = [
         self.lib.services.prometheus-collector
       ];
