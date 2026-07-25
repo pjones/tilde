@@ -9,7 +9,6 @@
     adguardhome = 8082;
     vaultwarden = 8222;
     syncthing = 8384;
-    tailscale = 8443;
     kanidm = 8445;
     prometheus-collector = 9090;
     prometheus-alertmanager = 9093;
