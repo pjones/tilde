@@ -79,6 +79,7 @@
             log.date = "short";
             user.email = "peter@jonesbunch.com";
             user.name = "Peter J. Jones";
+            merge.conflictStyle = "diff3";
 
             alias = {
               b = "branch -vv";
