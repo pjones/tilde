@@ -85,6 +85,19 @@
               "#emacs" = { };
             };
           };
+
+          Network.bitlbee = lib.mkIf config.services.bitlbee.enable {
+            Server = "${config.tilde.programs.bitlbee.hostname} ${toString self.lib.services.bitlbee}";
+
+            LoadModule = [
+              "simple_away"
+              "perform"
+            ];
+
+            Chan = {
+              "&bitlbee" = { };
+            };
+          };
         } user.config;
     in
     {

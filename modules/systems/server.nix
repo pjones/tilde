@@ -6,6 +6,7 @@
     https = 443;
     jellyfin-unknown = 1900; # NixOS opens this, not sure why
     stun = 3478;
+    bitlbee = 6666;
     znc = 6667;
     jellyfin-discovery = 7359;
     adguardhome = 8082;
