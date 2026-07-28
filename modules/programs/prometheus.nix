@@ -3,29 +3,46 @@
   # A NixOS module to monitor a system using Prometheus.
   flake.nixosModules.prometheus-node = moduleWithSystem (
     { ... }:
-    { lib, ... }:
+    { config, lib, ... }:
+    let
+      exporters = [
+        "node"
+        "systemd"
+      ];
+    in
     {
-      config = {
-        services.prometheus = {
-          exporters.node = {
-            enable = true;
-            port = self.lib.services.prometheus-node;
-            listenAddress = "0.0.0.0";
-            openFirewall = lib.mkForce false;
+      config = lib.mkMerge [
+        # The generic configuration:
+        {
+          services.prometheus.exporters = builtins.listToAttrs (
+            map (exporter: {
+              name = exporter;
+              value = {
+                enable = true;
+                port = self.lib.services."prometheus-${exporter}";
+                listenAddress = config.tilde.privateInterface;
+                openFirewall = lib.mkForce false;
+              };
+            }) exporters
+          );
 
+          systemd.services = builtins.listToAttrs (
+            map (exporter: {
+              name = "prometheus-${exporter}-exporter";
+              value = self.lib.nixos.waitForTilde config;
+            }) exporters
+          );
+        }
+
+        # Exporter-specific overrides:
+        {
+          services.prometheus.exporters.node = {
             enabledCollectors = [
               "systemd"
             ];
           };
-
-          exporters.systemd = {
-            enable = true;
-            port = self.lib.services.prometheus-systemd;
-            listenAddress = "0.0.0.0";
-            openFirewall = lib.mkForce false;
-          };
-        };
-      };
+        }
+      ];
     }
   );
 
@@ -122,6 +139,7 @@
       config = {
         services.prometheus = {
           enable = true;
+          listenAddress = config.tilde.privateInterface;
           port = self.lib.services.prometheus-collector;
           scrapeConfigs = toScrapeConfigs (builtins.attrValues cfg.nodes);
           ruleFiles = lib.singleton "${self.packages.${system}.prometheus-extra}/alerts.yml";
@@ -129,6 +147,8 @@
             mkTargets { } (map (addPort "alertmanager") cfg.alertmanagers)
           );
         };
+
+        systemd.services.prometheus = self.lib.nixos.waitForTilde config;
       };
     }
   );
@@ -157,6 +177,7 @@
       config = {
         services.prometheus.alertmanager = {
           enable = true;
+          listenAddress = config.tilde.privateInterface;
           port = self.lib.services.prometheus-alertmanager;
 
           configuration = {
@@ -176,6 +197,8 @@
             receivers = cfg.receivers;
           };
         };
+
+        systemd.services.alertmanager = self.lib.nixos.waitForTilde config;
       };
     }
   );

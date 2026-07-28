@@ -109,7 +109,7 @@
             # Need to overwrite the default config that includes a
             # listener called `l`:
             Listener.l = {
-              Host = "0.0.0.0";
+              Host = config.tilde.privateInterface;
               Port = self.lib.services.znc;
               SSL = false;
               AllowIRC = true;
@@ -119,6 +119,8 @@
             User = builtins.mapAttrs toUser cfg.users;
           };
         };
+
+        systemd.services.znc = self.lib.nixos.waitForTilde config;
       };
     }
   );

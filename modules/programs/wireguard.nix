@@ -158,6 +158,9 @@
         # Configure the main interface and peers.  This runs on all
         # peers.
         (lib.mkIf (builtins.length cfg.peers > 0) {
+          tilde.privateInterface = peerIP me;
+          tilde.networkWait = lib.singleton "wg-quick-${cfg.name}.service";
+
           networking.firewall.allowedUDPPorts = [ cfg.port ];
           networking.firewall.trustedInterfaces = [ cfg.name ];
 

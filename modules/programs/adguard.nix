@@ -62,7 +62,7 @@
           allowDHCP = false;
           port = self.lib.services.adguardhome;
           settings = {
-            dns.bind_hosts = [ "0.0.0.0" ];
+            dns.bind_hosts = [ config.tilde.privateInterface ];
             dns.upstream_dns = cfg.nameservers;
 
             users = map (admin: {
@@ -76,6 +76,8 @@
             }) cfg.rewrites;
           };
         };
+
+        systemd.services.adguardhome = self.lib.nixos.waitForTilde config;
       };
     }
   );

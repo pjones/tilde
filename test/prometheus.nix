@@ -11,16 +11,20 @@ pkgs.testers.nixosTest {
   nodes = {
     kraftwerk = { ... }: {
       imports = [
+        self.nixosModules.test
         self.nixosModules.prometheus-node
       ];
 
       networking.firewall.allowedTCPPorts = [
         self.lib.services.prometheus-node
       ];
+
+      tilde.privateInterface = "0.0.0.0";
     };
 
     numan = { lib, ... }: {
       imports = [
+        self.nixosModules.test
         self.nixosModules.prometheus-alertmanager
         self.nixosModules.prometheus-collector
       ];
@@ -32,6 +36,8 @@ pkgs.testers.nixosTest {
       networking.firewall.allowedTCPPorts = [
         self.lib.services.prometheus-collector
       ];
+
+      tilde.privateInterface = "0.0.0.0";
 
       tilde.programs.prometheus-collector = {
         nodes.kraftwerk = { };

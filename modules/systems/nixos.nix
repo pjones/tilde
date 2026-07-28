@@ -24,6 +24,26 @@
         self.nixosModules.sudo
       ];
 
+      options.tilde = {
+        privateInterface = lib.mkOption {
+          type = lib.types.str;
+          default = "127.0.0.1";
+          description = ''
+            An interface that private services can listen on.
+          '';
+        };
+
+        networkWait = lib.mkOption {
+          type = with lib.types; listOf str;
+          default = [ ];
+          description = ''
+            List of systemd services that network services should wait
+            for.  For example, starting services after the WireGuard
+            interface is up.
+          '';
+        };
+      };
+
       config = {
         system.stateVersion = self.lib.state.version;
 
@@ -80,6 +100,13 @@
   );
 
   flake.lib.nixos = {
+    # Return a systemd service configuration that forces a service to
+    # wait until after critical network services are alive.
+    waitForTilde = config: {
+      requires = config.tilde.networkWait;
+      after = config.tilde.networkWait;
+    };
+
     # Return a list of NixOS modules for the given host.
     hostModules = host: system: [
       # The host module:
