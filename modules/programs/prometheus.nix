@@ -17,12 +17,26 @@
           services.prometheus.exporters = builtins.listToAttrs (
             map (exporter: {
               name = exporter;
-              value = {
-                enable = true;
-                port = self.lib.services."prometheus-${exporter}";
-                listenAddress = config.tilde.privateInterface;
-                openFirewall = lib.mkForce false;
-              };
+              value =
+                let
+                  listenAddress = config.tilde.privateInterface;
+                  port = self.lib.services."prometheus-${exporter}";
+                  strport = toString port;
+                in
+                {
+                  inherit listenAddress port;
+                  enable = true;
+                  openFirewall = lib.mkForce false;
+
+                  # Ensure the exporters also listen on the loopback
+                  # device.  This is important when the collector and
+                  # exporters are on the same host and the hostname
+                  # resolves as 127.0.0.2.
+                  extraFlags = lib.optionals (listenAddress != "0.0.0.0") [
+                    "--web.listen-address"
+                    "127.0.0.2:${strport}"
+                  ];
+                };
             }) exporters
           );
 
