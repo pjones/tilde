@@ -176,6 +176,13 @@
                 background-effect.blur = true;
               }
 
+              # Emacs Popup Frames:
+              {
+                match._props.app-id = "emacs";
+                match._props.title = "^↑";
+                open-floating = true;
+              }
+
               # Apps that should float (using their title):
               {
                 match._props.title = "OpenSSH Authentication Passphrase request";
