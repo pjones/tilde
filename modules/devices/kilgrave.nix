@@ -18,6 +18,7 @@ in
         [
           basic
           prometheus-node
+          smartd
           tilde
         ]
         ++ [

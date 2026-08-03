@@ -19,6 +19,7 @@ in
           basic
           prometheus-node
           single-disk
+          smartd
           tilde
         ]
         ++ [
