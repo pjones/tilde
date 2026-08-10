@@ -19,7 +19,7 @@
           default = builtins.filter (h: cfg.defaultHost == h.name) hosts;
           others = builtins.filter (h: cfg.defaultHost != h.name) hosts;
         in
-        if cfg.defaultHost == null then hosts else default ++ others;
+        default ++ others;
 
       ##############################################################################
       # Convert a forward configuration into a virtual host.
@@ -233,9 +233,11 @@
 
         defaultHost = lib.mkOption {
           type = lib.types.str;
-          default = if builtins.length cfg.sites > 0 then (builtins.head cfg.sites).name else "";
           example = "devalot.com";
-          description = "Which host to make the first Virtual host.";
+          description = ''
+            Which host to make the first Virtual host and the primary
+            TLS certificate host.
+          '';
         };
 
         adminEmail = lib.mkOption {
