@@ -91,19 +91,38 @@
           };
         } cfg.config;
 
+        # Kanidm won't start without these:
+        systemd.services.kanidm.unitConfig.ConditionPathExists = [
+          "${home}/fullchain.pem"
+          "${home}/key.pem"
+        ];
+
         tilde.www.forwards = lib.singleton {
           name = cfg.domain;
           to = "https://127.0.0.1:${toString cfg.port}";
         };
 
-        security.acme.certs.${cfg.domain} = {
+        security.acme.certs.${config.tilde.www.defaultHost} = {
           postRun = ''
+            has_file=0
+
+            if [ -e "${home}/key.pem" ]; then
+              has_file=1
+            fi
+
+            install --mode=0700 --owner=kanidm --group=kanidm -d "${home}"
+
             for file in {key,fullchain}.pem; do
               install --mode=0400 --owner=kanidm --group=kanidm "$file" "${home}"
             done
-          '';
 
-          reloadServices = [ "kanidm.service" ];
+            if [ "$has_file" -eq 0 ]; then
+              # Kanidm is not started
+              systemctl --no-block start kanidm.service
+            else
+              systemctl --no-block try-reload-or-restart kanidm.service
+            fi
+          '';
         };
 
         scripts.backup.snapshot.kanidm = {

@@ -18,6 +18,7 @@
           cron = test ../../test/cron.nix;
           emacs = inputs.emacsrc.checks.${system}.emacsrc;
           greetd = test ../../test/greetd.nix;
+          kanidm = test ../../test/kanidm.nix;
           mail-fetch = test ../../test/mail/fetch.nix;
           mail-home = test ../../test/mail/home.nix;
           mail-imap = test ../../test/mail/imap.nix;
@@ -43,7 +44,6 @@
       tilde.putInWheel = true;
       users.users.${user.name}.password = user.password;
       security.sudo.wheelNeedsPassword = false;
-
     }
   );
 
