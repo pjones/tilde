@@ -3,6 +3,18 @@ groups:
     rules:
 
       ##########################################################################
+      # Alert when hosts are unreachable.
+      - alert: node_offline
+        expr: (time() - node_time_seconds) > 600
+        for: 0m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Node exporter data is stale on {{ $labels.instance }}"
+          description: "No recent node timestamp update on {{ $labels.instance }}."
+
+
+      ##########################################################################
       # Watch for failing systemd jobs.
       #
       # The `keep_firing_for` is important because jobs that restart
