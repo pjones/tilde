@@ -92,8 +92,9 @@ in
                 monitors = {
                   builtin = "eDP-1";
                   external = "DP-3"; # Left side of laptop.
-                  home = "17ZP7HA000040";
-                  work = "S8LMQS000351";
+                  home = "PNP(AOC) Q27B3MA 17ZP7HA000040";
+                  work.desk = "S8LMQS000351";
+                  work.conference_room = "NEC Corporation V864Q 89000404NB";
                 };
               in
               {
@@ -116,11 +117,19 @@ in
                     }
 
                     {
-                      _args = [ monitors.work ];
+                      _args = [ monitors.work.desk ];
                       mode = "2560x1440";
                       scale = 1.0;
                       position._props.x = 0;
                       position._props.y = 123;
+                    }
+
+                    {
+                      _args = [ monitors.work.conference_room ];
+                      mode = "1920x1200@59.95";
+                      scale = 1.0;
+                      position._props.x = 4171;
+                      position._props.y = 363;
                     }
 
                     {
