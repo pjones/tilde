@@ -23,6 +23,12 @@
         services.vaultwarden = {
           enable = lib.mkEnableOption "Configure Kanidm for VaultWarden";
 
+          domain = lib.mkOption {
+            type = lib.types.str;
+            default = config.services.vaultwarden.domain;
+            description = "The name of the host running VaultWarden";
+          };
+
           basicSecretFile = lib.mkOption {
             type = lib.types.path;
             description = "Path to a file containing the client secret";
@@ -61,8 +67,8 @@
 
             systems.oauth2.vaultwarden = lib.mkIf cfg.services.vaultwarden.enable {
               displayName = "VaultWarden Password Manager";
-              originUrl = "https://${config.tilde.programs.vaultwarden.domain}/identity/connect/oidc-signin";
-              originLanding = "https://${config.tilde.programs.vaultwarden.domain}";
+              originUrl = "https://${cfg.services.vaultwarden.domain}/identity/connect/oidc-signin";
+              originLanding = "https://${cfg.services.vaultwarden.domain}";
               imageFile = "${self.packages.${system}.vaultwarden-logo}/share/logo.svg";
               basicSecretFile = cfg.services.vaultwarden.basicSecretFile;
 
