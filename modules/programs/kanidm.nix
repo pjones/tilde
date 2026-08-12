@@ -93,6 +93,7 @@
               bindaddress = "127.0.0.1:${toString cfg.port}";
               tls_chain = "${home}/fullchain.pem";
               tls_key = "${home}/key.pem";
+              online_backup.versions = 14;
             };
           };
         } cfg.config;
