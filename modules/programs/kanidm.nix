@@ -55,7 +55,7 @@
             self.packages.${system}.vaultwarden-logo;
 
         services.kanidm = lib.recursiveUpdate {
-          package = pkgs.kanidmWithSecretProvisioning_1_10;
+          package = pkgs.kanidmWithSecretProvisioning_1_11;
 
           provision = {
             enable = true;
