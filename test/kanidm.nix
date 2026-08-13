@@ -16,11 +16,12 @@ pkgs.testers.nixosTest {
     ];
   };
 
-  nodes.machine = { modulesPath, ... }: {
+  nodes.machine = { config, modulesPath, ... }: {
     imports = [
       (modulesPath + "/../tests/common/acme/client")
       self.nixosModules.test
       self.nixosModules.kanidm
+      self.nixosModules.miniflux
       self.nixosModules.vaultwarden
     ];
 
@@ -30,6 +31,7 @@ pkgs.testers.nixosTest {
       hosts."127.0.0.1" = [
         "vaultwarden.test"
         "kanidm.test"
+        "miniflux.test"
       ];
     };
 
@@ -40,13 +42,25 @@ pkgs.testers.nixosTest {
       organizationName = "Tilde";
       emailFromAddress = "example@test";
       sso.enable = true;
+      sso.domain = "kanidm.test";
 
       environmentFile = toString (
         pkgs.runCommand "env-vars" { } ''
-          echo SSO_AUTHORITY=https://kanidm.test/oauth2/openid/vaultwarden >>"$out"
-          echo SSO_CLIENT_ID=vaultwarden >>"$out"
           echo SSO_CLIENT_SECRET="${fakeClientKey}" >>"$out"
           echo SMTP_HOST=smtp.test >>"$out"
+        ''
+      );
+    };
+
+    tilde.programs.miniflux = {
+      domain = "miniflux.test";
+      sso.enable = true;
+      sso.domain = "kanidm.test";
+      secretsFile = toString (
+        pkgs.runCommand "miniflux-secrets-file" { } ''
+          echo "ADMIN_USERNAME=something" >>"$out"
+          echo "ADMIN_PASSWORD=something" >>"$out"
+          echo "OAUTH2_CLIENT_SECRET=${fakeClientKey}" >>"$out"
         ''
       );
     };
@@ -70,8 +84,15 @@ pkgs.testers.nixosTest {
         };
       };
 
+      services.miniflux = {
+        enable = true;
+        domain = "miniflux.test";
+        basicSecretFile = toString fakePasswordFile;
+      };
+
       services.vaultwarden = {
         enable = true;
+        domain = "vaultwarden.test";
         basicSecretFile = toString fakePasswordFile;
       };
     };
@@ -79,6 +100,7 @@ pkgs.testers.nixosTest {
 
   testScript = ''
     acme.wait_for_open_port(443)
+    machine.wait_for_unit("miniflux.service")
     machine.wait_for_unit("vaultwarden.service")
     machine.wait_for_unit("kanidm.service")
 

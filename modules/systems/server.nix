@@ -9,6 +9,7 @@
     bitlbee = 6666;
     znc = 6667;
     jellyfin-discovery = 7359;
+    miniflux = 8081;
     adguardhome = 8082;
     jellyfin-http = 8096;
     vaultwarden = 8222;

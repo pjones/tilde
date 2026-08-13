@@ -6,6 +6,28 @@
     let
       cfg = config.tilde.programs.kanidm;
       home = "/var/lib/kanidm";
+
+      serviceOptions = { ... }: {
+        options = {
+          enable = lib.mkEnableOption "Enable this service in Kanidm";
+
+          domain = lib.mkOption {
+            type = lib.types.str;
+            description = "The name of the host running this service";
+          };
+
+          basicSecretFile = lib.mkOption {
+            type = lib.types.path;
+            description = "Path to a file containing the client secret";
+          };
+        };
+      };
+
+      standardScopes = [
+        "openid"
+        "profile"
+        "email"
+      ];
     in
     {
       options.tilde.programs.kanidm = {
@@ -20,19 +42,16 @@
           description = "Port that Kanidm listens on";
         };
 
-        services.vaultwarden = {
-          enable = lib.mkEnableOption "Configure Kanidm for VaultWarden";
+        services.miniflux = lib.mkOption {
+          type = lib.types.submodule serviceOptions;
+          default = { };
+          description = "Configure Kanidm for Miniflux";
+        };
 
-          domain = lib.mkOption {
-            type = lib.types.str;
-            default = config.services.vaultwarden.domain;
-            description = "The name of the host running VaultWarden";
-          };
-
-          basicSecretFile = lib.mkOption {
-            type = lib.types.path;
-            description = "Path to a file containing the client secret";
-          };
+        services.vaultwarden = lib.mkOption {
+          type = lib.types.submodule serviceOptions;
+          default = { };
+          description = "Configure Kanidm for VaultWarden";
         };
 
         config = lib.mkOption {
@@ -61,22 +80,40 @@
             enable = true;
             instanceUrl = "https://${cfg.domain}";
 
-            groups = lib.optionalAttrs cfg.services.vaultwarden.enable {
-              vaultwarden_users = { };
-            };
+            groups =
+              lib.optionalAttrs cfg.services.vaultwarden.enable {
+                vaultwarden_users = { };
+              }
+              // lib.optionalAttrs cfg.services.miniflux.enable {
+                miniflux_users = { };
+              };
 
+            # Notes:
+            #
+            # - originUrl:
+            #
+            #   This is the URL the service sends to Kandim as its
+            #   redirect URL.
+            #
+            # - originLanding:
+            #
+            #   This is the base URL for the service.
             systems.oauth2.vaultwarden = lib.mkIf cfg.services.vaultwarden.enable {
               displayName = "VaultWarden Password Manager";
               originUrl = "https://${cfg.services.vaultwarden.domain}/identity/connect/oidc-signin";
               originLanding = "https://${cfg.services.vaultwarden.domain}";
               imageFile = "${self.packages.${system}.vaultwarden-logo}/share/logo.svg";
               basicSecretFile = cfg.services.vaultwarden.basicSecretFile;
+              scopeMaps.vaultwarden_users = standardScopes;
+            };
 
-              scopeMaps.vaultwarden_users = [
-                "openid"
-                "profile"
-                "email"
-              ];
+            systems.oauth2.miniflux = lib.mkIf cfg.services.miniflux.enable {
+              displayName = "Miniflux RSS Reader";
+              originUrl = "https://${cfg.services.miniflux.domain}/oauth2/oidc/callback";
+              originLanding = "https://${cfg.services.miniflux.domain}";
+              imageFile = "${self.packages.${system}.miniflux-logo}/share/logo.svg";
+              basicSecretFile = cfg.services.miniflux.basicSecretFile;
+              scopeMaps.miniflux_users = standardScopes;
             };
           };
 

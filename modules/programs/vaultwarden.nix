@@ -48,10 +48,14 @@
 
             You must provide the following values in the `environmentFile`:
 
-            - SSO_AUTHORITY
-            - SSO_CLIENT_ID
             - SSO_CLIENT_SECRET
           '';
+
+          domain = lib.mkOption {
+            type = lib.types.str;
+            default = "sso.${config.networking.domain}";
+            description = "The domain name for the SSO server";
+          };
         };
       };
 
@@ -82,6 +86,8 @@
             SSO_ALLOW_UNKNOWN_EMAIL_VERIFICATION = false;
             SSO_PKCE = true;
             SSO_AUTH_ONLY_NOT_SESSION = true;
+            SSO_AUTHORITY = "https://${cfg.sso.domain}/oauth2/openid/vaultwarden";
+            SSO_CLIENT_ID = "vaultwarden";
           }
           // lib.optionalAttrs cfg.debug {
             ROCKET_LOG = "debug";
