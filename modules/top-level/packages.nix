@@ -16,7 +16,6 @@
     encryption-utils = inputs.encryption-utils.overlays.default;
     image-scripts = inputs.image-scripts.overlays.default;
     maintenance-scripts = inputs.maintenance-scripts.overlays.default;
-    mediarc = inputs.mediarc.overlays.mediarc;
     network-scripts = inputs.network-scripts.overlays.default;
     nur = inputs.nur.overlays.default;
     tmuxrc = inputs.tmuxrc.overlays.default;
@@ -71,6 +70,8 @@
         # Scripts to force the wayland compositor to lock the screen
         # now (even if a lock is inhibited).
         force-lock = pkgs.callPackage ../../pkgs/force-lock { };
+
+        mediarc = self.inputs.mediarc.packages.${system}.mediarc;
 
         nerd-hyperlegible = pkgs.callPackage ../../pkgs/nerd-hyperlegible.nix { };
 

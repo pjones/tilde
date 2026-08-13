@@ -1,21 +1,17 @@
-{ moduleWithSystem, ... }:
+{ self, moduleWithSystem, ... }:
 {
   flake.homeModules.beets = moduleWithSystem (
-    { pkgs, ... }:
-    { lib, ... }:
+    { pkgs, system, ... }:
+    { ... }:
     {
-      options.tilde.programs.beets = {
-        enable = lib.mkEnableOption "Beets";
-      };
-
-      config = lib.mkIf false {
+      config = {
         home.packages = with pkgs; [
           beets # Music tagger and library organizer
-          mp3gain # Lossless mp3 normalizer with statistical analysis
+          ffmpeg # For the replaygain plugin
         ];
 
         xdg.configFile = {
-          "beets/config.yaml".source = "${pkgs.pjones.mediarc}/etc/beets.yaml";
+          "beets/config.yaml".source = "${self.packages.${system}.mediarc}/etc/beets.yaml";
         };
       };
     }
