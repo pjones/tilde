@@ -13,7 +13,6 @@
     };
 
     bashrc = inputs.bashrc.overlays.default;
-    encryption-utils = inputs.encryption-utils.overlays.default;
     image-scripts = inputs.image-scripts.overlays.default;
     maintenance-scripts = inputs.maintenance-scripts.overlays.default;
     network-scripts = inputs.network-scripts.overlays.default;
@@ -54,6 +53,8 @@
         tilde-scripts-misc = pkgs.callPackage ../../pkgs/tilde-scripts-misc.nix {
           inherit tildeInstallScripts;
         };
+
+        encryption-utils = inputs.encryption-utils.packages.${system}.encryption-utils;
 
         # Firefox CSS Hacks:
         #
@@ -96,7 +97,7 @@
         wayland-test-helpers = pkgs.callPackage ../../pkgs/wayland-test-helpers { };
 
         wg-gen = pkgs.callPackage ../../pkgs/wg-gen {
-          encryption-utils = pkgs.pjones.encryption-utils;
+          encryption-utils = self.packages.${system}.encryption-utils;
         };
 
         xwininfo-tests = pkgs.writeShellApplication {
