@@ -29,26 +29,28 @@
 
         extraGroups = lib.mkOption {
           type = with lib.types; listOf str;
-          default = [
-            "cdrom"
-            "dialout"
-            "disk"
-            "docker"
-            "input"
-            "libvirtd"
-            "media"
-            "networkmanager"
-            "scanner"
-            "users"
-            "video"
-            "webhooks"
-            "webmaster"
-          ];
+          default = [ ];
           description = "Extra groups for the user account";
         };
       };
 
       config = {
+        tilde.extraGroups = [
+          "cdrom"
+          "dialout"
+          "disk"
+          "docker"
+          "input"
+          "libvirtd"
+          "media"
+          "networkmanager"
+          "scanner"
+          "users"
+          "video"
+          "webhooks"
+          "webmaster"
+        ];
+
         # This is needed to use ZSH as a login shell:
         programs.zsh.enable = true;
 
