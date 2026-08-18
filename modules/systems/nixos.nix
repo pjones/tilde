@@ -19,6 +19,7 @@
         inputs.sops-nix.nixosModules.sops
         self.nixosModules.boot-ssh
         self.nixosModules.crontab
+        self.nixosModules.hardening
         self.nixosModules.nix
         self.nixosModules.pjones
         self.nixosModules.sudo
