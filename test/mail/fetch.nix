@@ -13,7 +13,7 @@ let
   commandFilePublic = pkgs.writeTextFile {
     name = "fetchmailrc";
     text = ''
-      poll localhost username example@example.com password password
+      poll localhost username example@example.test password password
     '';
   };
 
@@ -27,6 +27,12 @@ pkgs.testers.nixosTest {
   name = "fetchmail-test";
 
   nodes = {
+    acme = { modulesPath, ... }: {
+      imports = [
+        (modulesPath + "/../tests/common/acme/server")
+      ];
+    };
+
     machine =
       { ... }:
       {
@@ -62,6 +68,7 @@ pkgs.testers.nixosTest {
   testScript = ''
     with subtest("Start machines"):
         start_all()
+        acme.wait_for_open_port(443)
         machine.wait_for_unit("multi-user.target")
         machine.wait_for_unit("dovecot.service")
         machine.wait_for_unit("fetchmail-example.service")

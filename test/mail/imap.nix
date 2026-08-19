@@ -16,6 +16,12 @@ pkgs.testers.nixosTest {
   name = "imap-server-test";
 
   nodes = {
+    acme = { modulesPath, ... }: {
+      imports = [
+        (modulesPath + "/../tests/common/acme/server")
+      ];
+    };
+
     machine =
       { ... }:
       {
@@ -34,6 +40,7 @@ pkgs.testers.nixosTest {
   testScript = ''
     with subtest("Start machines"):
         start_all()
+        acme.wait_for_open_port(443)
         machine.wait_for_unit("multi-user.target")
 
     with subtest("Run test script"):

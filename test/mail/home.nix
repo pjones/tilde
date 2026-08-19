@@ -12,6 +12,12 @@ pkgs.testers.nixosTest {
   name = "tilde-mail-home-test";
 
   nodes = {
+    acme = { modulesPath, ... }: {
+      imports = [
+        (modulesPath + "/../tests/common/acme/server")
+      ];
+    };
+
     machine =
       { ... }:
       {
@@ -47,14 +53,14 @@ pkgs.testers.nixosTest {
                 enable = true;
                 debug = true;
 
-                accounts."example.com" = {
+                accounts."example.test" = {
                   default = true;
 
                   imapServer = {
                     hostname = "localhost";
-                    username = "example@example.com";
+                    username = "example@example.test";
                     passwordCmd = "echo password";
-                    serverCertFile = "/var/lib/acme/example.com/cert.pem";
+                    serverCertFile = "/var/lib/acme/example.test/cert.pem";
                   };
 
                   smtpServer = {
@@ -63,7 +69,7 @@ pkgs.testers.nixosTest {
                     passwordCmd = "echo password";
                   };
 
-                  domains."example.com" = {
+                  domains."example.test" = {
                     default = true;
                     users = [
                       "example"
@@ -81,10 +87,11 @@ pkgs.testers.nixosTest {
     with subtest("Start machines"):
         start_all()
         machine.wait_for_unit("multi-user.target")
+        acme.wait_for_open_port(443)
         machine.wait_for_unit("dovecot.service")
 
         # Ensure tests can access the certificate:
-        machine.succeed("${pkgs.acl}/bin/setfacl -R -m u:${user.name}:rX /var/lib/acme/example.com")
+        machine.succeed("${pkgs.acl}/bin/setfacl -R -m u:${user.name}:rX /var/lib/acme/example.test")
 
     with subtest("Log in"):
         machine.wait_until_tty_matches("1", "login: ")

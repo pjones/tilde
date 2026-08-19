@@ -33,7 +33,7 @@ function count_msgs() {
 
   curl \
     --insecure \
-    --user 'example@example.com:password' \
+    --user 'example@example.test:password' \
     --request "STATUS $box (MESSAGES)" \
     "imaps://localhost" |
     sed -E 's/^.*MESSAGES +([0-9]+).*$/\1/'
@@ -42,8 +42,8 @@ function count_msgs() {
 ################################################################################
 function test_message() {
   cat <<MAIL
-To: example+foo@example.com
-From: other@example.com
+To: example+foo@example.test
+From: other@example.test
 Subject: Hi there!
 Date: Fri Dec 27 11:47:19 AM CET 2024
 
@@ -55,7 +55,7 @@ MAIL
 ################################################################################
 # shellcheck disable=2120
 function send_mail() {
-  local to=${1:-"example@example.com"}
+  local to=${1:-"example@example.test"}
   test_message |
     sudo --login \
       su lmtp --shell "$SHELL" --command "dovecot-lda -d $to -e"

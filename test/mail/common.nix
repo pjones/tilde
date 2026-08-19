@@ -1,4 +1,5 @@
 {
+  modulesPath,
   config,
   lib,
   pkgs,
@@ -11,29 +12,23 @@ let
 
     # Password for the following mailbox is password
     text = ''
-      example@example.com:{CRYPT}$2y$05$mMtTRsn0KID2QpH51xXwmexKtOIPaHzVB896QQDQuG0vifP50Gx7a::::::
+      example@example.test:{CRYPT}$2y$05$mMtTRsn0KID2QpH51xXwmexKtOIPaHzVB896QQDQuG0vifP50Gx7a::::::
     '';
   };
 
   passwordFile = "/var/lib/dovecot/passwd.txt";
 in
 {
+  imports = [
+    (modulesPath + "/../tests/common/acme/client")
+  ];
+
   config = lib.mkMerge [
-    {
-      # Only use self-signed certificates:
-      security.acme.defaults.server = lib.mkForce "https://example.com";
-    }
-
     (lib.mkIf config.tilde.programs.imapd.enable {
-      security.acme = {
-        acceptTerms = true;
-        defaults.email = "example@example.com";
-      };
-
       tilde.programs.imapd = {
         inherit passwordFile;
         debug = true;
-        domain = "example.com";
+        domain = "example.test";
       };
 
       # Put the fake password file in the right place:

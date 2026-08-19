@@ -12,7 +12,7 @@ function mail_config_test() {
 
   domain=$(
     jq --raw-output \
-      '."example.com" | .imapServer | .domain' \
+      '."example.test" | .imapServer | .domain' \
       <"$mailjson"
   )
 
@@ -28,7 +28,7 @@ function msmtp_send_msg() {
 ################################################################################
 function msmtp_test() {
   test -e ~/.config/msmtp/config
-  msmtp_send_msg "buddy@example.com" | grep "account chosen by envelope"
+  msmtp_send_msg "buddy@example.test" | grep "account chosen by envelope"
   msmtp_send_msg "busted@localhost" | grep "falling back to default account"
 }
 
@@ -39,7 +39,7 @@ function mail_workflow_test() {
   mu index
 
   # Find the new email:
-  file_orig=$(mu find "from:other@example.com" --fields="l")
+  file_orig=$(mu find "from:other@example.test" --fields="l")
   test -e "$file_orig"
 
   # Move the email to the trash:
@@ -48,7 +48,7 @@ function mail_workflow_test() {
       --change-name \
       --flags=-N \
       "$file_orig" \
-      /example.com/Trash
+      /example.test/Trash
   )
   test ! -e "$file_orig"
   test -e "$file_trash"

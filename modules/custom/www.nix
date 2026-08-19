@@ -243,7 +243,7 @@
         adminEmail = lib.mkOption {
           type = lib.types.str;
           default = "domains@${config.networking.domain}";
-          example = "domains@example.com";
+          example = "domains@example.test";
           description = "Email address for site administrator.";
         };
 

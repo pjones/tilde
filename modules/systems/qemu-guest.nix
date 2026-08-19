@@ -59,7 +59,7 @@
           libvirtd.enable = lib.mkForce false;
         };
 
-        networking.domain = "example.com";
+        networking.domain = "example.test";
         security.sudo.wheelNeedsPassword = false;
 
         #users.users.${config.tilde.user}.password = user.password;

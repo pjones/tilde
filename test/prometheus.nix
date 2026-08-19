@@ -47,8 +47,8 @@ pkgs.testers.nixosTest {
       tilde.programs.prometheus-alertmanager.receivers = lib.singleton {
         name = "default";
         email_configs = lib.singleton {
-          to = "example@example.com";
-          from = "example@example.com";
+          to = "example@example.test";
+          from = "example@example.test";
           smarthost = "localhost:587";
         };
       };

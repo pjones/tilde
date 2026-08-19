@@ -12,7 +12,7 @@ function main() {
   test "$(count_msgs Trash)" -eq 1
 
   test -e "/var/lib/lmtp/last-msg.txt"
-  grep "From: other@example.com" "/var/lib/lmtp/last-msg.txt"
+  grep "From: other@example.test" "/var/lib/lmtp/last-msg.txt"
   grep "How are things" "/var/lib/lmtp/last-msg.txt"
 }
 

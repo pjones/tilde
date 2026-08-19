@@ -16,12 +16,6 @@
       cfg = config.tilde.programs.imapd;
       lmtpUser = "lmtp";
 
-      userDefaultFields = lib.concatStringsSep " " [
-        "uid=${toString cfg.virtualUID}"
-        "gid=${toString cfg.virtualUID}"
-        "home=${cfg.homeDir}/%d/%n"
-      ];
-
       sslCertDomain = if cfg.useACMEHost != null then cfg.useACMEHost else cfg.domain;
       sslCertDir = config.security.acme.certs.${sslCertDomain}.directory;
     in
@@ -98,11 +92,11 @@
 
       config = lib.mkIf cfg.enable {
         # Tools that need to be in the system environment:
-        environment.systemPackages = [ pkgs.dovecot_pigeonhole_0_5 ];
+        environment.systemPackages = [ pkgs.dovecot_pigeonhole ];
 
         # Allow system scripts to insert mail into the IMAP process.
         security.wrappers.dovecot-lda = {
-          source = "${pkgs.dovecot_2_3}/libexec/dovecot/dovecot-lda";
+          source = "${config.services.dovecot2.package}/libexec/dovecot/dovecot-lda";
           setuid = true;
           setgid = true;
           owner = cfg.virtualUser;
@@ -145,36 +139,33 @@
         # Use dovecot as the IMAP server:
         services.dovecot2 = {
           enable = true;
-          package = pkgs.dovecot_2_3;
+          package = pkgs.dovecot;
           createMailUser = false;
 
           settings = {
+            dovecot_config_version = "2.4.4";
+            dovecot_storage_version = "2.4.4";
+
             mail_debug = cfg.debug;
             auth_debug = cfg.debug;
-            verbose_ssl = cfg.debug;
+            #verbose_ssl = cfg.debug;
 
-            ssl_cert = "<${sslCertDir}/fullchain.pem";
-            ssl_key = "<${sslCertDir}/key.pem";
-
-            protocols = [
-              "imap"
-              "lmtp"
-              "sieve"
-            ];
+            protocols = {
+              imap = true;
+              lmtp = true;
+              sieve = true;
+            };
 
             mail_uid = cfg.virtualUser;
             mail_gid = cfg.virtualGroup;
+            mail_access_groups = cfg.virtualGroup;
 
-            mail_location =
-              let
-                path = "${cfg.homeDir}/%d/%n";
-              in
-              lib.concatStringsSep ":" [
-                "maildir:${path}"
-                "INBOX=${path}/Inbox"
-                "LAYOUT=fs"
-                "UTF-8"
-              ];
+            mail_driver = "maildir";
+            mailbox_list_layout = "fs";
+            mail_inbox_path = "${cfg.homeDir}/%{user | domain}/%{user | username}/Inbox";
+            mail_path = "${cfg.homeDir}/%{user | domain}/%{user | username}";
+            mailbox_list_utf8 = true;
+            maildir_copy_with_hardlinks = true;
 
             "namespace inbox" = {
               inbox = "yes";
@@ -203,15 +194,20 @@
               };
             };
 
-            passdb = {
+            "passdb passwd-file" = {
               driver = "passwd-file";
-              args = cfg.passwordFile;
+              passwd_file_path = cfg.passwordFile;
             };
 
-            userdb = {
+            "userdb passwd-file" = {
               driver = "passwd-file";
-              args = cfg.passwordFile;
-              default_fields = userDefaultFields;
+              passwd_file_path = cfg.passwordFile;
+
+              fields = {
+                uid = toString cfg.virtualUID;
+                gid = toString cfg.virtualUID;
+                home = "${cfg.homeDir}/%{user | domain}/%{user | username}";
+              };
             };
 
             auth_mechanisms = [
@@ -219,15 +215,19 @@
               "login"
             ];
 
-            mail_access_groups = cfg.virtualGroup;
             ssl = "required";
             ssl_min_protocol = "TLSv1.2";
-            ssl_prefer_server_ciphers = "yes";
+
+            ssl_server = {
+              cert_file = "${sslCertDir}/fullchain.pem";
+              key_file = "${sslCertDir}/key.pem";
+            };
 
             "service imap-login" = {
               "inet_listener imap" = {
                 port = 0;
               };
+
               "inet_listener imaps" = {
                 port = 993;
                 ssl = "yes";
@@ -235,7 +235,9 @@
             };
 
             "protocol imap" = {
-              mail_plugins = "$mail_plugins imap_sieve";
+              mail_plugins = {
+                imap_sieve = true;
+              };
             };
 
             "service auth" = {
@@ -259,7 +261,9 @@
             };
 
             "protocol lmtp" = {
-              mail_plugins = "$mail_plugins sieve";
+              mail_plugins = {
+                imap_sieve = true;
+              };
             };
           };
 

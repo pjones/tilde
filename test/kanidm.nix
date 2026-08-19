@@ -16,7 +16,7 @@ pkgs.testers.nixosTest {
     ];
   };
 
-  nodes.machine = { config, modulesPath, ... }: {
+  nodes.machine = { modulesPath, ... }: {
     imports = [
       (modulesPath + "/../tests/common/acme/client")
       self.nixosModules.test
