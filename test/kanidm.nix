@@ -3,9 +3,17 @@
 let
   fakeClientKey = "ahaes2oche0MeiPae6Ahpacoag5theez8Oca2out";
 
-  fakePasswordFile = pkgs.runCommand "client-key" { } ''
-    echo "${fakeClientKey}" >"$out"
-  '';
+  fakePasswordFile = toString (
+    pkgs.runCommand "client-key" { } ''
+      echo "${fakeClientKey}" >"$out"
+    ''
+  );
+
+  fakeClientIDs = {
+    vaultwarden = "ca4ea8aujaawie1tahro";
+    miniflux = "thaeti9bivahtieghi5a";
+  };
+
 in
 pkgs.testers.nixosTest {
   name = "tilde-kanidm";
@@ -43,6 +51,7 @@ pkgs.testers.nixosTest {
       emailFromAddress = "example@test";
       sso.enable = true;
       sso.domain = "kanidm.test";
+      sso.clientIDs = fakeClientIDs;
 
       environmentFile = toString (
         pkgs.runCommand "env-vars" { } ''
@@ -56,6 +65,8 @@ pkgs.testers.nixosTest {
       domain = "miniflux.test";
       sso.enable = true;
       sso.domain = "kanidm.test";
+      sso.clientIDs = fakeClientIDs;
+
       secretsFile = toString (
         pkgs.runCommand "miniflux-secrets-file" { } ''
           echo "ADMIN_USERNAME=something" >>"$out"
@@ -67,13 +78,14 @@ pkgs.testers.nixosTest {
 
     tilde.programs.kanidm = {
       domain = "kanidm.test";
+      clientIDs = fakeClientIDs;
 
       config.provision = {
         # For tests only:
         acceptInvalidCerts = true;
 
-        adminPasswordFile = toString fakePasswordFile;
-        idmAdminPasswordFile = toString fakePasswordFile;
+        adminPasswordFile = fakePasswordFile;
+        idmAdminPasswordFile = fakePasswordFile;
 
         persons = {
           tilde = {
@@ -87,13 +99,13 @@ pkgs.testers.nixosTest {
       services.miniflux = {
         enable = true;
         domain = "miniflux.test";
-        basicSecretFile = toString fakePasswordFile;
+        basicSecretFile = fakePasswordFile;
       };
 
       services.vaultwarden = {
         enable = true;
         domain = "vaultwarden.test";
-        basicSecretFile = toString fakePasswordFile;
+        basicSecretFile = fakePasswordFile;
       };
     };
   };
@@ -115,6 +127,18 @@ pkgs.testers.nixosTest {
         --write-out '%{http_code}' \
         https://vaultwarden.test/api/organizations/domain/sso/verified |
         grep '200'
+    """)
+
+    # Miniflux makes it easy to test Kandim:
+    machine.succeed(r"""
+      curl \
+        --insecure \
+        --silent \
+        --show-error \
+        --fail \
+        --location \
+        --output /dev/null \
+        https://miniflux.test/oauth2/oidc/redirect
     """)
   '';
 }

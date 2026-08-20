@@ -1,5 +1,44 @@
-{ self, moduleWithSystem, ... }:
 {
+  self,
+  lib,
+  moduleWithSystem,
+  ...
+}:
+{
+  flake.lib.kanidm = {
+    ssoOptions = config: description: {
+      enable = lib.mkEnableOption description;
+
+      domain = lib.mkOption {
+        type = lib.types.str;
+        default = "sso.${config.networking.domain}";
+        description = "The domain name for the SSO server";
+      };
+
+      clientIDs = self.lib.kanidm.clientIDsOption;
+    };
+
+    # An option to be used by each service to get their client ID.
+    clientIDsOption = lib.mkOption {
+      type = with lib.types; attrsOf (strMatching "[a-z0-9]+");
+      description = ''
+        Attribute set that contains a mapping of client (service)
+        names to their client ID.
+
+        For example:
+
+        ```nix
+        {
+          vaultwarden = "taajee0eifuzohhe1shi";
+          miniflux = "ooyoh8ogh8uushaenaev";
+        };
+        ```
+
+        NOTE: Client IDs must be lowercase letters and numbers.
+      '';
+    };
+  };
+
   flake.nixosModules.kanidm = moduleWithSystem (
     { pkgs, system, ... }:
     { config, lib, ... }:
@@ -54,6 +93,8 @@
           description = "Configure Kanidm for VaultWarden";
         };
 
+        clientIDs = self.lib.kanidm.clientIDsOption;
+
         config = lib.mkOption {
           type = lib.types.attrsOf lib.types.anything;
           default = { };
@@ -69,10 +110,6 @@
       };
 
       config = {
-        environment.systemPackages =
-          lib.optional cfg.services.vaultwarden.enable
-            self.packages.${system}.vaultwarden-logo;
-
         services.kanidm = lib.recursiveUpdate {
           package = pkgs.kanidmWithSecretProvisioning_1_11;
 
@@ -98,7 +135,7 @@
             # - originLanding:
             #
             #   This is the base URL for the service.
-            systems.oauth2.vaultwarden = lib.mkIf cfg.services.vaultwarden.enable {
+            systems.oauth2.${cfg.clientIDs.vaultwarden} = lib.mkIf cfg.services.vaultwarden.enable {
               displayName = "VaultWarden Password Manager";
               originUrl = "https://${cfg.services.vaultwarden.domain}/identity/connect/oidc-signin";
               originLanding = "https://${cfg.services.vaultwarden.domain}";
@@ -107,7 +144,7 @@
               scopeMaps.vaultwarden_users = standardScopes;
             };
 
-            systems.oauth2.miniflux = lib.mkIf cfg.services.miniflux.enable {
+            systems.oauth2.${cfg.clientIDs.miniflux} = lib.mkIf cfg.services.miniflux.enable {
               displayName = "Miniflux RSS Reader";
               originUrl = "https://${cfg.services.miniflux.domain}/oauth2/oidc/callback";
               originLanding = "https://${cfg.services.miniflux.domain}";

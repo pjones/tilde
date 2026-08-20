@@ -5,6 +5,7 @@
     { config, lib, ... }:
     let
       cfg = config.tilde.programs.miniflux;
+      clientID = cfg.sso.clientIDs.miniflux;
     in
     {
       options.tilde.programs.miniflux = {
@@ -20,24 +21,16 @@
           description = "Port that Miniflux listens on";
         };
 
-        sso = {
-          enable = lib.mkEnableOption ''
-            Enable support for OAuth/OIDC.
+        sso = self.lib.kanidm.ssoOptions config ''
+          Enable support for OAuth/OIDC.
 
-            When this is enabled you must configure following items in the
-            secrets file:
+          When this is enabled you must configure following items in the
+          secrets file:
 
-            ```
-            OAUTH2_CLIENT_SECRET=replace_me
-            ```
-          '';
-
-          domain = lib.mkOption {
-            type = lib.types.str;
-            default = "sso.${config.networking.domain}";
-            description = "The domain name for the SSO server";
-          };
-        };
+          ```
+          OAUTH2_CLIENT_SECRET=replace_me
+          ```
+        '';
 
         secretsFile = lib.mkOption {
           type = lib.types.path;
@@ -69,9 +62,9 @@
           // lib.optionalAttrs cfg.sso.enable {
             DISABLE_LOCAL_AUTH = "true";
             OAUTH2_PROVIDER = "oidc";
-            OAUTH2_CLIENT_ID = "miniflux";
+            OAUTH2_CLIENT_ID = clientID;
             OAUTH2_REDIRECT_URL = "https://${cfg.domain}/oauth2/oidc/callback";
-            OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://${cfg.sso.domain}/oauth2/openid/miniflux";
+            OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://${cfg.sso.domain}/oauth2/openid/${clientID}";
             OAUTH2_USER_CREATION = 1;
           };
         };
