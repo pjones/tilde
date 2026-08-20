@@ -43,6 +43,12 @@
           description = "Additional config to forwarded to services.vaultwarden.config";
         };
 
+        wwwConfig = lib.mkOption {
+          type = lib.types.attrsOf lib.types.anything;
+          default = { };
+          description = "Additional config to forwarded to tilde.www.forwards.<name>.vhost";
+        };
+
         sso = self.lib.kanidm.ssoOptions config ''
           Basic SSO configuration
 
@@ -93,6 +99,7 @@
         tilde.www.forwards = lib.singleton {
           name = cfg.domain;
           to = "http://127.0.0.1:${toString cfg.port}";
+          vhost = cfg.wwwConfig;
         };
 
         scripts.backup.postgresql = {
