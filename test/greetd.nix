@@ -28,7 +28,7 @@ pkgs.testers.nixosTest {
 
     with subtest("Wait for compositor to start"):
         machine.wait_for_file("/run/user/1000/wayland-1")
-        machine.wait_until_succeeds("pgrep waybar")
+        machine.wait_until_succeeds("pgrep wayle")
 
     with subtest("Exit compositor"):
         machine.succeed("su - ${user.name} -c check-kill-compositor.sh")

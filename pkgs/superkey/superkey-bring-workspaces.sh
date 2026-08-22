@@ -11,12 +11,14 @@ option_skip=("social")
 ################################################################################
 function usage() {
   cat <<EOF
-Usage: $(basename "$0") [options]
+Usage: $(basename "$0") [options] [output]
 
   -d      Dry run
   -h      This message
 
-Bring workspaces on other monitors to this monitor.
+Bring workspaces on other monitors to the named output.  If the name
+of the output is not given it is taken from the foucsed output.
+
 EOF
 }
 
@@ -75,7 +77,13 @@ function main() {
   shift $((OPTIND - 1))
 
   local current
-  current=$(niri msg --json focused-output | jq --raw-output .name)
+
+  if [ $# -eq 1 ]; then
+    current=$1
+  else
+    current=$(niri msg --json focused-output | jq --raw-output .name)
+  fi
+
   bring_others "$current"
 }
 

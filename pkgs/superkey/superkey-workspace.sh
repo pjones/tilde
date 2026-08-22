@@ -21,6 +21,7 @@ Usage: $(basename "$0") [options]
   -r NAME Rename current workspace to NAME
   -s NAME Switch to workspace NAME
   -S NAME Switch to NAME, creating it if necessary
+  -t      Toggle workspace display in the panel
 
 If no options are given, prints a list of all workspace names.
 
@@ -91,10 +92,26 @@ function with_niri() {
 }
 
 ################################################################################
+function wayle_toggle_display() {
+  local state
+  state=$(wayle config get modules.niri-workspaces.label-strategy)
+
+  if [ "$state" = "index-and-name" ]; then
+    # Make the workspace module take up less space:
+    wayle config set modules.niri-workspaces.label-strategy index
+    wayle config set modules.niri-workspaces.monitor-specific true
+  else
+    # Make the workspace module display more details:
+    wayle config set modules.niri-workspaces.label-strategy index-and-name
+    wayle config set modules.niri-workspaces.monitor-specific false
+  fi
+}
+
+################################################################################
 function main() {
   local list_workspaces=1
 
-  while getopts "hm:N:nr:s:S:" o; do
+  while getopts "hm:N:nr:s:S:t" o; do
     case "${o}" in
     h)
       usage
@@ -135,6 +152,11 @@ function main() {
       option_name=$OPTARG
       option_create=1
       with_niri "switch"
+      ;;
+
+    t)
+      wayle_toggle_display
+      exit
       ;;
 
     *)

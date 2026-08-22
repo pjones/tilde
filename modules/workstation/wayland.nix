@@ -42,14 +42,10 @@
       imports = with self.homeModules; [
         gtklock
         kdeconnect
-        network-manager-applet
         niri
         swayidle
-        swaync
-        waybar
         wayland-pipewire-idle-inhibit
-        wlinhibit
-        wpaperd
+        wayle
       ];
 
       options.tilde.wayland = {

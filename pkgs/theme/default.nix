@@ -24,7 +24,6 @@ stdenvNoCC.mkDerivation {
     runHook preInstall
 
     mkdir -p $out/theme
-    cp waybar.css $out/theme
     ruby build.rb "${colors}" "$out/theme"
 
     runHook postInstall

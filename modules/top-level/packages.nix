@@ -78,8 +78,6 @@
 
         pjones-avatar = pkgs.callPackage ../../pkgs/pjones-avatar.nix { };
 
-        presenter-mode = pkgs.callPackage ../../pkgs/presenter-mode { };
-
         prometheus-extra = pkgs.callPackage ../../pkgs/prometheus-extra { };
 
         rofirc = pkgs.callPackage ../../pkgs/rofirc {

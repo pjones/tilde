@@ -379,30 +379,36 @@
 
                 # Audio commands:
                 XF86AudioLowerVolume = audio [
-                  "pamixer"
-                  "--decrease"
-                  "5"
+                  "wayle"
+                  "audio"
+                  "output-volume"
+                  "-5"
                 ];
                 XF86AudioMute = audio [
-                  "pamixer"
-                  "--toggle-mute"
+                  "wayle"
+                  "audio"
+                  "output-mute"
                 ];
                 XF86AudioNext = audio [
-                  "playerctl"
+                  "wayle"
+                  "media"
                   "next"
                 ];
                 XF86AudioPlay = audio [
-                  "playerctl"
+                  "wayle"
+                  "media"
                   "play-pause"
                 ];
                 XF86AudioPrev = audio [
-                  "playerctl"
+                  "wayle"
+                  "media"
                   "previous"
                 ];
                 XF86AudioRaiseVolume = audio [
-                  "pamixer"
-                  "--increase"
-                  "5"
+                  "wayle"
+                  "audio"
+                  "output-volume"
+                  "+5"
                 ];
                 XF86Launch6 = audio [ "superkey-paswitch.sh" ];
               };

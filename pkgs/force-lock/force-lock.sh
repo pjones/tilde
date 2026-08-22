@@ -14,6 +14,3 @@ eval "$(realpath "$(dirname "$0")/stop-idle-inhibitors.sh")" || :
 
 # Tell swayidle to run all idle commands:
 pkill -xu "$USER" -USR1 swayidle
-
-# FIXME: Should try to find a way to release the manual idle inhibitor
-# that is part of waybar.

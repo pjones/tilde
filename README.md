@@ -21,7 +21,7 @@ running in an ephemeral virtual machine (`nix flake check`).
 
   * Compositor: [Niri][]
 
-  * Status Bar: [waybar][]
+  * Status Bar: [Wayle][]
 
   * Notifications: [Sway Notification Center][swaync]
 
@@ -54,5 +54,5 @@ can be found in my [Wayland configuration][niricfg].
 [nixpkgs]: https://github.com/NixOS/nixpkgs
 [swayidle]: https://github.com/swaywm/swayidle
 [swaync]: https://github.com/ErikReider/SwayNotificationCenter
-[waybar]: https://github.com/Alexays/Waybar
+[wayle]: https://wayle.app/
 [wpaperd]: https://github.com/danyspin97/wpaperd

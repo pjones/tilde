@@ -123,14 +123,12 @@
             pavucontrol # PulseAudio Volume Control
             pjones.image-scripts # Scripts for working with images
             pjones.network-scripts # Scripts related to networking
-            playerctl # Command-line utility for controlling media players
             pwgen # Password generator which creates passwords which can be easily memorized by a human
             remmina # Remote desktop client written in GTK
             ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
             rofi # Window switcher, run dialog and dmenu replacement for Wayland
             self.packages.${system}.encryption-utils # Scripts for various encryption tasks
             self.packages.${system}.pjones-avatar # For tools that use an avatar
-            self.packages.${system}.presenter-mode # Toggle presenter mode.
             self.packages.${system}.rofirc # Rofi launcher configuration
             self.packages.${system}.superkey # Wayland scripts.
             self.packages.${system}.tilde-scripts-browser # Browser scripts

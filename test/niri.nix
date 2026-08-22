@@ -25,7 +25,6 @@ let
 
         with subtest("Wait for Niri to start"):
             machine.wait_for_file("/run/user/1000/wayland-1")
-            machine.wait_until_succeeds("pgrep waybar")
             machine.wait_for_unit("emacs", "pjones")
             machine.wait_for_file("/run/user/1000/emacs/server")
             machine.send_key("f1") # Must issue before wait_for_window

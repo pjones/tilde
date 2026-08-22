@@ -11,7 +11,7 @@ in
 {
   flake.nixosModules.falken = moduleWithSystem (
     { ... }:
-    { ... }:
+    { lib, ... }:
     {
       imports =
         with self.nixosModules;
@@ -142,12 +142,13 @@ in
                   ];
                 };
 
-                programs.waybar.settings.main = {
-                  output = [ monitors.external ];
-                };
-
-                services.wpaperd.settings = {
-                  ${monitors.external}.path = config.tilde.programs.wpaperd.primaryWallpaperDirectory;
+                services.wayle.settings.bar.layout = lib.singleton {
+                  monitor = monitors.external;
+                  extends = monitors.builtin;
+                  show = true;
+                  left = [ ];
+                  center = [ ];
+                  right = [ ];
                 };
               };
           };
