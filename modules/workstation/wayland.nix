@@ -39,6 +39,19 @@
     { pkgs, system, ... }:
     { config, lib, ... }:
     {
+      imports = with self.homeModules; [
+        gtklock
+        kdeconnect
+        network-manager-applet
+        niri
+        swayidle
+        swaync
+        waybar
+        wayland-pipewire-idle-inhibit
+        wlinhibit
+        wpaperd
+      ];
+
       options.tilde.wayland = {
         theme = lib.mkOption {
           type = lib.types.package;

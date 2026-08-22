@@ -57,24 +57,14 @@
         firefox
         gnupg
         gtk
-        gtklock
-        kdeconnect
-        network-manager-applet
-        niri
         peaclock
         rbw
         recoil
         ssh
         suspend
-        swayidle
-        swaync
         syncthing
         udiskie
-        waybar
         wayland
-        wayland-pipewire-idle-inhibit
-        wlinhibit
-        wpaperd
         xdg
       ];
 
