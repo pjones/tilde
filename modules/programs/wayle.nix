@@ -73,7 +73,7 @@
               scale = 0.9;
 
               layout = lib.singleton {
-                monitor = config.tilde.wayland.primaryOutput;
+                monitor = "*";
                 show = true;
 
                 left = [

@@ -11,7 +11,7 @@ in
 {
   flake.nixosModules.falken = moduleWithSystem (
     { ... }:
-    { lib, ... }:
+    { ... }:
     {
       imports =
         with self.nixosModules;
@@ -76,39 +76,99 @@ in
         };
 
         home-manager.users.pjones =
-          { config, ... }:
+          { ... }:
           {
             imports = with self.homeModules; [
               mail
               mbsync
+              monitors
               msmtp
               mu
             ];
 
             config =
               let
-                # wayland-info | grep wl_output -A2
                 # niri msg outputs|grep Output
                 monitors = {
-                  builtin = "eDP-1";
-                  external = "DP-3"; # Left side of laptop.
-                  home = "PNP(AOC) Q27B3MA 17ZP7HA000040";
-                  work.desk = "S8LMQS000351";
-                  work.conference_room = "NEC Corporation V864Q 89000404NB";
+                  internal = {
+                    connector = "eDP-1";
+                    width = 2256;
+                    height = 1504;
+                    scale = 1.4;
+                  };
+
+                  home = {
+                    connector.serial = "17ZP7HA000040";
+                    width = 2560;
+                    height = 1440;
+                  };
+
+                  work = {
+                    connector.serial = "S8LMQS000351";
+                    width = 2560;
+                    height = 1440;
+                  };
+
+                  conference = {
+                    connector.model = "V864Q";
+                    width = 1920;
+                    height = 1200;
+                    rate = 59.95;
+                  };
                 };
+
+                layouts = [
+                  {
+                    name = "home";
+                    args = "-n -p ${monitors.internal.connector}";
+                    outputs = [
+                      "home"
+                      "internal"
+                    ];
+                  }
+                  {
+                    name = "work";
+                    args = "-dn -p ${monitors.internal.connector}";
+                    outputs = [
+                      "work"
+                      "internal"
+                    ];
+                  }
+                  {
+                    name = "conference";
+                    args = "-P -p ${monitors.internal.connector}";
+                    outputs = [
+                      "internal"
+                      "conference"
+                    ];
+                  }
+                  {
+                    name = "others";
+                    args = "-P -p ${monitors.internal.connector}";
+                    outputs = [
+                      "internal"
+                      "*"
+                    ];
+                  }
+                  {
+                    name = "internal";
+                    args = "-p ${monitors.internal.connector}";
+                    outputs = [ "internal" ];
+                  }
+                ];
               in
               {
                 tilde.programs.ssh.keysDir = "~/keys/ssh";
-                tilde.wayland.primaryOutput = monitors.builtin;
+                tilde.wayland.primaryOutput = monitors.internal.connector;
+                tilde.monitors = monitors;
+                tilde.layouts = layouts;
 
                 wayland.windowManager.niri.settings = {
                   output = [
                     {
-                      _args = [ monitors.builtin ];
-                      mode = "2256x1504";
-                      scale = 1.4;
-                      position._props.x = 2560;
-                      position._props.y = 489;
+                      _args = [ monitors.internal.connector ];
+                      mode = with monitors.internal; "${toString width}x${toString height}";
+                      scale = monitors.internal.scale;
 
                       layout = {
                         # Smaller windows are hard to use:
@@ -116,40 +176,9 @@ in
                       };
                     }
 
-                    {
-                      _args = [ monitors.work.desk ];
-                      mode = "2560x1440";
-                      scale = 1.0;
-                      position._props.x = 0;
-                      position._props.y = 123;
-                    }
-
-                    {
-                      _args = [ monitors.work.conference_room ];
-                      mode = "1920x1200@59.95";
-                      scale = 1.0;
-                      position._props.x = 4171;
-                      position._props.y = 363;
-                    }
-
-                    {
-                      _args = [ monitors.home ];
-                      mode = "2560x1440";
-                      scale = 1.0;
-                      position._props.x = 0;
-                      position._props.y = 123;
-                    }
                   ];
                 };
 
-                services.wayle.settings.bar.layout = lib.singleton {
-                  monitor = monitors.external;
-                  extends = monitors.builtin;
-                  show = true;
-                  left = [ ];
-                  center = [ ];
-                  right = [ ];
-                };
               };
           };
       };

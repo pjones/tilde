@@ -10,6 +10,7 @@ option_output=
 option_mode=power
 option_presenting=0
 option_public=0
+option_negate_output=0
 
 ################################################################################
 usage() {
@@ -18,6 +19,7 @@ Usage: $(basename "$0") [options]
 
   -d      Monitor visible, so use do not disturb
   -h      This message
+  -n      Use the first output that isn't the one given to -p
   -o      Turn all outputs on
   -O      Turn all outputs off
   -p NAME Make NAME the primary output
@@ -34,19 +36,34 @@ function power_on_off() {
 
 ################################################################################
 function make_primary() {
-  local output=$1
+  local name=$1
+  local outputs=()
 
-  # Remove the panel from other monitors:
-  while IFS= read -r -d "" other; do
-    if [ "$other" != "$output" ]; then
-      wayle panel hide "$other"
-    fi
+  while IFS= read -r -d "" output; do
+    outputs+=("$output")
   done < <(niri msg --json outputs |
     jq --raw-output0 'keys | .[]')
 
-  wayle panel show "$output"
+  if [[ "$option_negate_output" -eq 1 ]]; then
+    for output in "${outputs[@]}"; do
+      if [[ "$output" != "$name" ]]; then
+        name=$output
+        break
+      fi
+    done
+  fi
 
-  if [ "$output" = "eDP-1" ]; then
+  # Remove the panel from other monitors:
+  for output in "${outputs[@]}"; do
+    if [ "$output" != "$name" ]; then
+      wayle panel hide "$output"
+    fi
+  done
+
+  # Show the panel on this monitor:
+  wayle panel show "$name"
+
+  if [ "$name" = "eDP-1" ]; then
     # This monitor is too small, so remove some details:
     wayle config set modules.niri-workspaces.label-strategy index
     wayle config set modules.niri-workspaces.monitor-specific true
@@ -57,7 +74,7 @@ function make_primary() {
   fi
 
   # Ensure workspaces are moved to this monitor:
-  superkey-bring-workspaces.sh "$output" || :
+  superkey-bring-workspaces.sh "$name" || :
 
   # Are we connected to a presenter/beamer?
   if [[ "$option_presenting" -eq 1 ]]; then
@@ -77,10 +94,14 @@ function make_primary() {
 ################################################################################
 function parse_options() {
   # Option arguments are in $OPTARG
-  while getopts "dhoOp:P" o; do
+  while getopts "dhnoOp:P" o; do
     case "${o}" in
     d)
       option_public=1
+      ;;
+
+    n)
+      option_negate_output=1
       ;;
 
     o)
