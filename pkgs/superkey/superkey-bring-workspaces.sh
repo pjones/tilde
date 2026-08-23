@@ -53,6 +53,10 @@ function bring_others() {
                   (.name | IN($skip[]) | not)))
         | map(.id)
         | .[]')
+
+  # I also like the "tasks" workspace to be on index 1:
+  niri msg action move-workspace-to-index \
+    --reference "tasks" 1 || :
 }
 
 ################################################################################
