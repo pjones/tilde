@@ -3,7 +3,7 @@
   # A NixOS module to monitor a system using Prometheus.
   flake.nixosModules.prometheus-node = moduleWithSystem (
     { ... }:
-    { config, lib, ... }:
+    { lib, ... }:
     let
       exporters = [
         "node"
@@ -17,33 +17,11 @@
           services.prometheus.exporters = builtins.listToAttrs (
             map (exporter: {
               name = exporter;
-              value =
-                let
-                  listenAddress = config.tilde.privateInterface;
-                  port = self.lib.services."prometheus-${exporter}";
-                  strport = toString port;
-                in
-                {
-                  inherit listenAddress port;
-                  enable = true;
-                  openFirewall = lib.mkForce false;
-
-                  # Ensure the exporters also listen on the loopback
-                  # device.  This is important when the collector and
-                  # exporters are on the same host and the hostname
-                  # resolves as 127.0.0.2.
-                  extraFlags = lib.optionals (listenAddress != "0.0.0.0") [
-                    "--web.listen-address"
-                    "127.0.0.2:${strport}"
-                  ];
-                };
-            }) exporters
-          );
-
-          systemd.services = builtins.listToAttrs (
-            map (exporter: {
-              name = "prometheus-${exporter}-exporter";
-              value = self.lib.nixos.waitForTilde config;
+              value = {
+                enable = true;
+                port = self.lib.services."prometheus-${exporter}";
+                openFirewall = lib.mkForce false;
+              };
             }) exporters
           );
         }
@@ -137,6 +115,15 @@
     in
     {
       options.tilde.programs.prometheus-collector = {
+        domain = lib.mkOption {
+          type = with lib.types; nullOr str;
+          default = null;
+          description = ''
+            Optional domain name.  If set, a reverse proxy will be
+            configured.
+          '';
+        };
+
         nodes = lib.mkOption {
           type = with lib.types; attrsOf (submodule nodeOptions);
           default = [ ];
@@ -153,7 +140,6 @@
       config = {
         services.prometheus = {
           enable = true;
-          listenAddress = config.tilde.privateInterface;
           port = self.lib.services.prometheus-collector;
           scrapeConfigs = toScrapeConfigs (builtins.attrValues cfg.nodes);
           ruleFiles = lib.singleton "${self.packages.${system}.prometheus-extra}/alerts.yml";
@@ -162,7 +148,12 @@
           );
         };
 
-        systemd.services.prometheus = self.lib.nixos.waitForTilde config;
+        tilde.www.forwards = lib.mkIf (cfg.domain != null) [
+          {
+            name = cfg.domain;
+            to = "http://127.0.0.1:${toString self.lib.services.prometheus-collector}";
+          }
+        ];
       };
     }
   );
@@ -176,6 +167,15 @@
     in
     {
       options.tilde.programs.prometheus-alertmanager = {
+        domain = lib.mkOption {
+          type = with lib.types; nullOr str;
+          default = null;
+          description = ''
+            Optional domain name.  If set, a reverse proxy will be
+            configured.
+          '';
+        };
+
         receivers = lib.mkOption {
           type = with lib.types; nonEmptyListOf (attrsOf anything);
           default = [ ];
@@ -191,7 +191,6 @@
       config = {
         services.prometheus.alertmanager = {
           enable = true;
-          listenAddress = config.tilde.privateInterface;
           port = self.lib.services.prometheus-alertmanager;
 
           configuration = {
@@ -212,7 +211,12 @@
           };
         };
 
-        systemd.services.alertmanager = self.lib.nixos.waitForTilde config;
+        tilde.www.forwards = lib.mkIf (cfg.domain != null) [
+          {
+            name = cfg.domain;
+            to = "http://127.0.0.1:${toString self.lib.services.prometheus-alertmanager}";
+          }
+        ];
       };
     }
   );
