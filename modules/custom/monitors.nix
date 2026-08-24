@@ -72,8 +72,8 @@
 
             alias = lib.mkOption {
               type = lib.types.str;
-              default = "$" + name;
-              description = "Configuration alias";
+              default = name;
+              description = "Configuration alias (without the dollar sign)";
             };
           };
         }
@@ -172,7 +172,7 @@
           name = layout.name;
           exec = "${self.packages.${system}.superkey}/bin/superkey-output.sh ${layout.args}";
           outputs = map (output: {
-            criteria = output.monitor.alias or output.monitor.connector;
+            criteria = if output.monitor ? alias then "$" + output.monitor.alias else output.monitor.connector;
             position = lib.concatMapStringsSep "," toString [
               output.position.x
               output.position.y
