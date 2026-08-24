@@ -28,7 +28,6 @@
             atkinson-hyperlegible # Typeface designed to offer greater legibility and readability for low vision readers
             dejavu_fonts # Typeface family based on the Bitstream Vera fonts
             hermit # Monospace font designed to be clear, pragmatic and very readable
-            self.packages.${system}.nerd-hyperlegible
           ];
         };
       };

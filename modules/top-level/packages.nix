@@ -74,8 +74,6 @@
 
         mediarc = self.inputs.mediarc.packages.${system}.mediarc;
 
-        nerd-hyperlegible = pkgs.callPackage ../../pkgs/nerd-hyperlegible.nix { };
-
         pjones-avatar = pkgs.callPackage ../../pkgs/pjones-avatar.nix { };
 
         prometheus-extra = pkgs.callPackage ../../pkgs/prometheus-extra { };
