@@ -37,31 +37,9 @@ function power_on_off() {
 ################################################################################
 function make_primary() {
   local name=$1
-  local outputs=()
 
-  while IFS= read -r -d "" output; do
-    outputs+=("$output")
-  done < <(niri msg --json outputs |
-    jq --raw-output0 'keys | .[]')
-
-  if [[ "$option_negate_output" -eq 1 ]]; then
-    for output in "${outputs[@]}"; do
-      if [[ "$output" != "$name" ]]; then
-        name=$output
-        break
-      fi
-    done
-  fi
-
-  # Remove the panel from other monitors:
-  for output in "${outputs[@]}"; do
-    if [ "$output" != "$name" ]; then
-      wayle panel hide "$output"
-    fi
-  done
-
-  # Show the panel on this monitor:
-  wayle panel show "$name"
+  # Only show the panel on this output.
+  superkey-panel.sh -o "$name"
 
   if [ "$name" = "eDP-1" ]; then
     # This monitor is too small, so remove some details:
@@ -147,6 +125,20 @@ function main() {
     ;;
 
   primary)
+    if [[ "$option_negate_output" ]]; then
+      output=$(
+        niri msg --json outputs |
+          jq --raw-output \
+            --arg to_remove "$option_output" \
+            'keys | map(select(. != $to_remove)) .[]' |
+          head -n 1
+      )
+
+      if [[ -n "$output" ]]; then
+        option_output=$output
+      fi
+    fi
+
     make_primary "$option_output"
     ;;
   esac

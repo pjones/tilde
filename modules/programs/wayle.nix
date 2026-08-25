@@ -143,7 +143,10 @@
               };
 
               dashboard = {
+                icon-color = "blue";
                 dropdown-lock-command = "loginctl lock-session";
+                right-click = "${self.packages.${system}.superkey}/bin/superkey-panel.sh -H";
+                middle-click = "${self.packages.${system}.superkey}/bin/superkey-panel.sh";
               };
 
               idle-inhibit = {
