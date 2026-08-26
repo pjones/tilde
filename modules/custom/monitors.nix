@@ -4,7 +4,7 @@
     { system, ... }:
     { config, lib, ... }:
     let
-      cfg = config.tilde;
+      cfg = config.tilde.monitors;
 
       identityType = lib.types.submodule {
         options = {
@@ -182,8 +182,8 @@
       };
     in
     {
-      options.tilde = {
-        monitors = lib.mkOption {
+      options.tilde.monitors = {
+        devices = lib.mkOption {
           type = with lib.types; attrsOf monitorType;
           default = { };
           description = "Monitors that you may connect to";
@@ -194,17 +194,108 @@
           default = [ ];
           description = "Layouts to automatically activate";
         };
+
+        primary = lib.mkOption {
+          type = lib.types.str;
+          default = "internal";
+          description = "The name of the primary monitor";
+        };
+
+        extraNiri = lib.mkOption {
+          type = with lib.types; attrsOf anything;
+          default = { };
+          description = "Extra Niri config for the primary monitor";
+        };
       };
 
       config = {
+        tilde.monitors.devices = {
+          home = {
+            connector.serial = "17ZP7HA000040";
+            width = 2560;
+            height = 1440;
+          };
+
+          work = {
+            connector.serial = "S8LMQS000351";
+            width = 2560;
+            height = 1440;
+          };
+
+          conference = {
+            connector.model = "V864Q";
+            width = 1920;
+            height = 1200;
+            rate = 59.95;
+          };
+        };
+
+        tilde.monitors.layouts = [
+          {
+            name = "home";
+            args = "-n -p ${cfg.devices.${cfg.primary}.connector}";
+            outputs = [
+              "home"
+              "internal"
+            ];
+          }
+          {
+            name = "work";
+            args = "-dn -p ${cfg.devices.${cfg.primary}.connector}";
+            outputs = [
+              "work"
+              "internal"
+            ];
+          }
+          {
+            name = "conference";
+            args = "-P -p ${cfg.devices.${cfg.primary}.connector}";
+            outputs = [
+              "internal"
+              "conference"
+            ];
+          }
+          {
+            name = "others";
+            args = "-P -p ${cfg.devices.${cfg.primary}.connector}";
+            outputs = [
+              "internal"
+              "*"
+            ];
+          }
+          {
+            name = "internal";
+            args = "-p ${cfg.devices.${cfg.primary}.connector}";
+            outputs = [ "internal" ];
+          }
+        ];
+
         services.kanshi = {
           enable = true;
           settings =
-            map toKanshiOutput (builtins.attrValues cfg.monitors)
-            ++ map (toKanshiProfile cfg.monitors) cfg.layouts;
+            map toKanshiOutput (builtins.attrValues cfg.devices)
+            ++ map (toKanshiProfile cfg.devices) cfg.layouts;
         };
+
+        tilde.wayland.primaryOutput = cfg.devices.${cfg.primary}.connector;
+
+        wayland.windowManager.niri.settings =
+          let
+            monitor = cfg.devices.${cfg.primary};
+          in
+          {
+            output = [
+              (
+                {
+                  _args = [ monitor.connector ];
+                  mode = with monitor; "${toString width}x${toString height}";
+                  scale = monitor.scale;
+                }
+                // cfg.extraNiri
+              )
+            ];
+          };
       };
     }
   );
-
 }

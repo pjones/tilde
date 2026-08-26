@@ -86,100 +86,24 @@ in
               mu
             ];
 
-            config =
-              let
-                # niri msg outputs|grep Output
-                monitors = {
-                  internal = {
-                    connector = "eDP-1";
-                    width = 2256;
-                    height = 1504;
-                    scale = 1.4;
-                  };
+            config = {
+              tilde.programs.ssh.keysDir = "~/keys/ssh";
 
-                  home = {
-                    connector.serial = "17ZP7HA000040";
-                    width = 2560;
-                    height = 1440;
-                  };
-
-                  work = {
-                    connector.serial = "S8LMQS000351";
-                    width = 2560;
-                    height = 1440;
-                  };
-
-                  conference = {
-                    connector.model = "V864Q";
-                    width = 1920;
-                    height = 1200;
-                    rate = 59.95;
-                  };
-                };
-
-                layouts = [
-                  {
-                    name = "home";
-                    args = "-n -p ${monitors.internal.connector}";
-                    outputs = [
-                      "home"
-                      "internal"
-                    ];
-                  }
-                  {
-                    name = "work";
-                    args = "-dn -p ${monitors.internal.connector}";
-                    outputs = [
-                      "work"
-                      "internal"
-                    ];
-                  }
-                  {
-                    name = "conference";
-                    args = "-P -p ${monitors.internal.connector}";
-                    outputs = [
-                      "internal"
-                      "conference"
-                    ];
-                  }
-                  {
-                    name = "others";
-                    args = "-P -p ${monitors.internal.connector}";
-                    outputs = [
-                      "internal"
-                      "*"
-                    ];
-                  }
-                  {
-                    name = "internal";
-                    args = "-p ${monitors.internal.connector}";
-                    outputs = [ "internal" ];
-                  }
-                ];
-              in
-              {
-                tilde.programs.ssh.keysDir = "~/keys/ssh";
-                tilde.wayland.primaryOutput = monitors.internal.connector;
-                tilde.monitors = monitors;
-                tilde.layouts = layouts;
-
-                wayland.windowManager.niri.settings = {
-                  output = [
-                    {
-                      _args = [ monitors.internal.connector ];
-                      mode = with monitors.internal; "${toString width}x${toString height}";
-                      scale = monitors.internal.scale;
-
-                      layout = {
-                        # Smaller windows are hard to use:
-                        default-column-width.proportion = 0.5;
-                      };
-                    }
-
-                  ];
-                };
-
+              # niri msg outputs|grep Output
+              tilde.monitors.devices.internal = {
+                connector = "eDP-1";
+                width = 2256;
+                height = 1504;
+                scale = 1.4;
               };
+
+              tilde.monitors.extraNiri = {
+                layout = {
+                  # Smaller windows are hard to use:
+                  default-column-width.proportion = 0.5;
+                };
+              };
+            };
           };
       };
     }
