@@ -251,6 +251,11 @@
           };
         };
 
+        # Automatically sync icons used in the configuration file.
+        xdg.configFile."wayle/config.toml".onChange = ''
+          ${config.services.wayle.package}/bin/wayle icons sync || :
+        '';
+
         xdg.configFile."wayle/styles/index.scss".text = ''
           .org-clock-dbus.negative menubutton.bar-button {
             --bar-btn-label-color: var(--bg-surface);
