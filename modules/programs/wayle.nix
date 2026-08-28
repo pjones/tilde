@@ -138,7 +138,7 @@
               };
 
               clock = {
-                icon-name = "ld-clock-symbolic";
+                icon-name = "ld-watch-symbolic";
                 format = "%Y-%m-%d %H:%M (%Z)";
               };
 
