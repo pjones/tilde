@@ -16,6 +16,7 @@
         libvirt
         networking
         podman
+        polkit
         printing
         sound
         udiskie
