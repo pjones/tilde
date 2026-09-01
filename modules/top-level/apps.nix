@@ -1,7 +1,7 @@
 { self, ... }:
 {
   perSystem =
-    { system, ... }:
+    { pkgs, system, ... }:
     {
       apps.default = {
         type = "app";
@@ -17,6 +17,20 @@
 
           Use the -h command line option to learn more.
         '';
+      };
+
+      apps.enable-cache = {
+        type = "app";
+
+        meta.description = ''
+          Configure Nix to use the tilde binary cache.
+        '';
+
+        program = toString (
+          pkgs.writeShellScript "enable-cache" ''
+            ${pkgs.cachix}/bin/cachix use pjones
+          ''
+        );
       };
 
       # Run a VM then take a screenshot and store it locally:
