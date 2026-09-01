@@ -56,6 +56,10 @@
     zshrc.url = "github:pjones/zshrc";
     zshrc.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Anyrun launcher.
+    anyrun.url = "github:anyrun-org/anyrun";
+    anyrun.inputs.nixpkgs.follows = "nixpkgs";
+
     # For packages I'm building directly:
     firefox-csshacks = {
       url = "github:MrOtherGuy/firefox-csshacks";
