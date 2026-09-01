@@ -39,6 +39,7 @@
     { config, lib, ... }:
     {
       imports = with self.homeModules; [
+        anyrun
         gtklock
         kdeconnect
         niri
