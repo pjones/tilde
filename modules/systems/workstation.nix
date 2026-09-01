@@ -159,7 +159,9 @@
             lib.optionals pkgs.stdenv.isx86_64 (
               with pkgs;
               [
-                makemkv # Convert blu-ray and dvd to mkv
+                # NOTE: makemkv is currently offline:
+                #
+                # makemkv # Convert blu-ray and dvd to mkv
               ]
             )
           ++ lib.optionals config.tilde.workstation.design (
