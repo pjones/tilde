@@ -27,4 +27,4 @@ jobs:
 
       - name: Linux Full Check
         if: runner.os == 'Linux'
-        run: nix flake check --print-build-logs
+        run: nix flake check --print-build-logs --max-jobs 1
