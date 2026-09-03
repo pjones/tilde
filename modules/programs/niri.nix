@@ -356,7 +356,8 @@
                 "Mod+Print".screenshot-window = { };
                 "Mod+Return".spawn = [ "eterm" ];
                 "Mod+Shift+Slash".show-hotkey-overlay = { };
-                "Mod+Space".spawn = [ "rofi-launcher.sh" ];
+                "Mod+Space".spawn = [ "anyrun" ];
+                "Mod+Shift+Space".spawn = [ "rofi-launcher.sh" ];
                 "Mod+Tab".spawn = [
                   "swaync-client"
                   "-t"
