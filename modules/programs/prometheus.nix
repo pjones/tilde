@@ -106,12 +106,19 @@
           scrape = {
             node = mkDefaultEnabledOption "Prometheus node exporter";
             systemd = mkDefaultEnabledOption "Prometheus systemd exporter";
+            immich-api = lib.mkEnableOption "Immich API exporter";
+            immich-microservices = lib.mkEnableOption "Immich microservices exporter";
           };
         };
       };
 
       # Generate scrape configuration for Prometheus.
-      toScrapeConfigs = nodes: optionalScrape "node" nodes ++ optionalScrape "systemd" nodes;
+      toScrapeConfigs =
+        nodes:
+        optionalScrape "node" nodes
+        ++ optionalScrape "systemd" nodes
+        ++ optionalScrape "immich-api" nodes
+        ++ optionalScrape "immich-microservices" nodes;
     in
     {
       options.tilde.programs.prometheus-collector = {

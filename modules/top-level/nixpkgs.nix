@@ -18,6 +18,10 @@
         config.permittedInsecurePackages = [ "python3.13-pypdf3-1.0.6" ];
         overlays = builtins.attrValues self.overlays;
       };
+
+      _module.args.pkgs-unstable = import inputs.unstable {
+        inherit system;
+      };
     };
 
   # Export the configured nixpkgs from above:

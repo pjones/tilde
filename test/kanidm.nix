@@ -10,6 +10,7 @@ let
   );
 
   fakeClientIDs = {
+    immich = "ohveph6eejeigiengak2";
     vaultwarden = "ca4ea8aujaawie1tahro";
     miniflux = "thaeti9bivahtieghi5a";
   };
@@ -24,7 +25,7 @@ pkgs.testers.nixosTest {
     ];
   };
 
-  nodes.machine = { modulesPath, ... }: {
+  nodes.kanidm = { modulesPath, ... }: {
     imports = [
       (modulesPath + "/../tests/common/acme/client")
       self.nixosModules.test
@@ -91,9 +92,20 @@ pkgs.testers.nixosTest {
           tilde = {
             displayName = "Tilde User";
             mailAddresses = [ "tilde@example.test" ];
-            groups = [ "vaultwarden_users" ];
+            groups = [
+              "immich_admins"
+              "immich_users"
+              "miniflux_users"
+              "vaultwarden_users"
+            ];
           };
         };
+      };
+
+      services.immich = {
+        enable = true;
+        domain = "immich.test";
+        basicSecretFile = fakePasswordFile;
       };
 
       services.miniflux = {
@@ -110,13 +122,46 @@ pkgs.testers.nixosTest {
     };
   };
 
+  nodes.immich = { nodes, modulesPath, ... }: {
+    imports = [
+      (modulesPath + "/../tests/common/acme/client")
+      self.nixosModules.test
+      self.nixosModules.immich
+    ];
+
+    virtualisation = {
+      cores = 2;
+      memorySize = 2048;
+      diskSize = 4096;
+    };
+
+    networking = {
+      domain = "test";
+
+      hosts.${nodes.kanidm.networking.primaryIPAddress} = [
+        "kanidm.test"
+      ];
+    };
+
+    tilde.www.defaultHost = "immich.test";
+
+    tilde.programs.immich = {
+      domain = "immich.test";
+      sso.enable = true;
+      sso.domain = "kanidm.test";
+      sso.clientIDs = fakeClientIDs;
+      sso.clientSecretFile = fakePasswordFile;
+    };
+  };
+
   testScript = ''
     acme.wait_for_open_port(443)
-    machine.wait_for_unit("miniflux.service")
-    machine.wait_for_unit("vaultwarden.service")
-    machine.wait_for_unit("kanidm.service")
+    kanidm.wait_for_unit("miniflux.service")
+    kanidm.wait_for_unit("vaultwarden.service")
+    kanidm.wait_for_unit("kanidm.service")
+    immich.wait_for_unit("immich-server.service")
 
-    machine.succeed(r"""
+    kanidm.succeed(r"""
       curl \
         --insecure \
         --silent \
@@ -130,7 +175,7 @@ pkgs.testers.nixosTest {
     """)
 
     # Miniflux makes it easy to test Kandim:
-    machine.succeed(r"""
+    kanidm.succeed(r"""
       curl \
         --insecure \
         --silent \
@@ -140,5 +185,35 @@ pkgs.testers.nixosTest {
         --output /dev/null \
         https://miniflux.test/oauth2/oidc/redirect
     """)
+
+    # Immich tests:
+    immich.wait_for_open_port(${toString self.lib.services.immich})
+
+    immich.succeed(r"""
+      curl \
+        --insecure \
+        --silent \
+        --show-error \
+        --fail \
+        --output /dev/null \
+        http://localhost:${toString self.lib.services.immich}/
+    """)
+
+    # Can't really test the OIDC redirect because it's done in JS.
+    immich.succeed(r"""
+      curl \
+        --insecure \
+        --silent \
+        --show-error \
+        --fail \
+        --output /dev/null \
+        --write-out '%{http_code}' \
+        https://immich.test/auth/login |
+        grep -E '200'
+    """)
+
+    # Metrics:
+    immich.wait_until_succeeds("curl -sSf http://localhost:${toString self.lib.services.prometheus-immich-api}/metrics")
+    immich.wait_until_succeeds("curl -sSf http://localhost:${toString self.lib.services.prometheus-immich-microservices}/metrics")
   '';
 }

@@ -46,6 +46,7 @@
 
           ${lib.optionalString (lib.hasPrefix "https" f.to) "SSLProxyEngine on"}
           ProxyPass / ${f.to}/ upgrade=websocket
+          ProxyPassReverse / ${f.to}/
         '';
       };
 

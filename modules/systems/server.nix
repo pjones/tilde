@@ -5,7 +5,10 @@
     http = 80;
     https = 443;
     jellyfin-unknown = 1900; # NixOS opens this, not sure why
+    immich = 2283;
+    immich-ml = 3003;
     stun = 3478;
+    redis = 6379;
     bitlbee = 6666;
     znc = 6667;
     jellyfin-discovery = 7359;
@@ -20,6 +23,8 @@
     prometheus-alertmanager = 9093;
     prometheus-node = 9100;
     prometheus-systemd = 9558;
+    prometheus-immich-api = 9683;
+    prometheus-immich-microservices = 9684;
     wireguard = 51820;
   };
 }

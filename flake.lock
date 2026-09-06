@@ -1021,6 +1021,7 @@
         "sops-nix": "sops-nix",
         "tmuxrc": "tmuxrc",
         "tridactyl_emacs_config": "tridactyl_emacs_config",
+        "unstable": "unstable",
         "zshrc": "zshrc"
       }
     },
@@ -1129,6 +1130,19 @@
         "repo": "tridactyl_emacs_config",
         "rev": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd",
         "type": "github"
+      }
+    },
+    "unstable": {
+      "locked": {
+        "lastModified": 1788400875,
+        "narHash": "sha256-v4ZEET1Ah1K9+wMaIwPH/JTQK3MwW/gZC/SyjnlBX74=",
+        "rev": "5545adfad2e98de106a5544ca7067e03010410bd",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1066699.5545adfad2e9/nixexprs.tar.zst"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst"
       }
     },
     "xref-project-history": {

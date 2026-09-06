@@ -81,6 +81,12 @@
           description = "Port that Kanidm listens on";
         };
 
+        services.immich = lib.mkOption {
+          type = lib.types.submodule serviceOptions;
+          default = { };
+          description = "Configure Kanidm for Immich";
+        };
+
         services.miniflux = lib.mkOption {
           type = lib.types.submodule serviceOptions;
           default = { };
@@ -118,11 +124,15 @@
             instanceUrl = "https://${cfg.domain}";
 
             groups =
-              lib.optionalAttrs cfg.services.vaultwarden.enable {
-                vaultwarden_users = { };
+              lib.optionalAttrs cfg.services.immich.enable {
+                immich_users = { };
+                immich_admins = { };
               }
               // lib.optionalAttrs cfg.services.miniflux.enable {
                 miniflux_users = { };
+              }
+              // lib.optionalAttrs cfg.services.vaultwarden.enable {
+                vaultwarden_users = { };
               };
 
             # Notes:
@@ -142,6 +152,30 @@
               imageFile = "${self.packages.${system}.vaultwarden-logo}/share/logo.svg";
               basicSecretFile = cfg.services.vaultwarden.basicSecretFile;
               scopeMaps.vaultwarden_users = standardScopes;
+            };
+
+            systems.oauth2.${cfg.clientIDs.immich} = lib.mkIf cfg.services.immich.enable {
+              displayName = "Immich Photo Manager";
+
+              originUrl = [
+                "https://${cfg.services.immich.domain}/auth/login"
+                "https://${cfg.services.immich.domain}/user-settings"
+                "app.immich:///oauth-callback"
+              ];
+
+              originLanding = "https://${cfg.services.immich.domain}";
+              imageFile = "${self.packages.${system}.immich-logo}/share/logo.svg";
+              basicSecretFile = cfg.services.immich.basicSecretFile;
+
+              claimMaps.immich_role = {
+                joinType = "csv";
+                valuesByGroup = {
+                  immich_admins = [ "admin" ];
+                };
+              };
+
+              scopeMaps.immich_users = standardScopes;
+              scopeMaps.immich_admins = standardScopes;
             };
 
             systems.oauth2.${cfg.clientIDs.miniflux} = lib.mkIf cfg.services.miniflux.enable {
