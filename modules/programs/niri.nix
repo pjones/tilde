@@ -242,8 +242,8 @@
               };
 
               binds = {
-                "Mod+Semicolon".next-window = { };
-                "Mod+colon".next-window._props.filter = "app-id";
+                "Mod+Apostrophe".next-window = { };
+                "Mod+Quotedbl".next-window._props.filter = "app-id";
               };
             };
 
@@ -330,7 +330,7 @@
                 "Mod+W".expand-column-to-available-width = { };
 
                 # Workspaces:
-                "Mod+Apostrophe".focus-workspace-previous = { };
+                "Mod+Semicolon".focus-workspace-previous = { };
                 "Mod+N".focus-workspace-down = { };
                 "Mod+O".toggle-overview = { };
                 "Mod+P".focus-workspace-up = { };
