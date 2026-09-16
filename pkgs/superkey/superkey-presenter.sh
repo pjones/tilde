@@ -62,12 +62,10 @@ function main() {
   if [[ "$option_enable" -eq 1 ]]; then
     wayle idle on
     wayle idle duration 480
-    wayle config set modules.idle-inhibit.label-show true
     wayle wallpaper stop
     wayle wallpaper set ~/documents/pictures/backgrounds/disneyland/haunted-house/wallpaper.jpg
     superkey-dnd.sh
   else
-    wayle config set modules.idle-inhibit.label-show false
     wayle idle off
     superkey-dnd.sh -d
 
