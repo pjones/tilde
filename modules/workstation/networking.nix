@@ -1,7 +1,7 @@
 { moduleWithSystem, ... }:
 {
   flake.nixosModules.networking = moduleWithSystem (
-    { pkgs, ... }:
+    { ... }:
     { ... }:
     {
       config = {
@@ -11,11 +11,7 @@
 
           networkmanager = {
             enable = true;
-            plugins = with pkgs; [
-              networkmanager-l2tp
-              networkmanager-sstp
-              networkmanager-vpnc
-            ];
+            plugins = [ ];
           };
         };
       };
