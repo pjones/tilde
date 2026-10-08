@@ -40,6 +40,13 @@ class Gen:
         """Return the IP address of the given peer."""
         return f"{self.config['prefix']}.{peer['octet']}"
 
+    def peer_port(self, peer):
+        """Return the port number for the given peer."""
+        if "port" in peer and peer["port"] is not None:
+            return str(peer["port"])
+        else:
+            return str(self.config["port"])
+
     def peer_allowed_ips(self, peer):
         """Return a comma-separated list of allowed IPs for this peer."""
         ips = []
@@ -67,7 +74,7 @@ class Gen:
         io.writelines(
             [
                 "[Interface]\n",
-                f"ListenPort = {self.config['port']}\n",
+                f"ListenPort = {self.peer_port(self.host_peer)}\n",
                 f"Address = {self.peer_ip(self.host_peer)}/24\n",
             ]
         )
@@ -114,7 +121,7 @@ class Gen:
                 io.write("PersistentKeepalive = 25\n")
 
             if "hostname" in peer and peer["hostname"] is not None:
-                io.write(f"Endpoint = {peer['hostname']}:{self.config['port']}\n")
+                io.write(f"Endpoint = {peer['hostname']}:{self.peer_port(peer)}\n")
 
     def write_exit(self, io, peer_name):
         """Write a configuration file for sending all traffic to the given exit node"""

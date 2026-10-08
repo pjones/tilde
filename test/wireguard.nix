@@ -37,6 +37,7 @@ let
       type = "exit";
       key = keys.depeche_mode.pub;
       hostname = ips.depeche_mode;
+      port = 51820;
     }
 
     {

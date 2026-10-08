@@ -79,6 +79,12 @@
             '';
           };
 
+          port = lib.mkOption {
+            type = with lib.types; nullOr port;
+            default = null;
+            description = "Override the port this peer listens on";
+          };
+
           nameservers = lib.mkOption {
             type = with lib.types; nullOr (listOf str);
             default = null;
@@ -111,6 +117,7 @@
         builtins.filter (peer: (peer.type == "router" || peer.type == "exit") && peer.name != host) peers;
 
       peerIP = peer: "${cfg.prefix}.${toString peer.octet}";
+      peerPort = peer: if peer.port == null then cfg.port else peer.port;
       me = getPeer config.networking.hostName cfg.peers;
       exits = exitPeers config.networking.hostName cfg.peers;
       externalInterface = config.networking.nat.externalInterface;
@@ -161,7 +168,7 @@
           tilde.privateInterface = peerIP me;
           tilde.networkWait = lib.singleton "wg-quick-${cfg.name}.service";
 
-          networking.firewall.allowedUDPPorts = [ cfg.port ];
+          networking.firewall.allowedUDPPorts = [ (peerPort me) ];
           networking.firewall.trustedInterfaces = [ cfg.name ];
 
           networking.wg-quick.interfaces.${cfg.name} = {
