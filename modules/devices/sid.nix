@@ -36,7 +36,7 @@ in
 
         boot.loader.systemd-boot.enable = true;
         boot.loader.efi.canTouchEfiVariables = true;
-
+        boot.kernelParams = [ "consoleblank=60" ];
         boot.initrd.kernelModules = [ "dm-snapshot" ];
         boot.kernelModules = [ "kvm-intel" ];
         boot.extraModulePackages = [ ];
