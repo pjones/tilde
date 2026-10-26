@@ -224,9 +224,10 @@
 
           conference = {
             connector.model = "V864Q";
-            width = 1920;
-            height = 1200;
-            rate = 59.95;
+            width = 3840;
+            height = 2160;
+            rate = 30.0;
+            scale = 1.6;
           };
         };
 
