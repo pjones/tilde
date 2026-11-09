@@ -118,6 +118,9 @@ pkgs.testers.nixosTest {
     for peer in [public_enemy, depeche_mode, nirvana, fever_ray]:
       peer.wait_for_unit("wg-quick-wg0.service")
 
+    public_enemy.wait_for_unit("adguardhome.service")
+    fever_ray.wait_for_unit("prometheus-node-exporter.service")
+
     nirvana.succeed("ping -c1 10.11.12.1")
     nirvana.succeed("ping -c1 10.11.12.2")
     nirvana.succeed("ping -c1 public_enemy.private.freerangebits.com")
