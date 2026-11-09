@@ -17,9 +17,9 @@ ratio 2 1
 date-padding 1
 
 set date on
-set hours off
+set hours on
 set minutes on
-set seconds on
+set seconds off
 set hour-24 on
 set auto-size on
 set auto-ratio on
@@ -36,6 +36,3 @@ style background clear
 style prompt clear
 style success green
 style error red
-
-mode timer
-timer 15m:0s
