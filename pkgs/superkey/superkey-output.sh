@@ -10,7 +10,7 @@ option_output=
 option_mode=power
 option_presenting=0
 option_public=0
-option_negate_output=0
+option_next_output=0
 
 ################################################################################
 usage() {
@@ -40,6 +40,11 @@ function make_primary() {
 
   # Only show the panel on this output.
   superkey-panel.sh -o "$name"
+
+  # Change the primary monitor w.r.t. wayle:
+  wayle config set osd.monitor "$name"
+  wayle config set styling.theming-monitor "$name"
+  wayle config set modules.notifications.popup-monitor "$name"
 
   if [ "$name" = "eDP-1" ]; then
     # This monitor is too small, so remove some details:
@@ -79,7 +84,7 @@ function parse_options() {
       ;;
 
     n)
-      option_negate_output=1
+      option_next_output=1
       ;;
 
     o)
@@ -125,7 +130,7 @@ function main() {
     ;;
 
   primary)
-    if [[ "$option_negate_output" ]]; then
+    if [[ "$option_next_output" ]]; then
       output=$(
         niri msg --json outputs |
           jq --raw-output \
