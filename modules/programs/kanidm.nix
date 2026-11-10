@@ -117,7 +117,7 @@
 
       config = {
         services.kanidm = lib.recursiveUpdate {
-          package = pkgs.kanidmWithSecretProvisioning_1_11;
+          package = pkgs.kanidmWithSecretProvisioning_1_12;
 
           provision = {
             enable = true;
