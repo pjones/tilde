@@ -169,14 +169,14 @@
       toolsToKeys =
         tools:
         builtins.listToAttrs (
-          builtins.map (
+          map (
             tool:
             let
               toRemove = toolAttrsToRemove tool ++ [
                 "key" # Not really part of the config
                 "type" # Turned into "tool"
               ];
-              fixed = builtins.removeAttrs tool toRemove // {
+              fixed = removeAttrs tool toRemove // {
                 tool = tool.type;
               };
               name = tool.key;
@@ -276,6 +276,14 @@
             Settings written into the beamerpresenter.conf file.
           '';
         };
+
+        ui = lib.mkOption {
+          type = with lib.types; listOf anything;
+          default = [ ];
+          description = ''
+            Settings for the beamer presenter UI JSON file.
+          '';
+        };
       };
 
       config = {
@@ -288,7 +296,7 @@
             "engine" = "mupdf";
             "gestures" = false;
             "automatic slide changes" = false;
-            "gui config" = "${pkgs.beamerpresenter}/etc/xdg/beamerpresenter/gui.json";
+            "gui config" = "${config.xdg.configHome}/beamerpresenter/gui.json";
           };
 
           drawing = {
@@ -325,7 +333,86 @@
           // toolsToKeys cfg.tools;
         };
 
+        tilde.programs.beamerpresenter.ui = [
+          {
+            type = "horizontal";
+            children = [
+              {
+                type = "tabbed";
+                orientation = "north";
+                children = [
+                  {
+                    type = "vertical";
+                    title = "Slide";
+                    keys = "S";
+                    children = [
+                      {
+                        title = "Slide";
+                        type = "slide";
+                        "page part" = "right";
+                        file = "presentation";
+                        shift = 0;
+                        threads = 1;
+                        mute = true;
+                        "media controls" = true;
+                        media = true;
+                        color = "black";
+                        "show tools" = true;
+                      }
+                      {
+                        title = "Preview";
+                        type = "slide";
+                        file = "presentation";
+                        shift = 1;
+                        threads = 1;
+                        overlays = "last";
+                        transitions = false;
+                        media = false;
+                        "cache hash" = 1;
+                      }
+                    ];
+                  }
+                  {
+                    title = "Thumbnails";
+                    type = "thumbnails";
+                    keys = "O";
+                    overlay = "skip";
+                    columns = 4;
+                  }
+                ];
+              }
+              {
+                type = "vertical";
+                children = [
+                  {
+                    type = "clock";
+                  }
+                  {
+                    type = "toc";
+                    file = "presentation";
+                  }
+                  {
+                    type = "slide number";
+                    keys = "N";
+                  }
+                ];
+              }
+            ];
+          }
+          {
+            type = "slide";
+            file = "presentation";
+            "page part" = "left";
+            shift = 0;
+            threads = 2;
+            master = true;
+            mute = false;
+            color = "black";
+          }
+        ];
+
         xdg.configFile."beamerpresenter/beamerpresenter.conf".text = toINI cfg.settings;
+        xdg.configFile."beamerpresenter/gui.json".text = builtins.toJSON cfg.ui;
       };
     }
   );
