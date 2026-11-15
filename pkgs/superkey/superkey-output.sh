@@ -130,7 +130,7 @@ function main() {
     ;;
 
   primary)
-    if [[ "$option_next_output" ]]; then
+    if [[ "$option_next_output" -eq 1 ]]; then
       output=$(
         niri msg --json outputs |
           jq --raw-output \
