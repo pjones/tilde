@@ -17,6 +17,8 @@
           description = "Path to the device file for this disk.";
         };
 
+        noexec = lib.mkEnableOption "Disable executable binaries";
+
         swap = {
           enable = lib.mkOption {
             type = lib.types.bool;
@@ -81,7 +83,8 @@
                       mountOptions = [
                         "defaults"
                         "x-systemd.device-timeout=infinity"
-                      ];
+                      ]
+                      ++ lib.optional cfg.noexec "noexec";
                     };
                   };
                 };

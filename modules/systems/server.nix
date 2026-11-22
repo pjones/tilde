@@ -31,9 +31,6 @@
         security.audit.enable = "lock";
         security.audit.rules = [ "-a exit,always -F arch=b64 -S execve" ];
 
-        # Don't allow executable binaries except for in /nix/store:
-        fileSystems."/".options = [ "noexec" ];
-
         # Further restrict OpenSSH:
         services.openssh = {
           settings.AllowStreamLocalForwarding = false;

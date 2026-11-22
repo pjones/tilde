@@ -47,6 +47,7 @@ in
         tilde.hardware.disks.single = {
           enable = true;
           device = "/dev/vda";
+          #noexec = true;
           swap.enable = false;
         };
 
