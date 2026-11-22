@@ -77,7 +77,14 @@
           };
         };
 
-        systemd.services.adguardhome = self.lib.nixos.waitForTilde config;
+        systemd.services.adguardhome = self.lib.nixos.waitForTilde config // {
+          # Needs to bind to UDP and TCP port 53:
+          serviceConfig = removeAttrs self.lib.hardening.serviceConfig [
+            "AmbientCapabilities"
+            "CapabilityBoundingSet"
+            "RestrictAddressFamilies"
+          ];
+        };
       };
     }
   );

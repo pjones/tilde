@@ -1,4 +1,9 @@
-{ moduleWithSystem, ... }:
+{
+  self,
+  lib,
+  moduleWithSystem,
+  ...
+}:
 
 {
   # Common settings for hardening a server.

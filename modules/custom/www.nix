@@ -1,4 +1,4 @@
-{ moduleWithSystem, ... }:
+{ self, moduleWithSystem, ... }:
 {
   # Configuration for http virtual hosts.
   flake.nixosModules.www = moduleWithSystem (
@@ -20,6 +20,12 @@
           others = builtins.filter (h: cfg.defaultHost != h.name) hosts;
         in
         default ++ others;
+
+      ##########################################################################
+      # Return a list of directories needed for all sites:
+      webDirs = map (
+        host: if host.documentRoot == null then hostDir host else host.documentRoot
+      ) sortedHosts;
 
       ##############################################################################
       # Convert a forward configuration into a virtual host.
@@ -329,7 +335,24 @@
           };
         };
 
-        systemd.services.httpd.after = [ "webmaster-setup.service" ];
+        systemd.services.httpd = {
+          after = [ "webmaster-setup.service" ];
+          # Needs `AmbientCapabilities` to bind to port 80 and 443:
+          serviceConfig =
+            (removeAttrs self.lib.hardening.serviceConfig [
+              "AmbientCapabilities"
+              "CapabilityBoundingSet"
+              "RestrictAddressFamilies"
+            ])
+            // {
+              # Allow write access to these directories:
+              BindPaths = [
+                "/var/log/httpd"
+              ];
+
+              BindReadOnlyPaths = webDirs;
+            };
+        };
       };
     }
   );

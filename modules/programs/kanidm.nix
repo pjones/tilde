@@ -207,10 +207,20 @@
         } cfg.config;
 
         # Kanidm won't start without these:
-        systemd.services.kanidm.unitConfig.ConditionPathExists = [
-          "${home}/fullchain.pem"
-          "${home}/key.pem"
-        ];
+        systemd.services.kanidm = {
+          unitConfig.ConditionPathExists = [
+            "${home}/fullchain.pem"
+            "${home}/key.pem"
+          ];
+
+          # FIXME: This break kanidm:
+          #
+          # serviceConfig = removeAttrs self.lib.hardening.serviceConfig [
+          #   "AmbientCapabilities"
+          #   "CapabilityBoundingSet"
+          #   "RestrictAddressFamilies"
+          # ];
+        };
 
         tilde.www.forwards = lib.singleton {
           name = cfg.domain;

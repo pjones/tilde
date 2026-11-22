@@ -69,6 +69,12 @@
           IMMICH_PORT = toString self.lib.services.immich-ml;
         };
 
+        systemd.services.immich-server = {
+          # FIXME: This breaks immich:
+          #
+          # serviceConfig = self.lib.hardening.serviceConfig;
+        };
+
         # Reverse proxy with TLS:
         tilde.www.forwards = lib.singleton {
           name = cfg.domain;
