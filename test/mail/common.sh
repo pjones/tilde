@@ -56,7 +56,13 @@ MAIL
 # shellcheck disable=2120
 function send_mail() {
   local to=${1:-"example@example.test"}
-  test_message |
-    sudo --login \
-      su lmtp --shell "$SHELL" --command "dovecot-lda -d $to -e"
+  local cmd=("dovecot-lda" "-d" "$to" "-e")
+
+  if [ "$(id)" -eq 0 ]; then
+    test_message |
+      su lmtp --shell "$SHELL" --command "${cmd[*]}"
+  else
+    test_message |
+      run0 --user=lmtp "${cmd[@]}"
+  fi
 }

@@ -1,5 +1,43 @@
-{ ... }:
+{ moduleWithSystem, ... }:
+
 {
+  # Common settings for hardening a server.
+  flake.nixosModules.server = moduleWithSystem (
+    { ... }:
+    { config, lib, ... }:
+    let
+      cfg = config.tilde.server;
+    in
+    {
+      options.tilde.server = with lib; {
+        openssh.groups = mkOption {
+          type = types.listOf types.str;
+          default = [ ];
+          description = "List of groups allowed to use SSH";
+        };
+      };
+
+      config = {
+        # Restrict access to Nix:
+        nix.settings.allowed-users = [ "root" ];
+
+        # Enable the audit log:
+        security.auditd.enable = true;
+        security.audit.enable = "lock";
+        security.audit.rules = [ "-a exit,always -F arch=b64 -S execve" ];
+
+        # Don't allow executable binaries except for in /nix/store:
+        fileSystems."/".options = [ "noexec" ];
+
+        # Further restrict OpenSSH:
+        services.openssh = {
+          settings.AllowStreamLocalForwarding = false;
+          settings.AllowGroups = cfg.openssh.groups;
+        };
+      };
+    }
+  );
+
   # Sort by: C-u 3 M-x sort-numeric-fields
   flake.lib.services = {
     http = 80;

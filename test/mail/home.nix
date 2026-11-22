@@ -19,13 +19,15 @@ pkgs.testers.nixosTest {
     };
 
     machine =
-      { ... }:
+      { lib, ... }:
       {
         imports = [
           self.nixosModules.test
           self.nixosModules.imapd
           ./common.nix
         ];
+
+        networking.hostName = "example";
 
         environment.systemPackages = [
           pkgs.jq
@@ -80,6 +82,11 @@ pkgs.testers.nixosTest {
               };
             };
           };
+
+        # Ensure tests can access the certificate:
+        systemd.services."acme-order-renew-example.test".postStop = ''
+          ${pkgs.acl}/bin/setfacl -R -m u:${user.name}:rX /var/lib/acme/example.test
+        '';
       };
   };
 
@@ -90,9 +97,6 @@ pkgs.testers.nixosTest {
         acme.wait_for_open_port(443)
         machine.wait_for_unit("dovecot.service")
 
-        # Ensure tests can access the certificate:
-        machine.succeed("${pkgs.acl}/bin/setfacl -R -m u:${user.name}:rX /var/lib/acme/example.test")
-
     with subtest("Log in"):
         machine.wait_until_tty_matches("1", "login: ")
         machine.send_chars("pjones\n")
@@ -102,6 +106,6 @@ pkgs.testers.nixosTest {
 
     with subtest("Mail configuration test"):
         machine.send_chars("mail-test-script\n")
-        machine.wait_for_file("${user.home}/mail-test-success", 60)
+        machine.wait_for_file("${user.home}/mail-test-success", 15)
   '';
 }

@@ -22,7 +22,6 @@
         self.nixosModules.hardening
         self.nixosModules.nix
         self.nixosModules.pjones
-        self.nixosModules.sudo
       ];
 
       options.tilde = {
@@ -48,6 +47,11 @@
       config = {
         system.stateVersion = self.lib.state.version;
 
+        # Ensure sudo is not available (must use run0):
+        security.sudo.enable = false;
+        security.run0.enableSudoAlias = true;
+        security.polkit.enable = true;
+
         # Basic firewall settings:
         networking.firewall = {
           enable = true;
@@ -69,9 +73,20 @@
         services.openssh = {
           enable = true;
           openFirewall = false; # Must go through VPN.
+          allowSFTP = false;
+          settings.AuthenticationMethods = "publickey";
           settings.PasswordAuthentication = false;
-          settings.PermitRootLogin = "without-password";
+          settings.KbdInteractiveAuthentication = false;
+          settings.PermitRootLogin = "prohibit-password";
+
+          settings.AllowGroups = [
+            "root"
+            "wheel"
+          ];
         };
+
+        # Don't install the default set of packages.
+        environment.defaultPackages = lib.mkForce [ ];
 
         # I want my user account in the wheel group for sudo:
         tilde.putInWheel = true;

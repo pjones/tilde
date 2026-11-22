@@ -60,7 +60,6 @@
         };
 
         networking.domain = "example.test";
-        security.sudo.wheelNeedsPassword = false;
 
         #users.users.${config.tilde.user}.password = user.password;
 

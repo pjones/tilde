@@ -26,7 +26,6 @@
         networking.hostName = "tilde-demo";
         tilde.putInWheel = true;
         users.users.${self.lib.test.user.name}.password = self.lib.test.user.password;
-        security.sudo.wheelNeedsPassword = false;
 
         home-manager.users.${self.lib.test.user.name} = {
           tilde.wayland.primaryOutput = "Virtual-1";

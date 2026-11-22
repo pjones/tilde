@@ -68,7 +68,7 @@ let
     };
   };
 
-  prometheusURL = "http://fever_ray.private.freerangebits.com:${toString self.lib.services.prometheus-node}/metrics";
+  prometheusURL = "http://fever_ray.private.test:${toString self.lib.services.prometheus-node}/metrics";
 in
 pkgs.testers.nixosTest {
   name = "tilde-wireguard-test";
@@ -83,7 +83,6 @@ pkgs.testers.nixosTest {
           extraConfig.${name}
         ];
 
-        networking.domain = "freerangebits.com";
         networking.hostName = name;
         networking.useDHCP = false;
         networking.nat.externalInterface = "eth1";
@@ -115,26 +114,26 @@ pkgs.testers.nixosTest {
   testScript = ''
     start_all()
 
-    for peer in [public_enemy, depeche_mode, nirvana, fever_ray]:
-      peer.wait_for_unit("wg-quick-wg0.service")
-
     public_enemy.wait_for_unit("adguardhome.service")
     fever_ray.wait_for_unit("prometheus-node-exporter.service")
 
+    for peer in [public_enemy, depeche_mode, nirvana, fever_ray]:
+      peer.wait_for_unit("wg-quick-wg0.service")
+
     nirvana.succeed("ping -c1 10.11.12.1")
     nirvana.succeed("ping -c1 10.11.12.2")
-    nirvana.succeed("ping -c1 public_enemy.private.freerangebits.com")
-    nirvana.succeed("ping -c1 depeche_mode.private.freerangebits.com")
+    nirvana.succeed("ping -c1 public_enemy.private.test")
+    nirvana.succeed("ping -c1 depeche_mode.private.test")
 
     # This last host takes a second to come online:
     nirvana.succeed("ping -c5 10.11.12.4")
     nirvana.succeed("host fever_ray | grep --fixed-strings 10.11.12.4")
-    nirvana.succeed("host fever_ray.private.freerangebits.com | grep --fixed-strings 10.11.12.4")
+    nirvana.succeed("host fever_ray.private.test | grep --fixed-strings 10.11.12.4")
 
     depeche_mode.succeed("ping -c1 10.11.12.1")
     depeche_mode.succeed("ping -c1 10.11.12.3")
-    depeche_mode.succeed("ping -c1 public_enemy.private.freerangebits.com")
-    depeche_mode.succeed("ping -c1 nirvana.private.freerangebits.com")
+    depeche_mode.succeed("ping -c1 public_enemy.private.test")
+    depeche_mode.succeed("ping -c1 nirvana.private.test")
 
     public_enemy.succeed("ping -c1 10.11.12.2")
     public_enemy.succeed("ping -c1 10.11.12.3")

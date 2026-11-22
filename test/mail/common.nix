@@ -25,10 +25,17 @@ in
 
   config = lib.mkMerge [
     (lib.mkIf config.tilde.programs.imapd.enable {
+      tilde.www.defaultHost = "example.test";
+
+      tilde.www.sites = lib.singleton {
+        name = "example.test";
+      };
+
       tilde.programs.imapd = {
         inherit passwordFile;
         debug = true;
         domain = "example.test";
+        useACMEHost = "example.test";
       };
 
       # Put the fake password file in the right place:

@@ -37,13 +37,17 @@
     in
     {
       imports = [
+        self.nixosModules.server
         self.nixosModules.tilde
         self.nixosModules.www
       ];
 
+      # Needed for ACME certs.
+      networking.domain = "test";
+
       tilde.putInWheel = true;
       users.users.${user.name}.password = user.password;
-      security.sudo.wheelNeedsPassword = false;
+      security.run0.wheelNeedsPassword = false;
     }
   );
 
