@@ -7,6 +7,10 @@
       environment.systemPackages = [
         self.packages.${system}.tilde-scripts-nixos
       ];
+
+      imports = with self.nixosModules; [
+        polkit
+      ];
     }
   );
 

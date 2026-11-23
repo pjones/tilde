@@ -50,7 +50,6 @@
         # Ensure sudo is not available (must use run0):
         security.sudo.enable = false;
         security.run0.enableSudoAlias = true;
-        security.polkit.enable = true;
 
         # Basic firewall settings:
         networking.firewall = {

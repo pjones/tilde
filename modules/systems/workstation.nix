@@ -16,7 +16,6 @@
         libvirt
         networking
         podman
-        polkit
         printing
         sound
         udiskie
@@ -59,6 +58,7 @@
         gnupg
         gtk
         peaclock
+        polkit
         rbw
         recoil
         ssh

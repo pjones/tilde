@@ -15,4 +15,13 @@
       };
     }
   );
+
+  flake.homeModules.polkit = moduleWithSystem (
+    { ... }:
+    { ... }:
+    {
+      services.polkit-gnome.enable = true;
+    }
+  );
+
 }
