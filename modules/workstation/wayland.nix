@@ -1,9 +1,13 @@
 { self, moduleWithSystem, ... }:
 {
   flake.nixosModules.wayland = moduleWithSystem (
-    { pkgs, system, ... }:
+    { pkgs, ... }:
     { lib, ... }:
     {
+      imports = with self.nixosModules; [
+        gnome-keyring
+      ];
+
       config = {
         xdg.portal = {
           enable = lib.mkDefault true;
@@ -39,6 +43,7 @@
     { config, lib, ... }:
     {
       imports = with self.homeModules; [
+        gnome-keyring
         gtklock
         kdeconnect
         niri
