@@ -1,10 +1,12 @@
 { self, moduleWithSystem, ... }:
 {
   flake.nixosModules.basic = moduleWithSystem (
-    { ... }:
+    { system, ... }:
     { ... }:
     {
-      # Placeholder.
+      environment.systemPackages = [
+        self.packages.${system}.tilde-scripts-nixos
+      ];
     }
   );
 

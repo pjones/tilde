@@ -54,6 +54,10 @@
           inherit tildeInstallScripts;
         };
 
+        tilde-scripts-nixos = pkgs.callPackage ../../pkgs/tilde-scripts-nixos.nix {
+          inherit tildeInstallScripts;
+        };
+
         encryption-utils = inputs.encryption-utils.packages.${system}.encryption-utils;
 
         # Firefox CSS Hacks:
