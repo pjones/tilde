@@ -31,7 +31,12 @@
   );
 
   flake.homeModules.workstation = moduleWithSystem (
-    { pkgs, system, ... }:
+    {
+      pkgs,
+      pkgs-unstable,
+      system,
+      ...
+    }:
     { config, lib, ... }:
     let
       mpvWithOverrides = pkgs.mpv.override {
@@ -89,7 +94,6 @@
             cdparanoia # A tool and library for reading digital audio from CDs
             cdrkit # cdrecord, mkisofs, etc.
             duckdb # Embeddable SQL OLAP Database Management System
-            eduvpn-client # Linux client for eduVPN
             evince # GNOME's document viewer
             ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video
             gdb # GNU Project debugger (so I have local documentation)
@@ -124,6 +128,7 @@
             pavucontrol # PulseAudio Volume Control
             pjones.image-scripts # Scripts for working with images
             pjones.network-scripts # Scripts related to networking
+            pkgs-unstable.eduvpn-client # Linux client for eduVPN (always need the latest version)
             pwgen # Password generator which creates passwords which can be easily memorized by a human
             remmina # Remote desktop client written in GTK
             ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
@@ -154,16 +159,16 @@
               pdftk # Command-line tool for working with PDFs
             ]
           )
-          ++
-            # Packages that don't build on aarch64:
-            lib.optionals pkgs.stdenv.isx86_64 (
-              with pkgs;
-              [
-                # NOTE: makemkv is currently offline:
-                #
-                # makemkv # Convert blu-ray and dvd to mkv
-              ]
-            )
+          # ++
+          # # Packages that don't build on aarch64:
+          # lib.optionals pkgs.stdenv.isx86_64 (
+          #   with pkgs;
+          #   [
+          #     # NOTE: makemkv is currently offline:
+          #     #
+          #     # makemkv # Convert blu-ray and dvd to mkv
+          #   ]
+          # )
           ++ lib.optionals config.tilde.workstation.design (
             with pkgs;
             [
