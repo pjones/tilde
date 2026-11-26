@@ -17,6 +17,7 @@ in
         with self.nixosModules;
         [
           android
+          eduvpn
           laptop
           qmk
           single-disk

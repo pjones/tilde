@@ -31,12 +31,7 @@
   );
 
   flake.homeModules.workstation = moduleWithSystem (
-    {
-      pkgs,
-      pkgs-unstable,
-      system,
-      ...
-    }:
+    { pkgs, system, ... }:
     { config, lib, ... }:
     let
       mpvWithOverrides = pkgs.mpv.override {
@@ -128,7 +123,6 @@
             pavucontrol # PulseAudio Volume Control
             pjones.image-scripts # Scripts for working with images
             pjones.network-scripts # Scripts related to networking
-            pkgs-unstable.eduvpn-client # Linux client for eduVPN (always need the latest version)
             pwgen # Password generator which creates passwords which can be easily memorized by a human
             remmina # Remote desktop client written in GTK
             ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
